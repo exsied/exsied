@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   t="1715851102348"
+   class="icon"
+   viewBox="0 0 1.28 1.28"
+   version="1.1"
+   p-id="2418"
+   width="16"
+   height="16"
+   id="svg1"
+   sodipodi:docname="table-delete-row.svg"
+   inkscape:version="1.3.2 (091e20ef0f, 2023-11-25)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="32.000001"
+     inkscape:cx="7.1562498"
+     inkscape:cy="10.484375"
+     inkscape:window-width="1920"
+     inkscape:window-height="975"
+     inkscape:window-x="0"
+     inkscape:window-y="32"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1" />
+  <g
+     id="g21"
+     inkscape:label="row2"
+     transform="matrix(0.00125,0,0,0.00131579,-0.1599784,0.38737308)"
+     style="display:inline">
+    <rect
+       style="fill:#000000;stroke-width:3.98905"
+       id="rect18"
+       width="561.29663"
+       height="230.39999"
+       x="127.98371"
+       y="63.996582"
+       inkscape:label="rb1" />
+    <path
+       fill-rule="evenodd"
+       d="m 742.38734,2.2740689 a 51.171667,51.176617 0 0 1 72.46016,0 L 932.13262,119.67323 1049.4175,2.2740689 a 51.236594,51.241544 0 1 1 72.4596,72.4661101 l -117.3888,117.296791 117.3888,117.29684 a 51.236594,51.241544 0 0 1 -72.4596,72.46605 L 932.13262,264.40071 814.8475,381.79986 a 51.236681,51.241632 0 0 1 -72.46016,-72.46605 l 117.389,-117.29684 -117.389,-117.296791 a 51.171667,51.176617 0 0 1 0,-72.4661101"
+       id="path1-9"
+       style="stroke-width:102.348"
+       inkscape:label="delete btn" />
+  </g>
+  <path
+     id="rect6"
+     style="display:inline;fill:#000000;stroke-width:0.00618041"
+     inkscape:label="row3"
+     d="M 0.25600124,0.97684251 V 1.2800005 H 1.2800012 V 0.97684251 Z m 0.064,0.0673685 h 0.256 v 0.1684211 h -0.256 z m 0.32,0 h 0.256 v 0.1684211 h -0.256 z m 0.32,0 H 1.2160012 V 1.2126321 H 0.96000124 Z" />
+  <path
+     id="rect14"
+     style="display:inline;fill:#000000;stroke-width:0.00618041"
+     inkscape:label="row1"
+     d="M 0.25600124,0 V 0.30315802 H 1.2800012 V 0 Z m 0.064,0.06736845 h 0.256 v 0.16842112 h -0.256 z m 0.32,0 h 0.256 v 0.16842112 h -0.256 z m 0.32,0 H 1.2160012 V 0.23578957 H 0.96000124 Z" />
+</svg>

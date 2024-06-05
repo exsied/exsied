@@ -1,0 +1,22 @@
+@import '../../styles/mixin.scss';
+
+.exsied .exsied-toolbar {
+	i.exsied-btn-about {
+		@include bkgSvgIcon;
+		background-image: url(./icons/question.svg);
+	}
+}
+
+.exsied-about-view {
+	min-width: 200px;
+
+	.exsied-developer-data {
+		padding: 0.5rem;
+		margin: 0.5rem;
+		border: 1px solid #ccc;
+
+		.exsied-developer-item {
+			padding-inline-start: 1rem;
+		}
+	}
+}

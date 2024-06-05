@@ -1,0 +1,59 @@
+@import '../../styles/mixin.scss';
+
+.exsied .exsied-toolbar {
+	i.exsied-btn-find {
+		@include bkgSvgIcon;
+		background-image: url(./icons/find.svg);
+	}
+	i.exsied-btn-replace {
+		@include bkgSvgIcon;
+		background-image: url(./icons/replace.svg);
+	}
+}
+
+.exsied-find-box {
+	display: flex;
+	padding: 0.5rem;
+
+	.exsied-find-count {
+		padding: 0.5rem;
+		display: flex;
+	}
+
+	.exsied-btn {
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		padding: 0 0.25rem;
+
+		i.exsied-btn-prev {
+			@include bkgSvgIcon;
+			background-image: url(./icons/arrow-up.svg);
+		}
+
+		i.exsied-btn-next {
+			@include bkgSvgIcon;
+			background-image: url(./icons/arrow-down.svg);
+		}
+
+		i.exsied-btn-hightlight-all {
+			@include bkgSvgIcon;
+			background-image: url(./icons/highlight.svg);
+		}
+
+		i.exsied-btn-close {
+			@include bkgSvgIcon;
+			background-image: url(./icons/close.svg);
+		}
+
+		i.exsied-btn-replace-this {
+			@include bkgSvgIcon;
+			background-image: url(./icons/replace-empty.svg);
+		}
+
+		i.exsied-btn-replace-all {
+			@include bkgSvgIcon;
+			background-image: url(./icons/replace-filled.svg);
+		}
+	}
+}

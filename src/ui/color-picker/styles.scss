@@ -1,0 +1,39 @@
+@import '../../styles/mixin.scss';
+
+.exsied-color-picker {
+	.exsied-color-grid {
+		display: flex;
+		flex-wrap: wrap;
+		width: 200px;
+	}
+
+	.exsied-color-block {
+		width: 20px;
+		height: 20px;
+		cursor: pointer;
+
+		&.transparent {
+			@include bkgSvgIcon;
+			background-image: url(./transparent.svg);
+
+			width: 20px;
+			height: 20px;
+		}
+	}
+
+	.exsied-color-preset {
+		padding-bottom: 0.5rem;
+	}
+
+	.exsied-picker-color-list {
+		border: 1px solid #f00;
+		padding: 0.25rem;
+
+		.color-b {
+			padding-bottom: 0.5rem;
+		}
+		.color-a {
+			padding-bottom: 0.5rem;
+		}
+	}
+}

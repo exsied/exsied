@@ -1,0 +1,61 @@
+@import '../../styles/mixin.scss';
+
+.exsied .exsied-toolbar {
+	i.exsied-btn-link {
+		@include bkgSvgIcon;
+		background-image: url(./icons/link.svg);
+	}
+}
+
+.exsied-link-editor {
+	display: flex;
+	max-width: 400px;
+	width: 100%;
+
+	a {
+		display: block;
+		word-break: break-word;
+		width: calc(100% - 2rem);
+	}
+
+	.exsied-link-view {
+		display: block;
+		width: calc(100% - 1.5rem);
+		margin: 0.5rem 0.75rem;
+
+		.exsied-preview-view {
+			display: flex;
+		}
+
+		.exsied-edit-view {
+			display: flex;
+		}
+
+		.exsied-btn {
+			cursor: pointer;
+			display: flex;
+			align-items: center;
+			padding: 0 0.25rem;
+
+			i.exsied-btn-edit {
+				@include bkgSvgIcon;
+				background-image: url(./icons/edit.svg);
+			}
+
+			i.exsied-btn-trash {
+				@include bkgSvgIcon;
+				background-image: url(./icons/trash.svg);
+			}
+
+			i.exsied-btn-cancel {
+				@include bkgSvgIcon;
+				background-image: url(./icons/close.svg);
+			}
+
+			i.exsied-btn-confirm {
+				@include bkgSvgIcon;
+				background-image: url(./icons/confirm.svg);
+			}
+		}
+	}
+}

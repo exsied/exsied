@@ -1,0 +1,8 @@
+@import '../../styles/mixin.scss';
+
+.exsied .exsied-toolbar {
+	i.exsied-btn-text-color {
+		@include bkgSvgIcon;
+		background-image: url(./icons/font-color.svg);
+	}
+}

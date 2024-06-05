@@ -1,0 +1,110 @@
+:root {
+	--exd-toolbar-backgroud-color: #fefefe;
+	--exd-toolbar-color: rgb(44, 44, 44);
+	--exd-toolbar-border-bottom-color: #ccc;
+
+	--exd-toolbar-ctrl-backgroud-color: unset;
+	--exd-toolbar-ctrl-backgroud-color-active: rgb(145, 196, 255);
+	--exd-toolbar-ctrl-backgroud-color-hover: rgb(228, 228, 228);
+	--exd-toolbar-ctrl-margin: 1px 2px;
+	--exd-toolbar-ctrl-height: 30px;
+
+	--exd-toolbar-bubble-backgroud-color: #444;
+}
+
+.exsied-toolbar {
+	.exsied-normal {
+		background-color: var(--exd-toolbar-backgroud-color);
+		color: var(--exd-toolbar-color);
+		border-bottom: 1px solid var(--exd-toolbar-border-bottom-color);
+		padding: 0.1rem;
+		position: sticky;
+		top: 0;
+	}
+
+	> * {
+		display: flex;
+	}
+
+	button {
+		outline: 0;
+		appearance: none;
+		border: none;
+		height: 30px;
+		min-width: 30px;
+		position: relative;
+	}
+
+	.exsied-ctrl,
+	.exsied-dropdown .exsied-trigger {
+		cursor: pointer;
+		background-color: var(--exd-toolbar-ctrl-backgroud-color);
+		margin: var(--exd-toolbar-ctrl-margin);
+		height: var(--exd-toolbar-ctrl-height);
+		min-width: 30px;
+	}
+
+	.exsied-ctrl {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		&.exsied-active {
+			background-color: var(--exd-toolbar-ctrl-backgroud-color-active);
+		}
+
+		&:hover {
+			background-color: var(--exd-toolbar-ctrl-backgroud-color-hover);
+		}
+	}
+}
+
+.exsied-toolbar-bubble-wrap {
+	position: absolute;
+	box-sizing: border-box;
+	transform: translateY(10px);
+	background-color: var(--exd-toolbar-bubble-backgroud-color);
+	border-radius: 1.5rem;
+
+	.exsied-toolbar-bubble-arrow {
+		border-bottom: 6px solid var(--exd-toolbar-bubble-backgroud-color);
+		top: -6px;
+
+		border-left: 6px solid transparent;
+		border-right: 6px solid transparent;
+		content: ' ';
+		display: block;
+		left: 50%;
+		margin-left: -6px;
+		position: absolute;
+	}
+
+	.exsied-toolbar-bubble {
+		display: flex;
+		background-color: var(--exd-toolbar-bubble-backgroud-color);
+		border-radius: 12px;
+
+		.exsied-endpoint {
+			&:first-child {
+				margin-inline-start: 12px;
+			}
+
+			&:last-child {
+				margin-inline-end: 12px;
+			}
+		}
+
+		.exsied-btns {
+			display: flex;
+
+			button {
+				background: none;
+				border: none;
+				cursor: pointer;
+				display: inline-block;
+
+				filter: invert(80);
+			}
+		}
+	}
+}

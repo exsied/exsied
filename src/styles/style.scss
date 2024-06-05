@@ -1,0 +1,29 @@
+:root {
+	--exd-backgroud-color: #fff;
+	--exd-color: #000;
+	--exd-component-backgroud-color: #efefef;
+	--exd-component-color: #333;
+	--exd-component-border-color: #ccc;
+	--exd-highlight-color: rgb(104, 211, 175);
+}
+
+.exsied {
+	background-color: var(--exd-backgroud-color);
+	color: var(--exd-color);
+	font-size: 1rem;
+	border: 1px solid #666;
+
+	 .exsied-workplace {
+		background-color: var(--exd-backgroud-color);
+		padding: 0.5rem;
+		min-height: 10rem;
+
+		&:focus {
+			outline: none;
+		}
+
+		.exsied-temp-ele-highlight {
+			background-color: var(--exd-highlight-color);
+		}
+	}
+}

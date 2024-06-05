@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Exsied</title>
+	</head>
+	<body>
+		<p>Exsied demo:</p>
+		<div id="app"></div>
+
+		<link rel="stylesheet" href="../dist/style.css" />
+		<script type="module">
+			import { DEMO_CONTENT } from '../demo_content.js'
+			import { exsied, exsiedPlugins } from '../dist/index.js'
+
+			exsiedPlugins.about.conf.deveploers.push(
+				{
+					name: 'enassi github',
+					repoLink: 'https://github.com/enassi/enassi',
+					webSiteLink: 'https://xxx.com/xxx',
+					email: 'xxx@xxx.xxx',
+					extContent: `Enassi's github repo`,
+				},
+				{
+					name: 'enassi gitee',
+					repoLink: 'https://gitee.com/enassi/enassi',
+					webSiteLink: 'https://xxx.com/xxx',
+					email: 'xxx@xxx.xxx',
+					extContent: `Enassi's gitee repo`,
+				},
+			)
+
+			exsied.init({
+				id: 'app',
+				plugins: [
+					exsiedPlugins.bold,
+					exsiedPlugins.italic,
+					exsiedPlugins.underline,
+					exsiedPlugins.strikethrough,
+					exsiedPlugins.headings,
+					exsiedPlugins.link,
+					exsiedPlugins.image,
+					exsiedPlugins.table,
+					exsiedPlugins.fontSize,
+					exsiedPlugins.fontFamily,
+					exsiedPlugins.backgroundColor,
+					exsiedPlugins.textColor,
+					exsiedPlugins.findAndReplace,
+				],
+				enableToolbarBubble: true,
+			})
+
+			exsied.setHtml(DEMO_CONTENT)
+
+			exsied.i18n.setDict('zh-CN', {
+				Title: '标题',
+				Alternative: '别名',
+				Styles: '样式',
+				Width: '宽度',
+				Height: '高度',
+			})
+
+			exsied.i18n.setLocale('zh-CN')
+		</script>
+	</body>
+</html>

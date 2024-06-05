@@ -1,0 +1,43 @@
+@import '../../styles/mixin.scss';
+
+.exsied .exsied-toolbar {
+	i.exsied-btn-div {
+		@include bkgSvgIcon;
+		background-image: url(./icons/bounding-box-circles.svg);
+	}
+
+	i.exsied-btn-span {
+		@include bkgSvgIcon;
+		background-image: url(./icons/input-cursor-text.svg);
+	}
+
+	i.exsied-btn-h1 {
+		@include bkgSvgIcon;
+		background-image: url(./icons/h1.svg);
+	}
+
+	i.exsied-btn-h2 {
+		@include bkgSvgIcon;
+		background-image: url(./icons/h2.svg);
+	}
+
+	i.exsied-btn-h3 {
+		@include bkgSvgIcon;
+		background-image: url(./icons/h3.svg);
+	}
+
+	i.exsied-btn-h4 {
+		@include bkgSvgIcon;
+		background-image: url(./icons/h4.svg);
+	}
+
+	i.exsied-btn-h5 {
+		@include bkgSvgIcon;
+		background-image: url(./icons/h5.svg);
+	}
+
+	i.exsied-btn-h6 {
+		@include bkgSvgIcon;
+		background-image: url(./icons/h6.svg);
+	}
+}

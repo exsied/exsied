@@ -1,0 +1,44 @@
+@import '../../styles/mixin.scss';
+
+:root {
+	--dropdown-list-z-index: 10;
+}
+
+.exsied-dropdown {
+	display: inline-block;
+	position: relative;
+
+	.exsied-dropdown-trigger {
+		&::after {
+			@include bkgSvgIcon;
+			background-image: url(./arrow-down.svg);
+
+			padding-inline-start: 0.5rem;
+		}
+	}
+
+	.exsied-dropdown-list {
+		display: none;
+		z-index: var(--dropdown-list-z-index);
+
+		&.exsied-dropdown-list-show {
+			display: unset;
+			position: absolute;
+			left: 0;
+			white-space: nowrap;
+			background-color: var(--exd-component-backgroud-color);
+			color: var(--exd-component-color);
+			border: 1px solid var(--exd-component-border-color);
+		}
+
+		.exsied-dropdown-list-item {
+			display: flex;
+			padding: 0.5rem;
+			cursor: pointer;
+
+			.icon {
+				padding-inline-end: 0.5rem;
+			}
+		}
+	}
+}

@@ -1,0 +1,96 @@
+export const DEMO_CONTENT = `
+<p>
+  <strong>Exsied</strong>: <strong>Ex</strong>tremely <strong>si</strong>mple
+  <strong>ed</strong>itor. The pronunciation is <code>/ɪkˈsiːd/</code>, the same
+  as <strong>exceed</strong>.
+  <a href="https://github.com/exsied/exsied">Github repo </a> /
+  <a href="https://gitee.com/exsied/exsied">Gitee repo </a>
+</p>
+
+<p>
+  <u><b>Exied</b> is the main editor of <b>enassi</b></u>
+  , implemented through native JavaScript events binding.
+  <b>Enassi</b> is your encryption assistant that supports multiple file types (
+  <u>including <b>markdown</b>, <b>PDF</b>, <b>images</b>, etc.</u> ), supports
+  <b>file encryption</b> and <b>synchronization</b>
+</p>
+
+<h2>Features:</h2>
+<ul>
+  <li>
+    <p>
+      No complex concepts, <strong>exsied</strong> is written entirely in native
+      JavaScript events binding.
+    </p>
+  </li>
+  <li>
+    <p>No dependencies.</p>
+  </li>
+  <li>
+    <p>Easy to configure / custom / develop.</p>
+  </li>
+  <li>
+    <p>All functions are based on plugins.</p>
+  </li>
+</ul>
+<h2>License</h2>
+<h3>
+  You may use exsied under the MIT license if you comply with the following
+  terms:
+</h3>
+<ul>
+  <li>
+    <p>Use <strong>exsied</strong> as an editor.</p>
+  </li>
+  <li>
+    <p>
+      If you add, modify, or overwrite anything of <strong>exsied</strong>, you
+      must add your own information in the <strong>about</strong> plugin's conf
+      field.
+    </p>
+  </li>
+  <li>
+    <p>Ensure the <strong>about</strong> plugin functions correctly.</p>
+  </li>
+</ul>
+<h3>Other uses require authorization.</h3>
+
+<h2>Other demo</h2>
+<p>
+  <s><u>This line</u> has been <b>deleted</b></s>
+</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>cell one 1-1</td>
+      <td>cell one 1-2</td>
+    </tr>
+    <tr>
+      <td>cell one 2-1</td>
+      <td>cell one 2-2</td>
+    </tr>
+    <tr>
+      <td><br /></td>
+      <td><br /></td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>cell two 1-1</td>
+      <td>cell two 1-2</td>
+    </tr>
+    <tr>
+      <td><br /></td>
+      <td><br /></td>
+    </tr>
+    <tr>
+      <td>cell two 3-1</td>
+      <td>cell two 3-2</td>
+    </tr>
+  </tbody>
+</table>
+	`

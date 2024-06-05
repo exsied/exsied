@@ -1,0 +1,95 @@
+@import '../../styles/mixin.scss';
+
+.exsied .exsied-toolbar {
+	i.exsied-btn-image {
+		@include bkgSvgIcon;
+		background-image: url(./icons/image.svg);
+	}
+}
+
+.exsied .exsied-workplace {
+	img {
+		&.exsied-active {
+			outline: 2px solid rgb(103, 161, 255);
+		}
+	}
+}
+
+.exsied-image-resizer {
+	background-color: #3c4ef0;
+	border: 1px solid #fff;
+	display: block;
+	width: 7px;
+	height: 7px;
+	position: absolute;
+
+	&.exsied-image-resizer-tl {
+		top: -6px;
+		left: -6px;
+		cursor: nw-resize;
+	}
+
+	&.exsied-image-resizer-tc {
+		top: -6px;
+		left: 48%;
+		cursor: n-resize;
+	}
+
+	&.exsied-image-resizer-tr {
+		top: -6px;
+		right: -6px;
+		cursor: ne-resize;
+	}
+
+	&.exsied-image-resizer-l {
+		bottom: 48%;
+		left: -6px;
+		cursor: w-resize;
+	}
+
+	&.exsied-image-resizer-r {
+		bottom: 48%;
+		right: -6px;
+		cursor: e-resize;
+	}
+
+	&.exsied-image-resizer-bl {
+		bottom: -2px;
+		left: -6px;
+		cursor: sw-resize;
+	}
+
+	&.exsied-image-resizer-bc {
+		bottom: -2px;
+		left: 48%;
+		cursor: s-resize;
+	}
+
+	&.exsied-image-resizer-br {
+		bottom: -2px;
+		right: -6px;
+		cursor: nwse-resize;
+	}
+
+	&.exsied-image-settings-btn {
+		all: unset;
+
+		background-color: rgba(60, 132, 244, 0.2);
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		cursor: pointer;
+		padding: 0.5rem;
+		width: 50%;
+		height: 50%;
+
+		&::after {
+			@include bkgSvgIcon;
+			background-image: url(./icons/gear.svg);
+
+			width: 100%;
+			height: 100%;
+		}
+	}
+}

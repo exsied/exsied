@@ -1,0 +1,42 @@
+{
+	"name": "exsied",
+	"private": true,
+	"version": "0.1.0",
+	"description": "Exsied is a WYSIWYG editor from enassi.",
+	"type": "module",
+	"files": [
+		"dist"
+	],
+	"main": "./dist/index.umd.cjs",
+	"module": "./dist/index.js",
+	"types": "./index.d.ts",
+	"exports": {
+		"types": "./dist/index.d.ts",
+		"import": "./dist/index.js",
+		"require": "./dist/index.umd.cjs"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/exsied/exsied.git"
+	},
+	"keywords": [
+		"wysiwyg",
+		"editor",
+		"text",
+		"html",
+		"exsied"
+	],
+	"scripts": {
+		"dev": "vite",
+		"build": "vite build && tsc",
+		"format": "npx prettier --write '**/*.{html,json,md,scss,ts}'",
+		"test_dist": "cd test_dist && node server.cjs"
+	},
+	"devDependencies": {
+		"@trivago/prettier-plugin-sort-imports": "^4.3.0",
+		"@types/node": "^20.12.11",
+		"sass": "^1.77.1",
+		"typescript": "^5.4.5",
+		"vite": "^5.2.10"
+	}
+}
