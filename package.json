@@ -1,6 +1,6 @@
 {
-	"name": "exsied",
-	"private": true,
+	"name": "@exsied/exsied",
+	"private": false,
 	"version": "0.1.0",
 	"description": "Exsied is a WYSIWYG editor from enassi.",
 	"type": "module",
@@ -17,7 +17,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/exsied/exsied.git"
+		"url": "git+https://github.com/exsied/exsied.git"
 	},
 	"keywords": [
 		"wysiwyg",

@@ -2,6 +2,10 @@
 
 **Exsied**: **Ex**tremely **si**mple **ed**itor. The pronunciation is `/ɪkˈsiːd/`, the same as **exceed**.
 
+[Documents](https://enassi.github.io/enassi-docs/en/exsied/about/) / [文档](https://enassi.github.io/enassi-docs/zh-cn/exsied/about/)
+
+[Github repo](https://github.com/exsied/exsied) / [Gitee repo](https://gitee.com/exsied/exsied)
+
 ## Features:
 
 - No complex concepts, **exsied** is written entirely in native JavaScript events binding.
@@ -18,20 +22,23 @@
 
 - Use **exsied** as an editor.
 
-- If you add, modify, or overwrite anything of **exsied**, you must add your own information in the **about** plugin's `PLUGIN_CONF.developers`.
+- If you add, modify, or overwrite anything of **exsied**, you must add your own information in the **about** plugin's `conf`.
 
 - Ensure the **about** plugin functions correctly.
 
 ### Other uses require authorization.
 
-## ABBR
+## Donate
 
-- btn: button
-- cn: class_name
-- ctrl: controller
-- ele: element
-- plg: plugin
-- tn: tag_name
+1. [Open collective](https://opencollective.com/enassi)
+
+2. [Alipay / Weixin pay](https://github.com/newproplus)
+
+3. Cryptocurrency:
+
+   - XMR: 46df6rwnqcUCFaSummLobcH3J9sWgqYASF8Znq5HnhgrLeASh8u4TPJ2LaLnoQk3uV6t18CgNuFVCDfLUR9G94AZUj1TtGr
+   - SOL: BbrRkLArfTeAieAtDpvBHNE4KBKX9fmbjPb5JDmKHWE7
+   - ETH: 0xA59186a08424BE262FBacA922E87Ab82F3C5245B
 
 ## Demo
 
@@ -66,7 +73,7 @@ exsied.init({
 	enableToolbarBubble: true,
 })
 
-exsied.setHtml(DEMO_CONTENT)
+exsied.setHtml('some HTML code')
 ```
 
 When running **exsied** in the browser, please refer to `test_dist/index_esm.html`.
@@ -96,6 +103,15 @@ exsied.setDict('zh-CN', {
 ```js
 exsied.setLocale('zh-CN')
 ```
+
+## ABBR
+
+- btn: button
+- cn: class_name
+- ctrl: controller
+- ele: element
+- plg: plugin
+- tn: tag_name
 
 ## TODO
 
