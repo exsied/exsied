@@ -12,9 +12,15 @@ export type KvStringString = {
 	[key: string]: string
 }
 
+export type ClickEventHandler = (event: MouseEvent) => any
+export type ChangeEventHandler = (event: Event) => any
+
+export type ExsiedCommands = { [key: string]: (event: Event) => any }
+
 export interface ExsiedPlugin {
 	name: string
 	conf: any
+	commands: ExsiedCommands
 	toolBarControl: ToolBarControl[]
 	addHhandler: () => any
 	removeHhandler: () => any

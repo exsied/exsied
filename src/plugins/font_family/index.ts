@@ -1,4 +1,4 @@
-import { ExsiedPlugin } from '../../types'
+import { ExsiedCommands, ExsiedPlugin } from '../../types'
 import { genDropdownId } from '../../ui/dropdown'
 import { Toolbar } from '../../ui/toolbar'
 import { PLUGIN_CONF, PLUGIN_NAME } from './base'
@@ -7,10 +7,12 @@ import './styles.scss'
 
 const toolbarBtnIds = Toolbar.genButtonIds(PLUGIN_NAME, PLUGIN_NAME)
 const dropDownId = genDropdownId(toolbarBtnIds.normal)
+const commands: ExsiedCommands = { PLUGIN_NAME: formatFontFamily }
 
 const plugin: ExsiedPlugin = {
 	name: PLUGIN_NAME,
 	conf: PLUGIN_CONF,
+	commands,
 
 	toolBarControl: [
 		{
@@ -19,7 +21,7 @@ const plugin: ExsiedPlugin = {
 			addToBubble: PLUGIN_CONF.addToBubble,
 
 			eleType: 'select',
-			changeCallBack: formatFontFamily,
+			changeCallBack: commands[PLUGIN_NAME],
 			defaultText: 'Font family',
 			options: PLUGIN_CONF.fontFamilyOptions,
 		},

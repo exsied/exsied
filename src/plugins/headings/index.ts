@@ -1,6 +1,6 @@
 import { TN_H1, TN_H2, TN_H3, TN_H4, TN_H5, TN_H6 } from '../../contants'
 import { exsied } from '../../core'
-import { ExsiedPlugin } from '../../types'
+import { ExsiedCommands, ExsiedPlugin } from '../../types'
 import { genDropdownId, genTriggerClassName } from '../../ui/dropdown'
 import { Toolbar } from '../../ui/toolbar'
 import {
@@ -19,10 +19,12 @@ import './styles.scss'
 const toolbarBtnIds = Toolbar.genButtonIds(PLUGIN_NAME, PLUGIN_NAME)
 const dropDownId = genDropdownId(toolbarBtnIds.normal)
 const triggerClassName = genTriggerClassName()
+const commands: ExsiedCommands = { PLUGIN_NAME: formatHeading }
 
 const plugin: ExsiedPlugin = {
 	name: PLUGIN_NAME,
 	conf: PLUGIN_CONF,
+	commands,
 
 	toolBarControl: [
 		{
@@ -31,7 +33,7 @@ const plugin: ExsiedPlugin = {
 			addToBubble: PLUGIN_CONF.addToBubble,
 
 			eleType: 'select',
-			changeCallBack: formatHeading,
+			changeCallBack: commands[PLUGIN_NAME],
 			defaultText: 'Headings',
 			options: PLUGIN_CONF.headingsOptions,
 		},

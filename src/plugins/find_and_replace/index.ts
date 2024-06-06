@@ -1,17 +1,19 @@
 import { CN_TEMP_ELE_HIGHLIGHT } from '../../contants'
 import { exsied } from '../../core'
 import { DomUtils } from '../../core/dom_utils'
-import { ExsiedPlugin } from '../../types'
+import { ExsiedCommands, ExsiedPlugin } from '../../types'
 import { CN_ICON_FIND, CN_ICON_REPLACE, PLUGIN_CONF, PLUGIN_NAME, POPUP_ID } from './base'
 import { onClickFind, onClickReplace, reset } from './event_handlers'
 import './styles.scss'
 
 export const FIND_NAME = 'find'
 export const REPLACE_NAME = 'replace'
+const commands: ExsiedCommands = { FIND_NAME: onClickFind, REPLACE_NAME: onClickReplace }
 
 const plugin: ExsiedPlugin = {
 	name: PLUGIN_NAME,
 	conf: PLUGIN_CONF,
+	commands,
 
 	toolBarControl: [
 		{
@@ -21,7 +23,7 @@ const plugin: ExsiedPlugin = {
 
 			eleType: 'button',
 			iconClassName: CN_ICON_FIND,
-			clickCallBack: onClickFind,
+			clickCallBack: commands[FIND_NAME],
 		},
 		{
 			name: REPLACE_NAME,
@@ -30,7 +32,7 @@ const plugin: ExsiedPlugin = {
 
 			eleType: 'button',
 			iconClassName: CN_ICON_REPLACE,
-			clickCallBack: onClickReplace,
+			clickCallBack: commands[REPLACE_NAME],
 		},
 	],
 

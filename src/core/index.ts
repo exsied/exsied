@@ -13,6 +13,8 @@ import { DomUtils } from './dom_utils'
 import { bindAllEvents, unbindAllEvent } from './events'
 import { I18N } from './i18n'
 
+export const PLUGINS: ExsiedPlugin[] = []
+
 const init = (conf: {
 	id: string
 	plugins: ExsiedPlugin[]
@@ -122,5 +124,3 @@ export const exsied: Exsied = {
 		setLocale: I18N.setLocale,
 	},
 }
-
-export const PLUGINS: ExsiedPlugin[] = []

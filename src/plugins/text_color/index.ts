@@ -1,17 +1,19 @@
 import { exsied } from '../../core'
 import { DomUtils } from '../../core/dom_utils'
 import { SelectionUtils } from '../../core/selection_utils'
-import { ExsiedPlugin } from '../../types'
+import { ExsiedCommands, ExsiedPlugin } from '../../types'
 import { Toolbar } from '../../ui/toolbar'
 import { CN_ICON, PLUGIN_CONF, PLUGIN_NAME, POPUP_ID } from './base'
 import { showBackgroundColorPicker } from './event_handlers'
 import './styles.scss'
 
 const toolbarBtnIds = Toolbar.genButtonIds(PLUGIN_NAME, PLUGIN_NAME)
+const commands: ExsiedCommands = { PLUGIN_NAME: showBackgroundColorPicker }
 
 const plugin: ExsiedPlugin = {
 	name: PLUGIN_NAME,
 	conf: PLUGIN_CONF,
+	commands,
 
 	toolBarControl: [
 		{
@@ -19,7 +21,7 @@ const plugin: ExsiedPlugin = {
 			tooltipText: 'Text color',
 			eleType: 'button',
 			iconClassName: CN_ICON,
-			clickCallBack: showBackgroundColorPicker,
+			clickCallBack: commands[PLUGIN_NAME],
 			addToBubble: PLUGIN_CONF.addToBubble,
 		},
 	],

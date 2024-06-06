@@ -3,7 +3,7 @@ import { PLUGINS, exsied } from '../../core'
 import { DomUtils } from '../../core/dom_utils'
 import { execEleEventClickCallbackByTag } from '../../core/events'
 import { SelectionUtils } from '../../core/selection_utils'
-import { HTMLTagNames } from '../../types'
+import { ChangeEventHandler, ClickEventHandler, HTMLTagNames } from '../../types'
 import { tagNameLc } from '../../utils'
 import { uniqueArray } from '../../utils/array'
 import { CN_DDROPDOWN_LIST_SHOW, DropdownMenu } from '../dropdown'
@@ -18,7 +18,7 @@ export type ToolBarButton = {
 	addToBubble?: boolean
 
 	eleType: 'button'
-	clickCallBack: (event: MouseEvent) => any
+	clickCallBack: ClickEventHandler
 	iconClassName?: string
 }
 
@@ -36,7 +36,7 @@ export type ToolBarSelect = {
 	addToBubble?: boolean
 
 	eleType: 'select'
-	changeCallBack: (event: Event) => void
+	changeCallBack: ChangeEventHandler
 	defaultText: string
 	options: ToolBarSelectOption[]
 }

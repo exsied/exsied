@@ -1,16 +1,18 @@
 import { CN_ACTIVE } from '../../contants'
 import { exsied } from '../../core'
-import { ExsiedPlugin } from '../../types'
+import { ExsiedCommands, ExsiedPlugin } from '../../types'
 import { Toolbar } from '../../ui/toolbar'
 import { CN_ICON, PLUGIN_CONF, PLUGIN_NAME, isHighlight } from './base'
 import { formatTextBold } from './event_handlers'
 import './styles.scss'
 
 const toolbarBtnIds = Toolbar.genButtonIds(PLUGIN_NAME, PLUGIN_NAME)
+const commands: ExsiedCommands = { PLUGIN_NAME: formatTextBold }
 
 const plugin: ExsiedPlugin = {
 	name: PLUGIN_NAME,
 	conf: PLUGIN_CONF,
+	commands,
 
 	toolBarControl: [
 		{
@@ -20,7 +22,7 @@ const plugin: ExsiedPlugin = {
 
 			eleType: 'button',
 			iconClassName: CN_ICON,
-			clickCallBack: formatTextBold,
+			clickCallBack: commands[PLUGIN_NAME],
 		},
 	],
 

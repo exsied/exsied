@@ -19,20 +19,6 @@
 
 - All functions are based on plugins.
 
-## License
-
-### You may use exsied under the MIT license if you comply with the following terms:
-
-- Use **exsied** as an editor.
-
-- Do not modify the source code of the **about** plugin.
-
-- Do not disable or hide the **about** plugin.
-
-- If you add, modify, or overwrite anything of **exsied**, you should add your own information to the **about** plugin's `conf.deveploers`.
-
-### Other uses require authorization.
-
 ## Donate
 
 1. [Open collective](https://opencollective.com/enassi)

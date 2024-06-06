@@ -2,17 +2,19 @@ import { CN_ACTIVE, TN_IMG } from '../../contants'
 import { exsied } from '../../core'
 import { DomUtils } from '../../core/dom_utils'
 import { addEleClickCallbackByClass, addEleClickCallbackByTag } from '../../core/events'
-import { ExsiedPlugin } from '../../types'
+import { ExsiedCommands, ExsiedPlugin } from '../../types'
 import { Toolbar } from '../../ui/toolbar'
 import { CN_BTN_SETTING, CN_ICON, PLUGIN_CONF, PLUGIN_NAME, RESIZER_ID } from './base'
 import { insertImage, onClickImage, onClickImageSettingButton } from './event_handlers'
 import './styles.scss'
 
 const toolbarBtnIds = Toolbar.genButtonIds(PLUGIN_NAME, PLUGIN_NAME)
+const commands: ExsiedCommands = { PLUGIN_NAME: insertImage }
 
 const plugin: ExsiedPlugin = {
 	name: PLUGIN_NAME,
 	conf: PLUGIN_CONF,
+	commands,
 
 	toolBarControl: [
 		{
@@ -22,7 +24,7 @@ const plugin: ExsiedPlugin = {
 
 			eleType: 'button',
 			iconClassName: CN_ICON,
-			clickCallBack: insertImage,
+			clickCallBack: commands[PLUGIN_NAME],
 		},
 	],
 
