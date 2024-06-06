@@ -19,7 +19,8 @@ import './styles.scss'
 const toolbarBtnIds = Toolbar.genButtonIds(PLUGIN_NAME, PLUGIN_NAME)
 const dropDownId = genDropdownId(toolbarBtnIds.normal)
 const triggerClassName = genTriggerClassName()
-const commands: ExsiedCommands = { PLUGIN_NAME: formatHeading }
+const commands: ExsiedCommands = {}
+commands[PLUGIN_NAME] =formatHeading 
 
 const plugin: ExsiedPlugin = {
 	name: PLUGIN_NAME,

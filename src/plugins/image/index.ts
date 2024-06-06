@@ -9,7 +9,8 @@ import { insertImage, onClickImage, onClickImageSettingButton } from './event_ha
 import './styles.scss'
 
 const toolbarBtnIds = Toolbar.genButtonIds(PLUGIN_NAME, PLUGIN_NAME)
-const commands: ExsiedCommands = { PLUGIN_NAME: insertImage }
+const commands: ExsiedCommands = {}
+commands[PLUGIN_NAME] =insertImage 
 
 const plugin: ExsiedPlugin = {
 	name: PLUGIN_NAME,

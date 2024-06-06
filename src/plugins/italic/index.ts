@@ -7,7 +7,8 @@ import { formatItalic } from './event_handlers'
 import './styles.scss'
 
 const toolbarBtnIds = Toolbar.genButtonIds(PLUGIN_NAME, PLUGIN_NAME)
-const commands: ExsiedCommands = { PLUGIN_NAME: formatItalic }
+const commands: ExsiedCommands = {}
+commands[PLUGIN_NAME] =formatItalic 
 
 const plugin: ExsiedPlugin = {
 	name: PLUGIN_NAME,

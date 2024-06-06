@@ -9,7 +9,8 @@ import { insertLink, onClickLink } from './event_handlers'
 import './styles.scss'
 
 const toolbarBtnIds = Toolbar.genButtonIds(PLUGIN_NAME, PLUGIN_NAME)
-const commands: ExsiedCommands = { PLUGIN_NAME: insertLink }
+const commands: ExsiedCommands = {}
+commands[PLUGIN_NAME] =insertLink 
 
 const plugin: ExsiedPlugin = {
 	name: PLUGIN_NAME,

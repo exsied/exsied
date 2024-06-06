@@ -8,7 +8,8 @@ import { insertTable, showTableActionButtons } from './event_handlers'
 import './styles.scss'
 
 const toolbarBtnIds = Toolbar.genButtonIds(PLUGIN_NAME, PLUGIN_NAME)
-const commands: ExsiedCommands = { PLUGIN_NAME: insertTable }
+const commands: ExsiedCommands = {}
+commands[PLUGIN_NAME] =insertTable 
 
 const plugin: ExsiedPlugin = {
 	name: PLUGIN_NAME,
