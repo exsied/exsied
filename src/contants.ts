@@ -39,5 +39,12 @@ export const TN_TEMP = 'exsied-temp-ele'
 export const DATA_ATTR_TEMP_EDIT = `data-exsied-temp-edit-plugin`
 export const DATA_ATTR_CN_ICON = `data-cn-icon`
 
+// Key
+// https://developer.mozilla.org/en-US/docs/Web/API/UI_Events/Keyboard_event_key_values
+export const KEY_ALT = 'Alt'
+export const KEY_CTRL = 'Control'
+export const KEY_SHIFT = 'Shift'
+export const KEY_META = 'Meta'
+
 // Other
 export const ZERO_WIDTH_SPACE = '\u200B'

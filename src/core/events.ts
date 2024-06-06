@@ -1,5 +1,7 @@
+import { exsied } from '.'
 import { CN_BIND_EVENT } from '../contants'
 import { Toolbar } from '../ui/toolbar'
+import { HotkeyUtils } from './hotkey_utils'
 
 export type EventCallback = (event: Event) => void
 
@@ -61,10 +63,22 @@ export const bindAllEvents = () => {
 	document.body.addEventListener('click', bindEventClassName)
 
 	Toolbar.bindBtnEvents()
+
+	if (HotkeyUtils.hasHotkeys()) {
+		exsied.elements.workplace.addEventListener('keydown', function (event) {
+			HotkeyUtils.exec(event)
+		})
+	}
 }
 
 export const unbindAllEvent = () => {
 	document.body.removeEventListener('click', bindEventClassName)
 
 	Toolbar.unBindBtnEvents()
+
+	if (HotkeyUtils.hasHotkeys()) {
+		exsied.elements.workplace.removeEventListener('keydown', function (event) {
+			HotkeyUtils.exec(event)
+		})
+	}
 }

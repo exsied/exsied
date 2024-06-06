@@ -1,3 +1,4 @@
+import { KEY_ALT, KEY_CTRL, KEY_META, KEY_SHIFT } from '../contants'
 import { ToolBarControl } from '../ui/toolbar'
 
 export type Prettify<T> = {
@@ -15,7 +16,8 @@ export type KvStringString = {
 export type ClickEventHandler = (event: MouseEvent) => any
 export type ChangeEventHandler = (event: Event) => any
 
-export type ExsiedCommands = { [key: string]: (event: Event) => any }
+export type CommandFunc = (event: Event) => any
+export type ExsiedCommands = { [key: string]: CommandFunc }
 
 export interface ExsiedPlugin {
 	name: string
@@ -26,6 +28,14 @@ export interface ExsiedPlugin {
 	removeHhandler: () => any
 	checkHighlight: (event: Event) => any
 	removeTempEle: (event: Event) => any
+}
+
+export type ExsiedInitConf = {
+	id: string
+	plugins: ExsiedPlugin[]
+	enableToolbarBubble: boolean
+	hotkeys?: { keyStr: string; func: CommandFunc; modifierKeys: ModifierKeys[] }[]
+	iAbideByExsiedLicenseAndDisableTheAboutPlugin?: boolean
 }
 
 export type Exsied = {
@@ -41,12 +51,7 @@ export type Exsied = {
 	range: Range | null
 	cursorAllParentsTagNamesArr: string[]
 
-	init: (conf: {
-		id: string
-		plugins: ExsiedPlugin[]
-		enableToolbarBubble: boolean
-		iAbideByExsiedLicenseAndDisableTheAboutPlugin?: boolean
-	}) => any
+	init: (conf: ExsiedInitConf) => any
 	getHtml: () => string
 	setHtml: (content: string) => any
 	destroy: () => any
@@ -56,4 +61,10 @@ export type Exsied = {
 		getLocale: () => string
 		setLocale: (locale: string) => any
 	}
+}
+
+export type ModifierKeys = typeof KEY_ALT | typeof KEY_CTRL | typeof KEY_META | typeof KEY_SHIFT
+
+export type HotkeyEventsObj = {
+	[key: string]: CommandFunc[]
 }

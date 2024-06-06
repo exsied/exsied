@@ -1,4 +1,5 @@
 import { DEMO_CONTENT } from '../demo_content'
+import { KEY_CTRL } from './contants'
 import { exsied } from './core'
 import { PLUGIN_CONF as about_PLUGIN_CONF } from './plugins/about/base'
 import backgroundColor from './plugins/background_color'
@@ -51,6 +52,11 @@ exsied.init({
 		findAndReplace,
 	],
 	enableToolbarBubble: true,
+	hotkeys: [
+		{ keyStr: 'b', func: bold.commands[bold.name], modifierKeys: [KEY_CTRL] },
+		{ keyStr: 'i', func: italic.commands[italic.name], modifierKeys: [KEY_CTRL] },
+		{ keyStr: 'u', func: underline.commands[underline.name], modifierKeys: [KEY_CTRL] },
+	],
 })
 
 exsied.setHtml(DEMO_CONTENT)

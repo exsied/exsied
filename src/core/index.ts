@@ -7,20 +7,16 @@ import {
 	ZERO_WIDTH_SPACE,
 } from '../contants'
 import pluginAbout from '../plugins/about'
-import { Exsied, ExsiedPlugin } from '../types'
+import { Exsied, ExsiedInitConf, ExsiedPlugin } from '../types'
 import { Toolbar } from '../ui/toolbar'
 import { DomUtils } from './dom_utils'
 import { bindAllEvents, unbindAllEvent } from './events'
+import { HotkeyUtils } from './hotkey_utils'
 import { I18N } from './i18n'
 
 export const PLUGINS: ExsiedPlugin[] = []
 
-const init = (conf: {
-	id: string
-	plugins: ExsiedPlugin[]
-	enableToolbarBubble: boolean
-	iAbideByExsiedLicenseAndDisableTheAboutPlugin?: boolean
-}) => {
+const init = (conf: ExsiedInitConf) => {
 	if (!conf.iAbideByExsiedLicenseAndDisableTheAboutPlugin) conf.plugins.push(pluginAbout)
 	PLUGINS.push(...conf.plugins)
 
@@ -55,6 +51,12 @@ const init = (conf: {
 	const workplaceEle = editorEle.querySelector(`.${CN_WORKPLACE_ELE}`)
 	if (!workplaceEle) throw new Error('The exsied.elements.workplace does not exist.')
 	exsied.elements.workplace = workplaceEle as HTMLElement
+
+	if (conf.hotkeys) {
+		for (const item of conf.hotkeys) {
+			HotkeyUtils.set(item.keyStr, item.func, item.modifierKeys)
+		}
+	}
 
 	bindAllEvents()
 }
