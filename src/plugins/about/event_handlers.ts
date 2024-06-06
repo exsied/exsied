@@ -1,5 +1,5 @@
 import pkg from '../../../package.json'
-import { CN_TEMP_ELE, DATA_ATTR_TEMP_EDIT, LIB_NAME, LIB_REPO } from '../../contants'
+import { CN_TEMP_ELE, DATA_ATTR_TEMP_EDIT, LIB_NAME, LIB_REPO_GITEE, LIB_REPO_GITHUB } from '../../contants'
 import { t } from '../../core/i18n'
 import { createPopupView } from '../../ui/popup-view'
 import { CN_ROOT, PLUGIN_CONF, PLUGIN_NAME, POPUP_ID } from './base'
@@ -9,12 +9,15 @@ export function insertLink(event: Event) {
 	targetEle.setAttribute(DATA_ATTR_TEMP_EDIT, PLUGIN_NAME)
 
 	let contentHtml = `
-		<p>${LIB_NAME} v${pkg.version} ,<a href="${LIB_REPO}">github repo</a></p>
+		<p>
+			${LIB_NAME} version ${pkg.version} <a href="${LIB_REPO_GITHUB}">Github</a> / 
+			<a href="${LIB_REPO_GITEE}">Gitee</a>
+		</p>
 		<p>
 			${LIB_NAME} is a WYSIWYG editor from enassi(
-			<a href="https://github.com/enassi/enassi">github</a> 
+			<a href="https://github.com/enassi/enassi">Github</a> 
 			/
-			<a href="https://gitee.com/enassi/enassi">gitee</a>
+			<a href="https://gitee.com/enassi/enassi">Gitee</a>
 			)
 		</p>
 		`

@@ -3,7 +3,7 @@ import { exsied } from '../../core'
 import { DomUtils } from '../../core/dom_utils'
 import { ExsiedPlugin } from '../../types'
 import { CN_ICON_FIND, CN_ICON_REPLACE, PLUGIN_CONF, PLUGIN_NAME, POPUP_ID } from './base'
-import { onClickReplace, onClickFind, reset } from './event_handlers'
+import { onClickFind, onClickReplace, reset } from './event_handlers'
 import './styles.scss'
 
 export const FIND_NAME = 'find'

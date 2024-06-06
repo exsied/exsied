@@ -1,4 +1,4 @@
-import { LIB_NAME, LIB_REPO } from '../../contants'
+import { LIB_NAME, LIB_REPO_GITHUB } from '../../contants'
 
 export const PLUGIN_NAME = 'link'
 export const CN_ICON = 'exsied-btn-link'
@@ -21,5 +21,5 @@ export type PluginConf = {
 export const PLUGIN_CONF: PluginConf = {
 	addToBubble: true,
 	defaultInnerHTML: LIB_NAME,
-	defaultHref: LIB_REPO,
+	defaultHref: LIB_REPO_GITHUB,
 }

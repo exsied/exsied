@@ -27,7 +27,7 @@ export type Exsied = {
 	enableToolbarBubble: boolean
 	elements: {
 		editor: HTMLElement
-		toolbar: HTMLElement
+		toolbarMain: HTMLElement
 		toolbarBubble: HTMLElement
 		workplace: HTMLElement
 	}

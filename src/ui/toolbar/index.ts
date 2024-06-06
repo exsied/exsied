@@ -157,7 +157,7 @@ export class Toolbar {
 	}
 
 	static hideDropdowntList = (dropDownId: string) => {
-		const dropDownListEle = exsied.elements.toolbar?.querySelector(`#${dropDownId} .${CN_DDROPDOWN_LIST_SHOW}`)
+		const dropDownListEle = exsied.elements.toolbarMain?.querySelector(`#${dropDownId} .${CN_DDROPDOWN_LIST_SHOW}`)
 		if (!dropDownListEle) return
 
 		dropDownListEle.classList.remove(CN_DDROPDOWN_LIST_SHOW)
@@ -253,8 +253,11 @@ export class Toolbar {
 		if (left < 0) left = 0
 		if (left + eleWidth > window.innerWidth) left = window.innerWidth - eleWidth
 
-		ele.style.top = rangeRect.bottom + 'px'
-		ele.style.left = left + 'px'
+		const scrollTop = window.pageYOffset || window.scrollY
+		const scrollLeft = window.pageXOffset || window.scrollX
+
+		ele.style.top = scrollTop + rangeRect.bottom + 'px'
+		ele.style.left = scrollLeft + left + 'px'
 	}
 
 	static hideBubble() {

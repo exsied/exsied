@@ -2,6 +2,9 @@
 
 **Exsied**: **Ex**tremely **si**mple **ed**itor. The pronunciation is `/ɪkˈsiːd/`, the same as **exceed**.
 
+**Exied** is the main editor of [Enassi](https://github.com/enassi/enassi/).
+**Enassi** is your encryption assistant that supports multiple file types ( including markdown, PDF, images, etc. ), supports file encryption and synchronization
+
 [Documents](https://enassi.github.io/enassi-docs/en/exsied/about/) / [文档](https://enassi.github.io/enassi-docs/zh-cn/exsied/about/)
 
 [Github repo](https://github.com/exsied/exsied) / [Gitee repo](https://gitee.com/exsied/exsied)
@@ -22,9 +25,11 @@
 
 - Use **exsied** as an editor.
 
-- If you add, modify, or overwrite anything of **exsied**, you must add your own information in the **about** plugin's `conf`.
+- Do not modify the source code of the **about** plugin.
 
-- Ensure the **about** plugin functions correctly.
+- Do not disable or hide the **about** plugin.
+
+- If you add, modify, or overwrite anything of **exsied**, you should add your own information to the **about** plugin's `conf.deveploers`.
 
 ### Other uses require authorization.
 

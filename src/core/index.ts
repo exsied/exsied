@@ -1,7 +1,7 @@
 import {
 	CN_EDITOR_ELE,
 	CN_TOOLBAR_ELE,
-	CN_TOOLBAR_ELE_NORMAL,
+	CN_TOOLBAR_MAIN_ELE,
 	CN_WORKPLACE_ELE,
 	TN_DIV,
 	ZERO_WIDTH_SPACE,
@@ -30,8 +30,8 @@ const init = (conf: {
 	const toolbarBtnsHtml = Toolbar.genBtns()
 	const html = `
 		<div class="${CN_EDITOR_ELE}">  
-			<div class="${CN_TOOLBAR_ELE}">
-				<div class="${CN_TOOLBAR_ELE_NORMAL}">
+			<div class="${CN_TOOLBAR_ELE} ${CN_TOOLBAR_MAIN_ELE}">
+				<div class="exsied-normal">
 					${toolbarBtnsHtml}
 				</div>
 			</div>
@@ -46,9 +46,9 @@ const init = (conf: {
 	editorEle.innerHTML = html
 	Toolbar.initDropdownElements()
 
-	const toolbarEle = editorEle.querySelector(`.${CN_TOOLBAR_ELE}`)
-	if (!toolbarEle) throw new Error('The exsied.elements.toolbar does not exist.')
-	exsied.elements.toolbar = toolbarEle as HTMLElement
+	const toolbarMainEle = editorEle.querySelector(`.${CN_TOOLBAR_MAIN_ELE}`)
+	if (!toolbarMainEle) throw new Error('The exsied.elements.toolbar does not exist.')
+	exsied.elements.toolbarMain = toolbarMainEle as HTMLElement
 
 	const workplaceEle = editorEle.querySelector(`.${CN_WORKPLACE_ELE}`)
 	if (!workplaceEle) throw new Error('The exsied.elements.workplace does not exist.')
@@ -103,7 +103,7 @@ export const exsied: Exsied = {
 	enableToolbarBubble: true,
 	elements: {
 		editor: newEmptyEle('editorEle'),
-		toolbar: newEmptyEle('toolbarEle'),
+		toolbarMain: newEmptyEle('toolbarEle'),
 		toolbarBubble: newEmptyEle('toolbarBubbleEle'),
 		workplace: newEmptyEle('workplaceEle'),
 	},

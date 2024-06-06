@@ -9,9 +9,9 @@ export const DEMO_CONTENT = `
 
 <p>
   <u><b>Exied</b> is the main editor of <b>enassi</b></u>
-  , implemented through native JavaScript events binding.
-  <b>Enassi</b> is your encryption assistant that supports multiple file types (
-  <u>including <b>markdown</b>, <b>PDF</b>, <b>images</b>, etc.</u> ), supports
+  , implemented through <i>native JavaScript events binding</i>.
+  <b>Enassi</b> is your encryption assistant that supports multiple file types <i>(
+  <u>including <b>markdown</b>, <b>PDF</b>, <b>images</b>, etc.</u> )</i>, supports
   <b>file encryption</b> and <b>synchronization</b>
 </p>
 

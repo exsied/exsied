@@ -40,7 +40,7 @@ const plugin: ExsiedPlugin = {
 	addHhandler: () => {},
 	removeHhandler: () => {},
 	checkHighlight: (_event) => {
-		const dropDownEle = exsied.elements.toolbar?.querySelector(`#${dropDownId}`)
+		const dropDownEle = exsied.elements.toolbarMain?.querySelector(`#${dropDownId}`)
 		if (!dropDownEle) return
 
 		let updated = false
