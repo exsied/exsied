@@ -18,12 +18,14 @@ export const PLUGINS: ExsiedPlugin[] = []
 
 const HOOK_AFTER_INIT = 1
 const HOOK_AFTER_SET_HTML = 2
-type HookType = typeof HOOK_AFTER_INIT | typeof HOOK_AFTER_SET_HTML
+const HOOK_BEFORE_GET_HTML = 3
+type HookType = typeof HOOK_AFTER_INIT | typeof HOOK_AFTER_SET_HTML | typeof HOOK_BEFORE_GET_HTML
 const execHook = (hook: HookType) => {
 	for (const item of PLUGINS) {
 		if (item.hooks) {
-			if (hook === HOOK_AFTER_INIT && item.hooks.afterInit) item.hooks.afterInit()
-			if (hook === HOOK_AFTER_SET_HTML && item.hooks.afterSetHtml) item.hooks.afterSetHtml()
+			if (hook === HOOK_AFTER_INIT && item.hooks.afterInit) return item.hooks.afterInit()
+			if (hook === HOOK_AFTER_SET_HTML && item.hooks.afterSetHtml) return item.hooks.afterSetHtml()
+			if (hook === HOOK_BEFORE_GET_HTML && item.hooks.beforeGetHtml) return item.hooks.beforeGetHtml()
 		}
 	}
 }
@@ -100,8 +102,11 @@ const cleanWorkplaceEle = () => {
 
 const getHtml = () => {
 	cleanWorkplaceEle()
+	const html = execHook(HOOK_BEFORE_GET_HTML)
 
-	return exsied.elements.workplace.innerHTML.replaceAll(ZERO_WIDTH_SPACE, '')
+	if (html) return html.replaceAll(ZERO_WIDTH_SPACE, '')
+
+	return ''
 }
 
 const setHtml = (content: string) => {

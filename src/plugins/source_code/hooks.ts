@@ -1,4 +1,4 @@
-import { TN_BUTTON } from '../../contants'
+import { TN_BUTTON, TN_DIV } from '../../contants'
 import { exsied } from '../../core'
 import { CN_PREVIEW_BLOCK, DATA_ATTR_ORIGINAL_SIGN, DATA_ATTR_SIGN, DataRender } from '../../core/data_render'
 import { t } from '../../core/i18n'
@@ -7,9 +7,10 @@ import { randomChars } from '../../utils/string'
 import { PLUGIN_CONF } from './base'
 
 const renderer = new DataRender()
+const SELECTOR = `pre code`
 
 export const afterSetHtml = () => {
-	const codeEles = exsied.elements.workplace.querySelectorAll(`pre code`)
+	const codeEles = exsied.elements.workplace.querySelectorAll(SELECTOR)
 
 	for (const item of codeEles) {
 		const eleSign = randomChars(28)
@@ -57,6 +58,31 @@ export const afterSetHtml = () => {
 			}
 		})
 
-		renderer.addCtrlElement([editBtn, copyBtn, deleteBtn])
+		renderer.addCtrlElements([editBtn, copyBtn, deleteBtn])
 	}
+}
+
+export const beforeGetHtml = () => {
+	const tempEle = document.createElement(TN_DIV)
+	tempEle.innerHTML = exsied.elements.workplace.innerHTML
+	const codeEles = tempEle.querySelectorAll(SELECTOR)
+
+	for (const item of codeEles) {
+		const ele = item as HTMLElement
+		ele.removeAttribute(DATA_ATTR_SIGN)
+
+		const parentEle = ele.parentElement as HTMLElement
+		if (tagNameLc(parentEle) === 'pre') {
+			parentEle.style.display = ''
+		} else {
+			ele.style.display = ''
+		}
+	}
+
+	const previewBlockEles = tempEle.querySelectorAll(`.${CN_PREVIEW_BLOCK}`)
+	for (const iterator of previewBlockEles) {
+		iterator.remove()
+	}
+
+	return tempEle.innerHTML
 }

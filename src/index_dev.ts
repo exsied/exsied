@@ -1,6 +1,6 @@
-import { DEMO_CONTENT } from './demo_content'
 import { KEY_CTRL } from './contants'
 import { exsied } from './core'
+import { DEMO_CONTENT } from './demo_content'
 import { PLUGIN_CONF as about_PLUGIN_CONF } from './plugins/about/base'
 import backgroundColor from './plugins/background_color'
 import bold from './plugins/bold'
@@ -72,3 +72,13 @@ exsied.i18n.setDict('zh-CN', {
 })
 
 exsied.i18n.setLocale('zh-CN')
+
+// Test get content HTML
+const testBtn = document.createElement('button')
+testBtn.innerHTML = 'Get content html'
+testBtn.addEventListener('click', () => {
+	const html = exsied.getHtml()
+	console.log(' >>> Exsied content html :::', html)
+})
+const testEle = document.getElementById('test')
+if (testEle) testEle.append(testBtn)

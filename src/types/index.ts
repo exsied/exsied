@@ -31,6 +31,7 @@ export interface ExsiedPlugin {
 	hooks?: {
 		afterInit?: () => void
 		afterSetHtml?: () => void
+		beforeGetHtml?: () => string
 	}
 }
 

@@ -51,7 +51,7 @@ export class DataRender {
 		}
 	}
 
-	addCtrlElement(ctrlElements: HTMLElement[]) {
+	addCtrlElements(ctrlElements: HTMLElement[]) {
 		if (!this.previewEle) {
 			console.error(`previewEle not exist`)
 			return

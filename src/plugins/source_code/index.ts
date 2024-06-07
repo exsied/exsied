@@ -1,7 +1,7 @@
 import { Commands, ExsiedPlugin } from '../../types'
 import { CN_ICON_BRACES, CN_ICON_XML, PLUGIN_CONF, PLUGIN_NAME } from './base'
 import { insertCodeBlock, toggleSourceView } from './event_handlers'
-import { afterSetHtml } from './hooks'
+import { afterSetHtml, beforeGetHtml } from './hooks'
 import './styles.scss'
 
 export const SOURCE_CODE_VIEW_NAME = 'sourceCodeView'
@@ -42,6 +42,7 @@ const plugin: ExsiedPlugin = {
 	removeTempEle: (_event) => {},
 	hooks: {
 		afterSetHtml,
+		beforeGetHtml,
 	},
 }
 
