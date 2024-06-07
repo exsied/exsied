@@ -36,6 +36,8 @@ const init = (conf: ExsiedInitConf) => {
 		Toolbar.initBubble()
 	}
 
+	if (conf.dataAttrs) exsied.dataAttrs = conf.dataAttrs
+
 	const toolbarBtnsHtml = Toolbar.genBtns()
 	const html = `
 		<div class="${CN_EDITOR_ELE}">  

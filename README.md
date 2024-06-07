@@ -92,10 +92,11 @@ exsied.init({
 
 It will process the `<pre><code>` tags.
 
-Due to the fact that **exsied** does not have any dependencies, so it cannot highlight or edit code, developers should overwrite 2 functions in `sourceCode.conf`:
+Due to the fact that **exsied** does not have any dependencies, so it cannot highlight or edit code, developers should overwrite the functions in `sourceCode.conf`:
 
 - renderData: Used to highlight code, **highlight.js** is recommended
-- editData: Used to edit code, **codemirror** is recommended. After editing, use **const ele = document.querySelector(`[${DATA_ATTR_SIGN}="${sign}"]`)** to find the original **<code>** element, and update it.
+- editData: Used to edit code, **codemirror** is recommended. After editing, use **const ele = document.querySelector(`[${DATA_ATTR.sign}="${sign}"]`)** to find the original **<code>** element, and update it.
+- randomChars: Used to generate random chars.
 
 ## I18N
 

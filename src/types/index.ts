@@ -40,6 +40,7 @@ export type ExsiedInitConf = {
 	plugins: ExsiedPlugin[]
 	enableToolbarBubble: boolean
 	hotkeys?: { keyStr: string; func: CommandFunc; modifierKeys: ModifierKeys[] }[]
+	dataAttrs?: { sign: string; signOriginal: string }
 	iAbideByExsiedLicenseAndDisableTheAboutPlugin?: boolean
 }
 
@@ -53,13 +54,15 @@ export type Exsied = {
 		workplace: HTMLElement
 	}
 
-	range: Range | null
-	cursorAllParentsTagNamesArr: string[]
-
 	init: (conf: ExsiedInitConf) => any
 	getHtml: () => string
 	setHtml: (content: string) => any
 	destroy: () => any
+
+	range: Range | null
+	cursorAllParentsTagNamesArr: string[]
+
+	dataAttrs?: { sign: string; signOriginal: string }
 
 	i18n: {
 		setDict: (locale: string, dict: KvStringString) => any
