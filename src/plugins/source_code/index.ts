@@ -1,4 +1,4 @@
-import { ExsiedCommands, ExsiedPlugin } from '../../types'
+import { Commands, ExsiedPlugin } from '../../types'
 import { CN_ICON_BRACES, CN_ICON_XML, PLUGIN_CONF, PLUGIN_NAME } from './base'
 import { insertCodeBlock, toggleSourceView } from './event_handlers'
 import { afterSetHtml } from './hooks'
@@ -6,7 +6,7 @@ import './styles.scss'
 
 export const SOURCE_CODE_VIEW_NAME = 'sourceCodeView'
 export const INSERT_SOURCE_CODE_BOCK_NAME = 'insertSourceCodeBock'
-const commands: ExsiedCommands = {}
+const commands: Commands = {}
 commands[SOURCE_CODE_VIEW_NAME] = toggleSourceView
 commands[INSERT_SOURCE_CODE_BOCK_NAME] = insertCodeBlock
 

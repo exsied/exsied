@@ -17,12 +17,12 @@ export type ClickEventHandler = (event: MouseEvent) => any
 export type ChangeEventHandler = (event: Event) => any
 
 export type CommandFunc = (event: Event) => any
-export type ExsiedCommands = { [key: string]: CommandFunc }
+export type Commands = { [key: string]: CommandFunc }
 
 export interface ExsiedPlugin {
 	name: string
 	conf: any
-	commands: ExsiedCommands
+	commands: Commands
 	toolBarControl?: ToolBarControl[]
 	addHhandler: () => any
 	removeHhandler: () => any

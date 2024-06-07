@@ -5,5 +5,3 @@ export function toggleSourceView() {
 export function insertCodeBlock() {
 	// TODO:
 }
-
-

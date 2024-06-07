@@ -1,14 +1,16 @@
 import { CN_TEMP_ELE_HIGHLIGHT } from '../../contants'
 import { exsied } from '../../core'
 import { DomUtils } from '../../core/dom_utils'
-import { ExsiedCommands, ExsiedPlugin } from '../../types'
+import { Commands, ExsiedPlugin } from '../../types'
 import { CN_ICON_FIND, CN_ICON_REPLACE, PLUGIN_CONF, PLUGIN_NAME, POPUP_ID } from './base'
 import { onClickFind, onClickReplace, reset } from './event_handlers'
 import './styles.scss'
 
 export const FIND_NAME = 'find'
 export const REPLACE_NAME = 'replace'
-const commands: ExsiedCommands = { FIND_NAME: onClickFind, REPLACE_NAME: onClickReplace }
+const commands: Commands = {}
+commands[FIND_NAME] = onClickFind
+commands[REPLACE_NAME] = onClickReplace
 
 const plugin: ExsiedPlugin = {
 	name: PLUGIN_NAME,
