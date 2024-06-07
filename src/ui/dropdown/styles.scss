@@ -11,7 +11,7 @@
 	.exsied-dropdown-trigger {
 		&::after {
 			@include bkgSvgIcon;
-			background-image: url(./arrow-down.svg);
+			background-image: url(./icons/arrow-down.svg);
 
 			padding-inline-start: 0.5rem;
 		}
