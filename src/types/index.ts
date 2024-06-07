@@ -23,11 +23,15 @@ export interface ExsiedPlugin {
 	name: string
 	conf: any
 	commands: ExsiedCommands
-	toolBarControl: ToolBarControl[]
+	toolBarControl?: ToolBarControl[]
 	addHhandler: () => any
 	removeHhandler: () => any
 	checkHighlight: (event: Event) => any
 	removeTempEle: (event: Event) => any
+	hooks?: {
+		afterInit?: () => void
+		afterSetHtml?: () => void
+	}
 }
 
 export type ExsiedInitConf = {

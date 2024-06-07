@@ -16,6 +16,18 @@ import { I18N } from './i18n'
 
 export const PLUGINS: ExsiedPlugin[] = []
 
+const HOOK_AFTER_INIT = 1
+const HOOK_AFTER_SET_HTML = 2
+type HookType = typeof HOOK_AFTER_INIT | typeof HOOK_AFTER_SET_HTML
+const execHook = (hook: HookType) => {
+	for (const item of PLUGINS) {
+		if (item.hooks) {
+			if (hook === HOOK_AFTER_INIT && item.hooks.afterInit) item.hooks.afterInit()
+			if (hook === HOOK_AFTER_SET_HTML && item.hooks.afterSetHtml) item.hooks.afterSetHtml()
+		}
+	}
+}
+
 const init = (conf: ExsiedInitConf) => {
 	if (!conf.iAbideByExsiedLicenseAndDisableTheAboutPlugin) conf.plugins.push(pluginAbout)
 	PLUGINS.push(...conf.plugins)
@@ -42,7 +54,6 @@ const init = (conf: ExsiedInitConf) => {
 	exsied.elements.editor = editorEle as HTMLElement
 
 	editorEle.innerHTML = html
-	Toolbar.initDropdownElements()
 
 	const toolbarMainEle = editorEle.querySelector(`.${CN_TOOLBAR_MAIN_ELE}`)
 	if (!toolbarMainEle) throw new Error('The exsied.elements.toolbar does not exist.')
@@ -58,7 +69,11 @@ const init = (conf: ExsiedInitConf) => {
 		}
 	}
 
+	Toolbar.initDropdownElements()
+
 	bindAllEvents()
+
+	execHook(HOOK_AFTER_INIT)
 }
 
 const destroy = () => {
@@ -94,6 +109,8 @@ const setHtml = (content: string) => {
 	workplace_ele.innerHTML = content
 
 	cleanWorkplaceEle()
+
+	execHook(HOOK_AFTER_SET_HTML)
 }
 
 const newEmptyEle = (dataValue: string) => {

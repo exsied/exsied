@@ -33,33 +33,13 @@ export const DEMO_CONTENT = `
     <p>All functions are based on plugins.</p>
   </li>
 </ul>
-<h2>License</h2>
-<h3>
-  You may use exsied under the MIT license if you comply with the following
-  terms:
-</h3>
-<ul>
-  <li>
-    <p>Use <strong>exsied</strong> as an editor.</p>
-  </li>
-  <li>
-    <p>
-      If you add, modify, or overwrite anything of <strong>exsied</strong>, you
-      must add your own information in the <strong>about</strong> plugin's conf
-      field.
-    </p>
-  </li>
-  <li>
-    <p>Ensure the <strong>about</strong> plugin functions correctly.</p>
-  </li>
-</ul>
-<h3>Other uses require authorization.</h3>
 
 <h2>Other demo</h2>
 <p>
   <s><u>This line</u> has been <b>deleted</b></s>
 </p>
 
+<h3>Table</h3>
 <table>
   <tbody>
     <tr>
@@ -93,4 +73,31 @@ export const DEMO_CONTENT = `
     </tr>
   </tbody>
 </table>
-	`
+
+<h3>Source code 1</h3>
+<pre>
+  <code lang="javascript">
+    let a = 1;
+    let b = "rust";
+    let c = [];
+  </code>
+</pre>
+
+<h3>Source code 2</h3>
+<pre>
+  <code lang="rust">
+    use ferris_says::say; // from the previous step
+    use std::io::{stdout, BufWriter};
+    
+    fn main() {
+        let stdout = stdout();
+        let message = String::from("Hello fellow Rustaceans!");
+        let width = message.chars().count();
+    
+        let mut writer = BufWriter::new(stdout.lock());
+        say(&message, width, &mut writer).unwrap();
+    }
+  </code>
+</pre>
+`
+

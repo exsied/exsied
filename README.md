@@ -36,6 +36,29 @@
 ```js
 import { exsied, exsiedPlugins } from 'exsied/dist/index.js'
 
+exsied.init({
+	id: 'app',
+	plugins: [
+		exsiedPlugins.bold,
+		exsiedPlugins.italic,
+		exsiedPlugins.underline,
+		exsiedPlugins.strikethrough, // ...
+	],
+	enableToolbarBubble: true,
+})
+
+exsied.setHtml('some HTML code')
+```
+
+When running **exsied** in the browser, please refer to `test_dist/index_esm.html`.
+
+## Plugins
+
+### About
+
+If you have customized any functions, you should add your own information to `about.conf.deveploers`.
+
+```js
 exsiedPlugins.about.conf.deveploers.push(
 	{
 		name: 'enassi github',
@@ -52,22 +75,27 @@ exsiedPlugins.about.conf.deveploers.push(
 		extContent: `Enassi's gitee repo`,
 	},
 )
-
-exsied.init({
-	id: 'app',
-	plugins: [
-		exsiedPlugins.bold,
-		exsiedPlugins.italic,
-		exsiedPlugins.underline,
-		exsiedPlugins.strikethrough, // ...
-	],
-	enableToolbarBubble: true,
-})
-
-exsied.setHtml('some HTML code')
 ```
 
-When running **exsied** in the browser, please refer to `test_dist/index_esm.html`.
+If you have the authorization and want disable the **about** plugin:
+
+```js
+exsied.init({
+	id: 'app',
+	plugins: [],
+	enableToolbarBubble: true,
+	iAbideByExsiedLicenseAndDisableTheAboutPlugin: true, // Add this param
+})
+```
+
+### Code block
+
+It will process the `<pre><code>` tags.
+
+Due to the fact that **exsied** does not have any dependencies, so it cannot highlight or edit code, developers should overwrite 2 functions in `sourceCode.conf`:
+
+- renderData: Used to highlight code, **highlight.js** is recommended
+- editData: Used to edit code, **codemirror** is recommended. After editing, use **const ele = document.querySelector(`[${DATA_ATTR_SIGN}="${sign}"]`)** to find the original **<code>** element, and update it.
 
 ## I18N
 
@@ -106,7 +134,6 @@ exsied.setLocale('zh-CN')
 
 ## TODO
 
-- Shortcut keys
 - Division line
 - Superscript / Subscript
 - Ordered List / Unordered List
