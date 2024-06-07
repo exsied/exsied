@@ -17,7 +17,19 @@ import { HOOK_AFTER_INIT, HOOK_AFTER_SET_HTML, HOOK_BEFORE_GET_HTML, PLUGINS, ex
 
 const init = (conf: ExsiedInitConf) => {
 	if (!conf.iAbideByExsiedLicenseAndDisableTheAboutPlugin) conf.plugins.push(pluginAbout)
-	PLUGINS.push(...conf.plugins)
+
+	const pluginNames: string[] = []
+	PLUGINS.map((plg) => {
+		if (!pluginNames.includes(plg.name)) {
+			pluginNames.push(plg.name)
+		}
+	})
+
+	conf.plugins.map((plg) => {
+		if (!pluginNames.includes(plg.name)) {
+			PLUGINS.push(plg)
+		}
+	})
 
 	if (conf.enableToolbarBubble) {
 		exsied.enableToolbarBubble = conf.enableToolbarBubble
