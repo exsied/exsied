@@ -7,23 +7,36 @@ import {
 	ZERO_WIDTH_SPACE,
 } from '../contants'
 import pluginAbout from '../plugins/about'
-import { Exsied, ExsiedInitConf, ExsiedPlugin } from '../types'
+import { Exsied, ExsiedInitConf } from '../types'
 import { Toolbar } from '../ui/toolbar'
 import { DomUtils } from './dom_utils'
 import { bindAllEvents, unbindAllEvent } from './events'
 import { HotkeyUtils } from './hotkey_utils'
 import { I18N } from './i18n'
-
-export const PLUGINS: ExsiedPlugin[] = []
+import { HOOK_AFTER_INIT, HOOK_AFTER_SET_HTML, HOOK_BEFORE_GET_HTML, PLUGINS, execPluginHook } from './plugin'
 
 const init = (conf: ExsiedInitConf) => {
 	if (!conf.iAbideByExsiedLicenseAndDisableTheAboutPlugin) conf.plugins.push(pluginAbout)
-	PLUGINS.push(...conf.plugins)
+
+	const pluginNames: string[] = []
+	PLUGINS.map((plg) => {
+		if (!pluginNames.includes(plg.name)) {
+			pluginNames.push(plg.name)
+		}
+	})
+
+	conf.plugins.map((plg) => {
+		if (!pluginNames.includes(plg.name)) {
+			PLUGINS.push(plg)
+		}
+	})
 
 	if (conf.enableToolbarBubble) {
 		exsied.enableToolbarBubble = conf.enableToolbarBubble
 		Toolbar.initBubble()
 	}
+
+	if (conf.dataAttrs) exsied.dataAttrs = conf.dataAttrs
 
 	const toolbarBtnsHtml = Toolbar.genBtns()
 	const html = `
@@ -42,7 +55,6 @@ const init = (conf: ExsiedInitConf) => {
 	exsied.elements.editor = editorEle as HTMLElement
 
 	editorEle.innerHTML = html
-	Toolbar.initDropdownElements()
 
 	const toolbarMainEle = editorEle.querySelector(`.${CN_TOOLBAR_MAIN_ELE}`)
 	if (!toolbarMainEle) throw new Error('The exsied.elements.toolbar does not exist.')
@@ -58,7 +70,11 @@ const init = (conf: ExsiedInitConf) => {
 		}
 	}
 
+	Toolbar.initDropdownElements()
+
 	bindAllEvents()
+
+	execPluginHook(HOOK_AFTER_INIT)
 }
 
 const destroy = () => {
@@ -85,8 +101,9 @@ const cleanWorkplaceEle = () => {
 
 const getHtml = () => {
 	cleanWorkplaceEle()
-
-	return exsied.elements.workplace.innerHTML.replaceAll(ZERO_WIDTH_SPACE, '')
+	const html = execPluginHook(HOOK_BEFORE_GET_HTML)
+	if (html) return html.replaceAll(ZERO_WIDTH_SPACE, '')
+	return ''
 }
 
 const setHtml = (content: string) => {
@@ -94,6 +111,7 @@ const setHtml = (content: string) => {
 	workplace_ele.innerHTML = content
 
 	cleanWorkplaceEle()
+	execPluginHook(HOOK_AFTER_SET_HTML)
 }
 
 const newEmptyEle = (dataValue: string) => {

@@ -2,15 +2,15 @@ import { CN_ACTIVE, TN_A } from '../../contants'
 import { exsied } from '../../core'
 import { DomUtils } from '../../core/dom_utils'
 import { addEleClickCallbackByTag } from '../../core/events'
-import { ExsiedCommands, ExsiedPlugin } from '../../types'
+import { Commands, ExsiedPlugin } from '../../types'
 import { Toolbar } from '../../ui/toolbar'
 import { CN_ICON, PLUGIN_CONF, PLUGIN_NAME, POPUP_ID } from './base'
 import { insertLink, onClickLink } from './event_handlers'
 import './styles.scss'
 
 const toolbarBtnIds = Toolbar.genButtonIds(PLUGIN_NAME, PLUGIN_NAME)
-const commands: ExsiedCommands = {}
-commands[PLUGIN_NAME] =insertLink 
+const commands: Commands = {}
+commands[PLUGIN_NAME] = insertLink
 
 const plugin: ExsiedPlugin = {
 	name: PLUGIN_NAME,

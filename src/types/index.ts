@@ -17,17 +17,22 @@ export type ClickEventHandler = (event: MouseEvent) => any
 export type ChangeEventHandler = (event: Event) => any
 
 export type CommandFunc = (event: Event) => any
-export type ExsiedCommands = { [key: string]: CommandFunc }
+export type Commands = { [key: string]: CommandFunc }
 
 export interface ExsiedPlugin {
 	name: string
 	conf: any
-	commands: ExsiedCommands
-	toolBarControl: ToolBarControl[]
+	commands: Commands
+	toolBarControl?: ToolBarControl[]
 	addHhandler: () => any
 	removeHhandler: () => any
 	checkHighlight: (event: Event) => any
 	removeTempEle: (event: Event) => any
+	hooks?: {
+		afterInit?: () => void
+		afterSetHtml?: () => void
+		beforeGetHtml?: () => string
+	}
 }
 
 export type ExsiedInitConf = {
@@ -35,6 +40,7 @@ export type ExsiedInitConf = {
 	plugins: ExsiedPlugin[]
 	enableToolbarBubble: boolean
 	hotkeys?: { keyStr: string; func: CommandFunc; modifierKeys: ModifierKeys[] }[]
+	dataAttrs?: { sign: string; signOriginal: string }
 	iAbideByExsiedLicenseAndDisableTheAboutPlugin?: boolean
 }
 
@@ -48,13 +54,15 @@ export type Exsied = {
 		workplace: HTMLElement
 	}
 
-	range: Range | null
-	cursorAllParentsTagNamesArr: string[]
-
 	init: (conf: ExsiedInitConf) => any
 	getHtml: () => string
 	setHtml: (content: string) => any
 	destroy: () => any
+
+	range: Range | null
+	cursorAllParentsTagNamesArr: string[]
+
+	dataAttrs?: { sign: string; signOriginal: string }
 
 	i18n: {
 		setDict: (locale: string, dict: KvStringString) => any

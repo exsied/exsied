@@ -15,6 +15,7 @@ export const CN_ACTIVE = 'exsied-active'
 // Tag names
 export const TN_A = 'a'
 export const TN_B = 'b'
+export const TN_BUTTON = 'button'
 export const TN_DEL = 'del'
 export const TN_DIV = 'div'
 export const TN_EM = 'em'

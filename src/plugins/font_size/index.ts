@@ -1,4 +1,4 @@
-import { ExsiedCommands, ExsiedPlugin } from '../../types'
+import { Commands, ExsiedPlugin } from '../../types'
 import { genDropdownId } from '../../ui/dropdown'
 import { Toolbar } from '../../ui/toolbar'
 import { PLUGIN_CONF, PLUGIN_NAME } from './base'
@@ -7,8 +7,8 @@ import './styles.scss'
 
 const toolbarBtnIds = Toolbar.genButtonIds(PLUGIN_NAME, PLUGIN_NAME)
 const dropDownId = genDropdownId(toolbarBtnIds.normal)
-const commands: ExsiedCommands = {}
-commands[PLUGIN_NAME] =formatFontSize 
+const commands: Commands = {}
+commands[PLUGIN_NAME] = formatFontSize
 
 const plugin: ExsiedPlugin = {
 	name: PLUGIN_NAME,

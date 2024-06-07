@@ -1,0 +1,13 @@
+@import '../../styles/mixin.scss';
+
+.exsied .exsied-toolbar {
+	i.exsied-btn-braces {
+		@include bkgSvgIcon;
+		background-image: url(./icons/braces.svg);
+	}
+
+	i.exsied-btn-xml {
+		@include bkgSvgIcon;
+		background-image: url(./icons/xml.svg);
+	}
+}

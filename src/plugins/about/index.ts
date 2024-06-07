@@ -7,6 +7,7 @@ import './styles.scss'
 const plugin: ExsiedPlugin = {
 	name: PLUGIN_NAME,
 	conf: PLUGIN_CONF,
+	commands: {},
 
 	toolBarControl: [
 		{

@@ -28,7 +28,7 @@
 		.exsied-popup-titlebar-actions {
 			i.close-btn::after {
 				@include bkgSvgIcon;
-				background-image: url(./close.svg);
+				background-image: url(./icons/close.svg);
 
 				cursor: pointer;
 			}

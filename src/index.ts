@@ -8,6 +8,7 @@ import headings from './plugins/headings'
 import image from './plugins/image'
 import italic from './plugins/italic'
 import link from './plugins/link'
+import sourceCode from './plugins/source_code'
 import strikethrough from './plugins/strikethrough'
 import table from './plugins/table'
 import textColor from './plugins/text_color'
@@ -26,6 +27,7 @@ export const exsiedPlugins = {
 	image,
 	italic,
 	link,
+	sourceCode,
 	strikethrough,
 	table,
 	textColor,

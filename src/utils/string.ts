@@ -56,3 +56,18 @@ export function utf8ToB64(str: string): string {
 
 	return btoa(binaryString)
 }
+
+export function randomChars(len: number) {
+	const chars =
+		'0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz' +
+		'ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýþÿ' +
+		'`-=[];,./~!@#$%^&*()_+|{}:<>?'
+
+	let result = ''
+
+	for (let i = 0; i < len; i++) {
+		result += chars.charAt(Math.floor(Math.random() * chars.length))
+	}
+
+	return result
+}
