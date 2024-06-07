@@ -7,7 +7,7 @@ import { SelectionUtils } from '../../core/selection_utils'
 import { ChangeEventHandler, ClickEventHandler, HTMLTagNames } from '../../types'
 import { tagNameLc } from '../../utils'
 import { uniqueArray } from '../../utils/array'
-import { CN_DDROPDOWN_LIST_SHOW, DropdownMenu } from '../dropdown'
+import { CN_DDROPDOWN_LIST_SHOW, DropdownMenu, genDropdownId } from '../dropdown'
 import './styles.scss'
 
 export const ID_BUBBLE_WRAP = 'exsied-toolbar-bubble-wrap'
@@ -157,7 +157,7 @@ export class Toolbar {
 
 	static initDropdownElements = () => {
 		PLUGINS_SELECT_ID.map((id) => {
-			if (!DomUtils.existElementById(id)) new DropdownMenu(id)
+			if (!DomUtils.existElementById(genDropdownId(id))) new DropdownMenu(id)
 		})
 	}
 
@@ -238,7 +238,7 @@ export class Toolbar {
 
 		document.body.appendChild(ele)
 
-		const bubbleEle = document.querySelector(`.${ID_BUBBLE_WRAP}`)
+		const bubbleEle = document.querySelector(`#${ID_BUBBLE_WRAP}`)
 		if (bubbleEle) exsied.elements.toolbarBubble = bubbleEle as HTMLElement
 	}
 
