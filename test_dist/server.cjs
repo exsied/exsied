@@ -9,8 +9,10 @@ const server = http.createServer((req, res) => {
 	if (req.url === '/') {
 		isIndex = true
 		filePath = './index_esm.html'
-	} else if (req.url.startsWith('/dist') || req.url === '/demo_content.js') {
+	} else if (req.url.startsWith('/dist')) {
 		filePath = '..' + req.url
+	} else if (req.url === '/demo_content.js') {
+		filePath = '../src/' + req.url
 	}
 
 	fs.readFile(filePath, (err, data) => {

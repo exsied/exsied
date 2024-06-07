@@ -50,6 +50,8 @@ export class Toolbar {
 		const bubbleBtnsEle = document.querySelector(`.${CN_BUBBLE_WRAP} .${CN_BUBBLE_BTNS}`)
 		const ctrlArr = []
 		for (const plg of PLUGINS) {
+			if (!plg.toolBarControl) continue
+
 			for (const ctrl of plg.toolBarControl) {
 				const ids = this.genButtonIds(plg.name, ctrl.name)
 
@@ -117,6 +119,8 @@ export class Toolbar {
 	static bindBtnEvents = () => {
 		for (const plg of PLUGINS) {
 			plg.addHhandler()
+
+			if (!plg.toolBarControl) continue
 
 			for (const ctrl of plg.toolBarControl) {
 				const toolbarBtnIds = this.genButtonIds(plg.name, ctrl.name)

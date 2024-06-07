@@ -1,4 +1,4 @@
-import { DEMO_CONTENT } from '../demo_content'
+import { DEMO_CONTENT } from './demo_content'
 import { KEY_CTRL } from './contants'
 import { exsied } from './core'
 import { PLUGIN_CONF as about_PLUGIN_CONF } from './plugins/about/base'
