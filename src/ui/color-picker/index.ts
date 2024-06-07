@@ -205,10 +205,12 @@ export class ColorPicker {
 			contentHtml: renderData.html,
 		})
 
+		const scrollTop = window.pageYOffset || window.scrollY
+		const scrollLeft = window.pageXOffset || window.scrollX
 		const rect = targetEle.getBoundingClientRect()
 		ele.style.position = 'absolute'
-		ele.style.top = rect.bottom + 'px'
-		ele.style.left = rect.left + 'px'
+		ele.style.top = rect.bottom + scrollTop + 'px'
+		ele.style.left = rect.left + scrollLeft + 'px'
 
 		document.body.appendChild(ele)
 
