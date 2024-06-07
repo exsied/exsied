@@ -1,7 +1,7 @@
 {
 	"name": "@exsied/exsied",
 	"private": false,
-	"version": "0.1.0",
+	"version": "0.3.0",
 	"description": "Exsied is a WYSIWYG editor from enassi.",
 	"type": "module",
 	"files": [
@@ -11,9 +11,12 @@
 	"module": "./dist/index.js",
 	"types": "./dist/index.d.ts",
 	"exports": {
-		"types": "./dist/index.d.ts",
-		"import": "./dist/index.js",
-		"require": "./dist/index.umd.cjs"
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js",
+			"require": "./dist/index.umd.cjs"
+		},
+		"./style.css": "./dist/style.css"
 	},
 	"repository": {
 		"type": "git",
