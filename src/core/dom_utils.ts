@@ -33,6 +33,12 @@ export class DomUtils {
 		return ''
 	}
 
+	static existElementById(id: string) {
+		const element = document.getElementById(id)
+		if (element) return true
+		return false
+	}
+
 	static removeElementById(id: string) {
 		const element = document.getElementById(id)
 		if (element) element.parentNode?.removeChild(element)
