@@ -7,28 +7,13 @@ import {
 	ZERO_WIDTH_SPACE,
 } from '../contants'
 import pluginAbout from '../plugins/about'
-import { Exsied, ExsiedInitConf, ExsiedPlugin } from '../types'
+import { Exsied, ExsiedInitConf } from '../types'
 import { Toolbar } from '../ui/toolbar'
 import { DomUtils } from './dom_utils'
 import { bindAllEvents, unbindAllEvent } from './events'
 import { HotkeyUtils } from './hotkey_utils'
 import { I18N } from './i18n'
-
-export const PLUGINS: ExsiedPlugin[] = []
-
-const HOOK_AFTER_INIT = 1
-const HOOK_AFTER_SET_HTML = 2
-const HOOK_BEFORE_GET_HTML = 3
-type HookType = typeof HOOK_AFTER_INIT | typeof HOOK_AFTER_SET_HTML | typeof HOOK_BEFORE_GET_HTML
-const execHook = (hook: HookType) => {
-	for (const item of PLUGINS) {
-		if (item.hooks) {
-			if (hook === HOOK_AFTER_INIT && item.hooks.afterInit) return item.hooks.afterInit()
-			if (hook === HOOK_AFTER_SET_HTML && item.hooks.afterSetHtml) return item.hooks.afterSetHtml()
-			if (hook === HOOK_BEFORE_GET_HTML && item.hooks.beforeGetHtml) return item.hooks.beforeGetHtml()
-		}
-	}
-}
+import { HOOK_AFTER_INIT, HOOK_AFTER_SET_HTML, HOOK_BEFORE_GET_HTML, PLUGINS, execPluginHook } from './plugin'
 
 const init = (conf: ExsiedInitConf) => {
 	if (!conf.iAbideByExsiedLicenseAndDisableTheAboutPlugin) conf.plugins.push(pluginAbout)
@@ -75,7 +60,7 @@ const init = (conf: ExsiedInitConf) => {
 
 	bindAllEvents()
 
-	execHook(HOOK_AFTER_INIT)
+	execPluginHook(HOOK_AFTER_INIT)
 }
 
 const destroy = () => {
@@ -102,10 +87,8 @@ const cleanWorkplaceEle = () => {
 
 const getHtml = () => {
 	cleanWorkplaceEle()
-	const html = execHook(HOOK_BEFORE_GET_HTML)
-
+	const html = execPluginHook(HOOK_BEFORE_GET_HTML)
 	if (html) return html.replaceAll(ZERO_WIDTH_SPACE, '')
-
 	return ''
 }
 
@@ -114,8 +97,7 @@ const setHtml = (content: string) => {
 	workplace_ele.innerHTML = content
 
 	cleanWorkplaceEle()
-
-	execHook(HOOK_AFTER_SET_HTML)
+	execPluginHook(HOOK_AFTER_SET_HTML)
 }
 
 const newEmptyEle = (dataValue: string) => {
