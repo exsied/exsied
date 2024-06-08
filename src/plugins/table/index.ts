@@ -1,7 +1,7 @@
 import { CN_ACTIVE, TN_TABLE } from '../../contants'
 import { exsied } from '../../core'
 import { DomUtils } from '../../core/dom_utils'
-import { Commands, ExsiedPlugin } from '../../types'
+import { Commands, ExsiedPlugin } from '../../core/plugin'
 import { Toolbar } from '../../ui/toolbar'
 import { CN_ICON, PLUGIN_CONF, PLUGIN_NAME, POPUP_ID } from './base'
 import { insertTable, showTableActionButtons } from './event_handlers'

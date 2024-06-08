@@ -1,6 +1,6 @@
 import { CN_ACTIVE, TN_EM, TN_I } from '../../contants'
 import { exsied } from '../../core'
-import { Commands, ExsiedPlugin } from '../../types'
+import { Commands, ExsiedPlugin } from '../../core/plugin'
 import { Toolbar } from '../../ui/toolbar'
 import { CN_ICON, PLUGIN_CONF, PLUGIN_NAME } from './base'
 import { formatItalic } from './event_handlers'

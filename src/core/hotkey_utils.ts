@@ -1,6 +1,6 @@
 import { KEY_ALT, KEY_CTRL, KEY_META, KEY_SHIFT } from '../contants'
-import { CommandFunc } from '../types'
 import { HotkeyEventsObj, ModifierKeys } from '../types'
+import { CommandFunc } from './plugin'
 
 // 4
 const altCtrlMetaShift: HotkeyEventsObj = {}

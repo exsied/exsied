@@ -1,4 +1,4 @@
-import { Commands, ExsiedPlugin } from '../../types'
+import { Commands, ExsiedPlugin } from '../../core/plugin'
 import { CN_ICON_BRACES, CN_ICON_XML, PLUGIN_CONF, PLUGIN_NAME } from './base'
 import { insertCodeBlock, toggleSourceView } from './event_handlers'
 import { afterSetHtml, beforeGetHtml } from './hooks'
