@@ -7,7 +7,7 @@ export const DEMO_CONTENT = `
 
 <p>  
   <a href="https://github.com/exsied/exsied">Github repo </a> /
-  <a href="https://gitee.com/exsied/exsied">Gitee repo </a>
+  <a href="https://gitee.com/exsied/exsied">Gitee repo </a> /
   <a href="https://enassi.pages.dev/en/exsied/about/">Document </a>
 </p>
 

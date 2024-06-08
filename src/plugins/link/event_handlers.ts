@@ -35,22 +35,24 @@ export const onClickLink = (event: Event) => {
 
 	const contentHtml = `					
         <div class="${CN_PREVIEW}">
-          <a href="${targetEle.href || PLUGIN_CONF.defaultHref}" target="_blank" rel="noopener noreferrer">${targetEle.innerText || PLUGIN_CONF.defaultInnerHTML}</a>
-		  <div class="exsied-btn ${CN_EDIT_BTN}">
-          	<i class="exsied-btn-edit"></i>
-		  </div>
-		  <div class="exsied-btn ${CN_TRASH}">
-          	<i class="exsied-btn-trash"></i>
-		  </div>
+        	<a href="${targetEle.href || PLUGIN_CONF.defaultHref}" target="_blank" rel="noopener noreferrer">
+		  		${targetEle.innerText || PLUGIN_CONF.defaultInnerHTML}
+			</a>
+			<div class="exsied-btn ${CN_EDIT_BTN}">
+          		<i class="exsied-btn-edit"></i>
+		  	</div>
+			<div class="exsied-btn ${CN_TRASH}">
+          		<i class="exsied-btn-trash"></i>
+			</div>
         </div>
         <div class="${CN_EDIT_VIEW}" style="display: none">
-          <input class="${CN_EDIT_INPUT}" value="">	
-		  <div class="exsied-btn ${CN_CANCEL_BTN}">
-		  	<i class="exsied-btn-cancel"></i>
-		  </div>
-		  <div class="exsied-btn ${CN_CONFIRM_BTN}">
-		    <i class="exsied-btn-confirm"></i>
-		  </div>
+        	<input class="${CN_EDIT_INPUT}" value="">	
+			<div class="exsied-btn ${CN_CANCEL_BTN}">
+				<i class="exsied-btn-cancel"></i>
+			</div>
+			<div class="exsied-btn ${CN_CONFIRM_BTN}">
+				<i class="exsied-btn-confirm"></i>
+			</div>
         </div>
         `
 
