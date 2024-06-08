@@ -3,7 +3,7 @@
 **Exsied**: **Ex**tremely **si**mple **ed**itor. The pronunciation is `/ɪkˈsiːd/`, the same as **exceed**.
 
 **Exied** is the main editor of [Enassi](https://github.com/enassi/enassi/).
-**Enassi** is your encryption assistant that supports multiple file types ( including markdown, PDF, images, etc. ), supports file encryption and synchronization
+**Enassi** is your encryption assistant that supports multiple file types ( including markdown, source code, PDF, images, etc. ), supports file encryption and synchronization.
 
 [Documents](https://enassi.github.io/enassi-docs/en/exsied/about/) / [文档](https://enassi.github.io/enassi-docs/zh-cn/exsied/about/)
 
@@ -182,7 +182,7 @@ exsied.setDict('zh-CN', {
 })
 ```
 
-### Setp4: use `exsied.setLocale` set a locale.
+### Setp3: use `exsied.setLocale` set a locale.
 
 ```js
 exsied.setLocale('zh-CN')
