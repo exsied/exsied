@@ -1,4 +1,4 @@
-import { Commands, ExsiedPlugin } from '../../types'
+import { Commands, ExsiedPlugin } from '../../core/plugin'
 import { genDropdownId } from '../../ui/dropdown'
 import { Toolbar } from '../../ui/toolbar'
 import { PLUGIN_CONF, PLUGIN_NAME } from './base'

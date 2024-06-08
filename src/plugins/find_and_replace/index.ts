@@ -1,7 +1,7 @@
 import { CN_TEMP_ELE_HIGHLIGHT } from '../../contants'
 import { exsied } from '../../core'
 import { DomUtils } from '../../core/dom_utils'
-import { Commands, ExsiedPlugin } from '../../types'
+import { Commands, ExsiedPlugin } from '../../core/plugin'
 import { CN_ICON_FIND, CN_ICON_REPLACE, PLUGIN_CONF, PLUGIN_NAME, POPUP_ID } from './base'
 import { onClickFind, onClickReplace, reset } from './event_handlers'
 import './styles.scss'

@@ -1,4 +1,26 @@
-import { ExsiedPlugin } from '../types'
+import { ToolBarControl } from "../ui/toolbar"
+
+export type ClickEventHandler = (event: MouseEvent) => any
+export type ChangeEventHandler = (event: Event) => any
+
+export type CommandFunc = (event: Event) => any
+export type Commands = { [key: string]: CommandFunc }
+
+export interface ExsiedPlugin {
+	name: string
+	conf: any
+	commands: Commands
+	toolBarControl?: ToolBarControl[]
+	addHhandler: () => any
+	removeHhandler: () => any
+	checkHighlight: (event: Event) => any
+	removeTempEle: (event: Event) => any
+	hooks?: {
+		afterInit?: () => void
+		afterSetHtml?: () => void
+		beforeGetHtml?: () => string
+	}
+}
 
 export const HOOK_AFTER_INIT = 1
 export const HOOK_AFTER_SET_HTML = 2

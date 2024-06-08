@@ -7,13 +7,60 @@ import {
 	ZERO_WIDTH_SPACE,
 } from '../contants'
 import pluginAbout from '../plugins/about'
-import { Exsied, ExsiedInitConf } from '../types'
+import { KvStringString, ModifierKeys } from '../types'
 import { Toolbar } from '../ui/toolbar'
 import { DomUtils } from './dom_utils'
 import { bindAllEvents, unbindAllEvent } from './events'
 import { HotkeyUtils } from './hotkey_utils'
 import { I18N } from './i18n'
-import { HOOK_AFTER_INIT, HOOK_AFTER_SET_HTML, HOOK_BEFORE_GET_HTML, PLUGINS, execPluginHook } from './plugin'
+import {
+	CommandFunc,
+	ExsiedPlugin,
+	HOOK_AFTER_INIT,
+	HOOK_AFTER_SET_HTML,
+	HOOK_BEFORE_GET_HTML,
+	PLUGINS,
+	execPluginHook,
+} from './plugin'
+
+export type ExsiedInitConf = {
+	id: string
+	plugins: ExsiedPlugin[]
+	enableToolbarBubble: boolean
+	hotkeys?: { keyStr: string; func: CommandFunc; modifierKeys: ModifierKeys[] }[]
+	dataAttrs?: { sign: string; signOriginal: string }
+	hooks?: {
+		onInput?: (event: Event) => void
+	}
+	iAbideByExsiedLicenseAndDisableTheAboutPlugin?: boolean
+}
+
+export type Exsied = {
+	containerId: string
+	enableToolbarBubble: boolean
+	elements: {
+		editor: HTMLElement
+		toolbarMain: HTMLElement
+		toolbarBubble: HTMLElement
+		workplace: HTMLElement
+	}
+
+	init: (conf: ExsiedInitConf) => any
+	getHtml: () => string
+	setHtml: (content: string) => any
+	destroy: () => any
+
+	range: Range | null
+	cursorAllParentsTagNamesArr: string[]
+
+	dataAttrs?: { sign: string; signOriginal: string }
+
+	i18n: {
+		setDict: (locale: string, dict: KvStringString) => any
+		getLocale: () => string
+		setLocale: (locale: string) => any
+	}
+}
 
 const init = (conf: ExsiedInitConf) => {
 	if (!conf.iAbideByExsiedLicenseAndDisableTheAboutPlugin) conf.plugins.push(pluginAbout)
@@ -67,6 +114,15 @@ const init = (conf: ExsiedInitConf) => {
 	if (conf.hotkeys) {
 		for (const item of conf.hotkeys) {
 			HotkeyUtils.set(item.keyStr, item.func, item.modifierKeys)
+		}
+	}
+
+	if (conf.hooks) {
+		if (conf.hooks.onInput) {
+			const hooksOnInput = conf.hooks.onInput
+			exsied.elements.workplace.addEventListener('input', function (event) {
+				hooksOnInput(event)
+			})
 		}
 	}
 

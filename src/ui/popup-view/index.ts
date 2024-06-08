@@ -22,7 +22,7 @@ export type PopupViewProps = {
 }
 
 export const CN_POPUP_VIEW = 'exsied-popup-view'
-export const CN_POPUP_CLOSE_BTN = 'close-btn'
+export const CN_POPUP_CLOSE_BTN = 'exsied-btn-close'
 
 export const createPopupView = (props: PopupViewProps) => {
 	let contentAttrsStr = ''
@@ -36,7 +36,7 @@ export const createPopupView = (props: PopupViewProps) => {
 		<div class="exsied-popup-titlebar">
 			<div class="exsied-popup-titlebar-content">${props.titlebarText}</div>
 			<div class="exsied-popup-titlebar-actions">
-				<i class="${CN_POPUP_CLOSE_BTN}"></i>
+				<i class="exsied-icon ${CN_POPUP_CLOSE_BTN}"></i>
 			</div>
 		</div>
 		`

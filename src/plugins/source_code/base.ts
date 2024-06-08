@@ -13,13 +13,13 @@ export type PluginConf = {
 
 export const PLUGIN_CONF: PluginConf = {
 	addToBubble: true,
-	renderData: (_ele: HTMLElement) => {
-		const msg = `Unimplemented callback: ${PLUGIN_NAME}.conf.renderData`
-		console.error(msg)
-		return msg
+	renderData: (ele: HTMLElement) => {
+		console.warn(`Unimplemented callback: ${PLUGIN_NAME}.conf.renderData`)
+
+		return `<pre><code>${ele.innerHTML}</code></pre>`
 	},
 	editData: (_ele: HTMLElement, _sign: string) => {
-		console.error(`Unimplemented callback: ${PLUGIN_NAME}.conf.editData`)
+		alert(`Unimplemented callback: ${PLUGIN_NAME}.conf.editData`)
 	},
 	randomChars: () => {
 		return randomChars(28)

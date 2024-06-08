@@ -1,6 +1,6 @@
 import { CN_ACTIVE } from '../../contants'
 import { exsied } from '../../core'
-import { Commands, ExsiedPlugin } from '../../types'
+import { Commands, ExsiedPlugin } from '../../core/plugin'
 import { Toolbar } from '../../ui/toolbar'
 import { CN_ICON, PLUGIN_CONF, PLUGIN_NAME, isHighlight } from './base'
 import { formatTextBold } from './event_handlers'

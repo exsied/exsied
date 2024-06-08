@@ -1,6 +1,6 @@
 :root {
 	--exd-backgroud-color: #fff;
-	--exd-color: #000;
+	--exd-text-color: #000;
 	--exd-component-backgroud-color: #efefef;
 	--exd-component-color: #333;
 	--exd-component-border-color: #ccc;
@@ -9,7 +9,7 @@
 
 .exsied {
 	background-color: var(--exd-backgroud-color);
-	color: var(--exd-color);
+	color: var(--exd-text-color);
 	font-size: 1rem;
 	border: 1px solid #666;
 

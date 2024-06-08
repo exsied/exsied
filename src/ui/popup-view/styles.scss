@@ -26,7 +26,7 @@
 			flex-grow: 1;
 		}
 		.exsied-popup-titlebar-actions {
-			i.close-btn::after {
+			i.exsied-btn-close::after {
 				@include bkgSvgIcon;
 				background-image: url(./icons/close.svg);
 

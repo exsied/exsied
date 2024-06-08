@@ -2,15 +2,15 @@ import { DATA_ATTR_CN_ICON, TN_DIV } from '../../contants'
 import { exsied } from '../../core'
 import { DomUtils } from '../../core/dom_utils'
 import { execEleEventClickCallbackByTag } from '../../core/events'
-import { PLUGINS } from '../../core/plugin'
+import { ChangeEventHandler, ClickEventHandler, PLUGINS } from '../../core/plugin'
 import { SelectionUtils } from '../../core/selection_utils'
-import { ChangeEventHandler, ClickEventHandler, HTMLTagNames } from '../../types'
+import { HTMLTagNames } from '../../types'
 import { tagNameLc } from '../../utils'
 import { uniqueArray } from '../../utils/array'
-import { CN_DDROPDOWN_LIST_SHOW, DropdownMenu } from '../dropdown'
+import { CN_DDROPDOWN_LIST_SHOW, DropdownMenu, genDropdownId } from '../dropdown'
 import './styles.scss'
 
-export const CN_BUBBLE_WRAP = 'exsied-toolbar-bubble-wrap'
+export const ID_BUBBLE_WRAP = 'exsied-toolbar-bubble-wrap'
 export const CN_BUBBLE_BTNS = 'exsied-btns'
 
 export type ToolBarButton = {
@@ -48,7 +48,7 @@ export const PLUGINS_SELECT_ID: string[] = []
 
 export class Toolbar {
 	static genBtns = () => {
-		const bubbleBtnsEle = document.querySelector(`.${CN_BUBBLE_WRAP} .${CN_BUBBLE_BTNS}`)
+		const bubbleBtnsEle = document.querySelector(`#${ID_BUBBLE_WRAP} .${CN_BUBBLE_BTNS}`)
 		const ctrlArr = []
 		for (const plg of PLUGINS) {
 			if (!plg.toolBarControl) continue
@@ -64,7 +64,7 @@ export class Toolbar {
 					const html = `<button class="exsied-ctrl" id="___id___">${btnIcon}</button>`
 					ctrlArr.push(html.replace('___id___', ids.normal))
 					if (ctrl.addToBubble && bubbleBtnsEle) {
-						bubbleBtnsEle.innerHTML += html.replace('___id___', ids.bubble)
+						if (!DomUtils.existElementById(ids.bubble)) bubbleBtnsEle.innerHTML += html.replace('___id___', ids.bubble)
 					}
 				}
 
@@ -157,7 +157,7 @@ export class Toolbar {
 
 	static initDropdownElements = () => {
 		PLUGINS_SELECT_ID.map((id) => {
-			new DropdownMenu(id)
+			if (!DomUtils.existElementById(genDropdownId(id))) new DropdownMenu(id)
 		})
 	}
 
@@ -216,6 +216,8 @@ export class Toolbar {
 	}
 
 	static initBubble = () => {
+		if (DomUtils.existElementById(ID_BUBBLE_WRAP)) return
+
 		const html = `
 			<span class="exsied-toolbar-bubble-arrow"></span>			
 			<div class="exsied-toolbar-bubble">
@@ -228,7 +230,7 @@ export class Toolbar {
 			`
 
 		const ele = document.createElement(TN_DIV)
-		ele.classList.add(CN_BUBBLE_WRAP)
+		ele.id = ID_BUBBLE_WRAP
 		ele.classList.add('exsied')
 		ele.innerHTML = html
 		ele.style.position = 'absolute'
@@ -236,7 +238,7 @@ export class Toolbar {
 
 		document.body.appendChild(ele)
 
-		const bubbleEle = document.querySelector(`.${CN_BUBBLE_WRAP}`)
+		const bubbleEle = document.querySelector(`#${ID_BUBBLE_WRAP}`)
 		if (bubbleEle) exsied.elements.toolbarBubble = bubbleEle as HTMLElement
 	}
 

@@ -1,6 +1,6 @@
 import { TN_H1, TN_H2, TN_H3, TN_H4, TN_H5, TN_H6 } from '../../contants'
 import { exsied } from '../../core'
-import { Commands, ExsiedPlugin } from '../../types'
+import { Commands, ExsiedPlugin } from '../../core/plugin'
 import { genDropdownId, genTriggerClassName } from '../../ui/dropdown'
 import { Toolbar } from '../../ui/toolbar'
 import {

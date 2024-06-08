@@ -1,5 +1,5 @@
 import { DomUtils } from '../../core/dom_utils'
-import { ExsiedPlugin } from '../../types'
+import { ExsiedPlugin } from '../../core/plugin'
 import { CN_ICON, PLUGIN_CONF, PLUGIN_NAME, POPUP_ID } from './base'
 import { insertLink } from './event_handlers'
 import './styles.scss'

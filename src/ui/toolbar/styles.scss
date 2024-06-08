@@ -1,6 +1,6 @@
 :root {
 	--exd-toolbar-backgroud-color: #fefefe;
-	--exd-toolbar-color: rgb(44, 44, 44);
+	--exd-toolbar-text-color: rgb(44, 44, 44);
 	--exd-toolbar-border-bottom-color: #ccc;
 
 	--exd-toolbar-ctrl-backgroud-color: unset;
@@ -14,13 +14,14 @@
 
 .exsied-toolbar {
 	&.exsied-toolbar-main {
+		overflow: scroll;
 		position: sticky;
 		top: 0;
 	}
 
 	.exsied-normal {
 		background-color: var(--exd-toolbar-backgroud-color);
-		color: var(--exd-toolbar-color);
+		color: var(--exd-toolbar-text-color);
 		border-bottom: 1px solid var(--exd-toolbar-border-bottom-color);
 		padding: 0.1rem;
 	}
@@ -62,7 +63,7 @@
 	}
 }
 
-.exsied-toolbar-bubble-wrap {
+#exsied-toolbar-bubble-wrap {
 	position: absolute;
 	box-sizing: border-box;
 	transform: translateY(10px);

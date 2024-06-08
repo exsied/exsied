@@ -31,11 +31,39 @@
    - SOL: BbrRkLArfTeAieAtDpvBHNE4KBKX9fmbjPb5JDmKHWE7
    - ETH: 0xA59186a08424BE262FBacA922E87Ab82F3C5245B
 
-## Demo
+## Usage
+
+### Install
+
+```bash
+npm install @exsied/exsied
+# or
+yarn add @exsied/exsied
+# or
+pnpm i @exsied/exsied
+```
+
+### Import
 
 ```js
-import { exsied, exsiedPlugins } from 'exsied/dist/index.js'
+import { exsied, exsiedPlugins } from '@exsied/exsied'
+import '@exsied/exsied/style.css'
+```
 
+or
+
+```html
+<script type="module">
+	import { exsied, exsiedPlugins } from 'https://cdn.jsdelivr.net/npm/@exsied/exsied@0.3.0/dist/index.js'
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exsied/exsied@0.3.0/dist/style.css" />
+```
+
+When running **exsied** in the browser, please refer to `test_dist/index_esm.html`.
+
+### Initialize
+
+```js
 exsied.init({
 	id: 'app',
 	plugins: [
@@ -49,8 +77,6 @@ exsied.init({
 
 exsied.setHtml('some HTML code')
 ```
-
-When running **exsied** in the browser, please refer to `test_dist/index_esm.html`.
 
 ## Plugins
 
@@ -98,15 +124,53 @@ Due to the fact that **exsied** does not have any dependencies, so it cannot hig
 - editData: Used to edit code, **codemirror** is recommended. After editing, use **const ele = document.querySelector(`[${DATA_ATTR.sign}="${sign}"]`)** to find the original **<code>** element, and update it.
 - randomChars: Used to generate random chars.
 
+#### Sample code
+
+```js
+import { PluginConf } from '@exsied/exsied/dist/plugins/source_code/base'
+import hljs from 'highlight.js'
+import c from 'highlight.js/lib/languages/c'
+import cpp from 'highlight.js/lib/languages/cpp'
+import { v4 as uuidv4 } from 'uuid'
+
+// Register some languages
+hljs.registerLanguage('c', c)
+hljs.registerLanguage('cpp', cpp)
+
+export const highlighCode = (str: string, lang: string) => {
+	if (lang in hljsLangMap) {
+		return hljs.highlight(str, { language: lang }).value
+	}
+
+	return str
+}
+
+const sourceCodeConf = exsiedPlugins.sourceCode.conf as PluginConf
+
+sourceCodeConf.renderData = (ele: HTMLElement) => {
+	const lang = ele.getAttribute('lang') || ''
+	const res = highlighCode(ele.innerHTML, lang)
+	return `<pre><code>${res}</code></pre>`
+}
+sourceCodeConf.editData = (ele: HTMLElement, sign: string) => {
+	// do something
+}
+// replace the default randomChars with uuid
+sourceCodeConf.randomChars = () => {
+	return uuidv4()
+}
+
+```
+
 ## I18N
 
-### How to find all words?
+Currently, **exsied** only supports English. Developers can add support for other locales by following these steps:
+
+### Setp1: serach all words
 
 Search `t('` in your IDE.
 
-### How to custom my locale?
-
-#### Setp1: use `exsied.setDict` set a dict.
+### Setp2: use `exsied.setDict` set a dict.
 
 ```js
 exsied.setDict('zh-CN', {
@@ -118,7 +182,7 @@ exsied.setDict('zh-CN', {
 })
 ```
 
-#### Setp2: use `exsied.setLocale` set a locale.
+### Setp4: use `exsied.setLocale` set a locale.
 
 ```js
 exsied.setLocale('zh-CN')
