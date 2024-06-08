@@ -64,7 +64,7 @@ export class Toolbar {
 					const html = `<button class="exsied-ctrl" id="___id___">${btnIcon}</button>`
 					ctrlArr.push(html.replace('___id___', ids.normal))
 					if (ctrl.addToBubble && bubbleBtnsEle) {
-						bubbleBtnsEle.innerHTML += html.replace('___id___', ids.bubble)
+						if (!DomUtils.existElementById(ids.bubble)) bubbleBtnsEle.innerHTML += html.replace('___id___', ids.bubble)
 					}
 				}
 
