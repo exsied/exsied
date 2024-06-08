@@ -59,6 +59,12 @@ exsied.init({
 		{ keyStr: 'i', func: italic.commands[italic.name], modifierKeys: [KEY_CTRL] },
 		{ keyStr: 'u', func: underline.commands[underline.name], modifierKeys: [KEY_CTRL] },
 	],
+	hooks: {
+		onInput: (event) => {
+			const ele = event.target as HTMLElement
+			console.log('>>> hooks.onInput :', ele.innerHTML)
+		},
+	},
 })
 
 exsied.setHtml(DEMO_CONTENT)

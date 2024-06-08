@@ -70,6 +70,15 @@ const init = (conf: ExsiedInitConf) => {
 		}
 	}
 
+	if (conf.hooks) {
+		if (conf.hooks.onInput) {
+			const hooksOnInput = conf.hooks.onInput
+			exsied.elements.workplace.addEventListener('input', function (event) {
+				hooksOnInput(event)
+			})
+		}
+	}
+
 	Toolbar.initDropdownElements()
 
 	bindAllEvents()

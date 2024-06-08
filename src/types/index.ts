@@ -41,6 +41,9 @@ export type ExsiedInitConf = {
 	enableToolbarBubble: boolean
 	hotkeys?: { keyStr: string; func: CommandFunc; modifierKeys: ModifierKeys[] }[]
 	dataAttrs?: { sign: string; signOriginal: string }
+	hooks?: {
+		onInput?: (event: Event) => void
+	}
 	iAbideByExsiedLicenseAndDisableTheAboutPlugin?: boolean
 }
 
