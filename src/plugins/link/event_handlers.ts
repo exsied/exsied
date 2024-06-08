@@ -35,7 +35,7 @@ export const onClickLink = (event: Event) => {
 
 	const contentHtml = `					
         <div class="${CN_PREVIEW}">
-          <a href="${PLUGIN_CONF.defaultHref}" target="_blank" rel="noopener noreferrer">${targetEle.innerText || PLUGIN_CONF.defaultInnerHTML}</a>
+          <a href="${targetEle.href || PLUGIN_CONF.defaultHref}" target="_blank" rel="noopener noreferrer">${targetEle.innerText || PLUGIN_CONF.defaultInnerHTML}</a>
 		  <div class="exsied-btn ${CN_EDIT_BTN}">
           	<i class="exsied-btn-edit"></i>
 		  </div>
