@@ -8,7 +8,7 @@ export const CN_DDROPDOWN_LIST_SHOW = 'exsied-dropdown-list-show'
 export const CN_DDROPDOWN_TRIGGER = 'exsied-dropdown-trigger'
 
 export const genDropdownId = (id: string) => {
-	return `${id}---${CN_DDROPDOWN}`
+	return `${id}---dropdown`
 }
 
 export const genTriggerClassName = () => {
@@ -22,9 +22,9 @@ export class DropdownMenu {
 	private eleId: string
 	private ele: HTMLElement | undefined
 
-	private eleClassNameList = 'exsied-dropdown-list'
-	private eleClassNameListItem = 'exsied-dropdown-list-item'
-	private eleTriggerDefaultText = '---'
+	private cnList = 'exsied-dropdown-list'
+	private cnListItem = 'exsied-dropdown-list-item'
+	private triggerDefaultText = '---'
 
 	constructor(selectId: string) {
 		this.eleId = selectId
@@ -53,7 +53,7 @@ export class DropdownMenu {
 		triggerEle.classList.add('exsied-ctrl')
 
 		const defaultText = ele.getAttribute('data-default-text')
-		triggerEle.innerHTML = `<span class="${genTriggerClassName()}">${defaultText || this.eleTriggerDefaultText}</span>`
+		triggerEle.innerHTML = `<span class="${genTriggerClassName()}">${defaultText || this.triggerDefaultText}</span>`
 
 		triggerEle.addEventListener('click', (event: Event) => {
 			const target = event.target
@@ -66,7 +66,7 @@ export class DropdownMenu {
 			const siblings = Array.from(dropDownEle.children)
 			const self = this
 			siblings.forEach(function (sibling) {
-				if (sibling.classList.contains(self.eleClassNameList)) {
+				if (sibling.classList.contains(self.cnList)) {
 					sibling.classList.add(CN_DDROPDOWN_LIST_SHOW)
 				}
 			})
@@ -77,13 +77,13 @@ export class DropdownMenu {
 		})
 
 		const listEle = document.createElement(TN_DIV)
-		listEle.classList.add(this.eleClassNameList)
+		listEle.classList.add(this.cnList)
 
 		for (let i = 0; i < nativeSelect.options.length; i++) {
 			const option = nativeSelect.options[i]
 
 			const listItem = document.createElement(TN_DIV)
-			listItem.classList.add(this.eleClassNameListItem)
+			listItem.classList.add(this.cnListItem)
 			listItem.setAttribute(DATA_ATTR_TEXT, option.text)
 			listItem.setAttribute(DATA_ATTR_VALUE, option.value)
 
@@ -105,15 +105,15 @@ export class DropdownMenu {
 
 				const targetEle = target as HTMLOptionElement
 
-				const list = targetEle.closest(`.${this.eleClassNameList}`) as HTMLDivElement
+				const list = targetEle.closest(`.${this.cnList}`) as HTMLDivElement
 				if (!list) return
 				list.classList.remove(CN_DDROPDOWN_LIST_SHOW)
 
 				const wrap = targetEle.closest(`.${CN_DDROPDOWN}`)
 				if (!wrap) return
 
-				const listItem = targetEle.closest(`.${this.eleClassNameListItem}`) as HTMLDivElement
-				if (!wrap) return
+				const listItem = targetEle.closest(`.${this.cnListItem}`) as HTMLDivElement
+				if (!listItem) return
 
 				const DT = listItem.getAttribute(DATA_ATTR_TEXT)
 				const DV = listItem.getAttribute(DATA_ATTR_VALUE)
@@ -121,7 +121,7 @@ export class DropdownMenu {
 
 				// Set trigger's text
 				const triggerEle = wrap.querySelector(`.${CN_DDROPDOWN_TRIGGER}`)
-				if (triggerEle) triggerEle.innerHTML = DT || this.eleTriggerDefaultText
+				if (triggerEle) triggerEle.innerHTML = DT || this.triggerDefaultText
 
 				// Set orginal select's option
 				const select = document.querySelector(`#${this.eleId}`) as HTMLSelectElement

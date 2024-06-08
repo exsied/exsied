@@ -100,8 +100,11 @@ export class Toolbar {
 	}
 
 	static genButtonIds = (pluginName: string, ctrlName: string) => {
-		const normal = `exsied-toolbar-btn---${pluginName}---${ctrlName}`
-		return { normal, bubble: `${normal}---bubble` }
+		const prefix = `exsied-toolbar-btn`
+		return {
+			normal: `${prefix}___normal___${pluginName}---${ctrlName}`,
+			bubble: `${prefix}___bubble___${pluginName}---${ctrlName}`,
+		}
 	}
 
 	static checkHighlight = (event: Event) => {
