@@ -46,7 +46,7 @@ pnpm i @exsied/exsied
 ### Import
 
 ```js
-import { exsied, exsiedPlugins } from '@exsied/exsied'
+import { exsied, plugins } from '@exsied/exsied'
 import '@exsied/exsied/style.css'
 ```
 
@@ -54,7 +54,7 @@ or
 
 ```html
 <script type="module">
-	import { exsied, exsiedPlugins } from 'https://cdn.jsdelivr.net/npm/@exsied/exsied@0.3.0/dist/index.js'
+	import { exsied, plugins } from 'https://cdn.jsdelivr.net/npm/@exsied/exsied@0.3.0/dist/index.js'
 </script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exsied/exsied@0.3.0/dist/style.css" />
 ```
@@ -64,6 +64,8 @@ When running **exsied** in the browser, please refer to `test_dist/index_esm.htm
 ### Initialize
 
 ```js
+import { exsied } from '@exsied/exsied'
+
 exsied.init({
 	id: 'app',
 	plugins: [
@@ -85,7 +87,9 @@ exsied.setHtml('some HTML code')
 If you have customized any functions, you should add your own information to `about.conf.deveploers`.
 
 ```js
-exsiedPlugins.about.conf.deveploers.push(
+import { exsied, plugins } from '@exsied/exsied'
+
+plugins.about.conf.deveploers.push(
 	{
 		name: 'enassi github',
 		repoLink: 'https://github.com/enassi/enassi',
@@ -127,6 +131,7 @@ Due to the fact that **exsied** does not have any dependencies, so it cannot hig
 #### Sample code
 
 ```js
+import { exsied, plugins } from '@exsied/exsied'
 import { PluginConf } from '@exsied/exsied/dist/plugins/source_code/base'
 import hljs from 'highlight.js'
 import c from 'highlight.js/lib/languages/c'
@@ -145,7 +150,7 @@ export const highlighCode = (str: string, lang: string) => {
 	return str
 }
 
-const sourceCodeConf = exsiedPlugins.sourceCode.conf as PluginConf
+const sourceCodeConf = plugins.sourceCode.conf as PluginConf
 
 sourceCodeConf.renderData = (ele: HTMLElement) => {
 	const lang = ele.getAttribute('lang') || ''
