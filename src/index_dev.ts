@@ -1,9 +1,12 @@
 import { KEY_CTRL, exsied, plugins } from './'
 import { DEMO_CONTENT } from './demo_content'
-import { PLUGIN_CONF as about_PLUGIN_CONF } from './plugins/about/base'
+import { PluginConf as AboutPluginConf } from './plugins/about/base'
+import { PluginConf as FontFamilyPluginConf } from './plugins/font_family/base'
+import { PluginConf as FontSizePluginConf } from './plugins/font_size/base'
 import './styles/style.scss'
 
-about_PLUGIN_CONF.deveploers.push(
+const aboutConf = plugins.about.conf as AboutPluginConf
+aboutConf.deveploers.push(
 	{
 		name: 'enassi github',
 		repoLink: 'https://github.com/enassi/enassi',
@@ -17,6 +20,38 @@ about_PLUGIN_CONF.deveploers.push(
 		webSiteLink: 'https://xxx.com/xxx',
 		email: 'xxx@xxx.xxx',
 		extContent: `Enassi's gitee repo`,
+	},
+)
+
+const fontSizeConf = plugins.fontSize.conf as FontSizePluginConf
+fontSizeConf.fontSizeOptions.push(
+	{
+		name: '18px',
+		value: '18px',
+		tooltipText: '',
+		iconClassName: '',
+	},
+	{
+		name: '28px',
+		value: '28px',
+		tooltipText: '',
+		iconClassName: '',
+	},
+)
+
+const fontFamilyConf = plugins.fontFamily.conf as FontFamilyPluginConf
+fontFamilyConf.fontFamilyOptions.push(
+	{
+		name: 'fontFamily_1',
+		value: 'fontFamily_1',
+		tooltipText: '',
+		iconClassName: '',
+	},
+	{
+		name: 'fontFamily_2',
+		value: 'fontFamily_2',
+		tooltipText: '',
+		iconClassName: '',
 	},
 )
 

@@ -198,8 +198,7 @@ exsied.i18n.setLocale('zh-CN')
 
 ## TODO
 
-- current:
-	- font_size formatFontSize
+- current:	
 	- source_code toggleSourceView
 	- source_code insertCodeBlock
 - Division line

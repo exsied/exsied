@@ -1,5 +1,10 @@
-export function formatFontFamily() {
-	console.log('formatTextFontFamily')
+import { FormatStyle } from '../../core/format/style'
+import { Style } from '../../types'
 
-	// TODO:
+export function formatFontFamily(event: Event) {
+	const selectEle = event.target as HTMLSelectElement
+
+	const style: Style = {}
+	style.fontFamily = selectEle.value
+	FormatStyle.formatSelected(style as CSSStyleDeclaration)
 }
