@@ -10,11 +10,11 @@ export type PluginConf = {
 export const PLUGIN_CONF: PluginConf = {
 	addToBubble: false,
 	fontFamilyOptions: [
-		{
-			name: 'test font family',
-			value: 'test font family',
-			tooltipText: 'test font family',
-			iconClassName: 'exsied-btn-font-family',
-		},
+		// {
+		// 	name: 'test font family',
+		// 	value: 'test font family',
+		// 	tooltipText: 'test font family',
+		// 	iconClassName: 'exsied-btn-font-family',
+		// },
 	],
 }
