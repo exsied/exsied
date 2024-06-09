@@ -1,7 +1,7 @@
 {
 	"name": "@exsied/exsied",
 	"private": false,
-	"version": "0.4.0",
+	"version": "0.4.1",
 	"description": "Exsied is a WYSIWYG editor from enassi.",
 	"type": "module",
 	"files": [
