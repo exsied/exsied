@@ -4,7 +4,7 @@ import { CN_ICON, PLUGIN_CONF, PLUGIN_NAME, POPUP_ID } from './base'
 import { insertLink } from './event_handlers'
 import './styles.scss'
 
-const plugin: ExsiedPlugin = {
+export const about: ExsiedPlugin = {
 	name: PLUGIN_NAME,
 	conf: PLUGIN_CONF,
 	commands: {},
@@ -28,5 +28,4 @@ const plugin: ExsiedPlugin = {
 		DomUtils.removeElementById(POPUP_ID)
 	},
 }
-
-export default plugin
+export default about

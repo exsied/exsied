@@ -1,7 +1,7 @@
 import { exsied } from '../../core'
 import { DomUtils } from '../../core/dom_utils'
-import { SelectionUtils } from '../../core/selection_utils'
 import { Commands, ExsiedPlugin } from '../../core/plugin'
+import { SelectionUtils } from '../../core/selection_utils'
 import { Toolbar } from '../../ui/toolbar'
 import { CN_ICON, PLUGIN_CONF, PLUGIN_NAME, POPUP_ID } from './base'
 import { showBackgroundColorPicker } from './event_handlers'
@@ -11,7 +11,7 @@ const toolbarBtnIds = Toolbar.genButtonIds(PLUGIN_NAME, PLUGIN_NAME)
 const commands: Commands = {}
 commands[PLUGIN_NAME] = showBackgroundColorPicker
 
-const plugin: ExsiedPlugin = {
+export const backgroundColor: ExsiedPlugin = {
 	name: PLUGIN_NAME,
 	conf: PLUGIN_CONF,
 	commands,
@@ -53,4 +53,4 @@ const plugin: ExsiedPlugin = {
 	},
 }
 
-export default plugin
+export default backgroundColor

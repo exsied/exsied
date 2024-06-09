@@ -12,7 +12,7 @@ const commands: Commands = {}
 commands[FIND_NAME] = onClickFind
 commands[REPLACE_NAME] = onClickReplace
 
-const plugin: ExsiedPlugin = {
+export const findAndReplace: ExsiedPlugin = {
 	name: PLUGIN_NAME,
 	conf: PLUGIN_CONF,
 	commands,
@@ -62,4 +62,4 @@ const plugin: ExsiedPlugin = {
 	},
 }
 
-export default plugin
+export default findAndReplace

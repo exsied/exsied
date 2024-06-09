@@ -12,7 +12,7 @@ const toolbarBtnIds = Toolbar.genButtonIds(PLUGIN_NAME, PLUGIN_NAME)
 const commands: Commands = {}
 commands[PLUGIN_NAME] = insertLink
 
-const plugin: ExsiedPlugin = {
+export const link: ExsiedPlugin = {
 	name: PLUGIN_NAME,
 	conf: PLUGIN_CONF,
 	commands,
@@ -49,4 +49,4 @@ const plugin: ExsiedPlugin = {
 	},
 }
 
-export default plugin
+export default link

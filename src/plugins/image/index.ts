@@ -12,7 +12,7 @@ const toolbarBtnIds = Toolbar.genButtonIds(PLUGIN_NAME, PLUGIN_NAME)
 const commands: Commands = {}
 commands[PLUGIN_NAME] = insertImage
 
-const plugin: ExsiedPlugin = {
+export const image: ExsiedPlugin = {
 	name: PLUGIN_NAME,
 	conf: PLUGIN_CONF,
 	commands,
@@ -51,4 +51,4 @@ const plugin: ExsiedPlugin = {
 	},
 }
 
-export default plugin
+export default image

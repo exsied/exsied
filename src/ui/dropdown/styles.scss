@@ -17,8 +17,6 @@
 
 	.exsied-dropdown-list {
 		display: none;
-		position: absolute;
-		left: 0;
 		white-space: nowrap;
 		background-color: var(--exd-component-backgroud-color);
 		color: var(--exd-component-color);
@@ -26,6 +24,8 @@
 
 		&.exsied-dropdown-list-show {
 			display: unset;
+			position: fixed;
+			z-index: 1;
 		}
 
 		.exsied-dropdown-list-item {

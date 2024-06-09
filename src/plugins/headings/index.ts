@@ -22,7 +22,7 @@ const triggerClassName = genTriggerClassName()
 const commands: Commands = {}
 commands[PLUGIN_NAME] = formatHeading
 
-const plugin: ExsiedPlugin = {
+export const headings: ExsiedPlugin = {
 	name: PLUGIN_NAME,
 	conf: PLUGIN_CONF,
 	commands,
@@ -73,4 +73,4 @@ const plugin: ExsiedPlugin = {
 	},
 }
 
-export default plugin
+export default headings

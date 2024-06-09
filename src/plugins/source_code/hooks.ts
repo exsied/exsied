@@ -1,6 +1,6 @@
 import { TN_BUTTON, TN_DIV } from '../../contants'
 import { exsied } from '../../core'
-import { CN_PREVIEW_BLOCK, dataAttr, DataRender } from '../../core/data_render'
+import { CN_PREVIEW_BLOCK, DataRender, dataAttr } from '../../core/data_render'
 import { t } from '../../core/i18n'
 import { tagNameLc } from '../../utils'
 import { PLUGIN_CONF } from './base'

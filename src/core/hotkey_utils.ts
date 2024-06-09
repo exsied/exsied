@@ -1,6 +1,17 @@
-import { KEY_ALT, KEY_CTRL, KEY_META, KEY_SHIFT } from '../contants'
-import { HotkeyEventsObj, ModifierKeys } from '../types'
 import { CommandFunc } from './plugin'
+
+export type ModifierKeys = typeof KEY_ALT | typeof KEY_CTRL | typeof KEY_META | typeof KEY_SHIFT
+
+export type HotkeyEventsObj = {
+	[key: string]: CommandFunc[]
+}
+
+// Key
+// https://developer.mozilla.org/en-US/docs/Web/API/UI_Events/Keyboard_event_key_values
+export const KEY_ALT = 'Alt'
+export const KEY_CTRL = 'Control'
+export const KEY_SHIFT = 'Shift'
+export const KEY_META = 'Meta'
 
 // 4
 const altCtrlMetaShift: HotkeyEventsObj = {}

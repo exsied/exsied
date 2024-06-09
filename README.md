@@ -3,9 +3,9 @@
 **Exsied**: **Ex**tremely **si**mple **ed**itor. The pronunciation is `/ɪkˈsiːd/`, the same as **exceed**.
 
 **Exied** is the main editor of [Enassi](https://github.com/enassi/enassi/).
-**Enassi** is your encryption assistant that supports multiple file types ( including markdown, PDF, images, etc. ), supports file encryption and synchronization
+**Enassi** is your encryption assistant that supports multiple file types ( including markdown, source code, PDF, images, etc. ), supports file encryption and synchronization.
 
-[Documents](https://enassi.github.io/enassi-docs/en/exsied/about/) / [文档](https://enassi.github.io/enassi-docs/zh-cn/exsied/about/)
+[Documents](https://enassi.pages.dev/en/exsied/about/) / [文档](https://enassi.pages.dev/zh-cn/exsied/about/)
 
 [Github repo](https://github.com/exsied/exsied) / [Gitee repo](https://gitee.com/exsied/exsied)
 
@@ -121,7 +121,7 @@ It will process the `<pre><code>` tags.
 Due to the fact that **exsied** does not have any dependencies, so it cannot highlight or edit code, developers should overwrite the functions in `sourceCode.conf`:
 
 - renderData: Used to highlight code, **highlight.js** is recommended
-- editData: Used to edit code, **codemirror** is recommended. After editing, use **const ele = document.querySelector(`[${DATA_ATTR.sign}="${sign}"]`)** to find the original **<code>** element, and update it.
+- editData: Used to edit code, **codemirror** is recommended. After editing, use **const ele = document.querySelector(`[${DATA_ATTR.sign}="${sign}"]`)** to find the original **code** element, and update it.
 - randomChars: Used to generate random chars.
 
 #### Sample code
@@ -159,7 +159,6 @@ sourceCodeConf.editData = (ele: HTMLElement, sign: string) => {
 sourceCodeConf.randomChars = () => {
 	return uuidv4()
 }
-
 ```
 
 ## I18N
@@ -173,7 +172,7 @@ Search `t('` in your IDE.
 ### Setp2: use `exsied.setDict` set a dict.
 
 ```js
-exsied.setDict('zh-CN', {
+exsied.i18n.setDict('zh-CN', {
 	Title: '标题',
 	Alternative: '别名',
 	Styles: '样式',
@@ -182,10 +181,10 @@ exsied.setDict('zh-CN', {
 })
 ```
 
-### Setp4: use `exsied.setLocale` set a locale.
+### Setp3: use `exsied.setLocale` set a locale.
 
 ```js
-exsied.setLocale('zh-CN')
+exsied.i18n.setLocale('zh-CN')
 ```
 
 ## ABBR

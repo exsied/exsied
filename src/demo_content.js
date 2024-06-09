@@ -3,8 +3,12 @@ export const DEMO_CONTENT = `
   <strong>Exsied</strong>: <strong>Ex</strong>tremely <strong>si</strong>mple
   <strong>ed</strong>itor. The pronunciation is <code>/ɪkˈsiːd/</code>, the same
   as <strong>exceed</strong>.
+</p>
+
+<p>  
   <a href="https://github.com/exsied/exsied">Github repo </a> /
-  <a href="https://gitee.com/exsied/exsied">Gitee repo </a>
+  <a href="https://gitee.com/exsied/exsied">Gitee repo </a> /
+  <a href="https://enassi.pages.dev/en/exsied/about/">Document </a>
 </p>
 
 <p>

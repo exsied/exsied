@@ -49,7 +49,9 @@ export const PLUGINS_SELECT_ID: string[] = []
 export class Toolbar {
 	static genBtns = () => {
 		const bubbleBtnsEle = document.querySelector(`#${ID_BUBBLE_WRAP} .${CN_BUBBLE_BTNS}`)
-		const ctrlArr = []
+		if (bubbleBtnsEle) bubbleBtnsEle.innerHTML = ''
+
+		const ctrlHtmlArr = []
 		for (const plg of PLUGINS) {
 			if (!plg.toolBarControl) continue
 
@@ -62,15 +64,14 @@ export class Toolbar {
 						btnIcon = `<i class="exsied-icon ${ctrl.iconClassName}"></i>`
 					}
 					const html = `<button class="exsied-ctrl" id="___id___">${btnIcon}</button>`
-					ctrlArr.push(html.replace('___id___', ids.normal))
+					ctrlHtmlArr.push(html.replace('___id___', ids.normal))
+
 					if (ctrl.addToBubble && bubbleBtnsEle) {
 						if (!DomUtils.existElementById(ids.bubble)) bubbleBtnsEle.innerHTML += html.replace('___id___', ids.bubble)
 					}
 				}
 
 				if (ctrl.eleType === 'select') {
-					PLUGINS_SELECT_ID.push(ids.normal)
-
 					let options = ''
 					ctrl.options.map((o) => {
 						options += `
@@ -87,21 +88,27 @@ export class Toolbar {
 							${options}
 						</select>
 						`
-					ctrlArr.push(html.replace('___id___', ids.normal))
+					ctrlHtmlArr.push(html.replace('___id___', ids.normal))
 					if (ctrl.addToBubble && bubbleBtnsEle) {
 						bubbleBtnsEle.innerHTML += html.replace('___id___', ids.bubble)
-						PLUGINS_SELECT_ID.push(ids.bubble)
+
+						if (!PLUGINS_SELECT_ID.includes(ids.bubble)) PLUGINS_SELECT_ID.push(ids.bubble)
 					}
+
+					if (!PLUGINS_SELECT_ID.includes(ids.normal)) PLUGINS_SELECT_ID.push(ids.normal)
 				}
 			}
 		}
 
-		return ctrlArr.join('')
+		return ctrlHtmlArr.join('')
 	}
 
 	static genButtonIds = (pluginName: string, ctrlName: string) => {
-		const normal = `exsied-toolbar-btn---${pluginName}---${ctrlName}`
-		return { normal, bubble: `${normal}---bubble` }
+		const prefix = `exsied-toolbar-btn`
+		return {
+			normal: `${prefix}___normal___${pluginName}---${ctrlName}`,
+			bubble: `${prefix}___bubble___${pluginName}---${ctrlName}`,
+		}
 	}
 
 	static checkHighlight = (event: Event) => {
@@ -202,6 +209,7 @@ export class Toolbar {
 					currentNode = nodeIterator.nextNode()
 				}
 			}
+
 			if (hasText) this.updateBubblePosition()
 		} else {
 			this.hideBubble()
@@ -216,30 +224,28 @@ export class Toolbar {
 	}
 
 	static initBubble = () => {
-		if (DomUtils.existElementById(ID_BUBBLE_WRAP)) return
+		let bubbleEle = document.querySelector(`#${ID_BUBBLE_WRAP}`)
+		if (!bubbleEle) {
+			const ele = document.createElement(TN_DIV)
+			ele.id = ID_BUBBLE_WRAP
+			ele.classList.add('exsied')
 
-		const html = `
-			<span class="exsied-toolbar-bubble-arrow"></span>			
-			<div class="exsied-toolbar-bubble">
-				<span class="exsied-endpoint"></span>
-				<span class="${CN_BUBBLE_BTNS} exsied-toolbar">
+			ele.innerHTML = `
+				<span class="exsied-toolbar-bubble-arrow"></span>			
+				<div class="exsied-toolbar-bubble">
+					<span class="exsied-endpoint"></span>
+					<span class="${CN_BUBBLE_BTNS} exsied-toolbar">
+	
+					</span>
+					<span class="exsied-endpoint"></span>
+				</div>
+				`
 
-				</span>
-				<span class="exsied-endpoint"></span>
-			</div>
-			`
+			document.body.appendChild(ele)
+			bubbleEle = ele
+		}
 
-		const ele = document.createElement(TN_DIV)
-		ele.id = ID_BUBBLE_WRAP
-		ele.classList.add('exsied')
-		ele.innerHTML = html
-		ele.style.position = 'absolute'
-		ele.style.display = 'none'
-
-		document.body.appendChild(ele)
-
-		const bubbleEle = document.querySelector(`#${ID_BUBBLE_WRAP}`)
-		if (bubbleEle) exsied.elements.toolbarBubble = bubbleEle as HTMLElement
+		exsied.elements.toolbarBubble = bubbleEle as HTMLElement
 	}
 
 	static updateBubblePosition() {
