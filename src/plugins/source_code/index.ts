@@ -15,6 +15,7 @@ export const sourceCode: ExsiedPlugin = {
 	conf: PLUGIN_CONF,
 	commands,
 
+	/* TODO:
 	toolBarControl: [
 		{
 			name: SOURCE_CODE_VIEW_NAME,
@@ -35,6 +36,7 @@ export const sourceCode: ExsiedPlugin = {
 			clickCallBack: commands[INSERT_SOURCE_CODE_BOCK_NAME],
 		},
 	],
+	*/
 
 	addHhandler: () => {},
 	removeHhandler: () => {},

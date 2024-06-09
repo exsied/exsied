@@ -1,21 +1,4 @@
-import {
-	KEY_CTRL,
-	backgroundColor,
-	bold,
-	findAndReplace,
-	fontFamily,
-	fontSize,
-	headings,
-	image,
-	italic,
-	link,
-	sourceCode,
-	strikethrough,
-	table,
-	textColor,
-	underline,
-} from './'
-import { exsied } from './core'
+import { KEY_CTRL, exsied, plugins } from './'
 import { DEMO_CONTENT } from './demo_content'
 import { PLUGIN_CONF as about_PLUGIN_CONF } from './plugins/about/base'
 import './styles/style.scss'
@@ -40,26 +23,26 @@ about_PLUGIN_CONF.deveploers.push(
 exsied.init({
 	id: 'app',
 	plugins: [
-		bold,
-		italic,
-		underline,
-		strikethrough,
-		headings,
-		link,
-		image,
-		table,
-		fontSize,
-		fontFamily,
-		backgroundColor,
-		textColor,
-		findAndReplace,
-		sourceCode,
+		plugins.bold,
+		plugins.italic,
+		plugins.underline,
+		plugins.strikethrough,
+		plugins.headings,
+		plugins.link,
+		plugins.image,
+		plugins.table,
+		plugins.fontSize,
+		plugins.fontFamily,
+		plugins.backgroundColor,
+		plugins.textColor,
+		plugins.findAndReplace,
+		plugins.sourceCode,
 	],
 	enableToolbarBubble: true,
 	hotkeys: [
-		{ keyStr: 'b', func: bold.commands[bold.name], modifierKeys: [KEY_CTRL] },
-		{ keyStr: 'i', func: italic.commands[italic.name], modifierKeys: [KEY_CTRL] },
-		{ keyStr: 'u', func: underline.commands[underline.name], modifierKeys: [KEY_CTRL] },
+		{ keyStr: 'b', func: plugins.bold.commands[plugins.bold.name], modifierKeys: [KEY_CTRL] },
+		{ keyStr: 'i', func: plugins.italic.commands[plugins.italic.name], modifierKeys: [KEY_CTRL] },
+		{ keyStr: 'u', func: plugins.underline.commands[plugins.underline.name], modifierKeys: [KEY_CTRL] },
 	],
 	hooks: {
 		onInput: (event) => {

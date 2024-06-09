@@ -1,6 +1,5 @@
 export const LIB_NAME = 'Exsied'
 export const LIB_REPO_GITHUB = 'https://github.com/exsied/exsied'
-export const LIB_REPO_GITEE = 'https://gitee.com/exsied/exsied'
 
 // Class names
 export const CN_EDITOR_ELE = 'exsied'
