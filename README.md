@@ -200,7 +200,6 @@ exsied.i18n.setLocale('zh-CN')
 
 - current:	
 	- source_code toggleSourceView
-	- source_code insertCodeBlock
 - Division line
 - Superscript / Subscript
 - Ordered List / Unordered List
