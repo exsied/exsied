@@ -10,6 +10,7 @@ import { italic } from './plugins/italic'
 import { link } from './plugins/link'
 import { sourceCode } from './plugins/source_code'
 import { strikethrough } from './plugins/strikethrough'
+import { subscriptAndSuperscript } from './plugins/subscript_and_superscript'
 import { table } from './plugins/table'
 import { textColor } from './plugins/text_color'
 import { underline } from './plugins/underline'
@@ -32,6 +33,7 @@ export const plugins = {
 	link,
 	sourceCode,
 	strikethrough,
+	subscriptAndSuperscript,
 	table,
 	textColor,
 	underline,

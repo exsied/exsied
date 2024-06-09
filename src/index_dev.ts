@@ -63,6 +63,7 @@ exsied.init({
 		plugins.underline,
 		plugins.strikethrough,
 		plugins.headings,
+		plugins.subscriptAndSuperscript,
 		plugins.link,
 		plugins.image,
 		plugins.table,
