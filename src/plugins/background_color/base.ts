@@ -1,4 +1,4 @@
-export const PLUGIN_NAME = 'background-color'
+export const PLUGIN_NAME = 'backgroundColor'
 export const CN_ICON = 'exsied-btn-background-color'
 export const POPUP_ID = `exsied_${PLUGIN_NAME}_popup`
 

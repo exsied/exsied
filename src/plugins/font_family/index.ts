@@ -10,7 +10,7 @@ const dropDownId = genDropdownId(toolbarBtnIds.normal)
 const commands: Commands = {}
 commands[PLUGIN_NAME] = formatFontFamily
 
-const plugin: ExsiedPlugin = {
+export const fontFamily: ExsiedPlugin = {
 	name: PLUGIN_NAME,
 	conf: PLUGIN_CONF,
 	commands,
@@ -38,4 +38,4 @@ const plugin: ExsiedPlugin = {
 	},
 }
 
-export default plugin
+export default fontFamily

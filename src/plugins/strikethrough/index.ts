@@ -10,7 +10,7 @@ const toolbarBtnIds = Toolbar.genButtonIds(PLUGIN_NAME, PLUGIN_NAME)
 const commands: Commands = {}
 commands[PLUGIN_NAME] = formatStrikethough
 
-const plugin: ExsiedPlugin = {
+export const strikethrough: ExsiedPlugin = {
 	name: PLUGIN_NAME,
 	conf: PLUGIN_CONF,
 	commands,
@@ -41,4 +41,4 @@ const plugin: ExsiedPlugin = {
 	removeTempEle: (_event) => {},
 }
 
-export default plugin
+export default strikethrough

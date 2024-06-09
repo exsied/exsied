@@ -10,7 +10,7 @@ const toolbarBtnIds = Toolbar.genButtonIds(PLUGIN_NAME, PLUGIN_NAME)
 const commands: Commands = {}
 commands[PLUGIN_NAME] = formatItalic
 
-const plugin: ExsiedPlugin = {
+export const italic: ExsiedPlugin = {
 	name: PLUGIN_NAME,
 	conf: PLUGIN_CONF,
 	commands,
@@ -41,4 +41,4 @@ const plugin: ExsiedPlugin = {
 	removeTempEle: (_event) => {},
 }
 
-export default plugin
+export default italic

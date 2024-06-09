@@ -1,4 +1,4 @@
-import { ToolBarControl } from "../ui/toolbar"
+import { ToolBarControl } from '../ui/toolbar'
 
 export type ClickEventHandler = (event: MouseEvent) => any
 export type ChangeEventHandler = (event: Event) => any

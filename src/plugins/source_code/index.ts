@@ -10,7 +10,7 @@ const commands: Commands = {}
 commands[SOURCE_CODE_VIEW_NAME] = toggleSourceView
 commands[INSERT_SOURCE_CODE_BOCK_NAME] = insertCodeBlock
 
-const plugin: ExsiedPlugin = {
+export const sourceCode: ExsiedPlugin = {
 	name: PLUGIN_NAME,
 	conf: PLUGIN_CONF,
 	commands,
@@ -46,4 +46,4 @@ const plugin: ExsiedPlugin = {
 	},
 }
 
-export default plugin
+export default sourceCode

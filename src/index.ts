@@ -1,35 +1,22 @@
-import about from './plugins/about'
-import backgroundColor from './plugins/background_color'
-import bold from './plugins/bold'
-import findAndReplace from './plugins/find_and_replace'
-import fontFamily from './plugins/font_family'
-import fontSize from './plugins/font_size'
-import headings from './plugins/headings'
-import image from './plugins/image'
-import italic from './plugins/italic'
-import link from './plugins/link'
-import sourceCode from './plugins/source_code'
-import strikethrough from './plugins/strikethrough'
-import table from './plugins/table'
-import textColor from './plugins/text_color'
-import underline from './plugins/underline'
 import './styles/style.scss'
 
+export { about } from './plugins/about'
+export { backgroundColor } from './plugins/background_color'
+export { bold } from './plugins/bold'
+export { findAndReplace } from './plugins/find_and_replace'
+export { fontFamily } from './plugins/font_family'
+export { fontSize } from './plugins/font_size'
+export { headings } from './plugins/headings'
+export { image } from './plugins/image'
+export { italic } from './plugins/italic'
+export { link } from './plugins/link'
+export { sourceCode } from './plugins/source_code'
+export { strikethrough } from './plugins/strikethrough'
+export { table } from './plugins/table'
+export { textColor } from './plugins/text_color'
+export { underline } from './plugins/underline'
+
+export { ZERO_WIDTH_SPACE } from './contants'
+export { KEY_ALT, KEY_CTRL, KEY_META, KEY_SHIFT } from './core/hotkey_utils'
+
 export { exsied } from './core'
-export const exsiedPlugins = {
-	about,
-	backgroundColor,
-	bold,
-	findAndReplace,
-	fontFamily,
-	fontSize,
-	headings,
-	image,
-	italic,
-	link,
-	sourceCode,
-	strikethrough,
-	table,
-	textColor,
-	underline,
-}

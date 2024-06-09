@@ -7,11 +7,11 @@ import {
 	ZERO_WIDTH_SPACE,
 } from '../contants'
 import pluginAbout from '../plugins/about'
-import { KvStringString, ModifierKeys } from '../types'
+import { KvStringString } from '../types'
 import { Toolbar } from '../ui/toolbar'
 import { DomUtils } from './dom_utils'
 import { bindAllEvents, unbindAllEvent } from './events'
-import { HotkeyUtils } from './hotkey_utils'
+import { HotkeyUtils, ModifierKeys } from './hotkey_utils'
 import { I18N } from './i18n'
 import {
 	CommandFunc,

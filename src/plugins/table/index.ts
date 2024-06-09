@@ -11,7 +11,7 @@ const toolbarBtnIds = Toolbar.genButtonIds(PLUGIN_NAME, PLUGIN_NAME)
 const commands: Commands = {}
 commands[PLUGIN_NAME] = insertTable
 
-const plugin: ExsiedPlugin = {
+export const table: ExsiedPlugin = {
 	name: PLUGIN_NAME,
 	conf: PLUGIN_CONF,
 	commands,
@@ -48,4 +48,4 @@ const plugin: ExsiedPlugin = {
 	},
 }
 
-export default plugin
+export default table
