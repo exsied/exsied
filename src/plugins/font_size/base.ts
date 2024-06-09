@@ -10,17 +10,11 @@ export type PluginConf = {
 export const PLUGIN_CONF: PluginConf = {
 	addToBubble: false,
 	fontSizeOptions: [
-		{
-			name: '8px',
-			value: '8px',
-			tooltipText: '',
-			iconClassName: '',
-		},
-		{
-			name: '12px',
-			value: '12px',
-			tooltipText: '',
-			iconClassName: '',
-		},
+		// {
+		// 	name: '8px',
+		// 	value: '8px',
+		// 	tooltipText: '',
+		// 	iconClassName: '',
+		// },		
 	],
 }

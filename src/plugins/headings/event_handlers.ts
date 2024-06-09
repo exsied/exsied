@@ -1,4 +1,4 @@
-import { TN_DIV, TN_H1, TN_H2, TN_H3, TN_H4, TN_H5, TN_H6, TN_SPAN } from '../../contants'
+import { TN_DIV, TN_H1, TN_H2, TN_H3, TN_H4, TN_H5, TN_H6 } from '../../contants'
 import { FormatTaName } from '../../core/format/tag_name'
 import {
 	OPTION_HEADING1,
@@ -8,14 +8,12 @@ import {
 	OPTION_HEADING5,
 	OPTION_HEADING6,
 	OPTION_NORMAL_BLOCK,
-	OPTION_NORMAL_INLINE,
 } from './base'
 
 export function formatHeading(event: Event) {
 	if (event.target instanceof HTMLSelectElement) {
 		const value = event.target.value
 
-		if (value === OPTION_NORMAL_INLINE) FormatTaName.formatSelected(TN_SPAN)
 		if (value === OPTION_NORMAL_BLOCK) FormatTaName.formatSelected(TN_DIV)
 		if (value === OPTION_HEADING1) FormatTaName.formatSelected(TN_H1)
 		if (value === OPTION_HEADING2) FormatTaName.formatSelected(TN_H2)

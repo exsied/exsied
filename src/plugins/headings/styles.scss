@@ -1,14 +1,9 @@
 @import '../../styles/mixin.scss';
 
 .exsied .exsied-toolbar {
-	i.exsied-btn-div {
+	i.exsied-btn-paragraph {
 		@include bkgSvgIcon;
-		background-image: url(./icons/bounding-box-circles.svg);
-	}
-
-	i.exsied-btn-span {
-		@include bkgSvgIcon;
-		background-image: url(./icons/input-cursor-text.svg);
+		background-image: url(./icons/paragraph.svg);
 	}
 
 	i.exsied-btn-h1 {
