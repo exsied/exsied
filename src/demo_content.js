@@ -78,7 +78,9 @@ export const DEMO_CONTENT = `
   </tbody>
 </table>
 
-<h3>Source code 1</h3>
+<h3>Source code</h3>
+<p>Developers should <u>overwrite <b>edit and highlight</b> functions</u>.</p>
+<h4>Source code 1</h4>
 <pre>
   <code lang="javascript">
     let a = 1;
@@ -87,7 +89,7 @@ export const DEMO_CONTENT = `
   </code>
 </pre>
 
-<h3>Source code 2</h3>
+<h4>Source code 2</h4>
 <pre>
   <code lang="rust">
     use ferris_says::say; // from the previous step
