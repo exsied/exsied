@@ -51,7 +51,7 @@ export class Toolbar {
 		const bubbleBtnsEle = document.querySelector(`#${ID_BUBBLE_WRAP} .${CN_BUBBLE_BTNS}`)
 		if (bubbleBtnsEle) bubbleBtnsEle.innerHTML = ''
 
-		const ctrlArr = []
+		const ctrlHtmlArr = []
 		for (const plg of PLUGINS) {
 			if (!plg.toolBarControl) continue
 
@@ -64,7 +64,8 @@ export class Toolbar {
 						btnIcon = `<i class="exsied-icon ${ctrl.iconClassName}"></i>`
 					}
 					const html = `<button class="exsied-ctrl" id="___id___">${btnIcon}</button>`
-					ctrlArr.push(html.replace('___id___', ids.normal))
+					ctrlHtmlArr.push(html.replace('___id___', ids.normal))
+
 					if (ctrl.addToBubble && bubbleBtnsEle) {
 						if (!DomUtils.existElementById(ids.bubble)) bubbleBtnsEle.innerHTML += html.replace('___id___', ids.bubble)
 					}
@@ -87,7 +88,7 @@ export class Toolbar {
 							${options}
 						</select>
 						`
-					ctrlArr.push(html.replace('___id___', ids.normal))
+					ctrlHtmlArr.push(html.replace('___id___', ids.normal))
 					if (ctrl.addToBubble && bubbleBtnsEle) {
 						bubbleBtnsEle.innerHTML += html.replace('___id___', ids.bubble)
 
@@ -99,7 +100,7 @@ export class Toolbar {
 			}
 		}
 
-		return ctrlArr.join('')
+		return ctrlHtmlArr.join('')
 	}
 
 	static genButtonIds = (pluginName: string, ctrlName: string) => {
@@ -228,8 +229,6 @@ export class Toolbar {
 			const ele = document.createElement(TN_DIV)
 			ele.id = ID_BUBBLE_WRAP
 			ele.classList.add('exsied')
-			ele.style.position = 'absolute'
-			ele.style.display = 'none'
 
 			ele.innerHTML = `
 				<span class="exsied-toolbar-bubble-arrow"></span>			

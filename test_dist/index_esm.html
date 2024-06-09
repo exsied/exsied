@@ -12,9 +12,27 @@
 		<link rel="stylesheet" href="../dist/style.css" />
 		<script type="module">
 			import { DEMO_CONTENT } from '../demo_content.js'
-			import { exsied, exsiedPlugins } from '../dist/index.js'
+			import {
+				KEY_CTRL,
+				about,
+				backgroundColor,
+				bold,
+				exsied,
+				findAndReplace,
+				fontFamily,
+				fontSize,
+				headings,
+				image,
+				italic,
+				link,
+				sourceCode,
+				strikethrough,
+				table,
+				textColor,
+				underline,
+			} from '../dist/index.js'
 
-			exsiedPlugins.about.conf.deveploers.push(
+			about.conf.deveploers.push(
 				{
 					name: 'enassi github',
 					repoLink: 'https://github.com/enassi/enassi',
@@ -34,21 +52,33 @@
 			exsied.init({
 				id: 'app',
 				plugins: [
-					exsiedPlugins.bold,
-					exsiedPlugins.italic,
-					exsiedPlugins.underline,
-					exsiedPlugins.strikethrough,
-					exsiedPlugins.headings,
-					exsiedPlugins.link,
-					exsiedPlugins.image,
-					exsiedPlugins.table,
-					exsiedPlugins.fontSize,
-					exsiedPlugins.fontFamily,
-					exsiedPlugins.backgroundColor,
-					exsiedPlugins.textColor,
-					exsiedPlugins.findAndReplace,
+					bold,
+					italic,
+					underline,
+					strikethrough,
+					headings,
+					link,
+					image,
+					table,
+					fontSize,
+					fontFamily,
+					backgroundColor,
+					textColor,
+					findAndReplace,
+					sourceCode,
 				],
 				enableToolbarBubble: true,
+				hotkeys: [
+					{ keyStr: 'b', func: bold.commands[bold.name], modifierKeys: [KEY_CTRL] },
+					{ keyStr: 'i', func: italic.commands[italic.name], modifierKeys: [KEY_CTRL] },
+					{ keyStr: 'u', func: underline.commands[underline.name], modifierKeys: [KEY_CTRL] },
+				],
+				hooks: {
+					onInput: (event) => {
+						const ele = event.target
+						console.log('>>> hooks.onInput :', ele.innerHTML)
+					},
+				},
 			})
 
 			exsied.setHtml(DEMO_CONTENT)

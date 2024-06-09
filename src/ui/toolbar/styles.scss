@@ -65,6 +65,7 @@
 
 #exsied-toolbar-bubble-wrap {
 	position: absolute;
+	display: 'none';
 	box-sizing: border-box;
 	transform: translateY(10px);
 	background-color: var(--exd-toolbar-bubble-backgroud-color);

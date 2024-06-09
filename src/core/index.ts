@@ -80,6 +80,11 @@ const init = (conf: ExsiedInitConf) => {
 
 	if (conf.dataAttrs) exsied.dataAttrs = conf.dataAttrs
 
+	if (conf.enableToolbarBubble) {
+		exsied.enableToolbarBubble = conf.enableToolbarBubble
+		Toolbar.initBubble()
+	}
+
 	const editorEle = document.querySelector(`#${conf.id}`)
 	if (!editorEle) throw new Error('The exsied.elements.editor does not exist.')
 	exsied.elements.editor = editorEle as HTMLElement
@@ -103,11 +108,6 @@ const init = (conf: ExsiedInitConf) => {
 	exsied.elements.workplace = workplaceEle as HTMLElement
 
 	Toolbar.initDropdownElements()
-
-	if (conf.enableToolbarBubble) {
-		exsied.enableToolbarBubble = conf.enableToolbarBubble
-		Toolbar.initBubble()
-	}
 
 	if (conf.hotkeys) {
 		for (const item of conf.hotkeys) {
