@@ -49,6 +49,8 @@ export const PLUGINS_SELECT_ID: string[] = []
 export class Toolbar {
 	static genBtns = () => {
 		const bubbleBtnsEle = document.querySelector(`#${ID_BUBBLE_WRAP} .${CN_BUBBLE_BTNS}`)
+		if (bubbleBtnsEle) bubbleBtnsEle.innerHTML = ''
+
 		const ctrlArr = []
 		for (const plg of PLUGINS) {
 			if (!plg.toolBarControl) continue
@@ -69,8 +71,6 @@ export class Toolbar {
 				}
 
 				if (ctrl.eleType === 'select') {
-					PLUGINS_SELECT_ID.push(ids.normal)
-
 					let options = ''
 					ctrl.options.map((o) => {
 						options += `
@@ -90,8 +90,11 @@ export class Toolbar {
 					ctrlArr.push(html.replace('___id___', ids.normal))
 					if (ctrl.addToBubble && bubbleBtnsEle) {
 						bubbleBtnsEle.innerHTML += html.replace('___id___', ids.bubble)
-						PLUGINS_SELECT_ID.push(ids.bubble)
+
+						if (!PLUGINS_SELECT_ID.includes(ids.bubble)) PLUGINS_SELECT_ID.push(ids.bubble)
 					}
+
+					if (!PLUGINS_SELECT_ID.includes(ids.normal)) PLUGINS_SELECT_ID.push(ids.normal)
 				}
 			}
 		}
@@ -205,6 +208,7 @@ export class Toolbar {
 					currentNode = nodeIterator.nextNode()
 				}
 			}
+
 			if (hasText) this.updateBubblePosition()
 		} else {
 			this.hideBubble()
@@ -219,30 +223,30 @@ export class Toolbar {
 	}
 
 	static initBubble = () => {
-		if (DomUtils.existElementById(ID_BUBBLE_WRAP)) return
+		let bubbleEle = document.querySelector(`#${ID_BUBBLE_WRAP}`)
+		if (!bubbleEle) {
+			const ele = document.createElement(TN_DIV)
+			ele.id = ID_BUBBLE_WRAP
+			ele.classList.add('exsied')
+			ele.style.position = 'absolute'
+			ele.style.display = 'none'
 
-		const html = `
-			<span class="exsied-toolbar-bubble-arrow"></span>			
-			<div class="exsied-toolbar-bubble">
-				<span class="exsied-endpoint"></span>
-				<span class="${CN_BUBBLE_BTNS} exsied-toolbar">
+			ele.innerHTML = `
+				<span class="exsied-toolbar-bubble-arrow"></span>			
+				<div class="exsied-toolbar-bubble">
+					<span class="exsied-endpoint"></span>
+					<span class="${CN_BUBBLE_BTNS} exsied-toolbar">
+	
+					</span>
+					<span class="exsied-endpoint"></span>
+				</div>
+				`
 
-				</span>
-				<span class="exsied-endpoint"></span>
-			</div>
-			`
+			document.body.appendChild(ele)
+			bubbleEle = ele
+		}
 
-		const ele = document.createElement(TN_DIV)
-		ele.id = ID_BUBBLE_WRAP
-		ele.classList.add('exsied')
-		ele.innerHTML = html
-		ele.style.position = 'absolute'
-		ele.style.display = 'none'
-
-		document.body.appendChild(ele)
-
-		const bubbleEle = document.querySelector(`#${ID_BUBBLE_WRAP}`)
-		if (bubbleEle) exsied.elements.toolbarBubble = bubbleEle as HTMLElement
+		exsied.elements.toolbarBubble = bubbleEle as HTMLElement
 	}
 
 	static updateBubblePosition() {

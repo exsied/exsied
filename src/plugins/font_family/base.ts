@@ -1,6 +1,6 @@
 import { ToolBarSelectOption } from '../../ui/toolbar'
 
-export const PLUGIN_NAME = 'font-family'
+export const PLUGIN_NAME = 'fontFamily'
 
 export type PluginConf = {
 	addToBubble: boolean

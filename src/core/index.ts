@@ -78,30 +78,21 @@ const init = (conf: ExsiedInitConf) => {
 		}
 	})
 
-	if (conf.enableToolbarBubble) {
-		exsied.enableToolbarBubble = conf.enableToolbarBubble
-		Toolbar.initBubble()
-	}
-
 	if (conf.dataAttrs) exsied.dataAttrs = conf.dataAttrs
 
-	const toolbarBtnsHtml = Toolbar.genBtns()
-	const html = `
+	const editorEle = document.querySelector(`#${conf.id}`)
+	if (!editorEle) throw new Error('The exsied.elements.editor does not exist.')
+	exsied.elements.editor = editorEle as HTMLElement
+	editorEle.innerHTML = `
 		<div class="${CN_EDITOR_ELE}">  
 			<div class="${CN_TOOLBAR_ELE} ${CN_TOOLBAR_MAIN_ELE}">
 				<div class="exsied-normal">
-					${toolbarBtnsHtml}
+					${Toolbar.genBtns()}
 				</div>
 			</div>
 			<div class="${CN_WORKPLACE_ELE}" contentEditable="true"></div>
 		</div>
 		`
-
-	const editorEle = document.querySelector(`#${conf.id}`)
-	if (!editorEle) throw new Error('The exsied.elements.editor does not exist.')
-	exsied.elements.editor = editorEle as HTMLElement
-
-	editorEle.innerHTML = html
 
 	const toolbarMainEle = editorEle.querySelector(`.${CN_TOOLBAR_MAIN_ELE}`)
 	if (!toolbarMainEle) throw new Error('The exsied.elements.toolbar does not exist.')
@@ -110,6 +101,13 @@ const init = (conf: ExsiedInitConf) => {
 	const workplaceEle = editorEle.querySelector(`.${CN_WORKPLACE_ELE}`)
 	if (!workplaceEle) throw new Error('The exsied.elements.workplace does not exist.')
 	exsied.elements.workplace = workplaceEle as HTMLElement
+
+	Toolbar.initDropdownElements()
+
+	if (conf.enableToolbarBubble) {
+		exsied.enableToolbarBubble = conf.enableToolbarBubble
+		Toolbar.initBubble()
+	}
 
 	if (conf.hotkeys) {
 		for (const item of conf.hotkeys) {
@@ -125,8 +123,6 @@ const init = (conf: ExsiedInitConf) => {
 			})
 		}
 	}
-
-	Toolbar.initDropdownElements()
 
 	bindAllEvents()
 
