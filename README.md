@@ -54,9 +54,9 @@ or
 
 ```html
 <script type="module">
-	import { exsied, plugins } from 'https://cdn.jsdelivr.net/npm/@exsied/exsied@0.3.0/dist/index.js'
+	import { exsied, plugins } from 'https://cdn.jsdelivr.net/npm/@exsied/exsied@0.4.4/dist/index.js'
 </script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exsied/exsied@0.3.0/dist/style.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exsied/exsied@0.4.4/dist/style.css" />
 ```
 
 When running **exsied** in the browser, please refer to `test_dist/index_esm.html`.
@@ -64,15 +64,15 @@ When running **exsied** in the browser, please refer to `test_dist/index_esm.htm
 ### Initialize
 
 ```js
-import { exsied } from '@exsied/exsied'
+import { exsied, plugins } from '@exsied/exsied'
 
 exsied.init({
 	id: 'app',
 	plugins: [
-		exsiedPlugins.bold,
-		exsiedPlugins.italic,
-		exsiedPlugins.underline,
-		exsiedPlugins.strikethrough, // ...
+		plugins.bold,
+		plugins.italic,
+		plugins.underline,
+		plugins.strikethrough, // ...
 	],
 	enableToolbarBubble: true,
 })
