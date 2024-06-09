@@ -6,6 +6,7 @@ export const CN_ICON_XML = 'exsied-btn-xml'
 
 export type PluginConf = {
 	addToBubble: boolean
+	defaultText: string
 	renderData: (ele: HTMLElement) => string
 	editData: (ele: HTMLElement, sign: string) => void
 	randomChars(): string
@@ -13,10 +14,15 @@ export type PluginConf = {
 
 export const PLUGIN_CONF: PluginConf = {
 	addToBubble: true,
+	defaultText: '// Source code placeholder',
 	renderData: (ele: HTMLElement) => {
 		console.warn(`Unimplemented callback: ${PLUGIN_NAME}.conf.renderData`)
 
-		return `<pre><code>${ele.innerHTML}</code></pre>`
+		return `
+			<pre>
+				<p>Source code:</p>
+				<code>${ele.innerHTML}</code>
+			</pre>`
 	},
 	editData: (_ele: HTMLElement, _sign: string) => {
 		alert(`Unimplemented callback: ${PLUGIN_NAME}.conf.editData`)

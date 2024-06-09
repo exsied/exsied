@@ -1,5 +1,5 @@
 import { Commands, ExsiedPlugin } from '../../core/plugin'
-import { CN_ICON_BRACES, CN_ICON_XML, PLUGIN_CONF, PLUGIN_NAME } from './base'
+import { CN_ICON_BRACES, PLUGIN_CONF, PLUGIN_NAME } from './base'
 import { insertCodeBlock, toggleSourceView } from './event_handlers'
 import { afterSetHtml, beforeGetHtml } from './hooks'
 import './styles.scss'
@@ -15,8 +15,8 @@ export const sourceCode: ExsiedPlugin = {
 	conf: PLUGIN_CONF,
 	commands,
 
-	/* TODO:
 	toolBarControl: [
+		/* TODO:
 		{
 			name: SOURCE_CODE_VIEW_NAME,
 			tooltipText: 'Source code view',
@@ -26,6 +26,7 @@ export const sourceCode: ExsiedPlugin = {
 			iconClassName: CN_ICON_XML,
 			clickCallBack: commands[SOURCE_CODE_VIEW_NAME],
 		},
+		*/
 		{
 			name: INSERT_SOURCE_CODE_BOCK_NAME,
 			tooltipText: 'Insert source code bock',
@@ -36,7 +37,6 @@ export const sourceCode: ExsiedPlugin = {
 			clickCallBack: commands[INSERT_SOURCE_CODE_BOCK_NAME],
 		},
 	],
-	*/
 
 	addHhandler: () => {},
 	removeHhandler: () => {},
