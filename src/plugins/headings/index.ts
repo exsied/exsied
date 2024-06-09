@@ -13,13 +13,21 @@ import {
 	PLUGIN_CONF,
 	PLUGIN_NAME,
 } from './base'
-import { formatHeading } from './event_handlers'
+import { formatDiv, formatH1, formatH2, formatH3, formatH4, formatH5, formatH6, formatHeading } from './event_handlers'
 import './styles.scss'
 
 const toolbarBtnIds = Toolbar.genButtonIds(PLUGIN_NAME, PLUGIN_NAME)
 const dropDownId = genDropdownId(toolbarBtnIds.normal)
 const triggerClassName = genTriggerClassName()
-const commands: Commands = {}
+const commands: Commands = {
+	formatDiv,
+	formatH1,
+	formatH2,
+	formatH3,
+	formatH4,
+	formatH5,
+	formatH6,
+}
 commands[PLUGIN_NAME] = formatHeading
 
 export const headings: ExsiedPlugin = {

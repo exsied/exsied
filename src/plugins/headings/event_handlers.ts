@@ -10,16 +10,44 @@ import {
 	OPTION_NORMAL_BLOCK,
 } from './base'
 
+export function formatDiv(_event: Event) {
+	FormatTaName.formatSelected(TN_DIV)
+}
+
+export function formatH1(_event: Event) {
+	FormatTaName.formatSelected(TN_H1)
+}
+
+export function formatH2(_event: Event) {
+	FormatTaName.formatSelected(TN_H2)
+}
+
+export function formatH3(_event: Event) {
+	FormatTaName.formatSelected(TN_H3)
+}
+
+export function formatH4(_event: Event) {
+	FormatTaName.formatSelected(TN_H4)
+}
+
+export function formatH5(_event: Event) {
+	FormatTaName.formatSelected(TN_H5)
+}
+
+export function formatH6(_event: Event) {
+	FormatTaName.formatSelected(TN_H6)
+}
+
 export function formatHeading(event: Event) {
 	if (event.target instanceof HTMLSelectElement) {
 		const value = event.target.value
 
-		if (value === OPTION_NORMAL_BLOCK) FormatTaName.formatSelected(TN_DIV)
-		if (value === OPTION_HEADING1) FormatTaName.formatSelected(TN_H1)
-		if (value === OPTION_HEADING2) FormatTaName.formatSelected(TN_H2)
-		if (value === OPTION_HEADING3) FormatTaName.formatSelected(TN_H3)
-		if (value === OPTION_HEADING4) FormatTaName.formatSelected(TN_H4)
-		if (value === OPTION_HEADING5) FormatTaName.formatSelected(TN_H5)
-		if (value === OPTION_HEADING6) FormatTaName.formatSelected(TN_H6)
+		if (value === OPTION_NORMAL_BLOCK) formatDiv(event)
+		if (value === OPTION_HEADING1) formatH1(event)
+		if (value === OPTION_HEADING2) formatH2(event)
+		if (value === OPTION_HEADING3) formatH3(event)
+		if (value === OPTION_HEADING4) formatH4(event)
+		if (value === OPTION_HEADING5) formatH5(event)
+		if (value === OPTION_HEADING6) formatH6(event)
 	}
 }
