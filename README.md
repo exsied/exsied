@@ -205,7 +205,6 @@ exsied.i18n.setLocale('zh-CN')
 
 - current:	
 	- source_code toggleSourceView
-- Division line
 - Ordered List / Unordered List
 - Quote
 - Indent / outdent

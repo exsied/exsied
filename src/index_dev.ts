@@ -67,6 +67,7 @@ exsied.init({
 		plugins.link,
 		plugins.image,
 		plugins.table,
+		plugins.horizonalRule,
 		plugins.fontSize,
 		plugins.fontFamily,
 		plugins.backgroundColor,

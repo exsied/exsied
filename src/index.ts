@@ -5,6 +5,7 @@ import { findAndReplace } from './plugins/find_and_replace'
 import { fontFamily } from './plugins/font_family'
 import { fontSize } from './plugins/font_size'
 import { headings } from './plugins/headings'
+import { horizonalRule } from './plugins/horizontal_rule'
 import { image } from './plugins/image'
 import { italic } from './plugins/italic'
 import { link } from './plugins/link'
@@ -28,6 +29,7 @@ export const plugins = {
 	fontFamily,
 	fontSize,
 	headings,
+	horizonalRule,
 	image,
 	italic,
 	link,
