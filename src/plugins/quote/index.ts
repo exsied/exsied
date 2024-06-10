@@ -7,7 +7,7 @@
  *     https://github.com/exsied/exsied/blob/main/LICENSE
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
-import { CN_ACTIVE, TN_A, TN_BLOCKQUOTE, TN_Q } from '../../contants'
+import { CN_ACTIVE, TN_BLOCKQUOTE, TN_Q } from '../../contants'
 import { exsied } from '../../core'
 import { Commands, ExsiedPlugin } from '../../core/plugin'
 import { Toolbar } from '../../ui/toolbar'
