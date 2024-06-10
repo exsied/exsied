@@ -33,7 +33,8 @@ export const subscriptAndSuperscript: ExsiedPlugin = {
 		{
 			name: SUB_NAME,
 			tooltipText: 'Subscript',
-			addToBubble: PLUGIN_CONF.addToBubble,
+			addToNormal:PLUGIN_CONF.addToNormal.sub,
+			addToBubble: PLUGIN_CONF.addToBubble.sub,
 
 			eleType: 'button',
 			iconClassName: CN_ICON_SUB,
@@ -42,7 +43,8 @@ export const subscriptAndSuperscript: ExsiedPlugin = {
 		{
 			name: SUP_NAME,
 			tooltipText: 'Supscript',
-			addToBubble: PLUGIN_CONF.addToBubble,
+			addToNormal:PLUGIN_CONF.addToNormal.sup,
+			addToBubble: PLUGIN_CONF.addToBubble.sup,
 
 			eleType: 'button',
 			iconClassName: CN_ICON_SUP,

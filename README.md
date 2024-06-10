@@ -19,6 +19,18 @@
 
 - All functions are based on plugins.
 
+## License
+
+Exited uses a dual license.
+
+You may conditionally use exsed under the MIT License,
+and if you do not meet the conditions, authorization is required
+
+Existing license:
+
+- [in Github repo](https://github.com/exsied/exsied/blob/main/LICENSE)
+- [in Gitee repo](https://gitee.com/exsied/exsied/blob/main/LICENSE)
+
 ## Donate
 
 1. [Open collective](https://opencollective.com/enassi)
@@ -82,7 +94,26 @@ exsied.setHtml('some HTML code')
 
 ## Plugins
 
-### About
+We provide many built-in plugins, most of which are easy to use. Below are a few special plugins.
+
+You can set the `config` of a plugin to change some values. Take a look at the **about** plugin.
+
+### Plugin about
+
+The **about** plugin is automatically loaded by default.
+
+There is no need to add it to the `plugins` parameter of the `existing.init` function.
+
+If you have the authorization and want disable the **about** plugin:
+
+```js
+exsied.init({
+	id: 'app',
+	plugins: [],
+	enableToolbarBubble: true,
+	iAbideByExsiedLicenseAndDisableTheAboutPlugin: true, // Add this param
+})
+```
 
 If you have customized any functions, you should add your own information to `about.conf.deveploers`.
 
@@ -107,18 +138,7 @@ plugins.about.conf.deveploers.push(
 )
 ```
 
-If you have the authorization and want disable the **about** plugin:
-
-```js
-exsied.init({
-	id: 'app',
-	plugins: [],
-	enableToolbarBubble: true,
-	iAbideByExsiedLicenseAndDisableTheAboutPlugin: true, // Add this param
-})
-```
-
-### Code block
+### Plugin code block
 
 It will process the `<pre><code>` tags.
 
@@ -205,4 +225,5 @@ exsied.i18n.setLocale('zh-CN')
 
 - current:
   - source_code toggleSourceView
+- custom block
 - Paste

@@ -14,6 +14,7 @@ export const CN_ICON_BRACES = 'exsied-btn-braces'
 export const CN_ICON_XML = 'exsied-btn-xml'
 
 export type PluginConf = {
+	addToNormal: boolean
 	addToBubble: boolean
 	defaultText: string
 	renderData: (ele: HTMLElement) => string
@@ -22,6 +23,7 @@ export type PluginConf = {
 }
 
 export const PLUGIN_CONF: PluginConf = {
+	addToNormal:true,
 	addToBubble: true,
 	defaultText: '// Source code placeholder',
 	renderData: (ele: HTMLElement) => {

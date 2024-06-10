@@ -39,6 +39,7 @@ export const sourceCode: ExsiedPlugin = {
 		{
 			name: INSERT_SOURCE_CODE_BOCK_NAME,
 			tooltipText: 'Insert source code bock',
+			addToNormal:PLUGIN_CONF.addToNormal,
 			addToBubble: PLUGIN_CONF.addToBubble,
 
 			eleType: 'button',

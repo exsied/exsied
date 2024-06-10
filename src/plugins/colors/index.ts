@@ -12,27 +12,40 @@ import { DomUtils } from '../../core/dom_utils'
 import { Commands, ExsiedPlugin } from '../../core/plugin'
 import { SelectionUtils } from '../../core/selection_utils'
 import { Toolbar } from '../../ui/toolbar'
-import { CN_ICON, PLUGIN_CONF, PLUGIN_NAME, POPUP_ID } from './base'
-import { showBackgroundColorPicker } from './event_handlers'
+import { BACKGROUND_NAME, CN_ICON_BKG, PLUGIN_CONF, PLUGIN_NAME, POPUP_ID_BKG, POPUP_ID_TEXT, TEXT_NAME } from './base'
+import { showColorPickerBkg, showColorPickerText } from './event_handlers'
 import './styles.scss'
 
 const toolbarBtnIds = Toolbar.genButtonIds(PLUGIN_NAME, PLUGIN_NAME)
 const commands: Commands = {}
-commands[PLUGIN_NAME] = showBackgroundColorPicker
+commands[BACKGROUND_NAME] = showColorPickerBkg
+commands[TEXT_NAME] = showColorPickerText
 
-export const textColor: ExsiedPlugin = {
+export const colors: ExsiedPlugin = {
 	name: PLUGIN_NAME,
 	conf: PLUGIN_CONF,
 	commands,
 
 	toolBarControl: [
 		{
-			name: PLUGIN_NAME,
-			tooltipText: 'Text color',
+			name: BACKGROUND_NAME,
+			tooltipText: 'Background color',
+			addToNormal: PLUGIN_CONF.addToNormal.background,
+			addToBubble: PLUGIN_CONF.addToBubble.background,
+
 			eleType: 'button',
-			iconClassName: CN_ICON,
-			clickCallBack: commands[PLUGIN_NAME],
-			addToBubble: PLUGIN_CONF.addToBubble,
+			iconClassName: CN_ICON_BKG,
+			clickCallBack: commands[BACKGROUND_NAME],
+		},
+		{
+			name: TEXT_NAME,
+			tooltipText: 'Text color',
+			addToNormal: PLUGIN_CONF.addToNormal.text,
+			addToBubble: PLUGIN_CONF.addToBubble.text,
+
+			eleType: 'button',
+			iconClassName: CN_ICON_BKG,
+			clickCallBack: commands[TEXT_NAME],
 		},
 	],
 
@@ -49,7 +62,7 @@ export const textColor: ExsiedPlugin = {
 		const btnEle = exsied.elements.editor?.querySelector(`#${toolbarBtnIds.normal}`) as HTMLElement
 		if (btnEle) {
 			const targetEle = event.target as HTMLElement
-			const backgroundColor = DomUtils.getParentsStyleByKey(targetEle, 'color')
+			const backgroundColor = DomUtils.getParentsStyleByKey(targetEle, 'background-color')
 
 			DomUtils.setStyleProperty(btnEle, {
 				backgroundColor,
@@ -57,8 +70,9 @@ export const textColor: ExsiedPlugin = {
 		}
 	},
 	removeTempEle: (_event) => {
-		DomUtils.removeElementById(POPUP_ID)
+		DomUtils.removeElementById(POPUP_ID_BKG)
+		DomUtils.removeElementById(POPUP_ID_TEXT)
 	},
 }
 
-export default textColor
+export default colors

@@ -28,6 +28,7 @@ export const fontFamily: ExsiedPlugin = {
 		{
 			name: PLUGIN_NAME,
 			tooltipText: 'Font family',
+			addToNormal:PLUGIN_CONF.addToNormal,
 			addToBubble: PLUGIN_CONF.addToBubble,
 
 			eleType: 'select',

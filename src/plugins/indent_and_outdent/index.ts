@@ -12,7 +12,7 @@ import { exsied } from '../../core'
 import { Commands, ExsiedPlugin } from '../../core/plugin'
 import { Toolbar } from '../../ui/toolbar'
 import { CN_ICON_INDENT, CN_ICON_OUTDENT, PLUGIN_CONF, PLUGIN_NAME } from './base'
-import { formatIndent as formatIndent, formatOutdent } from './event_handlers'
+import { formatIndent, formatOutdent } from './event_handlers'
 import './styles.scss'
 
 const INDENT_NAME = 'indent'
@@ -31,7 +31,8 @@ export const indentAndOutdent: ExsiedPlugin = {
 		{
 			name: INDENT_NAME,
 			tooltipText: 'Indent',
-			addToBubble: PLUGIN_CONF.addToBubble,
+			addToNormal:PLUGIN_CONF.addToNormal.indent,
+			addToBubble: PLUGIN_CONF.addToBubble.indent,
 
 			eleType: 'button',
 			iconClassName: CN_ICON_INDENT,
@@ -40,7 +41,8 @@ export const indentAndOutdent: ExsiedPlugin = {
 		{
 			name: OUTDENT_NAME,
 			tooltipText: 'Outdent',
-			addToBubble: PLUGIN_CONF.addToBubble,
+			addToNormal:PLUGIN_CONF.addToNormal.outent,
+			addToBubble: PLUGIN_CONF.addToBubble.outent,
 
 			eleType: 'button',
 			iconClassName: CN_ICON_OUTDENT,

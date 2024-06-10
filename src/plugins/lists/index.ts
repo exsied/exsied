@@ -22,7 +22,7 @@ const commands: Commands = {}
 commands[OL_NAME] = insertOl
 commands[UL_NAME] = insertUl
 
-export const list: ExsiedPlugin = {
+export const lists: ExsiedPlugin = {
 	name: PLUGIN_NAME,
 	conf: PLUGIN_CONF,
 	commands,
@@ -31,7 +31,8 @@ export const list: ExsiedPlugin = {
 		{
 			name: OL_NAME,
 			tooltipText: 'Insert ordered list',
-			addToBubble: PLUGIN_CONF.addToBubble,
+			addToNormal: PLUGIN_CONF.addToNormal.ol,
+			addToBubble: PLUGIN_CONF.addToBubble.ol,
 
 			eleType: 'button',
 			iconClassName: CN_ICON_OL,
@@ -40,7 +41,8 @@ export const list: ExsiedPlugin = {
 		{
 			name: UL_NAME,
 			tooltipText: 'Insert unordered list',
-			addToBubble: PLUGIN_CONF.addToBubble,
+			addToNormal: PLUGIN_CONF.addToNormal.ul,
+			addToBubble: PLUGIN_CONF.addToBubble.ul,
 
 			eleType: 'button',
 			iconClassName: CN_ICON_UL,
@@ -63,4 +65,4 @@ export const list: ExsiedPlugin = {
 	removeTempEle: (_event) => {},
 }
 
-export default list
+export default lists

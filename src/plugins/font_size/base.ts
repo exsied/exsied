@@ -12,11 +12,13 @@ import { ToolBarSelectOption } from '../../ui/toolbar'
 export const PLUGIN_NAME = 'fontSize'
 
 export type PluginConf = {
+	addToNormal: boolean
 	addToBubble: boolean
 	fontSizeOptions: ToolBarSelectOption[]
 }
 
 export const PLUGIN_CONF: PluginConf = {
+	addToNormal:true,
 	addToBubble: false,
 	fontSizeOptions: [
 		// {

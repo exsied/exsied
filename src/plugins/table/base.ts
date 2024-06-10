@@ -16,9 +16,11 @@ export const DATA_ROW_INDEX = 'data-row-index'
 export const DATA_COLUNM_INDEX = 'data-column-index'
 
 export type PluginConf = {
+	addToNormal: boolean
 	addToBubble: boolean
 }
 
 export const PLUGIN_CONF: PluginConf = {
+	addToNormal:true,
 	addToBubble: false,
 }

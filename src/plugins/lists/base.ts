@@ -13,12 +13,26 @@ export const CN_ICON_OL = 'exsied-btn-ol'
 export const CN_ICON_UL = 'exsied-btn-ul'
 
 export type PluginConf = {
-	addToBubble: boolean
+	addToNormal: {
+		ol: boolean
+		ul: boolean
+	}
+	addToBubble: {
+		ol: boolean
+		ul: boolean
+	}
 	defaultInnerHTML: string
 }
 
 export const PLUGIN_CONF: PluginConf = {
-	addToBubble: false,
+	addToNormal: {
+		ol: true,
+		ul: true,
+	},
+	addToBubble: {
+		ol: false,
+		ul: false,
+	},
 	defaultInnerHTML: `
 		<li></li>  
 		<li></li>  

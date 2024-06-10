@@ -28,6 +28,7 @@ export const italic: ExsiedPlugin = {
 		{
 			name: PLUGIN_NAME,
 			tooltipText: 'Italic',
+			addToNormal:PLUGIN_CONF.addToNormal,
 			addToBubble: PLUGIN_CONF.addToBubble,
 
 			eleType: 'button',

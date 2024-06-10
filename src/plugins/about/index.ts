@@ -22,6 +22,7 @@ export const about: ExsiedPlugin = {
 		{
 			name: PLUGIN_NAME,
 			tooltipText: 'About',
+			addToNormal:PLUGIN_CONF.addToNormal,
 			addToBubble: PLUGIN_CONF.addToBubble,
 
 			eleType: 'button',

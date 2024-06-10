@@ -11,10 +11,23 @@ import { FormatStyle } from '../../core/format/style'
 import { SelectionUtils } from '../../core/selection_utils'
 import { Style } from '../../types'
 import { ColorPicker } from '../../ui/color-picker'
-import { PLUGIN_CONF, PLUGIN_NAME, POPUP_ID } from './base'
+import { PLUGIN_CONF, PLUGIN_NAME, POPUP_ID_BKG, POPUP_ID_TEXT } from './base'
 
-export function showBackgroundColorPicker(event: Event) {
-	const picker = new ColorPicker(POPUP_ID, PLUGIN_NAME, PLUGIN_CONF.presetColors, (color: string) => {
+export function showColorPickerBkg(event: Event) {
+	const picker = new ColorPicker(POPUP_ID_BKG, PLUGIN_NAME, PLUGIN_CONF.presetColors, (color: string) => {
+		SelectionUtils.restoreSelection()
+		if (color) {
+			const style: Style = {}
+			style.backgroundColor = color
+			FormatStyle.formatSelected(style as CSSStyleDeclaration)
+		}
+	})
+
+	picker.showColorPicker(event)
+}
+
+export function showColorPickerText(event: Event) {
+	const picker = new ColorPicker(POPUP_ID_TEXT, PLUGIN_NAME, PLUGIN_CONF.presetColors, (color: string) => {
 		SelectionUtils.restoreSelection()
 		if (color) {
 			const style: Style = {}
