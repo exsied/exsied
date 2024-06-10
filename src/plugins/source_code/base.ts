@@ -25,7 +25,7 @@ export const PLUGIN_CONF: PluginConf = {
 	addToBubble: true,
 	defaultText: '// Source code placeholder',
 	renderData: (ele: HTMLElement) => {
-		console.warn(`Unimplemented callback: ${PLUGIN_NAME}.conf.renderData`)
+		console.warn(`Developer didn't implement the callback: ${PLUGIN_NAME}.conf.renderData`)
 
 		return `
 			<pre>
@@ -34,7 +34,7 @@ export const PLUGIN_CONF: PluginConf = {
 			</pre>`
 	},
 	editData: (_ele: HTMLElement, _sign: string) => {
-		alert(`Unimplemented callback: ${PLUGIN_NAME}.conf.editData`)
+		alert(`Developer didn't implement the callback: ${PLUGIN_NAME}.conf.editData`)
 	},
 	randomChars: () => {
 		return randomChars(28)
