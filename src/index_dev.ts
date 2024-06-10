@@ -69,6 +69,7 @@ exsied.init({
 		plugins.table,
 		plugins.horizonalRule,
 		plugins.quote,
+		plugins.list,
 		plugins.fontSize,
 		plugins.fontFamily,
 		plugins.backgroundColor,

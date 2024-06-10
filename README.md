@@ -205,7 +205,6 @@ exsied.i18n.setLocale('zh-CN')
 
 - current:	
 	- source_code toggleSourceView
-- Ordered List / Unordered List
 - Indent / outdent
 - Alignment
 - Paste
