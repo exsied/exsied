@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Exsied</title>
+	</head>
+	<body>
+		<p>
+			Exsied demo:
+			<a href="https://enassi.pages.dev/en/exsied/about/">Document</a> /
+			<a href="https://github.com/exsied/exsied">Github repo</a> /
+			<a href="https://gitee.com/exsied/exsied">Gite repo</a>
+		</p>
+		<div id="app"></div>
+
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exsied/exsied@0.5.3/dist/style.css" />
+		<script type="module">
+			import { KEY_CTRL, exsied, plugins } from 'https://cdn.jsdelivr.net/npm/@exsied/exsied@0.5.3/dist/index.js'
+
+			plugins.about.conf.deveploers.push(
+				{
+					name: 'enassi github',
+					repoLink: 'https://github.com/enassi/enassi',
+					webSiteLink: 'https://xxx.com/xxx',
+					email: 'xxx@xxx.xxx',
+					extContent: `Enassi's github repo`,
+				},
+				{
+					name: 'enassi gitee',
+					repoLink: 'https://gitee.com/enassi/enassi',
+					webSiteLink: 'https://xxx.com/xxx',
+					email: 'xxx@xxx.xxx',
+					extContent: `Enassi's gitee repo`,
+				},
+			)
+
+			exsied.init({
+				id: 'app',
+				plugins: [
+					plugins.bold,
+					plugins.italic,
+					plugins.underline,
+					plugins.strikethrough,
+					plugins.headings,
+					plugins.subscriptAndSuperscript,
+					plugins.link,
+					plugins.image,
+					plugins.table,
+					plugins.horizonalRule,
+					plugins.quote,
+					plugins.list,
+					plugins.fontSize,
+					plugins.fontFamily,
+					plugins.textAlign,
+					plugins.indentAndOutdent,
+					plugins.backgroundColor,
+					plugins.textColor,
+					plugins.findAndReplace,
+					plugins.sourceCode,
+				],
+				enableToolbarBubble: true,
+				hotkeys: [
+					{ keyStr: 'b', func: plugins.bold.commands[plugins.bold.name], modifierKeys: [KEY_CTRL] },
+					{ keyStr: 'i', func: plugins.italic.commands[plugins.italic.name], modifierKeys: [KEY_CTRL] },
+					{ keyStr: 'u', func: plugins.underline.commands[plugins.underline.name], modifierKeys: [KEY_CTRL] },
+				],
+				hooks: {
+					onInput: (event) => {
+						const ele = event.target
+						console.log('>>> hooks.onInput :', ele.innerHTML)
+					},
+				},
+			})
+
+			exsied.setHtml('Hello')
+
+			exsied.i18n.setDict('zh-CN', {
+				Title: '标题',
+				Alternative: '别名',
+				Styles: '样式',
+				Width: '宽度',
+				Height: '高度',
+			})
+
+			exsied.i18n.setLocale('zh-CN')
+		</script>
+	</body>
+</html>
