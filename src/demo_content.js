@@ -1,3 +1,14 @@
+
+/*
+ * Exited uses a dual license.
+ * You may conditionally use exsed under the MIT License,
+ * and if you do not meet the conditions, authorization is required
+ * 
+ * Existing license: 
+ *     https://github.com/exsied/exsied/blob/main/LICENSE
+ *     https://gitee.com/exsied/exsied/blob/main/LICENSE
+ */
+
 export const DEMO_CONTENT = `
 <p>
   <strong>Exsied</strong>: <strong>Ex</strong>tremely <strong>si</strong>mple

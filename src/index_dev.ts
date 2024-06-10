@@ -1,3 +1,12 @@
+/*
+ * Exited uses a dual license.
+ * You may conditionally use exsed under the MIT License,
+ * and if you do not meet the conditions, authorization is required
+ *
+ * Existing license:
+ *     https://github.com/exsied/exsied/blob/main/LICENSE
+ *     https://gitee.com/exsied/exsied/blob/main/LICENSE
+ */
 import { KEY_CTRL, exsied, plugins } from './'
 import { DEMO_CONTENT } from './demo_content'
 import { PluginConf as AboutPluginConf } from './plugins/about/base'
@@ -63,11 +72,17 @@ exsied.init({
 		plugins.underline,
 		plugins.strikethrough,
 		plugins.headings,
+		plugins.subscriptAndSuperscript,
 		plugins.link,
 		plugins.image,
 		plugins.table,
+		plugins.horizonalRule,
+		plugins.quote,
+		plugins.list,
 		plugins.fontSize,
 		plugins.fontFamily,
+		plugins.textAlign,
+		plugins.indentAndOutdent,
 		plugins.backgroundColor,
 		plugins.textColor,
 		plugins.findAndReplace,

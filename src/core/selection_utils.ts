@@ -1,3 +1,12 @@
+/*
+ * Exited uses a dual license.
+ * You may conditionally use exsed under the MIT License,
+ * and if you do not meet the conditions, authorization is required
+ *
+ * Existing license:
+ *     https://github.com/exsied/exsied/blob/main/LICENSE
+ *     https://gitee.com/exsied/exsied/blob/main/LICENSE
+ */
 import { exsied } from '.'
 import { TN_SPAN, TN_TEMP } from '../contants'
 import { HTMLTagNames } from '../types'
@@ -39,21 +48,27 @@ export class SelectionUtils {
 	}
 
 	static getSelectedEles = () => {
-		const middlePart = document.createElement(TN_SPAN)
-
 		const selection = window.getSelection()
-		if (!selection) return
-		if (selection.rangeCount > 0) {
-			const range = selection.getRangeAt(0)
-			const middleFragment = range.cloneContents()
-			if (middleFragment.childNodes.length > 0) {
-				while (middleFragment.firstChild) {
-					middlePart.appendChild(middleFragment.firstChild.cloneNode(true))
-					middleFragment.firstChild.remove()
-				}
+		if (!selection || selection.rangeCount === 0) return
+
+		const middlePart = document.createElement(TN_SPAN)
+		const range = selection.getRangeAt(0)
+		const middleFragment = range.cloneContents()
+		if (middleFragment.childNodes.length > 0) {
+			while (middleFragment.firstChild) {
+				middlePart.appendChild(middleFragment.firstChild.cloneNode(true))
+				middleFragment.firstChild.remove()
 			}
 		}
+
 		return middlePart
+	}
+
+	static getSelectedText = () => {
+		const selectedEles = this.getSelectedEles()
+		if (selectedEles) return selectedEles.textContent || ''
+
+		return ''
 	}
 
 	static getCursorNode = () => {

@@ -1,3 +1,12 @@
+/*
+ * Exited uses a dual license.
+ * You may conditionally use exsed under the MIT License,
+ * and if you do not meet the conditions, authorization is required
+ *
+ * Existing license:
+ *     https://github.com/exsied/exsied/blob/main/LICENSE
+ *     https://gitee.com/exsied/exsied/blob/main/LICENSE
+ */
 import { CN_TEMP_ELE, DATA_ATTR_TEMP_EDIT, TN_A } from '../../contants'
 import { exsied } from '../../core'
 import { DomUtils } from '../../core/dom_utils'
@@ -22,7 +31,7 @@ export function insertLink() {
 
 	const ele = document.createElement(TN_A)
 	ele.href = PLUGIN_CONF.defaultHref
-	ele.innerHTML = selectedEles ? selectedEles.innerHTML : PLUGIN_CONF.defaultInnerHTML
+	ele.innerHTML = selectedEles && selectedEles.innerHTML ? selectedEles.innerHTML : PLUGIN_CONF.defaultInnerHTML
 	if (exsied.elements.workplace) DomUtils.addElementBySelection(exsied.elements.workplace, ele)
 }
 

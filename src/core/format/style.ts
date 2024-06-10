@@ -1,4 +1,13 @@
-import { TN_SPAN, ZERO_WIDTH_SPACE } from '../../contants'
+/*
+ * Exited uses a dual license.
+ * You may conditionally use exsed under the MIT License,
+ * and if you do not meet the conditions, authorization is required
+ *
+ * Existing license:
+ *     https://github.com/exsied/exsied/blob/main/LICENSE
+ *     https://gitee.com/exsied/exsied/blob/main/LICENSE
+ */
+import { TN_DIV, TN_P, TN_SPAN, ZERO_WIDTH_SPACE } from '../../contants'
 import { isOnlyWhitespace } from '../../utils/string'
 import { DomUtils } from '../dom_utils'
 
@@ -162,5 +171,10 @@ export class FormatStyle {
 				DomUtils.setStyleProperty(ele, style)
 			}
 		}
+	}
+
+	static formatBlockEle = (ele: HTMLElement, style: CSSStyleDeclaration, isBlock?: boolean) => {
+		let elem = isBlock ? ele : DomUtils.getBlockEle(ele)
+		if (elem) DomUtils.setStyleProperty(elem, style)
 	}
 }

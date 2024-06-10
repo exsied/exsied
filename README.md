@@ -203,12 +203,6 @@ exsied.i18n.setLocale('zh-CN')
 
 ## TODO
 
-- current:	
-	- source_code toggleSourceView
-- Division line
-- Superscript / Subscript
-- Ordered List / Unordered List
-- Quote
-- Indent / outdent
-- Alignment
+- current:
+  - source_code toggleSourceView
 - Paste
