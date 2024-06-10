@@ -10,11 +10,10 @@ export function toggleSourceView() {
 }
 
 export function insertCodeBlock() {
-	const selectedEles = SelectionUtils.getSelectedEles()
-	const text = selectedEles ? selectedEles.textContent : ''
-
 	const ele = document.createElement(TN_PRE)
 	const codeEle = document.createElement(TN_CODE)
+
+	const text = SelectionUtils.getSelectedText()
 	codeEle.textContent = text ? text : PLUGIN_CONF.defaultText
 	ele.appendChild(codeEle)
 	if (exsied.elements.workplace) DomUtils.addElementBySelection(exsied.elements.workplace, ele)

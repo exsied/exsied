@@ -8,7 +8,7 @@ export function insertOl() {
 	const selectedEles = SelectionUtils.getSelectedEles()
 
 	const ele = document.createElement(TN_OL)
-	ele.innerHTML = selectedEles ? selectedEles.innerHTML : PLUGIN_CONF.defaultInnerHTML
+	ele.innerHTML = selectedEles && selectedEles.innerHTML ? selectedEles.innerHTML : PLUGIN_CONF.defaultInnerHTML
 
 	if (exsied.elements.workplace) DomUtils.addElementBySelection(exsied.elements.workplace, ele)
 }
@@ -17,7 +17,7 @@ export function insertUl() {
 	const selectedEles = SelectionUtils.getSelectedEles()
 
 	const ele = document.createElement(TN_UL)
-	ele.innerHTML = selectedEles ? selectedEles.innerHTML : PLUGIN_CONF.defaultInnerHTML
+	ele.innerHTML = selectedEles && selectedEles.innerHTML ? selectedEles.innerHTML : PLUGIN_CONF.defaultInnerHTML
 
 	if (exsied.elements.workplace) DomUtils.addElementBySelection(exsied.elements.workplace, ele)
 }

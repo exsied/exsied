@@ -39,21 +39,27 @@ export class SelectionUtils {
 	}
 
 	static getSelectedEles = () => {
-		const middlePart = document.createElement(TN_SPAN)
-
 		const selection = window.getSelection()
-		if (!selection) return
-		if (selection.rangeCount > 0) {
-			const range = selection.getRangeAt(0)
-			const middleFragment = range.cloneContents()
-			if (middleFragment.childNodes.length > 0) {
-				while (middleFragment.firstChild) {
-					middlePart.appendChild(middleFragment.firstChild.cloneNode(true))
-					middleFragment.firstChild.remove()
-				}
+		if (!selection || selection.rangeCount === 0) return
+
+		const middlePart = document.createElement(TN_SPAN)
+		const range = selection.getRangeAt(0)
+		const middleFragment = range.cloneContents()
+		if (middleFragment.childNodes.length > 0) {
+			while (middleFragment.firstChild) {
+				middlePart.appendChild(middleFragment.firstChild.cloneNode(true))
+				middleFragment.firstChild.remove()
 			}
 		}
+
 		return middlePart
+	}
+
+	static getSelectedText = () => {
+		const selectedEles = this.getSelectedEles()
+		if (selectedEles) return selectedEles.textContent || ''
+
+		return ''
 	}
 
 	static getCursorNode = () => {
