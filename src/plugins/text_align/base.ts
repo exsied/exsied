@@ -19,7 +19,7 @@ export type PluginConf = {
 }
 
 export const PLUGIN_CONF: PluginConf = {
-	addToBubble: true,
+	addToBubble: false,
 	defaultInnerHTML: `
 		<li></li>  
 		<li></li>  
