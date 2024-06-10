@@ -203,7 +203,7 @@ exsied.i18n.setLocale('zh-CN')
 
 ## TODO
 
-- current:	
-	- source_code toggleSourceView
+- current:
+  - source_code toggleSourceView
 - Indent / outdent
 - Paste

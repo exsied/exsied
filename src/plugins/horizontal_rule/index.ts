@@ -1,3 +1,12 @@
+/*
+ * Exited uses a dual license.
+ * You may conditionally use exsed under the MIT License,
+ * and if you do not meet the conditions, authorization is required
+ *
+ * Existing license:
+ *     https://github.com/exsied/exsied/blob/main/LICENSE
+ *     https://gitee.com/exsied/exsied/blob/main/LICENSE
+ */
 import { Commands, ExsiedPlugin } from '../../core/plugin'
 import { CN_ICON, PLUGIN_CONF, PLUGIN_NAME } from './base'
 import { insertHorizontalRule } from './event_handlers'

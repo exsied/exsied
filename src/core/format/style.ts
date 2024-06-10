@@ -1,3 +1,12 @@
+/*
+ * Exited uses a dual license.
+ * You may conditionally use exsed under the MIT License,
+ * and if you do not meet the conditions, authorization is required
+ *
+ * Existing license:
+ *     https://github.com/exsied/exsied/blob/main/LICENSE
+ *     https://gitee.com/exsied/exsied/blob/main/LICENSE
+ */
 import { TN_DIV, TN_P, TN_SPAN, ZERO_WIDTH_SPACE } from '../../contants'
 import { isOnlyWhitespace } from '../../utils/string'
 import { DomUtils } from '../dom_utils'
