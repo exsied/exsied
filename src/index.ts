@@ -9,6 +9,7 @@ import { horizonalRule } from './plugins/horizontal_rule'
 import { image } from './plugins/image'
 import { italic } from './plugins/italic'
 import { link } from './plugins/link'
+import { quote } from './plugins/quote'
 import { sourceCode } from './plugins/source_code'
 import { strikethrough } from './plugins/strikethrough'
 import { subscriptAndSuperscript } from './plugins/subscript_and_superscript'
@@ -33,6 +34,7 @@ export const plugins = {
 	image,
 	italic,
 	link,
+	quote,
 	sourceCode,
 	strikethrough,
 	subscriptAndSuperscript,
