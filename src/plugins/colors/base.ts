@@ -8,9 +8,11 @@
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
 
-export const PLUGIN_NAME = 'textColor'
-export const CN_ICON = 'exsied-btn-text-color'
-export const POPUP_ID = `exsied_${PLUGIN_NAME}_popup`
+export const PLUGIN_NAME = 'colors'
+export const CN_ICON_BKG = 'exsied-btn-background-color'
+export const CN_ICON_TEXT = 'exsied-btn-text-color'
+export const POPUP_ID_BKG = `exsied_${PLUGIN_NAME}_popup_bkg`
+export const POPUP_ID_TEXT = `exsied_${PLUGIN_NAME}_popup_text`
 
 export type PluginConf = {
 	addToBubble: boolean

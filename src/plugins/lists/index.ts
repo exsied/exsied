@@ -22,7 +22,7 @@ const commands: Commands = {}
 commands[OL_NAME] = insertOl
 commands[UL_NAME] = insertUl
 
-export const list: ExsiedPlugin = {
+export const lists: ExsiedPlugin = {
 	name: PLUGIN_NAME,
 	conf: PLUGIN_CONF,
 	commands,
@@ -63,4 +63,4 @@ export const list: ExsiedPlugin = {
 	removeTempEle: (_event) => {},
 }
 
-export default list
+export default lists
