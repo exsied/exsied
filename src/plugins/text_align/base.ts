@@ -14,12 +14,20 @@ export const CN_ICON_LEFT = 'exsied-btn-left'
 export const CN_ICON_RIGHT = 'exsied-btn-right'
 
 export type PluginConf = {
-	addToBubble: boolean
+	addToBubble: {
+		center: boolean
+		left: boolean
+		right: boolean
+	}
 	defaultInnerHTML: string
 }
 
 export const PLUGIN_CONF: PluginConf = {
-	addToBubble: false,
+	addToBubble: {
+		center: false,
+		left: false,
+		right: false,
+	},
 	defaultInnerHTML: `
 		<li></li>  
 		<li></li>  

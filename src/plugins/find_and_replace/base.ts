@@ -16,9 +16,15 @@ export const CN_FIND = 'find-view'
 export const CN_REPLACE = 'replace-view'
 
 export type PluginConf = {
-	addToBubble: boolean
+	addToBubble: {
+		find: boolean
+		replace: boolean
+	}
 }
 
 export const PLUGIN_CONF: PluginConf = {
-	addToBubble: false,
+	addToBubble: {
+		find: false,
+		replace: false,
+	},
 }

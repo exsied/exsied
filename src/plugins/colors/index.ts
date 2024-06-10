@@ -12,15 +12,13 @@ import { DomUtils } from '../../core/dom_utils'
 import { Commands, ExsiedPlugin } from '../../core/plugin'
 import { SelectionUtils } from '../../core/selection_utils'
 import { Toolbar } from '../../ui/toolbar'
-import { CN_ICON_BKG, PLUGIN_CONF, PLUGIN_NAME, POPUP_ID_BKG, POPUP_ID_TEXT } from './base'
+import { BACKGROUND_NAME, CN_ICON_BKG, PLUGIN_CONF, PLUGIN_NAME, POPUP_ID_BKG, POPUP_ID_TEXT, TEXT_NAME } from './base'
 import { showColorPickerBkg, showColorPickerText } from './event_handlers'
 import './styles.scss'
 
-const BKG_NAME = 'backgroundColor'
-const TEXT_NAME = 'textColor'
 const toolbarBtnIds = Toolbar.genButtonIds(PLUGIN_NAME, PLUGIN_NAME)
 const commands: Commands = {}
-commands[BKG_NAME] = showColorPickerBkg
+commands[BACKGROUND_NAME] = showColorPickerBkg
 commands[TEXT_NAME] = showColorPickerText
 
 export const colors: ExsiedPlugin = {
@@ -30,18 +28,18 @@ export const colors: ExsiedPlugin = {
 
 	toolBarControl: [
 		{
-			name: BKG_NAME,
+			name: BACKGROUND_NAME,
 			tooltipText: 'Background color',
-			addToBubble: PLUGIN_CONF.addToBubble,
+			addToBubble: PLUGIN_CONF.addToBubble.background,
 
 			eleType: 'button',
 			iconClassName: CN_ICON_BKG,
-			clickCallBack: commands[BKG_NAME],
+			clickCallBack: commands[BACKGROUND_NAME],
 		},
 		{
 			name: TEXT_NAME,
 			tooltipText: 'Text color',
-			addToBubble: PLUGIN_CONF.addToBubble,
+			addToBubble: PLUGIN_CONF.addToBubble.text,
 
 			eleType: 'button',
 			iconClassName: CN_ICON_BKG,

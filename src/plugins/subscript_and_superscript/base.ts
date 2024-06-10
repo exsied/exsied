@@ -25,9 +25,15 @@ export const isHighlightSup = () => {
 }
 
 export type PluginConf = {
-	addToBubble: boolean
+	addToBubble: {
+		sub: boolean
+		sup: boolean
+	}
 }
 
 export const PLUGIN_CONF: PluginConf = {
-	addToBubble: false,
+	addToBubble: {
+		sub: false,
+		sup: false,
+	},
 }

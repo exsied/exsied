@@ -13,11 +13,17 @@ export const CN_ICON_INDENT = 'exsied-btn-indent'
 export const CN_ICON_OUTDENT = 'exsied-btn-outdent'
 
 export type PluginConf = {
-	addToBubble: boolean
+	addToBubble: {
+		indent: boolean
+		outent: boolean
+	}
 	stepPx: number
 }
 
 export const PLUGIN_CONF: PluginConf = {
-	addToBubble: false,
+	addToBubble: {
+		indent: false,
+		outent: false,
+	},
 	stepPx: 10,
 }

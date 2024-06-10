@@ -30,7 +30,7 @@ export const findAndReplace: ExsiedPlugin = {
 		{
 			name: FIND_NAME,
 			tooltipText: 'Find',
-			addToBubble: PLUGIN_CONF.addToBubble,
+			addToBubble: PLUGIN_CONF.addToBubble.find,
 
 			eleType: 'button',
 			iconClassName: CN_ICON_FIND,
@@ -39,7 +39,7 @@ export const findAndReplace: ExsiedPlugin = {
 		{
 			name: REPLACE_NAME,
 			tooltipText: 'Replace',
-			addToBubble: PLUGIN_CONF.addToBubble,
+			addToBubble: PLUGIN_CONF.addToBubble.replace,
 
 			eleType: 'button',
 			iconClassName: CN_ICON_REPLACE,

@@ -31,7 +31,7 @@ export const lists: ExsiedPlugin = {
 		{
 			name: OL_NAME,
 			tooltipText: 'Insert ordered list',
-			addToBubble: PLUGIN_CONF.addToBubble,
+			addToBubble: PLUGIN_CONF.addToBubble.ol,
 
 			eleType: 'button',
 			iconClassName: CN_ICON_OL,
@@ -40,7 +40,7 @@ export const lists: ExsiedPlugin = {
 		{
 			name: UL_NAME,
 			tooltipText: 'Insert unordered list',
-			addToBubble: PLUGIN_CONF.addToBubble,
+			addToBubble: PLUGIN_CONF.addToBubble.ul,
 
 			eleType: 'button',
 			iconClassName: CN_ICON_UL,
