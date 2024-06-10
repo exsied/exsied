@@ -16,6 +16,10 @@ export const CN_FIND = 'find-view'
 export const CN_REPLACE = 'replace-view'
 
 export type PluginConf = {
+	addToNormal: {
+		find: boolean
+		replace: boolean
+	}
 	addToBubble: {
 		find: boolean
 		replace: boolean
@@ -23,6 +27,10 @@ export type PluginConf = {
 }
 
 export const PLUGIN_CONF: PluginConf = {
+	addToNormal: {
+		find: true,
+		replace: true,
+	},
 	addToBubble: {
 		find: false,
 		replace: false,

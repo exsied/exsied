@@ -14,6 +14,11 @@ export const CN_ICON_LEFT = 'exsied-btn-left'
 export const CN_ICON_RIGHT = 'exsied-btn-right'
 
 export type PluginConf = {
+	addToNormal: {
+		center: boolean
+		left: boolean
+		right: boolean
+	}
 	addToBubble: {
 		center: boolean
 		left: boolean
@@ -23,6 +28,11 @@ export type PluginConf = {
 }
 
 export const PLUGIN_CONF: PluginConf = {
+	addToNormal: {
+		center: true,
+		left: true,
+		right: true,
+	},
 	addToBubble: {
 		center: false,
 		left: false,

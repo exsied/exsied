@@ -30,6 +30,7 @@ export const colors: ExsiedPlugin = {
 		{
 			name: BACKGROUND_NAME,
 			tooltipText: 'Background color',
+			addToNormal: PLUGIN_CONF.addToNormal.background,
 			addToBubble: PLUGIN_CONF.addToBubble.background,
 
 			eleType: 'button',
@@ -39,6 +40,7 @@ export const colors: ExsiedPlugin = {
 		{
 			name: TEXT_NAME,
 			tooltipText: 'Text color',
+			addToNormal: PLUGIN_CONF.addToNormal.text,
 			addToBubble: PLUGIN_CONF.addToBubble.text,
 
 			eleType: 'button',

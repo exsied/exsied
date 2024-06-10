@@ -25,7 +25,8 @@ export const CN_BUBBLE_BTNS = 'exsied-btns'
 export type ToolBarButton = {
 	name: string
 	tooltipText: string
-	addToBubble?: boolean
+	addToNormal: boolean
+	addToBubble: boolean
 
 	eleType: 'button'
 	clickCallBack: ClickEventHandler
@@ -43,6 +44,7 @@ export type ToolBarSelectOption = {
 export type ToolBarSelect = {
 	name: string
 	tooltipText: string
+	addToNormal: boolean
 	addToBubble?: boolean
 
 	eleType: 'select'
@@ -60,7 +62,7 @@ export class Toolbar {
 		const bubbleBtnsEle = document.querySelector(`#${ID_BUBBLE_WRAP} .${CN_BUBBLE_BTNS}`)
 		if (bubbleBtnsEle) bubbleBtnsEle.innerHTML = ''
 
-		const ctrlHtmlArr = []
+		const normalCtrlHtmlArr = []
 		for (const plg of PLUGINS) {
 			if (!plg.toolBarControl) continue
 
@@ -68,13 +70,9 @@ export class Toolbar {
 				const ids = this.genButtonIds(plg.name, ctrl.name)
 
 				if (ctrl.eleType === 'button') {
-					let btnIcon = ''
-					if (ctrl.iconClassName) {
-						btnIcon = `<i class="exsied-icon ${ctrl.iconClassName}"></i>`
-					}
+					let btnIcon = ctrl.iconClassName ? `<i class="exsied-icon ${ctrl.iconClassName}"></i>` : ''
 					const html = `<button class="exsied-ctrl" id="___id___">${btnIcon}</button>`
-					ctrlHtmlArr.push(html.replace('___id___', ids.normal))
-
+					if (ctrl.addToNormal) normalCtrlHtmlArr.push(html.replace('___id___', ids.normal))
 					if (ctrl.addToBubble && bubbleBtnsEle) {
 						if (!DomUtils.existElementById(ids.bubble)) bubbleBtnsEle.innerHTML += html.replace('___id___', ids.bubble)
 					}
@@ -97,19 +95,19 @@ export class Toolbar {
 							${options}
 						</select>
 						`
-					ctrlHtmlArr.push(html.replace('___id___', ids.normal))
+					if (ctrl.addToNormal) {
+						normalCtrlHtmlArr.push(html.replace('___id___', ids.normal))
+						if (!PLUGINS_SELECT_ID.includes(ids.normal)) PLUGINS_SELECT_ID.push(ids.normal)
+					}
 					if (ctrl.addToBubble && bubbleBtnsEle) {
 						bubbleBtnsEle.innerHTML += html.replace('___id___', ids.bubble)
-
 						if (!PLUGINS_SELECT_ID.includes(ids.bubble)) PLUGINS_SELECT_ID.push(ids.bubble)
 					}
-
-					if (!PLUGINS_SELECT_ID.includes(ids.normal)) PLUGINS_SELECT_ID.push(ids.normal)
 				}
 			}
 		}
 
-		return ctrlHtmlArr.join('')
+		return normalCtrlHtmlArr.join('')
 	}
 
 	static genButtonIds = (pluginName: string, ctrlName: string) => {

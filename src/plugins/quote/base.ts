@@ -12,11 +12,13 @@ export const PLUGIN_NAME = 'Quote'
 export const CN_ICON = 'exsied-btn-quote'
 
 export type PluginConf = {
+	addToNormal: boolean
 	addToBubble: boolean
 	defaultInnerHTML: string
 }
 
 export const PLUGIN_CONF: PluginConf = {
+	addToNormal:true,
 	addToBubble: true,
 	defaultInnerHTML: '> ',
 }

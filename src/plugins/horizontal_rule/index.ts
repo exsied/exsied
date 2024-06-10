@@ -24,6 +24,7 @@ export const horizonalRule: ExsiedPlugin = {
 		{
 			name: PLUGIN_NAME,
 			tooltipText: 'Horizonal rule',
+			addToNormal:PLUGIN_CONF.addToNormal,
 			addToBubble: PLUGIN_CONF.addToBubble,
 
 			eleType: 'button',

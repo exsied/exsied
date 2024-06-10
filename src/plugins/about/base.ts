@@ -22,11 +22,13 @@ export type Deveploer = {
 }
 
 export type PluginConf = {
+	addToNormal: boolean
 	addToBubble: boolean
 	deveploers: Deveploer[]
 }
 
 export const PLUGIN_CONF: PluginConf = {
+	addToNormal: true,
 	addToBubble: false,
 	deveploers: [
 		// This is a demo infomation.

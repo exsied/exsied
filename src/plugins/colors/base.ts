@@ -17,6 +17,10 @@ export const POPUP_ID_BKG = `exsied_${PLUGIN_NAME}_popup_bkg`
 export const POPUP_ID_TEXT = `exsied_${PLUGIN_NAME}_popup_text`
 
 export type PluginConf = {
+	addToNormal: {
+		background: boolean
+		text: boolean
+	}
 	addToBubble: {
 		background: boolean
 		text: boolean
@@ -25,6 +29,10 @@ export type PluginConf = {
 }
 
 export const PLUGIN_CONF: PluginConf = {
+	addToNormal: {
+		background: true,
+		text: true,
+	},
 	addToBubble: {
 		background: false,
 		text: false,

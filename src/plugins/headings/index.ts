@@ -48,6 +48,7 @@ export const headings: ExsiedPlugin = {
 		{
 			name: PLUGIN_NAME,
 			tooltipText: 'Headings',
+			addToNormal:PLUGIN_CONF.addToNormal,
 			addToBubble: PLUGIN_CONF.addToBubble,
 
 			eleType: 'select',

@@ -28,6 +28,7 @@ export const strikethrough: ExsiedPlugin = {
 		{
 			name: PLUGIN_NAME,
 			tooltipText: 'Strikethough',
+			addToNormal:PLUGIN_CONF.addToNormal,
 			addToBubble: PLUGIN_CONF.addToBubble,
 
 			eleType: 'button',

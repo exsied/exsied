@@ -24,12 +24,14 @@ export const CN_BTN_SETTING = 'exsied-image-settings-btn'
 export const RESIZER_ID = `exsied_${PLUGIN_NAME}_resizer`
 
 export type PluginConf = {
+	addToNormal: boolean
 	addToBubble: boolean
 	defaultAlt: string
 	defaultSrc: string
 }
 
 export const PLUGIN_CONF: PluginConf = {
+	addToNormal:true,
 	addToBubble: false,
 	defaultAlt: 'enassi',
 	defaultSrc: 'http://chemdevice.com/upload/202403/07/202403070917419604.jpg',

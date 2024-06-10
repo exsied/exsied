@@ -33,6 +33,7 @@ export const textAlign: ExsiedPlugin = {
 		{
 			name: LEFT_NAME,
 			tooltipText: 'Text left',
+			addToNormal: PLUGIN_CONF.addToNormal.left,
 			addToBubble: PLUGIN_CONF.addToBubble.left,
 
 			eleType: 'button',
@@ -42,6 +43,7 @@ export const textAlign: ExsiedPlugin = {
 		{
 			name: CENTER_NAME,
 			tooltipText: 'Text center',
+			addToNormal: PLUGIN_CONF.addToNormal.center,
 			addToBubble: PLUGIN_CONF.addToBubble.center,
 
 			eleType: 'button',
@@ -51,6 +53,7 @@ export const textAlign: ExsiedPlugin = {
 		{
 			name: RIGHT_NAME,
 			tooltipText: 'Text right',
+			addToNormal: PLUGIN_CONF.addToNormal.right,
 			addToBubble: PLUGIN_CONF.addToBubble.right,
 
 			eleType: 'button',

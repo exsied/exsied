@@ -31,6 +31,7 @@ export const indentAndOutdent: ExsiedPlugin = {
 		{
 			name: INDENT_NAME,
 			tooltipText: 'Indent',
+			addToNormal:PLUGIN_CONF.addToNormal.indent,
 			addToBubble: PLUGIN_CONF.addToBubble.indent,
 
 			eleType: 'button',
@@ -40,6 +41,7 @@ export const indentAndOutdent: ExsiedPlugin = {
 		{
 			name: OUTDENT_NAME,
 			tooltipText: 'Outdent',
+			addToNormal:PLUGIN_CONF.addToNormal.outent,
 			addToBubble: PLUGIN_CONF.addToBubble.outent,
 
 			eleType: 'button',

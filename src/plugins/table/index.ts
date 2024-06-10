@@ -29,7 +29,8 @@ export const table: ExsiedPlugin = {
 		{
 			name: PLUGIN_NAME,
 			tooltipText: 'Table',
-			addToBubble: false,
+			addToNormal: PLUGIN_CONF.addToNormal,
+			addToBubble: PLUGIN_CONF.addToBubble,
 
 			eleType: 'button',
 			iconClassName: CN_ICON,
