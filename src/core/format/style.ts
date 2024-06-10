@@ -173,14 +173,8 @@ export class FormatStyle {
 		}
 	}
 
-	static formatBlockEle = (ele: HTMLElement, style: CSSStyleDeclaration) => {
-		let elem = null
-
-		if (ele.tagName === TN_P) elem = ele
-		if (ele.tagName === TN_DIV) elem = ele
-		if (!elem) elem = ele.closest(TN_P)
-		if (!elem) elem = ele.closest(TN_DIV)
-
+	static formatBlockEle = (ele: HTMLElement, style: CSSStyleDeclaration, isBlock?: boolean) => {
+		let elem = isBlock ? ele : DomUtils.getBlockEle(ele)
 		if (elem) DomUtils.setStyleProperty(elem, style)
 	}
 }

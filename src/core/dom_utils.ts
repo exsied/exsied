@@ -7,10 +7,22 @@
  *     https://github.com/exsied/exsied/blob/main/LICENSE
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
+import { TN_P, TN_DIV } from '../contants'
 import { HTMLTagNames } from '../types'
 import { tagNameLc } from '../utils'
 
 export class DomUtils {
+	static getBlockEle = (ele: HTMLElement) => {
+		let elem = null
+
+		if (ele.tagName === TN_P) elem = ele
+		if (ele.tagName === TN_DIV) elem = ele
+		if (!elem) elem = ele.closest(TN_P)
+		if (!elem) elem = ele.closest(TN_DIV)
+
+		return elem
+	}
+
 	static getAllParentTagNames = (element: HTMLElement, rootEle: HTMLElement) => {
 		let parentsTagNameArr: HTMLTagNames[] = []
 		let currentNode: Node | null | undefined = element?.parentNode

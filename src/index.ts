@@ -16,6 +16,7 @@ import { fontSize } from './plugins/font_size'
 import { headings } from './plugins/headings'
 import { horizonalRule } from './plugins/horizontal_rule'
 import { image } from './plugins/image'
+import { indentAndOutdent } from './plugins/indent_and_outdent'
 import { italic } from './plugins/italic'
 import { link } from './plugins/link'
 import { list } from './plugins/list'
@@ -43,6 +44,7 @@ export const plugins = {
 	headings,
 	horizonalRule,
 	image,
+	indentAndOutdent,
 	italic,
 	link,
 	list,
