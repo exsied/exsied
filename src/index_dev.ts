@@ -72,6 +72,7 @@ exsied.init({
 		plugins.list,
 		plugins.fontSize,
 		plugins.fontFamily,
+		plugins.textAlign,
 		plugins.backgroundColor,
 		plugins.textColor,
 		plugins.findAndReplace,

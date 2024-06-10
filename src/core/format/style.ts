@@ -1,4 +1,4 @@
-import { TN_SPAN, ZERO_WIDTH_SPACE } from '../../contants'
+import { TN_DIV, TN_P, TN_SPAN, ZERO_WIDTH_SPACE } from '../../contants'
 import { isOnlyWhitespace } from '../../utils/string'
 import { DomUtils } from '../dom_utils'
 
@@ -162,5 +162,16 @@ export class FormatStyle {
 				DomUtils.setStyleProperty(ele, style)
 			}
 		}
+	}
+
+	static formatBlockEle = (ele: HTMLElement, style: CSSStyleDeclaration) => {
+		let elem = null
+
+		if (ele.tagName === TN_P) elem = ele
+		if (ele.tagName === TN_DIV) elem = ele
+		if (!elem) elem = ele.closest(TN_P)
+		if (!elem) elem = ele.closest(TN_DIV)
+
+		if (elem) DomUtils.setStyleProperty(elem, style)
 	}
 }

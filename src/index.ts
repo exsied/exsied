@@ -15,6 +15,7 @@ import { sourceCode } from './plugins/source_code'
 import { strikethrough } from './plugins/strikethrough'
 import { subscriptAndSuperscript } from './plugins/subscript_and_superscript'
 import { table } from './plugins/table'
+import { textAlign } from './plugins/text_align'
 import { textColor } from './plugins/text_color'
 import { underline } from './plugins/underline'
 import './styles/style.scss'
@@ -41,6 +42,7 @@ export const plugins = {
 	strikethrough,
 	subscriptAndSuperscript,
 	table,
+	textAlign,
 	textColor,
 	underline,
 }
