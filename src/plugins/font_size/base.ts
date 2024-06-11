@@ -18,7 +18,7 @@ export type PluginConf = {
 }
 
 export const PLUGIN_CONF: PluginConf = {
-	addToNormalToolbar:true,
+	addToNormalToolbar: true,
 	addToBubbleToolbar: false,
 	fontSizeOptions: [
 		// {

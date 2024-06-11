@@ -22,7 +22,16 @@ import {
 	PLUGIN_CONF,
 	PLUGIN_NAME,
 } from './base'
-import { formatParagraph, formatH1, formatH2, formatH3, formatH4, formatH5, formatH6, formatHeading } from './event_handlers'
+import {
+	formatH1,
+	formatH2,
+	formatH3,
+	formatH4,
+	formatH5,
+	formatH6,
+	formatHeading,
+	formatParagraph,
+} from './event_handlers'
 import './styles.scss'
 
 const toolbarBtnIds = Toolbar.genButtonIds(PLUGIN_NAME, PLUGIN_NAME)
@@ -48,7 +57,7 @@ export const headings: ExsiedPlugin = {
 		{
 			name: PLUGIN_NAME,
 			tooltipText: 'Headings',
-			addToNormalToolbar:PLUGIN_CONF.addToNormalToolbar,
+			addToNormalToolbar: PLUGIN_CONF.addToNormalToolbar,
 			addToBubbleToolbar: PLUGIN_CONF.addToBubbleToolbar,
 
 			eleType: 'select',

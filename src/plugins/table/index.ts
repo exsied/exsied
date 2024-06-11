@@ -30,7 +30,7 @@ export const table: ExsiedPlugin = {
 			name: PLUGIN_NAME,
 			tooltipText: 'Table',
 			addToNormalToolbar: PLUGIN_CONF.addToNormalToolbar,
-			addToNormalToolbarInsertMenu:PLUGIN_CONF.addToNormalToolbarInsertMenu,
+			addToNormalToolbarInsertMenu: PLUGIN_CONF.addToNormalToolbarInsertMenu,
 			addToBubbleToolbar: PLUGIN_CONF.addToBubbleToolbar,
 
 			eleType: 'button',

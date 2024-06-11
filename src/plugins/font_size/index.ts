@@ -28,7 +28,7 @@ export const fontSize: ExsiedPlugin = {
 		{
 			name: PLUGIN_NAME,
 			tooltipText: 'Font size',
-			addToNormalToolbar:PLUGIN_CONF.addToNormalToolbar,
+			addToNormalToolbar: PLUGIN_CONF.addToNormalToolbar,
 			addToBubbleToolbar: PLUGIN_CONF.addToBubbleToolbar,
 
 			eleType: 'select',

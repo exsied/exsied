@@ -28,8 +28,8 @@ export const quote: ExsiedPlugin = {
 		{
 			name: PLUGIN_NAME,
 			tooltipText: 'Quote',
-			addToNormalToolbar:PLUGIN_CONF.addToNormalToolbar,
-			addToNormalToolbarInsertMenu:PLUGIN_CONF.addToNormalToolbarInsertMenu,
+			addToNormalToolbar: PLUGIN_CONF.addToNormalToolbar,
+			addToNormalToolbarInsertMenu: PLUGIN_CONF.addToNormalToolbarInsertMenu,
 			addToBubbleToolbar: PLUGIN_CONF.addToBubbleToolbar,
 
 			eleType: 'button',
