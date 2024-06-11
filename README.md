@@ -9,6 +9,8 @@
 
 [Github repo](https://github.com/exsied/exsied) / [Gitee repo](https://gitee.com/exsied/exsied)
 
+[Live demo](https://exsied.pages.dev/demo)
+
 ## Features:
 
 - No complex concepts, **exsied** is written entirely in native JavaScript events binding.
