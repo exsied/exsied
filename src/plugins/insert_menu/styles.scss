@@ -12,6 +12,10 @@
 	border-radius: 0;
 	padding: 0;
 
+	.exsied-toolbar {
+		background-color: var(--exd-component-backgroud-color);
+	}
+
 	.exsied-toolbar-insert-menu-item {
 		display: flex;
 		padding: 0.5rem;
