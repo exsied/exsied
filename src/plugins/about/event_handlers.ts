@@ -19,15 +19,15 @@ export function showAbout(event: Event) {
 
 	let contentHtml = `
 		<p>
-			${LIB_NAME} version ${pkg.version} 
+			${LIB_NAME} ${pkg.version} 
+			<a href="https://enassi.pages.dev/en/exsied/about/">${t('Document')}</a> /
 			<a href="${LIB_REPO_GITHUB}">Github</a> / 
-			<a href="https://gitee.com/exsied/exsied">Gitee</a> /
-			<a href="https://enassi.pages.dev/en/exsied/about/">Document</a> 
+			<a href="https://gitee.com/exsied/exsied">Gitee</a>
 		</p>
 		<p>
 			${LIB_NAME} is a WYSIWYG editor from enassi(
-			<a href="https://github.com/enassi/enassi">Github</a> 
-			/
+			<a href="https://enassi.pages.dev/en/exsied/about/">${t('Document')}</a> /
+			<a href="https://github.com/enassi/enassi">Github</a> /
 			<a href="https://gitee.com/enassi/enassi">Gitee</a>
 			)
 		</p>
