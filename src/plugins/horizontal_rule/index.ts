@@ -34,8 +34,8 @@ export const horizonalRule: ExsiedPlugin = {
 		},
 	],
 
-	addHhandler: () => {},
-	removeHhandler: () => {},
+	addHandler: () => {},
+	removeHandler: () => {},
 	checkHighlight: (_event) => {},
 	removeTempEle: (_event) => {},
 }

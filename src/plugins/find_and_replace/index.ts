@@ -49,8 +49,8 @@ export const findAndReplace: ExsiedPlugin = {
 		},
 	],
 
-	addHhandler: () => {},
-	removeHhandler: () => {},
+	addHandler: () => {},
+	removeHandler: () => {},
 	checkHighlight: (_event) => {},
 	removeTempEle: (_event) => {
 		DomUtils.removeElementById(POPUP_ID)

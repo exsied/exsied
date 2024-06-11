@@ -52,8 +52,8 @@ export const subscriptAndSuperscript: ExsiedPlugin = {
 		},
 	],
 
-	addHhandler: () => {},
-	removeHhandler: () => {},
+	addHandler: () => {},
+	removeHandler: () => {},
 	checkHighlight: (_event) => {
 		const btnEleSub = exsied.elements.editor?.querySelector(`#${toolbarBtnIdsSub.normal}`)
 		if (btnEleSub) {

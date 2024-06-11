@@ -50,8 +50,8 @@ export const indentAndOutdent: ExsiedPlugin = {
 		},
 	],
 
-	addHhandler: () => {},
-	removeHhandler: () => {},
+	addHandler: () => {},
+	removeHandler: () => {},
 	checkHighlight: (_event) => {
 		const btnEle = exsied.elements.editor?.querySelector(`#${toolbarBtnIds.normal}`)
 

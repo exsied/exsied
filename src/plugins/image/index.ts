@@ -40,12 +40,12 @@ export const image: ExsiedPlugin = {
 		},
 	],
 
-	addHhandler: () => {
+	addHandler: () => {
 		addEleClickCallbackByTag(TN_IMG, onClickImage)
 
 		addEleClickCallbackByClass(CN_BTN_SETTING, onClickImageSettingButton)
 	},
-	removeHhandler: () => {},
+	removeHandler: () => {},
 	checkHighlight: (_event) => {
 		const btnEle = exsied.elements.editor?.querySelector(`#${toolbarBtnIds.normal}`)
 

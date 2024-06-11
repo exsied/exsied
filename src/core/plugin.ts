@@ -20,8 +20,8 @@ export interface ExsiedPlugin {
 	conf: any
 	commands: Commands
 	toolBarControl?: ToolBarControl[]
-	addHhandler: () => any
-	removeHhandler: () => any
+	addHandler: () => any
+	removeHandler: () => any
 	checkHighlight: (event: Event) => any
 	removeTempEle: (event: Event) => any
 	hooks?: {

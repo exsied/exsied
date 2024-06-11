@@ -58,8 +58,8 @@ export const headings: ExsiedPlugin = {
 		},
 	],
 
-	addHhandler: () => {},
-	removeHhandler: () => {},
+	addHandler: () => {},
+	removeHandler: () => {},
 	checkHighlight: (_event) => {
 		const dropDownEle = exsied.elements.toolbarMain?.querySelector(`#${dropDownId}`)
 		if (!dropDownEle) return

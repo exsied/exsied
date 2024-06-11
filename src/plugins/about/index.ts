@@ -31,8 +31,8 @@ export const about: ExsiedPlugin = {
 		},
 	],
 
-	addHhandler: () => {},
-	removeHhandler: () => {},
+	addHandler: () => {},
+	removeHandler: () => {},
 	checkHighlight: (_event) => {},
 	removeTempEle: (_event) => {
 		DomUtils.removeElementById(POPUP_ID)

@@ -40,10 +40,10 @@ export const link: ExsiedPlugin = {
 		},
 	],
 
-	addHhandler: () => {
+	addHandler: () => {
 		addEleClickCallbackByTag(TN_A, onClickLink)
 	},
-	removeHhandler: () => {},
+	removeHandler: () => {},
 	checkHighlight: (_event) => {
 		const btnEle = exsied.elements.editor?.querySelector(`#${toolbarBtnIds.normal}`)
 

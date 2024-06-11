@@ -39,10 +39,10 @@ export const table: ExsiedPlugin = {
 		},
 	],
 
-	addHhandler: () => {
+	addHandler: () => {
 		document.body.addEventListener('click', showTableActionButtons)
 	},
-	removeHhandler: () => {},
+	removeHandler: () => {},
 	checkHighlight: (_event) => {
 		const btnEle = exsied.elements.editor?.querySelector(`#${toolbarBtnIds.normal}`)
 

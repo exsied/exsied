@@ -153,7 +153,7 @@ export class Toolbar {
 
 	static bindBtnEvents = () => {
 		for (const plg of PLUGINS) {
-			plg.addHhandler()
+			plg.addHandler()
 
 			if (!plg.toolBarControl) continue
 
@@ -182,7 +182,7 @@ export class Toolbar {
 
 	static unBindBtnEvents = () => {
 		for (const plg of PLUGINS) {
-			plg.removeHhandler()
+			plg.removeHandler()
 		}
 
 		const editorEle = exsied.elements.editor

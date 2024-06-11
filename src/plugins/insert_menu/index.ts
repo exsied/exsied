@@ -39,7 +39,7 @@ export const insertMenu: ExsiedPlugin = {
 		},
 	],
 
-	addHhandler: () => {
+	addHandler: () => {
 		const btnEle = document.getElementById(toolbarBtnIds.normal)
 		if (btnEle) {
 			btnEle.addEventListener('mouseover', () => {
@@ -47,7 +47,7 @@ export const insertMenu: ExsiedPlugin = {
 			})
 		}
 	},
-	removeHhandler: () => {},
+	removeHandler: () => {},
 	checkHighlight: (_event) => {},
 	removeTempEle: (_event) => {
 		DomUtils.removeElementById(POPUP_ID)
