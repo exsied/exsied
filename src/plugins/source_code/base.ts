@@ -23,8 +23,8 @@ export type PluginConf = {
 }
 
 export const PLUGIN_CONF: PluginConf = {
-	addToNormalToolbar:true,
-	addToBubbleToolbar: true,
+	addToNormalToolbar: true,
+	addToBubbleToolbar: false,
 	defaultText: '// Source code placeholder',
 	renderData: (ele: HTMLElement) => {
 		console.warn(`Developer didn't implement the callback: ${PLUGIN_NAME}.conf.renderData`)
