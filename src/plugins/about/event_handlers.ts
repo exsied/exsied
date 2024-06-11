@@ -13,7 +13,7 @@ import { t } from '../../core/i18n'
 import { createPopupView } from '../../ui/popup-view'
 import { CN_ROOT, PLUGIN_CONF, PLUGIN_NAME, POPUP_ID } from './base'
 
-export function insertLink(event: Event) {
+export function showAbout(event: Event) {
 	const targetEle = event.target as HTMLAnchorElement
 	targetEle.setAttribute(DATA_ATTR_TEMP_EDIT, PLUGIN_NAME)
 
