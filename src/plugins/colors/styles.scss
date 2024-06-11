@@ -3,11 +3,11 @@
 .exsied .exsied-toolbar {
 	i.exsied-btn-background-color {
 		@include bkgSvgIcon;
-		background-image: url(./icons/background-color.svg);
+		background-image: url(../../icons/background-color.svg);
 	}
 
 	i.exsied-btn-text-color {
 		@include bkgSvgIcon;
-		background-image: url(./icons/font-color.svg);
+		background-image: url(../../icons/font-color.svg);
 	}
 }

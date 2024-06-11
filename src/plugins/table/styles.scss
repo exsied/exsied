@@ -8,7 +8,7 @@
 .exsied .exsied-toolbar {
 	i.exsied-btn-table {
 		@include bkgSvgIcon;
-		background-image: url(./icons/table.svg);
+		background-image: url(../../icons/table.svg);
 	}
 }
 
@@ -43,7 +43,7 @@
 
 	&::after {
 		@include bkgSvgIcon;
-		background-image: url(./icons/arrow-down.svg);
+		background-image: url(../../icons/arrow-down.svg);
 
 		background-size: cover;
 	}
@@ -73,24 +73,24 @@
 
 			i.add {
 				@include bkgSvgIcon;
-				background-image: url(./icons/plus.svg);
+				background-image: url(../../icons/plus.svg);
 			}
 
 			i.delete-row {
 				@include bkgSvgIcon;
-				background-image: url(./icons/table-delete-row.svg);
+				background-image: url(../../icons/table-delete-row.svg);
 			}
 
 			i.delete-column {
 				@include bkgSvgIcon;
-				background-image: url(./icons/table-delete-row.svg);
+				background-image: url(../../icons/table-delete-row.svg);
 
 				transform: rotate(90deg);
 			}
 
 			i.trash {
 				@include bkgSvgIcon;
-				background-image: url(./icons/trash.svg);
+				background-image: url(../../icons/trash.svg);
 			}
 		}
 

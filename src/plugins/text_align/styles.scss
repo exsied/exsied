@@ -3,16 +3,16 @@
 .exsied .exsied-toolbar {
 	i.exsied-btn-center {
 		@include bkgSvgIcon;
-		background-image: url(./icons/center.svg);
+		background-image: url(../../icons/center.svg);
 	}
 
 	i.exsied-btn-left {
 		@include bkgSvgIcon;
-		background-image: url(./icons/left.svg);
+		background-image: url(../../icons/left.svg);
 	}
 
 	i.exsied-btn-right {
 		@include bkgSvgIcon;
-		background-image: url(./icons/right.svg);
+		background-image: url(../../icons/right.svg);
 	}
 }

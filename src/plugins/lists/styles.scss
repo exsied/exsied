@@ -3,11 +3,11 @@
 .exsied .exsied-toolbar {
 	i.exsied-btn-ol {
 		@include bkgSvgIcon;
-		background-image: url(./icons/ol.svg);
+		background-image: url(../../icons/ol.svg);
 	}
 
 	i.exsied-btn-ul {
 		@include bkgSvgIcon;
-		background-image: url(./icons/ul.svg);
+		background-image: url(../../icons/ul.svg);
 	}
 }
