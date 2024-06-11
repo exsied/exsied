@@ -15,12 +15,12 @@ import { CN_ICON_INDENT, CN_ICON_OUTDENT, PLUGIN_CONF, PLUGIN_NAME } from './bas
 import { formatIndent, formatOutdent } from './event_handlers'
 import './styles.scss'
 
-const INDENT_NAME = 'indent'
-const OUTDENT_NAME = 'outdent'
+const NAME_INDENT = 'indent'
+const NAME_OUTDENT = 'outdent'
 const toolbarBtnIds = Toolbar.genButtonIds(PLUGIN_NAME, PLUGIN_NAME)
 const commands: Commands = {}
-commands[INDENT_NAME] = formatIndent
-commands[OUTDENT_NAME] = formatOutdent
+commands[NAME_INDENT] = formatIndent
+commands[NAME_OUTDENT] = formatOutdent
 
 export const indentAndOutdent: ExsiedPlugin = {
 	name: PLUGIN_NAME,
@@ -29,24 +29,24 @@ export const indentAndOutdent: ExsiedPlugin = {
 
 	toolBarControl: [
 		{
-			name: INDENT_NAME,
+			name: NAME_INDENT,
 			tooltipText: 'Indent',
 			addToNormal:PLUGIN_CONF.addToNormal.indent,
 			addToBubble: PLUGIN_CONF.addToBubble.indent,
 
 			eleType: 'button',
 			iconClassName: CN_ICON_INDENT,
-			clickCallBack: commands[INDENT_NAME],
+			clickCallBack: commands[NAME_INDENT],
 		},
 		{
-			name: OUTDENT_NAME,
+			name: NAME_OUTDENT,
 			tooltipText: 'Outdent',
 			addToNormal:PLUGIN_CONF.addToNormal.outent,
 			addToBubble: PLUGIN_CONF.addToBubble.outent,
 
 			eleType: 'button',
 			iconClassName: CN_ICON_OUTDENT,
-			clickCallBack: commands[OUTDENT_NAME],
+			clickCallBack: commands[NAME_OUTDENT],
 		},
 	],
 

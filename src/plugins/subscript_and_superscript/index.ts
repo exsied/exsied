@@ -15,14 +15,14 @@ import { CN_ICON_SUB, CN_ICON_SUP, PLUGIN_CONF, PLUGIN_NAME, isHighlightSup } fr
 import { formatTextSub, formatTextSup } from './event_handlers'
 import './styles.scss'
 
-export const SUB_NAME = 'Subscript'
-export const SUP_NAME = 'Supscript'
+export const NAME_SUB = 'Subscript'
+export const NAME_SUP = 'Supscript'
 
-const toolbarBtnIdsSub = Toolbar.genButtonIds(PLUGIN_NAME, SUB_NAME)
-const toolbarBtnIdsSup = Toolbar.genButtonIds(PLUGIN_NAME, SUP_NAME)
+const toolbarBtnIdsSub = Toolbar.genButtonIds(PLUGIN_NAME, NAME_SUB)
+const toolbarBtnIdsSup = Toolbar.genButtonIds(PLUGIN_NAME, NAME_SUP)
 const commands: Commands = {}
-commands[SUB_NAME] = formatTextSub
-commands[SUP_NAME] = formatTextSup
+commands[NAME_SUB] = formatTextSub
+commands[NAME_SUP] = formatTextSup
 
 export const subscriptAndSuperscript: ExsiedPlugin = {
 	name: PLUGIN_NAME,
@@ -31,24 +31,24 @@ export const subscriptAndSuperscript: ExsiedPlugin = {
 
 	toolBarControl: [
 		{
-			name: SUB_NAME,
+			name: NAME_SUB,
 			tooltipText: 'Subscript',
 			addToNormal:PLUGIN_CONF.addToNormal.sub,
 			addToBubble: PLUGIN_CONF.addToBubble.sub,
 
 			eleType: 'button',
 			iconClassName: CN_ICON_SUB,
-			clickCallBack: commands[SUB_NAME],
+			clickCallBack: commands[NAME_SUB],
 		},
 		{
-			name: SUP_NAME,
+			name: NAME_SUP,
 			tooltipText: 'Supscript',
 			addToNormal:PLUGIN_CONF.addToNormal.sup,
 			addToBubble: PLUGIN_CONF.addToBubble.sup,
 
 			eleType: 'button',
 			iconClassName: CN_ICON_SUP,
-			clickCallBack: commands[SUP_NAME],
+			clickCallBack: commands[NAME_SUP],
 		},
 	],
 

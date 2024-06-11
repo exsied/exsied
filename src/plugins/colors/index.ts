@@ -12,7 +12,16 @@ import { DomUtils } from '../../core/dom_utils'
 import { Commands, ExsiedPlugin } from '../../core/plugin'
 import { SelectionUtils } from '../../core/selection_utils'
 import { Toolbar } from '../../ui/toolbar'
-import { BACKGROUND_NAME, CN_ICON_BKG, PLUGIN_CONF, PLUGIN_NAME, POPUP_ID_BKG, POPUP_ID_TEXT, TEXT_NAME } from './base'
+import {
+	BACKGROUND_NAME,
+	CN_ICON_BKG,
+	CN_ICON_TEXT,
+	PLUGIN_CONF,
+	PLUGIN_NAME,
+	POPUP_ID_BKG,
+	POPUP_ID_TEXT,
+	TEXT_NAME,
+} from './base'
 import { showColorPickerBkg, showColorPickerText } from './event_handlers'
 import './styles.scss'
 
@@ -44,7 +53,7 @@ export const colors: ExsiedPlugin = {
 			addToBubble: PLUGIN_CONF.addToBubble.text,
 
 			eleType: 'button',
-			iconClassName: CN_ICON_BKG,
+			iconClassName: CN_ICON_TEXT,
 			clickCallBack: commands[TEXT_NAME],
 		},
 	],

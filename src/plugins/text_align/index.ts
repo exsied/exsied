@@ -15,14 +15,14 @@ import { CN_ICON_CENTER, CN_ICON_LEFT, CN_ICON_RIGHT, PLUGIN_CONF, PLUGIN_NAME }
 import { formatTextCenter, formatTextLeft, formatTextRight } from './event_handlers'
 import './styles.scss'
 
-const CENTER_NAME = 'textCenter'
-const LEFT_NAME = 'textLeft'
-const RIGHT_NAME = 'textRight'
+const NAME_CENTER = 'textCenter'
+const NAME_LEFT = 'textLeft'
+const NAME_RIGHT = 'textRight'
 const toolbarBtnIds = Toolbar.genButtonIds(PLUGIN_NAME, PLUGIN_NAME)
 const commands: Commands = {}
-commands[CENTER_NAME] = formatTextCenter
-commands[LEFT_NAME] = formatTextLeft
-commands[RIGHT_NAME] = formatTextRight
+commands[NAME_CENTER] = formatTextCenter
+commands[NAME_LEFT] = formatTextLeft
+commands[NAME_RIGHT] = formatTextRight
 
 export const textAlign: ExsiedPlugin = {
 	name: PLUGIN_NAME,
@@ -31,34 +31,34 @@ export const textAlign: ExsiedPlugin = {
 
 	toolBarControl: [
 		{
-			name: LEFT_NAME,
+			name: NAME_LEFT,
 			tooltipText: 'Text left',
 			addToNormal: PLUGIN_CONF.addToNormal.left,
 			addToBubble: PLUGIN_CONF.addToBubble.left,
 
 			eleType: 'button',
 			iconClassName: CN_ICON_LEFT,
-			clickCallBack: commands[LEFT_NAME],
+			clickCallBack: commands[NAME_LEFT],
 		},
 		{
-			name: CENTER_NAME,
+			name: NAME_CENTER,
 			tooltipText: 'Text center',
 			addToNormal: PLUGIN_CONF.addToNormal.center,
 			addToBubble: PLUGIN_CONF.addToBubble.center,
 
 			eleType: 'button',
 			iconClassName: CN_ICON_CENTER,
-			clickCallBack: commands[CENTER_NAME],
+			clickCallBack: commands[NAME_CENTER],
 		},
 		{
-			name: RIGHT_NAME,
+			name: NAME_RIGHT,
 			tooltipText: 'Text right',
 			addToNormal: PLUGIN_CONF.addToNormal.right,
 			addToBubble: PLUGIN_CONF.addToBubble.right,
 
 			eleType: 'button',
 			iconClassName: CN_ICON_RIGHT,
-			clickCallBack: commands[RIGHT_NAME],
+			clickCallBack: commands[NAME_RIGHT],
 		},
 	],
 

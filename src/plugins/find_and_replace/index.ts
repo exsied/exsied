@@ -15,11 +15,11 @@ import { CN_ICON_FIND, CN_ICON_REPLACE, PLUGIN_CONF, PLUGIN_NAME, POPUP_ID } fro
 import { onClickFind, onClickReplace, reset } from './event_handlers'
 import './styles.scss'
 
-export const FIND_NAME = 'find'
-export const REPLACE_NAME = 'replace'
+export const NAME_FIND = 'find'
+export const NAME_REPLACE = 'replace'
 const commands: Commands = {}
-commands[FIND_NAME] = onClickFind
-commands[REPLACE_NAME] = onClickReplace
+commands[NAME_FIND] = onClickFind
+commands[NAME_REPLACE] = onClickReplace
 
 export const findAndReplace: ExsiedPlugin = {
 	name: PLUGIN_NAME,
@@ -28,24 +28,24 @@ export const findAndReplace: ExsiedPlugin = {
 
 	toolBarControl: [
 		{
-			name: FIND_NAME,
+			name: NAME_FIND,
 			tooltipText: 'Find',
 			addToNormal:PLUGIN_CONF.addToNormal.find,
 			addToBubble: PLUGIN_CONF.addToBubble.find,
 
 			eleType: 'button',
 			iconClassName: CN_ICON_FIND,
-			clickCallBack: commands[FIND_NAME],
+			clickCallBack: commands[NAME_FIND],
 		},
 		{
-			name: REPLACE_NAME,
+			name: NAME_REPLACE,
 			tooltipText: 'Replace',
 			addToNormal:PLUGIN_CONF.addToNormal.replace,
 			addToBubble: PLUGIN_CONF.addToBubble.replace,
 
 			eleType: 'button',
 			iconClassName: CN_ICON_REPLACE,
-			clickCallBack: commands[REPLACE_NAME],
+			clickCallBack: commands[NAME_REPLACE],
 		},
 	],
 
