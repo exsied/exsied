@@ -9,7 +9,7 @@
  */
 import { CN_TEMP_ELE, DATA_ATTR_TEMP_EDIT } from '../../contants'
 import { t } from '../../core/i18n'
-import { createPopupView } from '../popup-view'
+import { createPopupView } from '../popup_view'
 import './styles.scss'
 
 type ClickColotItemCallback = (color: string) => void

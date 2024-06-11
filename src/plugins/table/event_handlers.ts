@@ -11,7 +11,7 @@ import { CN_TEMP_ELE, DATA_ATTR_TEMP_EDIT, TN_DIV, TN_TABLE, TN_TD, TN_TH } from
 import { exsied } from '../../core'
 import { DomUtils } from '../../core/dom_utils'
 import { t } from '../../core/i18n'
-import { createPopupView } from '../../ui/popup-view'
+import { createPopupView } from '../../ui/popup_view'
 import { tagNameLc } from '../../utils'
 import { CN_TABLE_CELL_ACTION_BUTTON, DATA_COLUNM_INDEX, DATA_ROW_INDEX, PLUGIN_NAME, POPUP_ID } from './base'
 
