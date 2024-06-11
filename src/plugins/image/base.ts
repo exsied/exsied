@@ -33,6 +33,6 @@ export type PluginConf = {
 export const PLUGIN_CONF: PluginConf = {
 	addToNormal:true,
 	addToBubble: false,
-	defaultAlt: 'enassi',
-	defaultSrc: 'http://chemdevice.com/upload/202403/07/202403070917419604.jpg',
+	defaultAlt: 'this is an image',
+	defaultSrc: '',
 }
