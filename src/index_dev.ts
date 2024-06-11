@@ -73,6 +73,7 @@ exsied.init({
 		plugins.strikethrough,
 		plugins.headings,
 		plugins.subscriptAndSuperscript,
+		plugins.insertMenu,
 		plugins.link,
 		plugins.image,
 		plugins.table,

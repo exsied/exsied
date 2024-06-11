@@ -8,17 +8,17 @@
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
 
-export const PLUGIN_NAME = 'horizonalRule'
-export const CN_ICON = 'exsied-btn-hr'
+export const PLUGIN_NAME = 'insertMenu'
+export const CN_ICON = 'exsied-btn-plus'
+export const POPUP_ID = `exsied_${PLUGIN_NAME}_popup`
+export const CN_ROOT = 'exsied-insert-menu-view'
 
 export type PluginConf = {
 	addToNormalToolbar: boolean
-	addToNormalToolbarInsertMenu: boolean
 	addToBubbleToolbar: boolean
 }
 
 export const PLUGIN_CONF: PluginConf = {
-	addToNormalToolbar: false,
-	addToNormalToolbarInsertMenu: true,
-	addToBubbleToolbar: false,
+	addToNormalToolbar: true,
+	addToBubbleToolbar: true,
 }

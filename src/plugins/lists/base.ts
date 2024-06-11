@@ -17,6 +17,10 @@ export type PluginConf = {
 		ol: boolean
 		ul: boolean
 	}
+	addToNormalToolbarInsertMenu: {
+		ol: boolean
+		ul: boolean
+	}
 	addToBubbleToolbar: {
 		ol: boolean
 		ul: boolean
@@ -26,6 +30,10 @@ export type PluginConf = {
 
 export const PLUGIN_CONF: PluginConf = {
 	addToNormalToolbar: {
+		ol: false,
+		ul: false,
+	},
+	addToNormalToolbarInsertMenu: {
 		ol: true,
 		ul: true,
 	},

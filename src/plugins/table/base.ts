@@ -17,10 +17,12 @@ export const DATA_COLUNM_INDEX = 'data-column-index'
 
 export type PluginConf = {
 	addToNormalToolbar: boolean
+	addToNormalToolbarInsertMenu: boolean
 	addToBubbleToolbar: boolean
 }
 
 export const PLUGIN_CONF: PluginConf = {
-	addToNormalToolbar:true,
+	addToNormalToolbar: false,
+	addToNormalToolbarInsertMenu: true,
 	addToBubbleToolbar: false,
 }

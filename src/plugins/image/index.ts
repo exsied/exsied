@@ -30,7 +30,8 @@ export const image: ExsiedPlugin = {
 		{
 			name: PLUGIN_NAME,
 			tooltipText: 'Image',
-			addToNormalToolbar:PLUGIN_CONF.addToNormalToolbar,
+			addToNormalToolbar: PLUGIN_CONF.addToNormalToolbar,
+			addToNormalToolbarInsertMenu: PLUGIN_CONF.addToNormalToolbarInsertMenu,
 			addToBubbleToolbar: PLUGIN_CONF.addToBubbleToolbar,
 
 			eleType: 'button',

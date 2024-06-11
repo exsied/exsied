@@ -17,6 +17,7 @@ import { headings } from './plugins/headings'
 import { horizonalRule } from './plugins/horizontal_rule'
 import { image } from './plugins/image'
 import { indentAndOutdent } from './plugins/indent_and_outdent'
+import { insertMenu } from './plugins/insert_menu'
 import { italic } from './plugins/italic'
 import { link } from './plugins/link'
 import { lists } from './plugins/lists'
@@ -44,6 +45,7 @@ export const plugins = {
 	horizonalRule,
 	image,
 	indentAndOutdent,
+	insertMenu,
 	italic,
 	link,
 	lists,

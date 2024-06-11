@@ -25,13 +25,15 @@ export const RESIZER_ID = `exsied_${PLUGIN_NAME}_resizer`
 
 export type PluginConf = {
 	addToNormalToolbar: boolean
+	addToNormalToolbarInsertMenu: boolean
 	addToBubbleToolbar: boolean
 	defaultAlt: string
 	defaultSrc: string
 }
 
 export const PLUGIN_CONF: PluginConf = {
-	addToNormalToolbar:true,
+	addToNormalToolbar: false,
+	addToNormalToolbarInsertMenu: true,
 	addToBubbleToolbar: false,
 	defaultAlt: 'this is an image',
 	defaultSrc: '',

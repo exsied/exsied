@@ -23,13 +23,15 @@ export const CN_CONFIRM_BTN = 'exsied-link-confirm'
 
 export type PluginConf = {
 	addToNormalToolbar: boolean
+	addToNormalToolbarInsertMenu: boolean
 	addToBubbleToolbar: boolean
 	defaultInnerHTML: string
 	defaultHref: string
 }
 
 export const PLUGIN_CONF: PluginConf = {
-	addToNormalToolbar:true,
+	addToNormalToolbar: false,
+	addToNormalToolbarInsertMenu: true,
 	addToBubbleToolbar: true,
 	defaultInnerHTML: LIB_NAME,
 	defaultHref: LIB_REPO_GITHUB,
