@@ -14,8 +14,8 @@ export const CN_ICON_BRACES = 'exsied-btn-braces'
 export const CN_ICON_XML = 'exsied-btn-xml'
 
 export type PluginConf = {
-	addToNormal: boolean
-	addToBubble: boolean
+	addToNormalToolbar: boolean
+	addToBubbleToolbar: boolean
 	defaultText: string
 	renderData: (ele: HTMLElement) => string
 	editData: (ele: HTMLElement, sign: string) => void
@@ -23,8 +23,8 @@ export type PluginConf = {
 }
 
 export const PLUGIN_CONF: PluginConf = {
-	addToNormal:true,
-	addToBubble: true,
+	addToNormalToolbar:true,
+	addToBubbleToolbar: true,
 	defaultText: '// Source code placeholder',
 	renderData: (ele: HTMLElement) => {
 		console.warn(`Developer didn't implement the callback: ${PLUGIN_NAME}.conf.renderData`)

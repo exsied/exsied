@@ -39,8 +39,8 @@ export const colors: ExsiedPlugin = {
 		{
 			name: BACKGROUND_NAME,
 			tooltipText: 'Background color',
-			addToNormal: PLUGIN_CONF.addToNormal.background,
-			addToBubble: PLUGIN_CONF.addToBubble.background,
+			addToNormalToolbar: PLUGIN_CONF.addToNormalToolbar.background,
+			addToBubbleToolbar: PLUGIN_CONF.addToBubbleToolbar.background,
 
 			eleType: 'button',
 			iconClassName: CN_ICON_BKG,
@@ -49,8 +49,8 @@ export const colors: ExsiedPlugin = {
 		{
 			name: TEXT_NAME,
 			tooltipText: 'Text color',
-			addToNormal: PLUGIN_CONF.addToNormal.text,
-			addToBubble: PLUGIN_CONF.addToBubble.text,
+			addToNormalToolbar: PLUGIN_CONF.addToNormalToolbar.text,
+			addToBubbleToolbar: PLUGIN_CONF.addToBubbleToolbar.text,
 
 			eleType: 'button',
 			iconClassName: CN_ICON_TEXT,

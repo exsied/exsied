@@ -12,14 +12,14 @@ import { ToolBarSelectOption } from '../../ui/toolbar'
 export const PLUGIN_NAME = 'fontFamily'
 
 export type PluginConf = {
-	addToNormal: boolean
-	addToBubble: boolean
+	addToNormalToolbar: boolean
+	addToBubbleToolbar: boolean
 	fontFamilyOptions: ToolBarSelectOption[]
 }
 
 export const PLUGIN_CONF: PluginConf = {
-	addToNormal:true,
-	addToBubble: false,
+	addToNormalToolbar:true,
+	addToBubbleToolbar: false,
 	fontFamilyOptions: [
 		// {
 		// 	name: 'test font family',

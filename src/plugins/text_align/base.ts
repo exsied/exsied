@@ -14,12 +14,12 @@ export const CN_ICON_LEFT = 'exsied-btn-left'
 export const CN_ICON_RIGHT = 'exsied-btn-right'
 
 export type PluginConf = {
-	addToNormal: {
+	addToNormalToolbar: {
 		center: boolean
 		left: boolean
 		right: boolean
 	}
-	addToBubble: {
+	addToBubbleToolbar: {
 		center: boolean
 		left: boolean
 		right: boolean
@@ -28,12 +28,12 @@ export type PluginConf = {
 }
 
 export const PLUGIN_CONF: PluginConf = {
-	addToNormal: {
+	addToNormalToolbar: {
 		center: true,
 		left: true,
 		right: true,
 	},
-	addToBubble: {
+	addToBubbleToolbar: {
 		center: false,
 		left: false,
 		right: false,
