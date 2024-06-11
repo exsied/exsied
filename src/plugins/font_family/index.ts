@@ -38,8 +38,8 @@ export const fontFamily: ExsiedPlugin = {
 		},
 	],
 
-	addHhandler: () => {},
-	removeHhandler: () => {},
+	addHandler: () => {},
+	removeHandler: () => {},
 	checkHighlight: (_event) => {
 		// TODO:
 	},

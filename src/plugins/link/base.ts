@@ -9,7 +9,7 @@
  */
 import { LIB_NAME, LIB_REPO_GITHUB } from '../../contants'
 
-export const PLUGIN_NAME = 'link'
+export const PLUGIN_NAME = 'Link'
 export const CN_ICON = 'exsied-btn-link'
 export const POPUP_ID = `exsied_${PLUGIN_NAME}_popup`
 export const CN_ROOT = 'exsied-link-editor'
@@ -23,13 +23,15 @@ export const CN_CONFIRM_BTN = 'exsied-link-confirm'
 
 export type PluginConf = {
 	addToNormalToolbar: boolean
+	addToNormalToolbarInsertMenu: boolean
 	addToBubbleToolbar: boolean
 	defaultInnerHTML: string
 	defaultHref: string
 }
 
 export const PLUGIN_CONF: PluginConf = {
-	addToNormalToolbar:true,
+	addToNormalToolbar: false,
+	addToNormalToolbarInsertMenu: true,
 	addToBubbleToolbar: true,
 	defaultInnerHTML: LIB_NAME,
 	defaultHref: LIB_REPO_GITHUB,

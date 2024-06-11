@@ -37,8 +37,8 @@ export const underline: ExsiedPlugin = {
 		},
 	],
 
-	addHhandler: () => {},
-	removeHhandler: () => {},
+	addHandler: () => {},
+	removeHandler: () => {},
 	checkHighlight: (_event) => {
 		const btnEle = exsied.elements.editor?.querySelector(`#${toolbarBtnIds.normal}`)
 		if (btnEle) {

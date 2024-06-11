@@ -58,7 +58,7 @@ export const colors: ExsiedPlugin = {
 		},
 	],
 
-	addHhandler: () => {
+	addHandler: () => {
 		const btnEle = document.getElementById(toolbarBtnIds.normal)
 		if (btnEle) {
 			btnEle.addEventListener('mouseover', () => {
@@ -66,7 +66,7 @@ export const colors: ExsiedPlugin = {
 			})
 		}
 	},
-	removeHhandler: () => {},
+	removeHandler: () => {},
 	checkHighlight: (event) => {
 		const btnEle = exsied.elements.editor?.querySelector(`#${toolbarBtnIds.normal}`) as HTMLElement
 		if (btnEle) {

@@ -8,7 +8,7 @@
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
 
-export const PLUGIN_NAME = 'indentAndOutdent'
+export const PLUGIN_NAME = 'IndentAndOutdent'
 export const CN_ICON_INDENT = 'exsied-btn-indent'
 export const CN_ICON_OUTDENT = 'exsied-btn-outdent'
 

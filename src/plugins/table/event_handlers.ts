@@ -29,6 +29,7 @@ export function insertTable() {
 			</tr>
 		</tbody>
 		`
+
 	if (exsied.elements.workplace) DomUtils.addElementBySelection(exsied.elements.workplace, ele)
 }
 

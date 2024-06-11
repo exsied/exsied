@@ -8,7 +8,7 @@
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
 
-export const PLUGIN_NAME = 'image'
+export const PLUGIN_NAME = 'Image'
 export const CN_ICON = 'exsied-btn-image'
 export const CN_RESIZER = 'exsied-image-resizer'
 export const CN_BTN_TL = 'exsied-image-resizer-tl'
@@ -25,13 +25,15 @@ export const RESIZER_ID = `exsied_${PLUGIN_NAME}_resizer`
 
 export type PluginConf = {
 	addToNormalToolbar: boolean
+	addToNormalToolbarInsertMenu: boolean
 	addToBubbleToolbar: boolean
 	defaultAlt: string
 	defaultSrc: string
 }
 
 export const PLUGIN_CONF: PluginConf = {
-	addToNormalToolbar:true,
+	addToNormalToolbar: false,
+	addToNormalToolbarInsertMenu: true,
 	addToBubbleToolbar: false,
 	defaultAlt: 'this is an image',
 	defaultSrc: '',

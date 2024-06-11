@@ -13,12 +13,14 @@ export const CN_ICON = 'exsied-btn-quote'
 
 export type PluginConf = {
 	addToNormalToolbar: boolean
+	addToNormalToolbarInsertMenu: boolean
 	addToBubbleToolbar: boolean
 	defaultInnerHTML: string
 }
 
 export const PLUGIN_CONF: PluginConf = {
-	addToNormalToolbar:true,
+	addToNormalToolbar: false,
+	addToNormalToolbarInsertMenu: true,
 	addToBubbleToolbar: true,
 	defaultInnerHTML: '> ',
 }

@@ -14,24 +14,26 @@ import { PluginConf as FontFamilyPluginConf } from './plugins/font_family/base'
 import { PluginConf as FontSizePluginConf } from './plugins/font_size/base'
 import './styles/style.scss'
 
+// plugin about
 const aboutConf = plugins.about.conf as AboutPluginConf
 aboutConf.deveploers.push(
 	{
-		name: 'enassi github',
+		name: 'enassi',
 		repoLink: 'https://github.com/enassi/enassi',
 		webSiteLink: 'https://xxx.com/xxx',
 		email: 'xxx@xxx.xxx',
 		extContent: `Enassi's github repo`,
 	},
 	{
-		name: 'enassi gitee',
-		repoLink: 'https://gitee.com/enassi/enassi',
+		name: 'exsied',
+		repoLink: 'https://gitee.com/exsied/exsied',
 		webSiteLink: 'https://xxx.com/xxx',
 		email: 'xxx@xxx.xxx',
-		extContent: `Enassi's gitee repo`,
+		extContent: `Exsied's gitee repo`,
 	},
 )
 
+// plugin fontSize
 const fontSizeConf = plugins.fontSize.conf as FontSizePluginConf
 fontSizeConf.fontSizeOptions.push(
 	{
@@ -48,6 +50,7 @@ fontSizeConf.fontSizeOptions.push(
 	},
 )
 
+// plugin fontFamily
 const fontFamilyConf = plugins.fontFamily.conf as FontFamilyPluginConf
 fontFamilyConf.fontFamilyOptions.push(
 	{
@@ -72,7 +75,6 @@ exsied.init({
 		plugins.underline,
 		plugins.strikethrough,
 		plugins.headings,
-		plugins.subscriptAndSuperscript,
 		plugins.link,
 		plugins.image,
 		plugins.table,
@@ -83,6 +85,8 @@ exsied.init({
 		plugins.fontFamily,
 		plugins.textAlign,
 		plugins.indentAndOutdent,
+		plugins.subscriptAndSuperscript,
+		plugins.insertMenu,
 		plugins.colors,
 		plugins.findAndReplace,
 		plugins.sourceCode,

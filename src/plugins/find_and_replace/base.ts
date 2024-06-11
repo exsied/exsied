@@ -8,7 +8,7 @@
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
 
-export const PLUGIN_NAME = 'findAndReplace'
+export const PLUGIN_NAME = 'FindAndReplace'
 export const POPUP_ID = `exsied_${PLUGIN_NAME}_popup`
 export const CN_ICON_FIND = 'exsied-btn-find'
 export const CN_ICON_REPLACE = 'exsied-btn-replace'

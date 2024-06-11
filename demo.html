@@ -8,31 +8,67 @@
 	<body>
 		<p>
 			Exsied demo:
-			<a href="https://exsied.pages.dev/demo">Full demo </a> /
+			<a href="https://exsied.pages.dev/demo">Live demo </a> /
 			<a href="https://enassi.pages.dev/en/exsied/about/">Document</a> /
 			<a href="https://github.com/exsied/exsied">Github repo</a> /
 			<a href="https://gitee.com/exsied/exsied">Gite repo</a>
 		</p>
 		<div id="app"></div>
 
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exsied/exsied@0.6.2/dist/style.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exsied/exsied@0.7.0/dist/style.css" />
 		<script type="module">
-			import { KEY_CTRL, exsied, plugins } from 'https://cdn.jsdelivr.net/npm/@exsied/exsied@0.6.2/dist/index.js'
+			import { KEY_CTRL, exsied, plugins } from 'https://cdn.jsdelivr.net/npm/@exsied/exsied@0.7.0/dist/index.js'
 
-			plugins.about.conf.deveploers.push(
+			// plugin about
+			const aboutConf = plugins.about.conf
+			aboutConf.deveploers.push(
 				{
-					name: 'enassi github',
+					name: 'enassi',
 					repoLink: 'https://github.com/enassi/enassi',
 					webSiteLink: 'https://xxx.com/xxx',
 					email: 'xxx@xxx.xxx',
 					extContent: `Enassi's github repo`,
 				},
 				{
-					name: 'enassi gitee',
-					repoLink: 'https://gitee.com/enassi/enassi',
+					name: 'exsied',
+					repoLink: 'https://gitee.com/exsied/exsied',
 					webSiteLink: 'https://xxx.com/xxx',
 					email: 'xxx@xxx.xxx',
-					extContent: `Enassi's gitee repo`,
+					extContent: `Exsied's gitee repo`,
+				},
+			)
+
+			// plugin fontSize
+			const fontSizeConf = plugins.fontSize.conf
+			fontSizeConf.fontSizeOptions.push(
+				{
+					name: '18px',
+					value: '18px',
+					tooltipText: '',
+					iconClassName: '',
+				},
+				{
+					name: '28px',
+					value: '28px',
+					tooltipText: '',
+					iconClassName: '',
+				},
+			)
+
+			// plugin fontFamily
+			const fontFamilyConf = plugins.fontFamily.conf
+			fontFamilyConf.fontFamilyOptions.push(
+				{
+					name: 'fontFamily_1',
+					value: 'fontFamily_1',
+					tooltipText: '',
+					iconClassName: '',
+				},
+				{
+					name: 'fontFamily_2',
+					value: 'fontFamily_2',
+					tooltipText: '',
+					iconClassName: '',
 				},
 			)
 
@@ -44,7 +80,6 @@
 					plugins.underline,
 					plugins.strikethrough,
 					plugins.headings,
-					plugins.subscriptAndSuperscript,
 					plugins.link,
 					plugins.image,
 					plugins.table,
@@ -55,6 +90,8 @@
 					plugins.fontFamily,
 					plugins.textAlign,
 					plugins.indentAndOutdent,
+					plugins.subscriptAndSuperscript,
+					plugins.insertMenu,
 					plugins.colors,
 					plugins.findAndReplace,
 					plugins.sourceCode,

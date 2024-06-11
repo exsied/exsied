@@ -24,8 +24,10 @@ export const CN_BUBBLE_BTNS = 'exsied-btns'
 
 export type ToolBarButton = {
 	name: string
+	buttonText?: string
 	tooltipText: string
 	addToNormalToolbar: boolean
+	addToNormalToolbarInsertMenu?: boolean
 	addToBubbleToolbar: boolean
 
 	eleType: 'button'
@@ -55,7 +57,16 @@ export type ToolBarSelect = {
 
 export type ToolBarControl = ToolBarButton | ToolBarSelect
 
+export type InsertElementButton = {
+	pluginName: string
+	ctrlName: string
+	tooltipText: string
+	iconClassName?: string
+	clickCallBack: ClickEventHandler
+}
+
 export const PLUGINS_SELECT_ID: string[] = []
+export const INSERT_ELEMENT_BUTTONS: InsertElementButton[] = []
 
 export class Toolbar {
 	static genBtns = () => {
@@ -71,8 +82,17 @@ export class Toolbar {
 
 				if (ctrl.eleType === 'button') {
 					let btnIcon = ctrl.iconClassName ? `<i class="exsied-icon ${ctrl.iconClassName}"></i>` : ''
-					const html = `<button class="exsied-ctrl" id="___id___">${btnIcon}</button>`
+					const html = `<button class="exsied-ctrl" id="___id___">${btnIcon}${ctrl.buttonText || ''}</button>`
 					if (ctrl.addToNormalToolbar) normalCtrlHtmlArr.push(html.replace('___id___', ids.normal))
+					if (ctrl.addToNormalToolbarInsertMenu) {
+						INSERT_ELEMENT_BUTTONS.push({
+							pluginName: plg.name,
+							ctrlName: ctrl.name,
+							tooltipText: ctrl.tooltipText,
+							iconClassName: ctrl.iconClassName,
+							clickCallBack: ctrl.clickCallBack,
+						})
+					}
 					if (ctrl.addToBubbleToolbar && bubbleBtnsEle) {
 						if (!DomUtils.existElementById(ids.bubble)) bubbleBtnsEle.innerHTML += html.replace('___id___', ids.bubble)
 					}
@@ -133,7 +153,7 @@ export class Toolbar {
 
 	static bindBtnEvents = () => {
 		for (const plg of PLUGINS) {
-			plg.addHhandler()
+			plg.addHandler()
 
 			if (!plg.toolBarControl) continue
 
@@ -162,7 +182,7 @@ export class Toolbar {
 
 	static unBindBtnEvents = () => {
 		for (const plg of PLUGINS) {
-			plg.removeHhandler()
+			plg.removeHandler()
 		}
 
 		const editorEle = exsied.elements.editor

@@ -3,7 +3,7 @@
 .exsied .exsied-toolbar {
 	i.exsied-btn-link {
 		@include bkgSvgIcon;
-		background-image: url(./icons/link.svg);
+		background-image: url(../../icons/link.svg);
 	}
 }
 
@@ -39,22 +39,22 @@
 
 			i.exsied-btn-edit {
 				@include bkgSvgIcon;
-				background-image: url(./icons/edit.svg);
+				background-image: url(../../icons/edit.svg);
 			}
 
 			i.exsied-btn-trash {
 				@include bkgSvgIcon;
-				background-image: url(./icons/trash.svg);
+				background-image: url(../../icons/trash.svg);
 			}
 
 			i.exsied-btn-cancel {
 				@include bkgSvgIcon;
-				background-image: url(./icons/close.svg);
+				background-image: url(../../icons/close.svg);
 			}
 
 			i.exsied-btn-confirm {
 				@include bkgSvgIcon;
-				background-image: url(./icons/confirm.svg);
+				background-image: url(../../icons/confirm.svg);
 			}
 		}
 	}

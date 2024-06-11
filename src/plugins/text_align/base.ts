@@ -8,7 +8,7 @@
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
 
-export const PLUGIN_NAME = 'Quote'
+export const PLUGIN_NAME = 'TextAlign'
 export const CN_ICON_CENTER = 'exsied-btn-center'
 export const CN_ICON_LEFT = 'exsied-btn-left'
 export const CN_ICON_RIGHT = 'exsied-btn-right'

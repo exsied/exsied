@@ -10,7 +10,7 @@
 import { TN_B, TN_STRONG } from '../../contants'
 import { exsied } from '../../core'
 
-export const PLUGIN_NAME = 'bold'
+export const PLUGIN_NAME = 'Bold'
 export const CN_ICON = 'exsied-btn-blod'
 
 export const isHighlight = () => {

@@ -24,7 +24,8 @@ export const horizonalRule: ExsiedPlugin = {
 		{
 			name: PLUGIN_NAME,
 			tooltipText: 'Horizonal rule',
-			addToNormalToolbar:PLUGIN_CONF.addToNormalToolbar,
+			addToNormalToolbar: PLUGIN_CONF.addToNormalToolbar,
+			addToNormalToolbarInsertMenu: PLUGIN_CONF.addToNormalToolbarInsertMenu,
 			addToBubbleToolbar: PLUGIN_CONF.addToBubbleToolbar,
 
 			eleType: 'button',
@@ -33,8 +34,8 @@ export const horizonalRule: ExsiedPlugin = {
 		},
 	],
 
-	addHhandler: () => {},
-	removeHhandler: () => {},
+	addHandler: () => {},
+	removeHandler: () => {},
 	checkHighlight: (_event) => {},
 	removeTempEle: (_event) => {},
 }

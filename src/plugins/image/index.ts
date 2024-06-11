@@ -30,7 +30,8 @@ export const image: ExsiedPlugin = {
 		{
 			name: PLUGIN_NAME,
 			tooltipText: 'Image',
-			addToNormalToolbar:PLUGIN_CONF.addToNormalToolbar,
+			addToNormalToolbar: PLUGIN_CONF.addToNormalToolbar,
+			addToNormalToolbarInsertMenu: PLUGIN_CONF.addToNormalToolbarInsertMenu,
 			addToBubbleToolbar: PLUGIN_CONF.addToBubbleToolbar,
 
 			eleType: 'button',
@@ -39,12 +40,12 @@ export const image: ExsiedPlugin = {
 		},
 	],
 
-	addHhandler: () => {
+	addHandler: () => {
 		addEleClickCallbackByTag(TN_IMG, onClickImage)
 
 		addEleClickCallbackByClass(CN_BTN_SETTING, onClickImageSettingButton)
 	},
-	removeHhandler: () => {},
+	removeHandler: () => {},
 	checkHighlight: (_event) => {
 		const btnEle = exsied.elements.editor?.querySelector(`#${toolbarBtnIds.normal}`)
 

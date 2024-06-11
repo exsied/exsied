@@ -13,21 +13,21 @@ import { t } from '../../core/i18n'
 import { createPopupView } from '../../ui/popup-view'
 import { CN_ROOT, PLUGIN_CONF, PLUGIN_NAME, POPUP_ID } from './base'
 
-export function insertLink(event: Event) {
+export function showAbout(event: Event) {
 	const targetEle = event.target as HTMLAnchorElement
 	targetEle.setAttribute(DATA_ATTR_TEMP_EDIT, PLUGIN_NAME)
 
 	let contentHtml = `
 		<p>
-			${LIB_NAME} version ${pkg.version} 
+			${LIB_NAME} ${pkg.version} 
+			<a href="https://enassi.pages.dev/en/exsied/about/">${t('Document')}</a> /
 			<a href="${LIB_REPO_GITHUB}">Github</a> / 
-			<a href="https://gitee.com/exsied/exsied">Gitee</a> /
-			<a href="https://enassi.pages.dev/en/exsied/about/">Document</a> 
+			<a href="https://gitee.com/exsied/exsied">Gitee</a>
 		</p>
 		<p>
 			${LIB_NAME} is a WYSIWYG editor from enassi(
-			<a href="https://github.com/enassi/enassi">Github</a> 
-			/
+			<a href="https://enassi.pages.dev/en/exsied/about/">${t('Document')}</a> /
+			<a href="https://github.com/enassi/enassi">Github</a> /
 			<a href="https://gitee.com/enassi/enassi">Gitee</a>
 			)
 		</p>

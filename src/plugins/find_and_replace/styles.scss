@@ -3,11 +3,11 @@
 .exsied .exsied-toolbar {
 	i.exsied-btn-find {
 		@include bkgSvgIcon;
-		background-image: url(./icons/find.svg);
+		background-image: url(../../icons/find.svg);
 	}
 	i.exsied-btn-replace {
 		@include bkgSvgIcon;
-		background-image: url(./icons/replace.svg);
+		background-image: url(../../icons/replace.svg);
 	}
 }
 
@@ -28,32 +28,32 @@
 
 		i.exsied-btn-prev {
 			@include bkgSvgIcon;
-			background-image: url(./icons/arrow-up.svg);
+			background-image: url(../../icons/arrow-up.svg);
 		}
 
 		i.exsied-btn-next {
 			@include bkgSvgIcon;
-			background-image: url(./icons/arrow-down.svg);
+			background-image: url(../../icons/arrow-down.svg);
 		}
 
 		i.exsied-btn-hightlight-all {
 			@include bkgSvgIcon;
-			background-image: url(./icons/highlight.svg);
+			background-image: url(../../icons/highlight.svg);
 		}
 
 		i.exsied-btn-close {
 			@include bkgSvgIcon;
-			background-image: url(./icons/close.svg);
+			background-image: url(../../icons/close.svg);
 		}
 
 		i.exsied-btn-replace-this {
 			@include bkgSvgIcon;
-			background-image: url(./icons/replace-empty.svg);
+			background-image: url(../../icons/replace-empty.svg);
 		}
 
 		i.exsied-btn-replace-all {
 			@include bkgSvgIcon;
-			background-image: url(./icons/replace-filled.svg);
+			background-image: url(../../icons/replace-filled.svg);
 		}
 	}
 }

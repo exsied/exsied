@@ -29,6 +29,7 @@ export const quote: ExsiedPlugin = {
 			name: PLUGIN_NAME,
 			tooltipText: 'Quote',
 			addToNormalToolbar:PLUGIN_CONF.addToNormalToolbar,
+			addToNormalToolbarInsertMenu:PLUGIN_CONF.addToNormalToolbarInsertMenu,
 			addToBubbleToolbar: PLUGIN_CONF.addToBubbleToolbar,
 
 			eleType: 'button',
@@ -37,8 +38,8 @@ export const quote: ExsiedPlugin = {
 		},
 	],
 
-	addHhandler: () => {},
-	removeHhandler: () => {},
+	addHandler: () => {},
+	removeHandler: () => {},
 	checkHighlight: (_event) => {
 		const btnEle = exsied.elements.editor?.querySelector(`#${toolbarBtnIds.normal}`)
 

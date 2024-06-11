@@ -7,21 +7,20 @@
  *     https://github.com/exsied/exsied/blob/main/LICENSE
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
-import { CN_ACTIVE, TN_A } from '../../contants'
-import { exsied } from '../../core'
 import { DomUtils } from '../../core/dom_utils'
-import { addEleClickCallbackByTag } from '../../core/events'
+import { t } from '../../core/i18n'
 import { Commands, ExsiedPlugin } from '../../core/plugin'
+import { SelectionUtils } from '../../core/selection_utils'
 import { Toolbar } from '../../ui/toolbar'
 import { CN_ICON, PLUGIN_CONF, PLUGIN_NAME, POPUP_ID } from './base'
-import { insertLink, onClickLink } from './event_handlers'
+import { showInsertMenu } from './event_handlers'
 import './styles.scss'
 
 const toolbarBtnIds = Toolbar.genButtonIds(PLUGIN_NAME, PLUGIN_NAME)
 const commands: Commands = {}
-commands[PLUGIN_NAME] = insertLink
+commands[PLUGIN_NAME] = showInsertMenu
 
-export const link: ExsiedPlugin = {
+export const insertMenu: ExsiedPlugin = {
 	name: PLUGIN_NAME,
 	conf: PLUGIN_CONF,
 	commands,
@@ -29,9 +28,9 @@ export const link: ExsiedPlugin = {
 	toolBarControl: [
 		{
 			name: PLUGIN_NAME,
-			tooltipText: 'Link',
-			addToNormalToolbar:PLUGIN_CONF.addToNormalToolbar,
-			addToNormalToolbarInsertMenu:PLUGIN_CONF.addToNormalToolbarInsertMenu,
+			buttonText: t('Insert'),
+			tooltipText: 'Insert menu',
+			addToNormalToolbar: PLUGIN_CONF.addToNormalToolbar,
 			addToBubbleToolbar: PLUGIN_CONF.addToBubbleToolbar,
 
 			eleType: 'button',
@@ -41,23 +40,18 @@ export const link: ExsiedPlugin = {
 	],
 
 	addHandler: () => {
-		addEleClickCallbackByTag(TN_A, onClickLink)
+		const btnEle = document.getElementById(toolbarBtnIds.normal)
+		if (btnEle) {
+			btnEle.addEventListener('mouseover', () => {
+				SelectionUtils.backupSelection()
+			})
+		}
 	},
 	removeHandler: () => {},
-	checkHighlight: (_event) => {
-		const btnEle = exsied.elements.editor?.querySelector(`#${toolbarBtnIds.normal}`)
-
-		if (btnEle) {
-			const allTagNamesArr = exsied.cursorAllParentsTagNamesArr
-			allTagNamesArr.includes(TN_A) ? btnEle.classList.add(CN_ACTIVE) : btnEle.classList.remove(CN_ACTIVE)
-		}
-	},
+	checkHighlight: (_event) => {},
 	removeTempEle: (_event) => {
-		const allTagNamesArr = exsied.cursorAllParentsTagNamesArr
-		if (!allTagNamesArr.includes(TN_A)) {
-			DomUtils.removeElementById(POPUP_ID)
-		}
+		DomUtils.removeElementById(POPUP_ID)
 	},
 }
 
-export default link
+export default insertMenu

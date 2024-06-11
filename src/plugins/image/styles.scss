@@ -3,7 +3,7 @@
 .exsied .exsied-toolbar {
 	i.exsied-btn-image {
 		@include bkgSvgIcon;
-		background-image: url(./icons/image.svg);
+		background-image: url(../../icons/image.svg);
 	}
 }
 
@@ -86,7 +86,7 @@
 
 		&::after {
 			@include bkgSvgIcon;
-			background-image: url(./icons/gear.svg);
+			background-image: url(../../icons/gear.svg);
 
 			width: 100%;
 			height: 100%;

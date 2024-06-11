@@ -1,0 +1,28 @@
+@import '../../styles/mixin.scss';
+
+.exsied .exsied-toolbar {
+	i.exsied-btn-plus {
+		@include bkgSvgIcon;
+		background-image: url(../../icons/plus.svg);
+	}
+}
+
+.exsied-insert-menu-view {
+	border: none;
+	border-radius: 0;
+	padding: 0;
+
+	.exsied-toolbar {
+		background-color: var(--exd-component-backgroud-color);
+	}
+
+	.exsied-toolbar-insert-menu-item {
+		display: flex;
+		padding: 0.5rem;
+		cursor: pointer;
+
+		.exsied-icon {
+			padding-inline-end: 0.5rem;
+		}
+	}
+}
