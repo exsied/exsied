@@ -21,6 +21,6 @@ export type PluginConf = {
 export const PLUGIN_CONF: PluginConf = {
 	addToNormalToolbar: false,
 	addToNormalToolbarInsertMenu: true,
-	addToBubbleToolbar: true,
+	addToBubbleToolbar: false,
 	defaultInnerHTML: '> ',
 }

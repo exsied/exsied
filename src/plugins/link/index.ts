@@ -30,8 +30,8 @@ export const link: ExsiedPlugin = {
 		{
 			name: PLUGIN_NAME,
 			tooltipText: 'Link',
-			addToNormalToolbar:PLUGIN_CONF.addToNormalToolbar,
-			addToNormalToolbarInsertMenu:PLUGIN_CONF.addToNormalToolbarInsertMenu,
+			addToNormalToolbar: PLUGIN_CONF.addToNormalToolbar,
+			addToNormalToolbarInsertMenu: PLUGIN_CONF.addToNormalToolbarInsertMenu,
 			addToBubbleToolbar: PLUGIN_CONF.addToBubbleToolbar,
 
 			eleType: 'button',

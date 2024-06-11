@@ -10,7 +10,7 @@
 import { FormatStyle } from '../../core/format/style'
 import { SelectionUtils } from '../../core/selection_utils'
 import { Style } from '../../types'
-import { ColorPicker } from '../../ui/color-picker'
+import { ColorPicker } from '../../ui/color_picker'
 import { PLUGIN_CONF, PLUGIN_NAME, POPUP_ID_BKG, POPUP_ID_TEXT } from './base'
 
 export function showColorPickerBkg(event: Event) {

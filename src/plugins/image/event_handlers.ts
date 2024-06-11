@@ -11,7 +11,7 @@ import { CN_ACTIVE, CN_BIND_EVENT, CN_TEMP_ELE, DATA_ATTR_TEMP_EDIT, TN_DIV, TN_
 import { exsied } from '../../core'
 import { DomUtils } from '../../core/dom_utils'
 import { t } from '../../core/i18n'
-import { CN_POPUP_VIEW, createPopupView } from '../../ui/popup-view'
+import { CN_POPUP_VIEW, createPopupView } from '../../ui/popup_view'
 import { cssStyleDeclarationToString } from '../../utils/css'
 import { isNumberString } from '../../utils/string'
 import {

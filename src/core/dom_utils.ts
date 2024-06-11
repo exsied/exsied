@@ -7,7 +7,7 @@
  *     https://github.com/exsied/exsied/blob/main/LICENSE
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
-import { TN_P, TN_DIV } from '../contants'
+import { TN_DIV, TN_P } from '../contants'
 import { HTMLTagNames } from '../types'
 import { tagNameLc } from '../utils'
 

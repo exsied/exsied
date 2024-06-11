@@ -138,12 +138,12 @@ export class Toolbar {
 		}
 	}
 
-	static checkHighlight = (event: Event) => {
-		const targetEle = event.target as HTMLElement
-		const tagName = tagNameLc(targetEle)
-		execEleEventClickCallbackByTag(tagName, event)
-
+	static clickWorkplace = (event: Event) => {
 		exsied.cursorAllParentsTagNamesArr = this.getAllTagNamesArr(event)
+		for (const item of exsied.cursorAllParentsTagNamesArr) {
+			execEleEventClickCallbackByTag(item, event)
+		}
+
 		PLUGINS.map((item, _index) => {
 			item.checkHighlight(event)
 			// TODO: Should bind to body
@@ -177,7 +177,7 @@ export class Toolbar {
 		}
 
 		const workplaceEle = exsied.elements.workplace
-		if (workplaceEle) workplaceEle.addEventListener('click', this.checkHighlight)
+		if (workplaceEle) workplaceEle.addEventListener('click', this.clickWorkplace)
 	}
 
 	static unBindBtnEvents = () => {
@@ -186,7 +186,7 @@ export class Toolbar {
 		}
 
 		const editorEle = exsied.elements.editor
-		if (editorEle) editorEle.removeEventListener('click', this.checkHighlight)
+		if (editorEle) editorEle.removeEventListener('click', this.clickWorkplace)
 	}
 
 	static initDropdownElements = () => {

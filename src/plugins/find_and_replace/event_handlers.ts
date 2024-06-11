@@ -11,7 +11,7 @@ import { CN_TEMP_ELE, CN_TEMP_ELE_HIGHLIGHT, TN_SPAN } from '../../contants'
 import { exsied } from '../../core'
 import { DomUtils } from '../../core/dom_utils'
 import { FormatTaName } from '../../core/format/tag_name'
-import { createPopupView } from '../../ui/popup-view'
+import { createPopupView } from '../../ui/popup_view'
 import { CN_FIND, PLUGIN_NAME, POPUP_ID } from './base'
 import { FindAndReplace } from './find'
 

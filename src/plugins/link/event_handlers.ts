@@ -11,7 +11,7 @@ import { CN_TEMP_ELE, DATA_ATTR_TEMP_EDIT, TN_A } from '../../contants'
 import { exsied } from '../../core'
 import { DomUtils } from '../../core/dom_utils'
 import { SelectionUtils } from '../../core/selection_utils'
-import { createPopupView } from '../../ui/popup-view'
+import { createPopupView } from '../../ui/popup_view'
 import {
 	CN_CANCEL_BTN,
 	CN_CONFIRM_BTN,

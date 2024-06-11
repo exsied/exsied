@@ -30,7 +30,7 @@ export const findAndReplace: ExsiedPlugin = {
 		{
 			name: NAME_FIND,
 			tooltipText: 'Find',
-			addToNormalToolbar:PLUGIN_CONF.addToNormalToolbar.find,
+			addToNormalToolbar: PLUGIN_CONF.addToNormalToolbar.find,
 			addToBubbleToolbar: PLUGIN_CONF.addToBubbleToolbar.find,
 
 			eleType: 'button',
@@ -40,7 +40,7 @@ export const findAndReplace: ExsiedPlugin = {
 		{
 			name: NAME_REPLACE,
 			tooltipText: 'Replace',
-			addToNormalToolbar:PLUGIN_CONF.addToNormalToolbar.replace,
+			addToNormalToolbar: PLUGIN_CONF.addToNormalToolbar.replace,
 			addToBubbleToolbar: PLUGIN_CONF.addToBubbleToolbar.replace,
 
 			eleType: 'button',
