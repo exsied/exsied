@@ -15,12 +15,12 @@ import { CN_ICON_OL, CN_ICON_UL, PLUGIN_CONF, PLUGIN_NAME } from './base'
 import { insertOl, insertUl } from './event_handlers'
 import './styles.scss'
 
-const OL_NAME = 'OrderedList'
-const UL_NAME = 'UnorderedList'
+const NAME_OL = 'OrderedList'
+const NAME_UL = 'UnorderedList'
 const toolbarBtnIds = Toolbar.genButtonIds(PLUGIN_NAME, PLUGIN_NAME)
 const commands: Commands = {}
-commands[OL_NAME] = insertOl
-commands[UL_NAME] = insertUl
+commands[NAME_OL] = insertOl
+commands[NAME_UL] = insertUl
 
 export const lists: ExsiedPlugin = {
 	name: PLUGIN_NAME,
@@ -29,7 +29,7 @@ export const lists: ExsiedPlugin = {
 
 	toolBarControl: [
 		{
-			name: OL_NAME,
+			name: NAME_OL,
 			tooltipText: 'Insert ordered list',
 			addToNormalToolbar: PLUGIN_CONF.addToNormalToolbar.ol,
 			addToNormalToolbarInsertMenu:PLUGIN_CONF.addToNormalToolbarInsertMenu.ol,
@@ -37,10 +37,10 @@ export const lists: ExsiedPlugin = {
 
 			eleType: 'button',
 			iconClassName: CN_ICON_OL,
-			clickCallBack: commands[OL_NAME],
+			clickCallBack: commands[NAME_OL],
 		},
 		{
-			name: UL_NAME,
+			name: NAME_UL,
 			tooltipText: 'Insert unordered list',
 			addToNormalToolbar: PLUGIN_CONF.addToNormalToolbar.ul,
 			addToNormalToolbarInsertMenu:PLUGIN_CONF.addToNormalToolbarInsertMenu.ul,
@@ -48,7 +48,7 @@ export const lists: ExsiedPlugin = {
 
 			eleType: 'button',
 			iconClassName: CN_ICON_UL,
-			clickCallBack: commands[UL_NAME],
+			clickCallBack: commands[NAME_UL],
 		},
 	],
 

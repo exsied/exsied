@@ -13,11 +13,11 @@ import { insertCodeBlock, toggleSourceView } from './event_handlers'
 import { afterSetHtml, beforeGetHtml } from './hooks'
 import './styles.scss'
 
-export const SOURCE_CODE_VIEW_NAME = 'sourceCodeView'
-export const INSERT_SOURCE_CODE_BOCK_NAME = 'insertSourceCodeBock'
+export const NAME_SOURCE_CODE_VIEW = 'sourceCodeView'
+export const NAME_INSERT_SOURCE_CODE_BOCK = 'insertSourceCodeBock'
 const commands: Commands = {}
-commands[SOURCE_CODE_VIEW_NAME] = toggleSourceView
-commands[INSERT_SOURCE_CODE_BOCK_NAME] = insertCodeBlock
+commands[NAME_SOURCE_CODE_VIEW] = toggleSourceView
+commands[NAME_INSERT_SOURCE_CODE_BOCK] = insertCodeBlock
 
 export const sourceCode: ExsiedPlugin = {
 	name: PLUGIN_NAME,
@@ -37,14 +37,14 @@ export const sourceCode: ExsiedPlugin = {
 		},
 		*/
 		{
-			name: INSERT_SOURCE_CODE_BOCK_NAME,
+			name: NAME_INSERT_SOURCE_CODE_BOCK,
 			tooltipText: 'Insert source code bock',
 			addToNormalToolbar:PLUGIN_CONF.addToNormalToolbar,
 			addToBubbleToolbar: PLUGIN_CONF.addToBubbleToolbar,
 
 			eleType: 'button',
 			iconClassName: CN_ICON_BRACES,
-			clickCallBack: commands[INSERT_SOURCE_CODE_BOCK_NAME],
+			clickCallBack: commands[NAME_INSERT_SOURCE_CODE_BOCK],
 		},
 	],
 

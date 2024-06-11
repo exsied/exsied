@@ -16,10 +16,10 @@ import {
 	OPTION_HEADING4,
 	OPTION_HEADING5,
 	OPTION_HEADING6,
-	OPTION_NORMAL_BLOCK,
+	OPTION_Paragraph,
 } from './base'
 
-export function formatDiv(_event: Event) {
+export function formatParagraph(_event: Event) {
 	FormatTaName.formatSelected(TN_DIV)
 }
 
@@ -51,7 +51,7 @@ export function formatHeading(event: Event) {
 	if (event.target instanceof HTMLSelectElement) {
 		const value = event.target.value
 
-		if (value === OPTION_NORMAL_BLOCK) formatDiv(event)
+		if (value === OPTION_Paragraph) formatParagraph(event)
 		if (value === OPTION_HEADING1) formatH1(event)
 		if (value === OPTION_HEADING2) formatH2(event)
 		if (value === OPTION_HEADING3) formatH3(event)
