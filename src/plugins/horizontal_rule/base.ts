@@ -12,11 +12,11 @@ export const PLUGIN_NAME = 'horizonalRule'
 export const CN_ICON = 'exsied-btn-hr'
 
 export type PluginConf = {
-	addToNormal: boolean
-	addToBubble: boolean
+	addToNormalToolbar: boolean
+	addToBubbleToolbar: boolean
 }
 
 export const PLUGIN_CONF: PluginConf = {
-	addToNormal:true,
-	addToBubble: false,
+	addToNormalToolbar:true,
+	addToBubbleToolbar: false,
 }

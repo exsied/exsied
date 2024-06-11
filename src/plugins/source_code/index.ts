@@ -29,7 +29,7 @@ export const sourceCode: ExsiedPlugin = {
 		{
 			name: SOURCE_CODE_VIEW_NAME,
 			tooltipText: 'Source code view',
-			addToBubble: PLUGIN_CONF.addToBubble,
+			addToBubbleToolbar: PLUGIN_CONF.addToBubbleToolbar,
 
 			eleType: 'button',
 			iconClassName: CN_ICON_XML,
@@ -39,8 +39,8 @@ export const sourceCode: ExsiedPlugin = {
 		{
 			name: INSERT_SOURCE_CODE_BOCK_NAME,
 			tooltipText: 'Insert source code bock',
-			addToNormal:PLUGIN_CONF.addToNormal,
-			addToBubble: PLUGIN_CONF.addToBubble,
+			addToNormalToolbar:PLUGIN_CONF.addToNormalToolbar,
+			addToBubbleToolbar: PLUGIN_CONF.addToBubbleToolbar,
 
 			eleType: 'button',
 			iconClassName: CN_ICON_BRACES,

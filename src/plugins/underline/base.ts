@@ -19,11 +19,11 @@ export const isHighlight = () => {
 }
 
 export type PluginConf = {
-	addToNormal: boolean
-	addToBubble: boolean
+	addToNormalToolbar: boolean
+	addToBubbleToolbar: boolean
 }
 
 export const PLUGIN_CONF: PluginConf = {
-	addToNormal:true,
-	addToBubble: true,
+	addToNormalToolbar:true,
+	addToBubbleToolbar: true,
 }

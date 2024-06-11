@@ -26,14 +26,14 @@ export const OPTION_HEADING5 = TN_H5
 export const OPTION_HEADING6 = TN_H6
 
 export type PluginConf = {
-	addToNormal: boolean
-	addToBubble: boolean
+	addToNormalToolbar: boolean
+	addToBubbleToolbar: boolean
 	headingsOptions: ToolBarSelectOption[]
 }
 
 export const PLUGIN_CONF: PluginConf = {
-	addToNormal:true,
-	addToBubble: true,
+	addToNormalToolbar:true,
+	addToBubbleToolbar: true,
 	headingsOptions: [
 		{
 			name: 'Paragraph',

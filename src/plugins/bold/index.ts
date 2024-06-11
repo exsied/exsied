@@ -28,8 +28,8 @@ export const bold: ExsiedPlugin = {
 		{
 			name: PLUGIN_NAME,
 			tooltipText: 'Bold',
-			addToNormal:PLUGIN_CONF.addToNormal,
-			addToBubble: PLUGIN_CONF.addToBubble,
+			addToNormalToolbar:PLUGIN_CONF.addToNormalToolbar,
+			addToBubbleToolbar: PLUGIN_CONF.addToBubbleToolbar,
 
 			eleType: 'button',
 			iconClassName: CN_ICON,

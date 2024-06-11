@@ -24,15 +24,15 @@ export const CN_BTN_SETTING = 'exsied-image-settings-btn'
 export const RESIZER_ID = `exsied_${PLUGIN_NAME}_resizer`
 
 export type PluginConf = {
-	addToNormal: boolean
-	addToBubble: boolean
+	addToNormalToolbar: boolean
+	addToBubbleToolbar: boolean
 	defaultAlt: string
 	defaultSrc: string
 }
 
 export const PLUGIN_CONF: PluginConf = {
-	addToNormal:true,
-	addToBubble: false,
+	addToNormalToolbar:true,
+	addToBubbleToolbar: false,
 	defaultAlt: 'this is an image',
 	defaultSrc: '',
 }

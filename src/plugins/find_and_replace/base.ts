@@ -16,22 +16,22 @@ export const CN_FIND = 'find-view'
 export const CN_REPLACE = 'replace-view'
 
 export type PluginConf = {
-	addToNormal: {
+	addToNormalToolbar: {
 		find: boolean
 		replace: boolean
 	}
-	addToBubble: {
+	addToBubbleToolbar: {
 		find: boolean
 		replace: boolean
 	}
 }
 
 export const PLUGIN_CONF: PluginConf = {
-	addToNormal: {
+	addToNormalToolbar: {
 		find: true,
 		replace: true,
 	},
-	addToBubble: {
+	addToBubbleToolbar: {
 		find: false,
 		replace: false,
 	},

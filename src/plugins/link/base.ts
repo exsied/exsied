@@ -22,15 +22,15 @@ export const CN_CANCEL_BTN = 'exsied-link-cancel'
 export const CN_CONFIRM_BTN = 'exsied-link-confirm'
 
 export type PluginConf = {
-	addToNormal: boolean
-	addToBubble: boolean
+	addToNormalToolbar: boolean
+	addToBubbleToolbar: boolean
 	defaultInnerHTML: string
 	defaultHref: string
 }
 
 export const PLUGIN_CONF: PluginConf = {
-	addToNormal:true,
-	addToBubble: true,
+	addToNormalToolbar:true,
+	addToBubbleToolbar: true,
 	defaultInnerHTML: LIB_NAME,
 	defaultHref: LIB_REPO_GITHUB,
 }

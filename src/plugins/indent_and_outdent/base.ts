@@ -13,11 +13,11 @@ export const CN_ICON_INDENT = 'exsied-btn-indent'
 export const CN_ICON_OUTDENT = 'exsied-btn-outdent'
 
 export type PluginConf = {
-	addToNormal: {
+	addToNormalToolbar: {
 		indent: boolean
 		outent: boolean
 	}
-	addToBubble: {
+	addToBubbleToolbar: {
 		indent: boolean
 		outent: boolean
 	}
@@ -25,11 +25,11 @@ export type PluginConf = {
 }
 
 export const PLUGIN_CONF: PluginConf = {
-	addToNormal: {
+	addToNormalToolbar: {
 		indent: true,
 		outent: true,
 	},
-	addToBubble: {
+	addToBubbleToolbar: {
 		indent: false,
 		outent: false,
 	},
