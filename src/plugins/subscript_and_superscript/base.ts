@@ -10,7 +10,7 @@
 import { TN_SUB, TN_SUP } from '../../contants'
 import { exsied } from '../../core'
 
-export const PLUGIN_NAME = 'subscriptAndSuperscript'
+export const PLUGIN_NAME = 'SubscriptAndSuperscript'
 export const CN_ICON_SUB = 'exsied-btn-sub'
 export const CN_ICON_SUP = 'exsied-btn-sup'
 

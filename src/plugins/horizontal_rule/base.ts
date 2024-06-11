@@ -8,7 +8,7 @@
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
 
-export const PLUGIN_NAME = 'horizonalRule'
+export const PLUGIN_NAME = 'HorizonalRule'
 export const CN_ICON = 'exsied-btn-hr'
 
 export type PluginConf = {

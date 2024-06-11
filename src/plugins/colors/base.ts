@@ -8,7 +8,7 @@
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
 
-export const PLUGIN_NAME = 'colors'
+export const PLUGIN_NAME = 'Colors'
 export const CN_ICON_BKG = 'exsied-btn-background-color'
 export const CN_ICON_TEXT = 'exsied-btn-text-color'
 export const BACKGROUND_NAME = 'backgroundColor'

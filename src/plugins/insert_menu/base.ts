@@ -8,7 +8,7 @@
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
 
-export const PLUGIN_NAME = 'insertMenu'
+export const PLUGIN_NAME = 'InsertMenu'
 export const CN_ICON = 'exsied-btn-plus'
 export const POPUP_ID = `exsied_${PLUGIN_NAME}_popup`
 export const CN_ROOT = 'exsied-insert-menu-view'

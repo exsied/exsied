@@ -10,7 +10,7 @@
 import { TN_DEL, TN_S } from '../../contants'
 import { exsied } from '../../core'
 
-export const PLUGIN_NAME = 'strikethrough'
+export const PLUGIN_NAME = 'Strikethrough'
 export const CN_ICON = 'exsied-btn-strikethrough'
 
 export const isHighlight = () => {

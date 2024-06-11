@@ -9,7 +9,7 @@
  */
 import { ToolBarSelectOption } from '../../ui/toolbar'
 
-export const PLUGIN_NAME = 'fontFamily'
+export const PLUGIN_NAME = 'FontFamily'
 
 export type PluginConf = {
 	addToNormalToolbar: boolean

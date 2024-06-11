@@ -8,7 +8,7 @@
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
 
-export const PLUGIN_NAME = 'image'
+export const PLUGIN_NAME = 'Image'
 export const CN_ICON = 'exsied-btn-image'
 export const CN_RESIZER = 'exsied-image-resizer'
 export const CN_BTN_TL = 'exsied-image-resizer-tl'

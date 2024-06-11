@@ -10,7 +10,7 @@
 import { TN_H1, TN_H2, TN_H3, TN_H4, TN_H5, TN_H6, TN_SPAN } from '../../contants'
 import { ToolBarSelectOption } from '../../ui/toolbar'
 
-export const PLUGIN_NAME = 'headings'
+export const PLUGIN_NAME = 'Headings'
 export const HEADING_NAME_1 = 'Heading1'
 export const HEADING_NAME_2 = 'Heading2'
 export const HEADING_NAME_3 = 'Heading3'

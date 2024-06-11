@@ -8,7 +8,7 @@
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
 
-export const PLUGIN_NAME = 'Quote'
+export const PLUGIN_NAME = 'Lists'
 export const CN_ICON_OL = 'exsied-btn-ol'
 export const CN_ICON_UL = 'exsied-btn-ul'
 
