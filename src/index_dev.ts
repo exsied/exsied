@@ -12,6 +12,7 @@ import { DEMO_CONTENT } from './demo_content'
 import { PluginConf as AboutPluginConf } from './plugins/about/base'
 import { PluginConf as FontFamilyPluginConf } from './plugins/font_family/base'
 import { PluginConf as FontSizePluginConf } from './plugins/font_size/base'
+import { PluginConf as LinkConf } from './plugins/link/base'
 import './styles/style.scss'
 
 // plugin about
@@ -66,6 +67,13 @@ fontFamilyConf.fontFamilyOptions.push(
 		iconClassName: '',
 	},
 )
+
+// plugin link
+const linkConf = plugins.link.conf as LinkConf
+linkConf.clickLinkCb = (event) => {
+	event.preventDefault()
+	console.log('plugin link clickLinkCb event: ', event)
+}
 
 exsied.init({
 	id: 'app',

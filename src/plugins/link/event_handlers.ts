@@ -81,6 +81,15 @@ export const onClickLink = (event: Event) => {
 
 	document.body.appendChild(ele)
 
+	const clickLinkCb = PLUGIN_CONF.clickLinkCb
+	if (clickLinkCb) {
+		const link = ele.querySelector(`.${CN_PREVIEW} a`)
+		if (link) {
+			const eleLink = link as HTMLAnchorElement
+			eleLink.addEventListener('click', clickLinkCb)
+		}
+	}
+
 	const eleEditBtn = ele.querySelector(`.${CN_EDIT_BTN}`)
 	if (eleEditBtn) {
 		eleEditBtn.addEventListener('click', onClickLinkEditBtn)

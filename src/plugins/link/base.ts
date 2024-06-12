@@ -27,6 +27,7 @@ export type PluginConf = {
 	addToBubbleToolbar: boolean
 	defaultInnerHTML: string
 	defaultHref: string
+	clickLinkCb?: (event: MouseEvent) => void
 }
 
 export const PLUGIN_CONF: PluginConf = {
