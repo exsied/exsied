@@ -24,7 +24,7 @@ export function toggleSourceView() {
 	PLUGIN_CONF.aferInitSourceCodeViewCb(workplaceEle)
 
 	workplaceEle.addEventListener('input', (_event) => {
-		 PLUGIN_CONF.inputInSourceCodeViewCb(workplaceEle)
+		PLUGIN_CONF.inputInSourceCodeViewCb(workplaceEle)
 	})
 
 	exsied.elements.workplace.after(workplaceEle)
