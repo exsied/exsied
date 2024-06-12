@@ -126,7 +126,7 @@ export class HotkeyUtils {
 
 		// TODO: Processing keyboard symbols with and without shift
 		const funcs = eventData[key.toLowerCase()]
-		if (funcs.length > 0) {
+		if (funcs && funcs.length > 0) {
 			for (const func of funcs) {
 				event.preventDefault()
 				if (func) func(event)
