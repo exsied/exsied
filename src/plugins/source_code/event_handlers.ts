@@ -12,17 +12,19 @@ import { exsied } from '../../core'
 import { DomUtils } from '../../core/dom_utils'
 import { SelectionUtils } from '../../core/selection_utils'
 import { ID_TOOLBAR_EXT, Toolbar } from '../../ui/toolbar'
-import { CN_ICON_BACK, ID_SOURCE_CODE_VIEW, PLUGIN_CONF } from './base'
+import { CN_ICON_BACK, ID_SOURCE_CODE_EDIT_VIEW, PLUGIN_CONF } from './base'
 import { renderElement } from './hooks'
 
 export function toggleSourceView() {
 	const workplaceEle = document.createElement(TN_DIV)
 	workplaceEle.classList.add('exsied-workplace')
-	workplaceEle.id = ID_SOURCE_CODE_VIEW
-	workplaceEle.textContent = exsied.elements.workplace.innerHTML
+	workplaceEle.id = ID_SOURCE_CODE_EDIT_VIEW
 	workplaceEle.contentEditable = 'true'
+
+	PLUGIN_CONF.aferInitSourceCodeViewCb(workplaceEle)
+
 	workplaceEle.addEventListener('input', (_event) => {
-		console.log(workplaceEle.textContent)
+		 PLUGIN_CONF.inputInSourceCodeViewCb(workplaceEle)
 	})
 
 	exsied.elements.workplace.after(workplaceEle)
