@@ -17,6 +17,7 @@
 			import { DEMO_CONTENT } from '../demo_content.js'
 			import { KEY_CTRL, exsied, plugins } from '../dist/index.js'
 
+			// plugin about
 			plugins.about.conf.deveploers.push(
 				{
 					name: 'enassi github',
@@ -33,6 +34,48 @@
 					extContent: `Enassi's gitee repo`,
 				},
 			)
+
+			// plugin fontSize
+			const fontSizeConf = plugins.fontSize.conf
+			fontSizeConf.fontSizeOptions.push(
+				{
+					name: '18px',
+					value: '18px',
+					tooltipText: '',
+					iconClassName: '',
+				},
+				{
+					name: '28px',
+					value: '28px',
+					tooltipText: '',
+					iconClassName: '',
+				},
+			)
+
+			// plugin fontFamily
+			const fontFamilyConf = plugins.fontFamily.conf
+			fontFamilyConf.fontFamilyOptions.push(
+				{
+					name: 'fontFamily_1',
+					value: 'fontFamily_1',
+					tooltipText: '',
+					iconClassName: '',
+				},
+				{
+					name: 'fontFamily_2',
+					value: 'fontFamily_2',
+					tooltipText: '',
+					iconClassName: '',
+				},
+			)
+
+			// plugin link
+			const linkConf = plugins.link.conf
+			linkConf.clickLinkCb = (event) => {
+				event.preventDefault()
+				alert('clicked link, the event detail in console')
+				console.info('plugin link clickLinkCb event: ', event)
+			}
 
 			exsied.init({
 				id: 'app',

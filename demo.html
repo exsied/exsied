@@ -76,6 +76,14 @@
 				},
 			)
 
+			// plugin link
+			const linkConf = plugins.link.conf
+			linkConf.clickLinkCb = (event) => {
+				event.preventDefault()
+				alert('clicked link, the event detail in console')
+				console.info('plugin link clickLinkCb event: ', event)
+			}
+
 			exsied.init({
 				id: 'app',
 				plugins: [
