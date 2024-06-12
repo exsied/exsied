@@ -103,30 +103,30 @@ export function showTableActionPopup(event: Event) {
 		<div class="exsied-table-edit-actions">
 			<div class="exsied-cell"></div>  
 			<div class="exsied-cell exsied-btn exsied-btn-add-to-top">
-				<i class="add"></i>
+				<i class="exsied-icon add"></i>
 			</div>  
 			<div class="exsied-cell"></div>  
 			<div class="exsied-cell exsied-btn exsied-btn-add-to-left">
-				<i class="add"></i>
+				<i class="exsied-icon add"></i>
 			</div>  
 			<div class="exsied-cell"></div>  
 			<div class="exsied-cell exsied-btn exsied-btn-add-to-right">
-				<i class="add"></i>
+				<i class="exsied-icon add"></i>
 			</div>  
 			<div class="exsied-cell"></div>  
 			<div class="exsied-cell exsied-btn exsied-btn-add-to-bottom">
-				<i class="add"></i>
+				<i class="exsied-icon add"></i>
 			</div>  
 			<div class="exsied-cell"></div>  
 
 			<div class="exsied-cell exsied-btn exsied-btn-delete-row">
-				<i class="delete-row"></i>
+				<i class="exsied-icon delete-row"></i>
 			</div>  
 			<div class="exsied-cell exsied-btn exsied-btn-delete-column">
-				<i class="delete-column"></i>
+				<i class="exsied-icon delete-column"></i>
 			</div>  
 			<div class="exsied-cell exsied-btn exsied-btn-delete-table">
-				<i class="trash"></i>
+				<i class="exsied-icon trash"></i>
 			</div>  
 		</div>
 		`

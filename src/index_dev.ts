@@ -117,12 +117,29 @@ exsied.i18n.setDict('zh-CN', {
 
 exsied.i18n.setLocale('zh-CN')
 
-// Test get content HTML
+//
 const testBtn = document.createElement('button')
 testBtn.innerHTML = 'Get content html'
 testBtn.addEventListener('click', () => {
 	const html = exsied.getHtml()
 	console.log(' >>> Exsied content html :::', html)
 })
-const testEle = document.getElementById('test')
-if (testEle) testEle.append(testBtn)
+
+const darkModeBtn = document.createElement('button')
+darkModeBtn.innerHTML = 'Toggle dark mode'
+darkModeBtn.addEventListener('click', () => {
+	const bodyEle = document.querySelector('body')
+	if (!bodyEle) return
+
+	if (bodyEle.classList.contains('dark')) {
+		bodyEle.classList.remove('dark')
+	} else {
+		bodyEle.classList.add('dark')
+	}
+})
+
+const btnsEle = document.getElementById('optBtns')
+if (btnsEle) {
+	btnsEle.append(darkModeBtn)
+	btnsEle.append(testBtn)
+}

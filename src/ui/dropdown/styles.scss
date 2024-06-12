@@ -39,3 +39,9 @@
 		}
 	}
 }
+
+.dark {
+	.exsied-dropdown-trigger::after {
+		filter: invert(0.9);
+	}
+}

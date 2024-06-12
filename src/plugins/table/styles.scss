@@ -64,7 +64,7 @@
 			cursor: pointer;
 
 			&:hover {
-				background-color: #eee;
+				background-color: var(--exd-highlight-color);
 			}
 
 			i {
