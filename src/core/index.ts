@@ -77,14 +77,22 @@ const init = (conf: ExsiedInitConf) => {
 
 	const pluginNames: string[] = []
 	PLUGINS.map((plg) => {
-		if (!pluginNames.includes(plg.name)) {
-			pluginNames.push(plg.name)
+		try {
+			if (!pluginNames.includes(plg.name)) {
+				pluginNames.push(plg.name)
+			}
+		} catch (error) {
+			console.log(error, plg)
 		}
 	})
 
 	conf.plugins.map((plg) => {
-		if (!pluginNames.includes(plg.name)) {
-			PLUGINS.push(plg)
+		try {
+			if (!pluginNames.includes(plg.name)) {
+				PLUGINS.push(plg)
+			}
+		} catch (error) {
+			console.log(error, plg)
 		}
 	})
 

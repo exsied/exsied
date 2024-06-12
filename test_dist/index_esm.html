@@ -34,12 +34,13 @@
 			exsied.init({
 				id: 'app',
 				plugins: [
+					plugins.redoAndUndo,
+					plugins.insertMenu,
 					plugins.bold,
 					plugins.italic,
 					plugins.underline,
 					plugins.strikethrough,
 					plugins.headings,
-					plugins.subscriptAndSuperscript,
 					plugins.link,
 					plugins.image,
 					plugins.table,
@@ -50,6 +51,7 @@
 					plugins.fontFamily,
 					plugins.textAlign,
 					plugins.indentAndOutdent,
+					plugins.subscriptAndSupscript,
 					plugins.colors,
 					plugins.findAndReplace,
 					plugins.sourceCode,

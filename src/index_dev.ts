@@ -71,6 +71,7 @@ exsied.init({
 	id: 'app',
 	plugins: [
 		plugins.redoAndUndo,
+		plugins.insertMenu,
 		plugins.bold,
 		plugins.italic,
 		plugins.underline,
@@ -87,7 +88,6 @@ exsied.init({
 		plugins.textAlign,
 		plugins.indentAndOutdent,
 		plugins.subscriptAndSupscript,
-		plugins.insertMenu,
 		plugins.colors,
 		plugins.findAndReplace,
 		plugins.sourceCode,
