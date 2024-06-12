@@ -108,10 +108,10 @@ exsied.init({
 		{ keyStr: 'u', func: plugins.underline.commands[plugins.underline.name], modifierKeys: [KEY_CTRL] },
 	],
 	hooks: {
-		onInput: (event) => {
-			const ele = event.target as HTMLElement
-			console.log('>>> hooks.onInput :', ele.innerHTML)
-		},
+		// onInput: (event) => {
+		// 	const ele = event.target as HTMLElement
+		// 	console.log('>>> hooks.onInput :', ele.innerHTML)
+		// },
 	},
 })
 
