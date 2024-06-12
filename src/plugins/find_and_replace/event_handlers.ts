@@ -52,16 +52,16 @@ export function onClick(event: Event, isReplace: boolean) {
 				<div class="${CN_FIND_COUNT_TOTAL}">0</div>
 			</div>
 			<div class="exsied-btn ${CN_PREV}">
-				<i class="exsied-btn-prev"></i>
+				<i class="exsied-icon exsied-btn-prev"></i>
 			</div>
 			<div class="exsied-btn ${CN_NEXT}">
-				<i class="exsied-btn-next"></i>
+				<i class="exsied-icon exsied-btn-next"></i>
 			</div>
 			<div class="exsied-btn ${CN_HIGHLIGHT_ALL}">
-				<i class="exsied-btn-hightlight-all"></i>
+				<i class="exsied-icon exsied-btn-hightlight-all"></i>
 			</div>
 			<div class="exsied-btn ${CN_CLOSE}">
-				<i class="exsied-btn-close"></i>
+				<i class="exsied-icon exsied-btn-close"></i>
 			</div>
 		</div>
 		`
@@ -70,10 +70,10 @@ export function onClick(event: Event, isReplace: boolean) {
 		<div class="${CN_FIND_BOX}">
 			<input class="${CN_REPLACE_INPUT}"/>
 			<div class="exsied-btn ${CN_REPLACE_THIS}">
-				<i class="exsied-btn-replace-this"></i>
+				<i class="exsied-icon exsied-btn-replace-this"></i>
 			</div>
 			<div class="exsied-btn ${CN_REPLACE_ALL}">
-				<i class="exsied-btn-replace-all"></i>
+				<i class="exsied-icon exsied-btn-replace-all"></i>
 			</div>
 		</div>
 		`
