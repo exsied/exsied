@@ -43,7 +43,7 @@
 
 	&::after {
 		@include bkgSvgIcon;
-		background-image: url(../../icons/arrow-down.svg);
+		background-image: url(../../icons/chevron-down.svg);
 
 		background-size: cover;
 	}
@@ -64,7 +64,7 @@
 			cursor: pointer;
 
 			&:hover {
-				background-color: #eee;
+				background-color: var(--exd-highlight-color);
 			}
 
 			i {

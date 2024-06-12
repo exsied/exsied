@@ -7,18 +7,23 @@
  *     https://github.com/exsied/exsied/blob/main/LICENSE
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
+import { exsied } from '../../core'
 import { randomChars } from '../../utils/string'
 
 export const PLUGIN_NAME = 'SourceCode'
 export const CN_ICON_BRACES = 'exsied-btn-braces'
 export const CN_ICON_XML = 'exsied-btn-xml'
+export const CN_ICON_BACK = 'exsied-btn-back'
+export const ID_SOURCE_CODE_EDIT_VIEW = 'sourceCodeEditView'
 
 export type PluginConf = {
 	addToNormalToolbar: boolean
 	addToBubbleToolbar: boolean
 	defaultText: string
-	renderData: (ele: HTMLElement) => string
-	editData: (ele: HTMLElement, sign: string) => void
+	renderDataCb: (ele: HTMLElement) => string
+	editDataCb: (ele: HTMLElement, sign: string) => void
+	aferInitSourceCodeViewCb: (sourceCodeWorkplaceEle: HTMLElement) => void
+	inputInSourceCodeViewCb: (sourceCodeWorkplaceEle: HTMLElement) => void
 	randomChars(): string
 }
 
@@ -26,7 +31,7 @@ export const PLUGIN_CONF: PluginConf = {
 	addToNormalToolbar: true,
 	addToBubbleToolbar: false,
 	defaultText: '// Source code placeholder',
-	renderData: (ele: HTMLElement) => {
+	renderDataCb: (ele: HTMLElement) => {
 		console.warn(`Developer didn't implement the callback: ${PLUGIN_NAME}.conf.renderData`)
 
 		return `
@@ -35,8 +40,15 @@ export const PLUGIN_CONF: PluginConf = {
 				<code>${ele.innerHTML}</code>
 			</pre>`
 	},
-	editData: (_ele: HTMLElement, _sign: string) => {
+	editDataCb: (_ele: HTMLElement, _sign: string) => {
 		alert(`Developer didn't implement the callback: ${PLUGIN_NAME}.conf.editData`)
+	},
+	aferInitSourceCodeViewCb: (sourceCodeWorkplaceEle: HTMLElement) => {
+		// Add highlight functions
+		sourceCodeWorkplaceEle.textContent = exsied.elements.workplace.innerHTML
+	},
+	inputInSourceCodeViewCb: (_sourceCodeWorkplaceEle: HTMLElement) => {
+		// Add highlight functions
 	},
 	randomChars: () => {
 		return randomChars(28)

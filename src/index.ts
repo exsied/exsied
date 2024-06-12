@@ -24,7 +24,7 @@ import { lists } from './plugins/lists'
 import { quote } from './plugins/quote'
 import { sourceCode } from './plugins/source_code'
 import { strikethrough } from './plugins/strikethrough'
-import { subscriptAndSuperscript } from './plugins/subscript_and_superscript'
+import { subscriptAndSupscript } from './plugins/subscript_and_suscript'
 import { table } from './plugins/table'
 import { textAlign } from './plugins/text_align'
 import { underline } from './plugins/underline'
@@ -52,7 +52,7 @@ export const plugins = {
 	quote,
 	sourceCode,
 	strikethrough,
-	subscriptAndSuperscript,
+	subscriptAndSupscript,
 	table,
 	textAlign,
 	underline,

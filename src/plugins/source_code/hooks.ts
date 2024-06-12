@@ -23,7 +23,7 @@ export const renderElement = (item: Element) => {
 	const ele = item as HTMLElement
 	renderer.setEle(ele, eleSign)
 
-	const renderedHtml = PLUGIN_CONF.renderData(ele)
+	const renderedHtml = PLUGIN_CONF.renderDataCb(ele)
 	renderer.render(renderedHtml)
 
 	// Edit
@@ -36,7 +36,7 @@ export const renderElement = (item: Element) => {
 		if (!originaSign) return
 
 		const ele = document.querySelector(`[${dataAttr().sign}="${originaSign}"]`)
-		if (ele) PLUGIN_CONF.editData(ele as HTMLElement, originaSign)
+		if (ele) PLUGIN_CONF.editDataCb(ele as HTMLElement, originaSign)
 	})
 
 	// Copy

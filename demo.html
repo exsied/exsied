@@ -13,11 +13,15 @@
 			<a href="https://github.com/exsied/exsied">Github repo</a> /
 			<a href="https://gitee.com/exsied/exsied">Gite repo</a>
 		</p>
+		<p>
+			<span id="optBtns"></span>
+		</p>
+
 		<div id="app"></div>
 
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exsied/exsied@0.7.0/dist/style.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exsied/exsied@0.8.0/dist/style.css" />
 		<script type="module">
-			import { KEY_CTRL, exsied, plugins } from 'https://cdn.jsdelivr.net/npm/@exsied/exsied@0.7.0/dist/index.js'
+			import { KEY_CTRL, exsied, plugins } from 'https://cdn.jsdelivr.net/npm/@exsied/exsied@0.8.0/dist/index.js'
 
 			// plugin about
 			const aboutConf = plugins.about.conf
@@ -90,7 +94,7 @@
 					plugins.fontFamily,
 					plugins.textAlign,
 					plugins.indentAndOutdent,
-					plugins.subscriptAndSuperscript,
+					plugins.subscriptAndSupscript,
 					plugins.insertMenu,
 					plugins.colors,
 					plugins.findAndReplace,
@@ -110,7 +114,7 @@
 				},
 			})
 
-			exsied.setHtml('Hello')
+			exsied.setHtml('Hello world')
 
 			exsied.i18n.setDict('zh-CN', {
 				Title: '标题',
@@ -121,6 +125,33 @@
 			})
 
 			exsied.i18n.setLocale('zh-CN')
+
+			//
+			const testBtn = document.createElement('button')
+			testBtn.innerHTML = 'Get content html'
+			testBtn.addEventListener('click', () => {
+				const html = exsied.getHtml()
+				console.log(' >>> Exsied content html :::', html)
+			})
+
+			const darkModeBtn = document.createElement('button')
+			darkModeBtn.innerHTML = 'Toggle dark mode'
+			darkModeBtn.addEventListener('click', () => {
+				const bodyEle = document.querySelector('body')
+				if (!bodyEle) return
+
+				if (bodyEle.classList.contains('dark')) {
+					bodyEle.classList.remove('dark')
+				} else {
+					bodyEle.classList.add('dark')
+				}
+			})
+
+			const btnsEle = document.getElementById('optBtns')
+			if (btnsEle) {
+				btnsEle.append(darkModeBtn)
+				btnsEle.append(testBtn)
+			}
 		</script>
 	</body>
 </html>

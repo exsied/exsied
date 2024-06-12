@@ -18,13 +18,13 @@ import './styles.scss'
 export const NAME_SUB = 'Subscript'
 export const NAME_SUP = 'Supscript'
 
-const toolbarBtnIdsSub = Toolbar.genButtonIds(PLUGIN_NAME, NAME_SUB)
-const toolbarBtnIdsSup = Toolbar.genButtonIds(PLUGIN_NAME, NAME_SUP)
+const toolbarBtnIdsSub = Toolbar.genButtonIdStd(PLUGIN_NAME, NAME_SUB)
+const toolbarBtnIdsSup = Toolbar.genButtonIdStd(PLUGIN_NAME, NAME_SUP)
 const commands: Commands = {}
 commands[NAME_SUB] = formatTextSub
 commands[NAME_SUP] = formatTextSup
 
-export const subscriptAndSuperscript: ExsiedPlugin = {
+export const subscriptAndSupscript: ExsiedPlugin = {
 	name: PLUGIN_NAME,
 	conf: PLUGIN_CONF,
 	commands,
@@ -68,4 +68,4 @@ export const subscriptAndSuperscript: ExsiedPlugin = {
 	removeTempEle: (_event) => {},
 }
 
-export default subscriptAndSuperscript
+export default subscriptAndSupscript

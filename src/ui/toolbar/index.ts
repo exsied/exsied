@@ -7,7 +7,7 @@
  *     https://github.com/exsied/exsied/blob/main/LICENSE
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
-import { DATA_ATTR_CN_ICON, TN_DIV } from '../../contants'
+import { CN_TOOLBAR_NORMAL_ELE, DATA_ATTR_CN_ICON, TN_DIV } from '../../contants'
 import { exsied } from '../../core'
 import { DomUtils } from '../../core/dom_utils'
 import { execEleEventClickCallbackByTag } from '../../core/events'
@@ -18,9 +18,6 @@ import { tagNameLc } from '../../utils'
 import { uniqueArray } from '../../utils/array'
 import { CN_DDROPDOWN_LIST_SHOW, DropdownMenu, genDropdownId } from '../dropdown'
 import './styles.scss'
-
-export const ID_BUBBLE_WRAP = 'exsied-toolbar-bubble-wrap'
-export const CN_BUBBLE_BTNS = 'exsied-btns'
 
 export type ToolBarButton = {
 	name: string
@@ -65,25 +62,63 @@ export type InsertElementButton = {
 	clickCallBack: ClickEventHandler
 }
 
+export const CN_BUBBLE_BTNS = 'exsied-btns'
+export const ID_TOOLBAR_EXT = 'exsied-toolbar-ext'
+export const ID_BUBBLE_WRAP = 'exsied-toolbar-bubble-wrap'
+export const EXTTOOLBAR_NAME = 'ExtToolbar'
 export const PLUGINS_SELECT_ID: string[] = []
 export const INSERT_ELEMENT_BUTTONS: InsertElementButton[] = []
 
 export class Toolbar {
-	static genBtns = () => {
+	static genButtonId = (tp: string, pluginName: string, ctrlName: string) => {
+		return `exsied-toolbar-btn___${tp}___${pluginName}---${ctrlName}`
+	}
+	static genButtonIdStd = (pluginName: string, ctrlName: string) => {
+		return {
+			normal: this.genButtonId('normal', pluginName, ctrlName),
+			bubble: this.genButtonId('bubble', pluginName, ctrlName),
+		}
+	}
+
+	static genHtmlButton = (ctrl: ToolBarButton) => {
+		let btnIcon = ctrl.iconClassName ? `<i class="exsied-icon ${ctrl.iconClassName}"></i>` : ''
+		return `<button class="exsied-ctrl" id="___id___">${btnIcon}${ctrl.buttonText || ''}</button>`
+	}
+
+	static genHtmlSelect = (ctrl: ToolBarSelect) => {
+		let options = ''
+		ctrl.options.map((o) => {
+			options += `
+				<option 
+					value="${o.value}"
+					${DATA_ATTR_CN_ICON}="${o.iconClassName || ''}"
+				>
+					${o.name}
+				</option>
+				`
+		})
+
+		return `
+			<select id="___id___" data-default-text="${ctrl.defaultText}">
+				${options}
+			</select>
+			`
+	}
+
+	static genToolbarStd = () => {
 		const bubbleBtnsEle = document.querySelector(`#${ID_BUBBLE_WRAP} .${CN_BUBBLE_BTNS}`)
 		if (bubbleBtnsEle) bubbleBtnsEle.innerHTML = ''
 
-		const normalCtrlHtmlArr = []
+		const ctrlHtmlArr = []
 		for (const plg of PLUGINS) {
 			if (!plg.toolBarControl) continue
 
 			for (const ctrl of plg.toolBarControl) {
-				const ids = this.genButtonIds(plg.name, ctrl.name)
+				const ids = this.genButtonIdStd(plg.name, ctrl.name)
 
 				if (ctrl.eleType === 'button') {
-					let btnIcon = ctrl.iconClassName ? `<i class="exsied-icon ${ctrl.iconClassName}"></i>` : ''
-					const html = `<button class="exsied-ctrl" id="___id___">${btnIcon}${ctrl.buttonText || ''}</button>`
-					if (ctrl.addToNormalToolbar) normalCtrlHtmlArr.push(html.replace('___id___', ids.normal))
+					const html = this.genHtmlButton(ctrl)
+					if (ctrl.addToNormalToolbar) ctrlHtmlArr.push(html.replace('___id___', ids.normal))
 					if (ctrl.addToNormalToolbarInsertMenu) {
 						INSERT_ELEMENT_BUTTONS.push({
 							pluginName: plg.name,
@@ -99,24 +134,9 @@ export class Toolbar {
 				}
 
 				if (ctrl.eleType === 'select') {
-					let options = ''
-					ctrl.options.map((o) => {
-						options += `
-						<option 
-							value="${o.value}"
-							${DATA_ATTR_CN_ICON}="${o.iconClassName || ''}"
-						>
-							${o.name}
-						</option>
-						`
-					})
-					const html = `
-						<select id="___id___" data-default-text="${ctrl.defaultText}">
-							${options}
-						</select>
-						`
+					const html = this.genHtmlSelect(ctrl)
 					if (ctrl.addToNormalToolbar) {
-						normalCtrlHtmlArr.push(html.replace('___id___', ids.normal))
+						ctrlHtmlArr.push(html.replace('___id___', ids.normal))
 						if (!PLUGINS_SELECT_ID.includes(ids.normal)) PLUGINS_SELECT_ID.push(ids.normal)
 					}
 					if (ctrl.addToBubbleToolbar && bubbleBtnsEle) {
@@ -127,15 +147,77 @@ export class Toolbar {
 			}
 		}
 
-		return normalCtrlHtmlArr.join('')
+		return ctrlHtmlArr.join('')
 	}
 
-	static genButtonIds = (pluginName: string, ctrlName: string) => {
-		const prefix = `exsied-toolbar-btn`
+	static genButtonIdExt = (pluginName: string, ctrlName: string) => {
 		return {
-			normal: `${prefix}___normal___${pluginName}---${ctrlName}`,
-			bubble: `${prefix}___bubble___${pluginName}---${ctrlName}`,
+			ext: this.genButtonId('ext', pluginName, ctrlName),
 		}
+	}
+
+	static genToolbarExt = (ctrls: ToolBarControl[]) => {
+		const ctrlHtmlArr = []
+
+		for (const ctrl of ctrls) {
+			const ids = this.genButtonIdExt(EXTTOOLBAR_NAME, ctrl.name)
+
+			if (ctrl.eleType === 'button') {
+				const html = this.genHtmlButton(ctrl)
+				ctrlHtmlArr.push(html.replace('___id___', ids.ext))
+			}
+
+			if (ctrl.eleType === 'select') {
+				const html = this.genHtmlSelect(ctrl)
+				ctrlHtmlArr.push(html.replace('___id___', ids.ext))
+				if (!PLUGINS_SELECT_ID.includes(ids.ext)) PLUGINS_SELECT_ID.push(ids.ext)
+			}
+		}
+
+		const extToolbar = document.createElement(TN_DIV)
+		extToolbar.classList.add('exsied-toolbar-ext')
+		extToolbar.id = ID_TOOLBAR_EXT
+		extToolbar.innerHTML = ctrlHtmlArr.join('')
+
+		this.addAfterNormalToolbar(extToolbar)
+		this.hideNormalToolbar(true)
+
+		// addEventListener
+		for (const ctrl of ctrls) {
+			const ids = this.genButtonIdExt(EXTTOOLBAR_NAME, ctrl.name)
+
+			if (ctrl.eleType === 'button') {
+				const btn = extToolbar.querySelector(`#${ids.ext}`)
+				if (btn) {
+					const btnEle = btn as HTMLElement
+					btnEle.addEventListener('click', ctrl.clickCallBack)
+				}
+			}
+
+			if (ctrl.eleType === 'select') {
+				const btn = extToolbar.querySelector(`#${ids.ext}`)
+				if (btn) {
+					const btnEle = btn as HTMLElement
+					btnEle.addEventListener('click', ctrl.changeCallBack)
+				}
+			}
+		}
+	}
+
+	static addAfterNormalToolbar = (ele: HTMLElement) => {
+		const normalToolbar = exsied.elements.toolbarMain.querySelector(`.${CN_TOOLBAR_NORMAL_ELE}`)
+		if (!normalToolbar) return
+
+		const normalToolbarEle = normalToolbar as HTMLElement
+		normalToolbarEle.after(ele)
+	}
+
+	static hideNormalToolbar = (hide: boolean) => {
+		const normalToolbar = exsied.elements.toolbarMain.querySelector(`.${CN_TOOLBAR_NORMAL_ELE}`)
+		if (!normalToolbar) return
+
+		const normalToolbarEle = normalToolbar as HTMLElement
+		normalToolbarEle.style.display = hide ? 'none' : ''
 	}
 
 	static clickWorkplace = (event: Event) => {
@@ -158,7 +240,7 @@ export class Toolbar {
 			if (!plg.toolBarControl) continue
 
 			for (const ctrl of plg.toolBarControl) {
-				const toolbarBtnIds = this.genButtonIds(plg.name, ctrl.name)
+				const toolbarBtnIds = this.genButtonIdStd(plg.name, ctrl.name)
 
 				if (ctrl.eleType === 'button') {
 					document.getElementById(toolbarBtnIds.normal)?.addEventListener('click', ctrl.clickCallBack)

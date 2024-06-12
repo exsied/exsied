@@ -11,6 +11,7 @@ import {
 	CN_EDITOR_ELE,
 	CN_TOOLBAR_ELE,
 	CN_TOOLBAR_MAIN_ELE,
+	CN_TOOLBAR_NORMAL_ELE,
 	CN_WORKPLACE_ELE,
 	TN_DIV,
 	ZERO_WIDTH_SPACE,
@@ -100,8 +101,8 @@ const init = (conf: ExsiedInitConf) => {
 	editorEle.innerHTML = `
 		<div class="${CN_EDITOR_ELE}">  
 			<div class="${CN_TOOLBAR_ELE} ${CN_TOOLBAR_MAIN_ELE}">
-				<div class="exsied-normal">
-					${Toolbar.genBtns()}
+				<div class="${CN_TOOLBAR_NORMAL_ELE}">
+					${Toolbar.genToolbarStd()}
 				</div>
 			</div>
 			<div class="${CN_WORKPLACE_ELE}" contentEditable="true"></div>

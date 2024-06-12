@@ -68,9 +68,9 @@ or
 
 ```html
 <script type="module">
-	import { exsied, plugins } from 'https://cdn.jsdelivr.net/npm/@exsied/exsied@0.4.4/dist/index.js'
+	import { exsied, plugins } from 'https://cdn.jsdelivr.net/npm/@exsied/exsied@0.8.0/dist/index.js'
 </script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exsied/exsied@0.4.4/dist/style.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exsied/exsied@0.8.0/dist/style.css" />
 ```
 
 When running **exsied** in the browser, please refer to `test_dist/index_esm.html`.
@@ -93,6 +93,10 @@ exsied.init({
 
 exsied.setHtml('some HTML code')
 ```
+
+## Dark mode
+
+Add `class="dark"` to body.
 
 ## Plugins
 
@@ -225,7 +229,5 @@ exsied.i18n.setLocale('zh-CN')
 
 ## TODO
 
-- current:
-  - source_code toggleSourceView
 - custom block
 - Paste
