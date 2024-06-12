@@ -5,6 +5,8 @@
 **Exied** is the main editor of [Enassi](https://github.com/enassi/enassi/).
 **Enassi** is your encryption assistant that supports multiple file types ( including markdown, source code, PDF, images, etc. ), supports file encryption and synchronization.
 
+**Exied** provides a variety of plugins that are basically ready to use out of the box, but there are a few plugins that need to be configured with callback functions to achieve a better user experience, such as the **sourceCode** plugin and **redoAndUndo** plugin.
+
 [Documents](https://enassi.pages.dev/en/exsied/about/) / [文档](https://enassi.pages.dev/zh-cn/exsied/about/)
 
 [Github repo](https://github.com/exsied/exsied) / [Gitee repo](https://gitee.com/exsied/exsied)
@@ -94,9 +96,32 @@ exsied.init({
 exsied.setHtml('some HTML code')
 ```
 
-## Dark mode
+## Style
+
+### Dark mode
 
 Add `class="dark"` to body.
+
+### Chromium scrollbar
+
+You can add some style, like:
+
+````scss
+// scrollbar
+::-webkit-scrollbar {
+	width: 5px;
+	height: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+	-webkit-border-radius: 5px;
+	background-color: var(--exd-border-color);
+}
+
+::-webkit-scrollbar-corner {
+	display: none;
+}
+```
 
 ## Plugins
 
@@ -119,7 +144,7 @@ exsied.init({
 	enableToolbarBubble: true,
 	iAbideByExsiedLicenseAndDisableTheAboutPlugin: true, // Add this param
 })
-```
+````
 
 If you have customized any functions, you should add your own information to `about.conf.deveploers`.
 
@@ -143,13 +168,6 @@ plugins.about.conf.deveploers.push(
 	},
 )
 ```
-
-### Plugin redoAndUndo
-
-You can provied two callback in `redoAndUndo.conf` to compress and uncompress:
-
-- compressCb: (str: string) => any
-- uncompressCb: (value: any) => string
 
 ### Plugin sourceCode
 
@@ -198,6 +216,13 @@ sourceCodeConf.randomChars = () => {
 	return uuidv4()
 }
 ```
+
+### Plugin redoAndUndo
+
+You can provied two callback in `redoAndUndo.conf` to compress and uncompress:
+
+- compressCb: (str: string) => any
+- uncompressCb: (value: any) => string
 
 ## I18N
 
