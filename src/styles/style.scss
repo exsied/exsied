@@ -1,18 +1,20 @@
 :root {
-	--exd-backgroud-color: #fff;
-	--exd-text-color: #000;
-	--exd-component-backgroud-color: #efefef;
-	--exd-component-color: #333;
-	--exd-component-border-color: #ccc;
+	--exd-backgroud-color: rgb(255, 255, 255);
+	--exd-text-color: rgb(0, 0, 0);
+	--exd-border-color: rgb(204, 204, 204);
+	--exd-component-backgroud-color: rgb(239, 239, 239);
+	--exd-component-color: rgb(51, 51, 51);
+	--exd-component-border-color: rgb(204, 204, 204);
 	--exd-highlight-color: rgb(104, 211, 175);
 }
 
 .dark {
-	--exd-backgroud-color: #32393f;
-	--exd-text-color: #d1d4d9;
-	--exd-component-backgroud-color: #212528;
-	--exd-component-color: #d1d4d9;
-	--exd-component-border-color: #1f2930;
+	--exd-backgroud-color: rgb(50, 57, 63);
+	--exd-text-color: rgb(209, 212, 217);
+	--exd-border-color: rgb(34, 40, 40);
+	--exd-component-backgroud-color: rgb(33, 37, 40);
+	--exd-component-color: rgb(209, 212, 217);
+	--exd-component-border-color: rgb(31, 41, 48);
 	--exd-highlight-color: rgb(59, 138, 112);
 
 	.exsied-icon {

@@ -1,9 +1,8 @@
 @import '../../styles/mixin.scss';
 
 .exsied {
-	--exd-toolbar-backgroud-color: #fefefe;
+	--exd-toolbar-backgroud-color: rgb(254, 254, 254);
 	--exd-toolbar-text-color: rgb(44, 44, 44);
-	--exd-toolbar-border-bottom-color: #ccc;
 
 	--exd-toolbar-ctrl-backgroud-color: unset;
 	--exd-toolbar-ctrl-backgroud-color-active: rgb(145, 196, 255);
@@ -11,14 +10,13 @@
 	--exd-toolbar-ctrl-margin: 1px 2px;
 	--exd-toolbar-ctrl-height: 30px;
 
-	--exd-toolbar-bubble-backgroud-color: #444;
+	--exd-toolbar-bubble-backgroud-color: rgb(68, 68, 68);
 }
 
 .dark {
 	.exsied {
-		--exd-toolbar-backgroud-color: #222628;
-		--exd-toolbar-text-color: #abafb2;
-		--exd-toolbar-border-bottom-color: #222828;
+		--exd-toolbar-backgroud-color: rgb(34, 38, 40);
+		--exd-toolbar-text-color: rgb(171, 175, 178);
 
 		--exd-toolbar-ctrl-backgroud-color: unset;
 		--exd-toolbar-ctrl-backgroud-color-active: rgb(92, 133, 179);
@@ -26,7 +24,7 @@
 		--exd-toolbar-ctrl-margin: 1px 2px;
 		--exd-toolbar-ctrl-height: 30px;
 
-		--exd-toolbar-bubble-backgroud-color: #999999;
+		--exd-toolbar-bubble-backgroud-color: rgb(153, 153, 153);
 	}
 }
 
@@ -37,7 +35,7 @@
 		top: 0;
 		background-color: var(--exd-toolbar-backgroud-color);
 		color: var(--exd-toolbar-text-color);
-		border-bottom: 1px solid var(--exd-toolbar-border-bottom-color);
+		border-bottom: 1px solid var(--exd-border-color);
 		padding: 0.1rem;
 	}
 
