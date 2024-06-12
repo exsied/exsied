@@ -1,6 +1,6 @@
 @import '../../styles/mixin.scss';
 
-.exsied-toolbar {
+.exsied {
 	--exd-toolbar-backgroud-color: #fefefe;
 	--exd-toolbar-text-color: rgb(44, 44, 44);
 	--exd-toolbar-border-bottom-color: #ccc;
@@ -15,7 +15,7 @@
 }
 
 .dark {
-	.exsied-toolbar {
+	.exsied {
 		--exd-toolbar-backgroud-color: #222628;
 		--exd-toolbar-text-color: #abafb2;
 		--exd-toolbar-border-bottom-color: #222828;
@@ -26,7 +26,7 @@
 		--exd-toolbar-ctrl-margin: 1px 2px;
 		--exd-toolbar-ctrl-height: 30px;
 
-		--exd-toolbar-bubble-backgroud-color: #444;
+		--exd-toolbar-bubble-backgroud-color: #999999;
 	}
 }
 
