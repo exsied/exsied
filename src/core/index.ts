@@ -82,7 +82,7 @@ const init = (conf: ExsiedInitConf) => {
 				pluginNames.push(plg.name)
 			}
 		} catch (error) {
-			console.log(error, plg)
+			console.error('Exsied initialize plugin error: ', error, plg)
 		}
 	})
 
@@ -92,7 +92,7 @@ const init = (conf: ExsiedInitConf) => {
 				PLUGINS.push(plg)
 			}
 		} catch (error) {
-			console.log(error, plg)
+			console.error('Exsied initialize plugin error: ', error, plg)
 		}
 	})
 

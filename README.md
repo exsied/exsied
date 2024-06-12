@@ -229,6 +229,5 @@ exsied.i18n.setLocale('zh-CN')
 
 ## TODO
 
-- redoAndUndo
 - custom block
 - Paste
