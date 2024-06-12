@@ -28,6 +28,7 @@ import { subscriptAndSupscript } from './plugins/subscript_and_supcript'
 import { table } from './plugins/table'
 import { textAlign } from './plugins/text_align'
 import { underline } from './plugins/underline'
+import { redoAndUndo } from './plugins/undo_and_redo'
 import './styles/style.scss'
 
 export { ZERO_WIDTH_SPACE } from './contants'
@@ -50,6 +51,7 @@ export const plugins = {
 	link,
 	lists,
 	quote,
+	redoAndUndo,
 	sourceCode,
 	strikethrough,
 	subscriptAndSupscript,

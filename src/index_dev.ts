@@ -70,6 +70,7 @@ fontFamilyConf.fontFamilyOptions.push(
 exsied.init({
 	id: 'app',
 	plugins: [
+		plugins.redoAndUndo,
 		plugins.bold,
 		plugins.italic,
 		plugins.underline,
