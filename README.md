@@ -144,7 +144,14 @@ plugins.about.conf.deveploers.push(
 )
 ```
 
-### Plugin code block
+### Plugin redoAndUndo
+
+You can provied two callback in `redoAndUndo.conf` to compress and uncompress:
+
+- compressCb: (str: string) => any
+- uncompressCb: (value: any) => string
+
+### Plugin sourceCode
 
 It will process the `<pre><code>` tags.
 
@@ -178,12 +185,12 @@ export const highlighCode = (str: string, lang: string) => {
 
 const sourceCodeConf = plugins.sourceCode.conf as PluginConf
 
-sourceCodeConf.renderData = (ele: HTMLElement) => {
+sourceCodeConf.renderDataCb = (ele: HTMLElement) => {
 	const lang = ele.getAttribute('lang') || ''
 	const res = highlighCode(ele.innerHTML, lang)
 	return `<pre><code>${res}</code></pre>`
 }
-sourceCodeConf.editData = (ele: HTMLElement, sign: string) => {
+sourceCodeConf.editDataCb = (ele: HTMLElement, sign: string) => {
 	// do something
 }
 // replace the default randomChars with uuid
