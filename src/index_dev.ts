@@ -100,8 +100,8 @@ exsied.init({
 	],
 	hooks: {
 		onInput: (event) => {
-			// const ele = event.target as HTMLElement
-			// console.log('>>> hooks.onInput :', ele.innerHTML)
+			const ele = event.target as HTMLElement
+			console.log('>>> hooks.onInput :', ele.innerHTML)
 		},
 	},
 })

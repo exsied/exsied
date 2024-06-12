@@ -7,6 +7,9 @@
 	</head>
 	<body>
 		<p>Exsied demo:</p>
+		<p>
+			<span id="optBtns"></span>
+		</p>
 		<div id="app"></div>
 
 		<link rel="stylesheet" href="../dist/style.css" />
@@ -81,6 +84,33 @@
 			})
 
 			exsied.i18n.setLocale('zh-CN')
+
+			//
+			const testBtn = document.createElement('button')
+			testBtn.innerHTML = 'Get content html'
+			testBtn.addEventListener('click', () => {
+				const html = exsied.getHtml()
+				console.log(' >>> Exsied content html :::', html)
+			})
+
+			const darkModeBtn = document.createElement('button')
+			darkModeBtn.innerHTML = 'Toggle dark mode'
+			darkModeBtn.addEventListener('click', () => {
+				const bodyEle = document.querySelector('body')
+				if (!bodyEle) return
+
+				if (bodyEle.classList.contains('dark')) {
+					bodyEle.classList.remove('dark')
+				} else {
+					bodyEle.classList.add('dark')
+				}
+			})
+
+			const btnsEle = document.getElementById('optBtns')
+			if (btnsEle) {
+				btnsEle.append(darkModeBtn)
+				btnsEle.append(testBtn)
+			}
 		</script>
 	</body>
 </html>
