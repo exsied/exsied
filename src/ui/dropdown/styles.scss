@@ -9,7 +9,7 @@
 
 		&::after {
 			@include bkgSvgIcon;
-			background-image: url(../../icons/arrow-down.svg);
+			background-image: url(../../icons/chevron-down.svg);
 
 			padding-inline-start: 0.5rem;
 		}

@@ -28,12 +28,12 @@
 
 		i.exsied-btn-prev {
 			@include bkgSvgIcon;
-			background-image: url(../../icons/arrow-up.svg);
+			background-image: url(../../icons/chevron-up.svg);
 		}
 
 		i.exsied-btn-next {
 			@include bkgSvgIcon;
-			background-image: url(../../icons/arrow-down.svg);
+			background-image: url(../../icons/chevron-down.svg);
 		}
 
 		i.exsied-btn-hightlight-all {
