@@ -72,7 +72,8 @@ fontFamilyConf.fontFamilyOptions.push(
 const linkConf = plugins.link.conf as LinkConf
 linkConf.clickLinkCb = (event) => {
 	event.preventDefault()
-	console.log('plugin link clickLinkCb event: ', event)
+	alert('clicked link, the event detail in console')
+	console.info('plugin link clickLinkCb event: ', event)
 }
 
 exsied.init({
