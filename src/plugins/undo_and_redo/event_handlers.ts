@@ -9,9 +9,14 @@
  */
 import { exsied } from '../../core'
 import { limitRange } from '../../utils/number'
+import { PLUGIN_CONF } from './base'
 
+export type HistoryItem = {
+	value: any
+	compressed: boolean
+}
 export type HistoryData = {
-	histories: string[]
+	histories: HistoryItem[]
 	offset: number
 }
 
@@ -24,7 +29,11 @@ export const data: HistoryData = {
 }
 
 export const update = () => {
-	data.histories.push(exsied.elements.workplace.innerHTML)
+	const html = exsied.elements.workplace.innerHTML
+	data.histories.push({
+		value: PLUGIN_CONF.compressCb ? PLUGIN_CONF.compressCb(html) : html,
+		compressed: PLUGIN_CONF.compressCb ? true : false,
+	})
 	if (data.offset > 0) data.offset--
 }
 
@@ -35,7 +44,11 @@ const _do = (action: typeof REDO | typeof UNDO) => {
 	if (action === UNDO) currentOffset = data.offset + 1
 
 	currentOffset = limitRange(currentOffset, 0, max)
-	exsied.elements.workplace.innerHTML = data.histories[max - currentOffset]
+	let html = PLUGIN_CONF.uncompressCb
+		? PLUGIN_CONF.uncompressCb(data.histories[max - currentOffset])
+		: data.histories[max - currentOffset].value
+
+	exsied.elements.workplace.innerHTML = html
 	data.offset = currentOffset
 }
 

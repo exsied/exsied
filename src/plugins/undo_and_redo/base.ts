@@ -21,6 +21,8 @@ export type PluginConf = {
 		redo: boolean
 		undo: boolean
 	}
+	compressCb?: (str: string) => any
+	uncompressCb?: (value: any) => string
 }
 
 export const PLUGIN_CONF: PluginConf = {
