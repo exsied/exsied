@@ -5,7 +5,7 @@
 **Exied** is the main editor of [Enassi](https://github.com/enassi/enassi/).
 **Enassi** is your encryption assistant that supports multiple file types ( including markdown, source code, PDF, images, etc. ), supports file encryption and synchronization.
 
-**Exied** provides a variety of plugins that are basically ready to use out of the box, but there are a few plugins that need to be configured with callback functions to achieve a better user experience, such as the **sourceCode** plugin and **redoAndUndo** plugin.
+**Exied** provides a variety of plugins that are basically ready to use out of the box, but there are a few plugins that need to be configured with callback functions to achieve a better user experience, such as **sourceCode** , **redoAndUndo** ,**fontSize** ,**fontFamily** .
 
 [Documents](https://enassi.pages.dev/en/exsied/about/) / [文档](https://enassi.pages.dev/zh-cn/exsied/about/)
 
@@ -106,7 +106,7 @@ Add `class="dark"` to body.
 
 You can add some style, like:
 
-````scss
+```css
 // scrollbar
 ::-webkit-scrollbar {
 	width: 5px;
@@ -129,6 +129,48 @@ We provide many built-in plugins, most of which are easy to use. Below are a few
 
 You can set the `config` of a plugin to change some values. Take a look at the **about** plugin.
 
+### Configure
+
+All plugins have some toolbar conf, like:
+
+- **addToNormalToolbar**: add the button(s) and / or select(s) to **normal toolbar**
+- **addToNormalToolbarInsertMenu**: add the button(s) and / or select(s) to **normal toolbar's insert menu**
+- **addToBubbleToolbar**: add the button(s) and / or select(s) to **bubble toolbar**
+
+If the plugin **only has one button or select**, these three field is **boolean** type, otherwise they are **object** type.
+
+For example, in plugin **image**, it likes:
+
+```ts
+export type PluginConf = {
+	addToNormalToolbar: boolean
+	addToNormalToolbarInsertMenu: boolean
+	addToBubbleToolbar: boolean
+	defaultAlt: string
+	defaultSrc: string
+}
+```
+
+and in plugin `lists`, it likes:
+
+```ts
+export type PluginConf = {
+	addToNormalToolbar: {
+		ol: boolean
+		ul: boolean
+	}
+	addToNormalToolbarInsertMenu: {
+		ol: boolean
+		ul: boolean
+	}
+	addToBubbleToolbar: {
+		ol: boolean
+		ul: boolean
+	}
+	defaultInnerHTML: string
+}
+```
+
 ### Plugin about
 
 The **about** plugin is automatically loaded by default.
@@ -144,7 +186,7 @@ exsied.init({
 	enableToolbarBubble: true,
 	iAbideByExsiedLicenseAndDisableTheAboutPlugin: true, // Add this param
 })
-````
+```
 
 If you have customized any functions, you should add your own information to `about.conf.deveploers`.
 
