@@ -24,7 +24,7 @@ const commands: Commands = {}
 commands[NAME_SUB] = formatTextSub
 commands[NAME_SUP] = formatTextSup
 
-export const subscriptAndSuperscript: ExsiedPlugin = {
+export const subscriptAndSupscript: ExsiedPlugin = {
 	name: PLUGIN_NAME,
 	conf: PLUGIN_CONF,
 	commands,
@@ -68,4 +68,4 @@ export const subscriptAndSuperscript: ExsiedPlugin = {
 	removeTempEle: (_event) => {},
 }
 
-export default subscriptAndSuperscript
+export default subscriptAndSupscript
