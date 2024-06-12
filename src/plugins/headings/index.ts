@@ -34,7 +34,7 @@ import {
 } from './event_handlers'
 import './styles.scss'
 
-const toolbarBtnIds = Toolbar.genButtonIds(PLUGIN_NAME, PLUGIN_NAME)
+const toolbarBtnIds = Toolbar.genButtonIdStd(PLUGIN_NAME, PLUGIN_NAME)
 const dropDownId = genDropdownId(toolbarBtnIds.normal)
 const triggerClassName = genTriggerClassName()
 const commands: Commands = {

@@ -10,4 +10,9 @@
 		@include bkgSvgIcon;
 		background-image: url(../../icons/xml.svg);
 	}
+
+	i.exsied-btn-back {
+		@include bkgSvgIcon;
+		background-image: url(../../icons/arrow-left-circle.svg);
+	}
 }

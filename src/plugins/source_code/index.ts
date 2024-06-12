@@ -8,7 +8,7 @@
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
 import { Commands, ExsiedPlugin } from '../../core/plugin'
-import { CN_ICON_BRACES, PLUGIN_CONF, PLUGIN_NAME } from './base'
+import { CN_ICON_BRACES, CN_ICON_XML, PLUGIN_CONF, PLUGIN_NAME } from './base'
 import { insertCodeBlock, toggleSourceView } from './event_handlers'
 import { afterSetHtml, beforeGetHtml } from './hooks'
 import './styles.scss'
@@ -25,17 +25,16 @@ export const sourceCode: ExsiedPlugin = {
 	commands,
 
 	toolBarControl: [
-		/* TODO:
 		{
-			name: SOURCE_CODE_VIEW_NAME,
+			name: NAME_SOURCE_CODE_VIEW,
 			tooltipText: 'Source code view',
+			addToNormalToolbar: PLUGIN_CONF.addToNormalToolbar,
 			addToBubbleToolbar: PLUGIN_CONF.addToBubbleToolbar,
 
 			eleType: 'button',
 			iconClassName: CN_ICON_XML,
-			clickCallBack: commands[SOURCE_CODE_VIEW_NAME],
+			clickCallBack: commands[NAME_SOURCE_CODE_VIEW],
 		},
-		*/
 		{
 			name: NAME_INSERT_SOURCE_CODE_BOCK,
 			tooltipText: 'Insert source code bock',

@@ -18,7 +18,7 @@ import './styles.scss'
 const NAME_CENTER = 'textCenter'
 const NAME_LEFT = 'textLeft'
 const NAME_RIGHT = 'textRight'
-const toolbarBtnIds = Toolbar.genButtonIds(PLUGIN_NAME, PLUGIN_NAME)
+const toolbarBtnIds = Toolbar.genButtonIdStd(PLUGIN_NAME, PLUGIN_NAME)
 const commands: Commands = {}
 commands[NAME_CENTER] = formatTextCenter
 commands[NAME_LEFT] = formatTextLeft

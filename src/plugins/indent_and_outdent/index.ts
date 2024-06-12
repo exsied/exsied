@@ -17,7 +17,7 @@ import './styles.scss'
 
 const NAME_INDENT = 'indent'
 const NAME_OUTDENT = 'outdent'
-const toolbarBtnIds = Toolbar.genButtonIds(PLUGIN_NAME, PLUGIN_NAME)
+const toolbarBtnIds = Toolbar.genButtonIdStd(PLUGIN_NAME, PLUGIN_NAME)
 const commands: Commands = {}
 commands[NAME_INDENT] = formatIndent
 commands[NAME_OUTDENT] = formatOutdent

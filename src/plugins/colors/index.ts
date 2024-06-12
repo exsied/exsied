@@ -25,7 +25,7 @@ import {
 import { showColorPickerBkg, showColorPickerText } from './event_handlers'
 import './styles.scss'
 
-const toolbarBtnIds = Toolbar.genButtonIds(PLUGIN_NAME, PLUGIN_NAME)
+const toolbarBtnIds = Toolbar.genButtonIdStd(PLUGIN_NAME, PLUGIN_NAME)
 const commands: Commands = {}
 commands[NAME_BACKGROUND] = showColorPickerBkg
 commands[NAME_TEXT] = showColorPickerText

@@ -14,7 +14,7 @@ import { PLUGIN_CONF, PLUGIN_NAME } from './base'
 import { formatFontSize } from './event_handlers'
 import './styles.scss'
 
-const toolbarBtnIds = Toolbar.genButtonIds(PLUGIN_NAME, PLUGIN_NAME)
+const toolbarBtnIds = Toolbar.genButtonIdStd(PLUGIN_NAME, PLUGIN_NAME)
 const dropDownId = genDropdownId(toolbarBtnIds.normal)
 const commands: Commands = {}
 commands[PLUGIN_NAME] = formatFontSize

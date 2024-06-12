@@ -1,3 +1,5 @@
+@import '../../styles/mixin.scss';
+
 :root {
 	--exd-toolbar-backgroud-color: #fefefe;
 	--exd-toolbar-text-color: rgb(44, 44, 44);
@@ -17,9 +19,6 @@
 		overflow: scroll;
 		position: sticky;
 		top: 0;
-	}
-
-	.exsied-normal {
 		background-color: var(--exd-toolbar-backgroud-color);
 		color: var(--exd-toolbar-text-color);
 		border-bottom: 1px solid var(--exd-toolbar-border-bottom-color);
