@@ -10,7 +10,7 @@
 import { exsied } from '../../core'
 import { Commands, ExsiedPlugin } from '../../core/plugin'
 import { CN_ICON_REDO, CN_ICON_UNDO, PLUGIN_CONF, PLUGIN_NAME } from './base'
-import { data, redo, undo } from './event_handlers'
+import { redo, undo, update } from './event_handlers'
 import './styles.scss'
 
 export const NAME_REDO = 'Redo'
@@ -49,19 +49,7 @@ export const redoAndUndo: ExsiedPlugin = {
 	],
 
 	addHandler: () => {
-		exsied.elements.workplace.addEventListener('keydown', () => {
-			console.log('workplace input')
-
-			if (data.offset > 0) {
-				console.log('new input')
-
-				const offset = data.offset
-				data.histories.splice(offset, data.histories.length - offset)
-				data.offset = 0
-			}
-
-			data.histories.push(exsied.elements.workplace.innerHTML)
-		})
+		exsied.elements.workplace.addEventListener('input', update)
 	},
 	removeHandler: () => {},
 	checkHighlight: (_event) => {},

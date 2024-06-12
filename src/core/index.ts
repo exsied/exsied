@@ -177,11 +177,14 @@ const getHtml = () => {
 }
 
 const setHtml = (content: string) => {
-	const workplace_ele = exsied.elements.workplace
-	workplace_ele.innerHTML = content
+	const workplaceEle = exsied.elements.workplace
+	workplaceEle.innerHTML = content
 
 	cleanWorkplaceEle()
 	execPluginHook(HOOK_AFTER_SET_HTML)
+
+	const inputEvent = new Event('input', { bubbles: true })
+	workplaceEle.dispatchEvent(inputEvent)
 }
 
 const newEmptyEle = (dataValue: string) => {

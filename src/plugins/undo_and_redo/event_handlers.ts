@@ -8,6 +8,7 @@
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
 import { exsied } from '../../core'
+import { limitRange } from '../../utils/number'
 
 export type HistoryData = {
 	histories: string[]
@@ -22,32 +23,26 @@ export const data: HistoryData = {
 	offset: 0,
 }
 
-const _do = (action: typeof REDO | typeof UNDO) => {
-	console.log('>>> data.histories::: ', data.histories)
+export const update = () => {
+	data.histories.push(exsied.elements.workplace.innerHTML)
+	if (data.offset > 0) data.offset--
+}
 
+const _do = (action: typeof REDO | typeof UNDO) => {
+	const max = data.histories.length - 1
 	let currentOffset = 0
 	if (action === REDO) currentOffset = data.offset - 1
 	if (action === UNDO) currentOffset = data.offset + 1
 
-	if (currentOffset < 0) currentOffset = 0
-	if (currentOffset > data.histories.length) currentOffset = data.histories.length
-
-	exsied.elements.workplace.innerHTML = data.histories[data.histories.length - currentOffset]
-
+	currentOffset = limitRange(currentOffset, 0, max)
+	exsied.elements.workplace.innerHTML = data.histories[max - currentOffset]
 	data.offset = currentOffset
-
-	console.log('>>> currentOffset::: ', currentOffset)
-	console.log('>>> data.offset::: ', data.offset)
 }
 
-export function redo() {
-	console.log('>>> redo')
-
+export const redo = () => {
 	_do(REDO)
 }
 
-export function undo() {
-	console.log('>>> undo')
-
+export const undo = () => {
 	_do(UNDO)
 }
