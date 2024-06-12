@@ -21,7 +21,6 @@ export function showInsertMenu(event: Event) {
 	targetEle.setAttribute(DATA_ATTR_TEMP_EDIT, PLUGIN_NAME)
 
 	let contentHtml = ``
-
 	const eventMap: { [key: string]: ClickEventHandler } = {}
 
 	for (const item of INSERT_ELEMENT_BUTTONS) {
@@ -32,7 +31,8 @@ export function showInsertMenu(event: Event) {
 			<div class="${CN_INSERT_MENU_ITEM}" ${dataName}="${name}">
 				<i class="exsied-icon ${item.iconClassName}"></i>
 				${item.ctrlName}
-			</div>`
+			</div>
+			`
 	}
 
 	const ele = createPopupView({
@@ -53,7 +53,8 @@ export function showInsertMenu(event: Event) {
 	for (const item of items) {
 		const name = item.getAttribute(dataName)
 		if (name && eventMap[name]) {
-			;(item as HTMLElement).addEventListener('click', () => {
+			const itemEle = item as HTMLElement
+			itemEle.addEventListener('click', () => {
 				console.log(456, name, eventMap[name])
 
 				SelectionUtils.restoreSelection()
