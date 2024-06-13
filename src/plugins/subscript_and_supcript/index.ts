@@ -20,6 +20,7 @@ export const NAME_SUP = 'Supscript'
 
 const toolbarBtnIdsSub = Toolbar.genButtonIdStd(PLUGIN_NAME, NAME_SUB)
 const toolbarBtnIdsSup = Toolbar.genButtonIdStd(PLUGIN_NAME, NAME_SUP)
+
 const commands: Commands = {}
 commands[NAME_SUB] = formatTextSub
 commands[NAME_SUP] = formatTextSup

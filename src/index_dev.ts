@@ -188,7 +188,7 @@ localeSelect.addEventListener('change', (event) => {
 })
 
 const btnsEle = document.getElementById('optBtns')
-if (btnsEle) {	
+if (btnsEle) {
 	btnsEle.append(getContentBtn)
 	btnsEle.append(darkModeBtn)
 	btnsEle.append(localeLabel)
