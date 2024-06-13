@@ -14,12 +14,12 @@ export const PLUGIN_NAME = 'SubscriptAndSuperscript'
 export const CN_ICON_SUB = 'exsied-btn-sub'
 export const CN_ICON_SUP = 'exsied-btn-sup'
 
-export const isHighlightSub = () => {
+export function isHighlightSub() {
 	const allTagNamesArr = exsied.cursorAllParentsTagNamesArr
 	return allTagNamesArr.includes(TN_SUB)
 }
 
-export const isHighlightSup = () => {
+export function isHighlightSup() {
 	const allTagNamesArr = exsied.cursorAllParentsTagNamesArr
 	return allTagNamesArr.includes(TN_SUP)
 }

@@ -8,7 +8,7 @@
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
 
-export const isNumberString = (str: string) => {
+export function isNumberString(str: string) {
 	const regex = /^\d+$/
 	return regex.test(str)
 }

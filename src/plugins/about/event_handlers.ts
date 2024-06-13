@@ -50,10 +50,10 @@ export function showAbout(event: Event) {
 	}
 	if (developersHtml)
 		contentHtml += `
-		<div class="exsied-developer-data">
-			<div>${t('This is an extended version developed by:', { value: developersHtml })}</div>			
-		</div>
-		`
+			<div class="exsied-developer-data">
+				<div>${t('This is an extended version developed by:', { value: developersHtml })}</div>			
+			</div>
+			`
 
 	const ele = createPopupView({
 		id: POPUP_ID,

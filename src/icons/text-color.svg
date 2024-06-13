@@ -25,8 +25,8 @@
      inkscape:document-units="mm"
      showguides="false"
      inkscape:zoom="7.2407734"
-     inkscape:cx="60.905096"
-     inkscape:cy="24.099635"
+     inkscape:cx="37.426941"
+     inkscape:cy="18.851577"
      inkscape:window-width="1920"
      inkscape:window-height="975"
      inkscape:window-x="0"
@@ -39,24 +39,17 @@
      inkscape:label="layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="matrix(0.0923137,0,0,0.09330681,-1.192548,-1.7282944)">
+     transform="scale(0.08)">
     <text
        xml:space="preserve"
-       style="font-size:176.389px;fill:#000000;fill-opacity:1;stroke-width:0.264583"
+       style="font-size:176.389px;fill:#197fc3;fill-opacity:1;stroke-width:0.264583"
        x="43.909779"
-       y="144.99362"
+       y="166.16"
        id="text1"><tspan
          sodipodi:role="line"
          id="tspan1"
-         style="font-size:176.389px;fill:#000000;stroke-width:0.264583"
+         style="font-size:176.389px;fill:#197fc3;stroke-width:0.264583;fill-opacity:1"
          x="43.909779"
-         y="144.99362">A</tspan></text>
-    <rect
-       style="fill:#666666;fill-opacity:1;stroke-width:0.301485"
-       id="rect1"
-       width="120"
-       height="20"
-       x="40"
-       y="170" />
+         y="166.16">A</tspan></text>
   </g>
 </svg>

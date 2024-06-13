@@ -14,7 +14,7 @@ import { tagNameLc } from '../utils'
 export const CN_PREVIEW_BLOCK = 'exsied-data-preview-block'
 export const CN_PREVIEW_RESULT = 'exsied-data-preview-result'
 export const CN_PREVIEW_CTRLS = 'exsied-data-preview-ctrls'
-export const dataAttr = () => {
+export function dataAttr() {
 	return {
 		sign: exsied.dataAttrs?.sign || 'data-exsied-sign',
 		signOriginal: exsied.dataAttrs?.signOriginal || 'data-exsied-original-sign',

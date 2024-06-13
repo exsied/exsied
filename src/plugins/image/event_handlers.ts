@@ -96,48 +96,48 @@ export function onClickImage(event: Event) {
 	if (eleBr) eleBr.addEventListener('pointerdown', onPointerDownBtnBr)
 }
 
-const setBaseData = () => {
+function setBaseData() {
 	resizerConf.editorEle = exsied.elements.workplace
 	resizerConf.imageEle = document.querySelector(`[${DATA_ATTR_TEMP_EDIT}="${PLUGIN_NAME}"]`) as HTMLImageElement
 	resizerConf.resizerEle = document.querySelector(`#${RESIZER_ID}`) as HTMLImageElement
 }
 
-export const onPointerDownBtnTl = (event: Event) => {
+export function onPointerDownBtnTl(event: Event) {
 	setBaseData()
 	handlePointerDown(event as MouseEvent, DIRECTION.top | DIRECTION.left)
 }
 
-export const onPointerDownBtnTc = (event: Event) => {
+export function onPointerDownBtnTc(event: Event) {
 	setBaseData()
 	handlePointerDown(event as MouseEvent, DIRECTION.top)
 }
 
-export const onPointerDownBtnTr = (event: Event) => {
+export function onPointerDownBtnTr(event: Event) {
 	setBaseData()
 	handlePointerDown(event as MouseEvent, DIRECTION.top | DIRECTION.right)
 }
 
-export const onPointerDownBtnL = (event: Event) => {
+export function onPointerDownBtnL(event: Event) {
 	setBaseData()
 	handlePointerDown(event as MouseEvent, DIRECTION.left)
 }
 
-export const onPointerDownBtnR = (event: Event) => {
+export function onPointerDownBtnR(event: Event) {
 	setBaseData()
 	handlePointerDown(event as MouseEvent, DIRECTION.right)
 }
 
-export const onPointerDownBtnBl = (event: Event) => {
+export function onPointerDownBtnBl(event: Event) {
 	setBaseData()
 	handlePointerDown(event as MouseEvent, DIRECTION.bottom | DIRECTION.left)
 }
 
-export const onPointerDownBtnBc = (event: Event) => {
+export function onPointerDownBtnBc(event: Event) {
 	setBaseData()
 	handlePointerDown(event as MouseEvent, DIRECTION.bottom)
 }
 
-export const onPointerDownBtnBr = (event: Event) => {
+export function onPointerDownBtnBr(event: Event) {
 	setBaseData()
 	handlePointerDown(event as MouseEvent, DIRECTION.bottom | DIRECTION.right)
 }
@@ -150,7 +150,7 @@ const CN_IMG_WIDTH = `exsied-edit-image-width`
 const CN_IMG_HEIGHT = `exsied-edit-image-height`
 const CN_IMG_STYLE = `exsied-edit-image-style`
 
-export const onClickImageSettingButton = (event: Event) => {
+export function onClickImageSettingButton(event: Event) {
 	event.stopPropagation()
 	event.preventDefault()
 

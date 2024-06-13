@@ -17,11 +17,11 @@ export const CN_DDROPDOWN = 'exsied-dropdown'
 export const CN_DDROPDOWN_LIST_SHOW = 'exsied-dropdown-list-show'
 export const CN_DDROPDOWN_TRIGGER = 'exsied-dropdown-trigger'
 
-export const genDropdownId = (id: string) => {
+export function genDropdownId(id: string) {
 	return `${id}---dropdown`
 }
 
-export const genTriggerClassName = () => {
+export function genTriggerClassName() {
 	return `${CN_DDROPDOWN_TRIGGER}_text`
 }
 
@@ -75,7 +75,7 @@ export class DropdownMenu {
 
 			const siblings = Array.from(dropDownEle.children)
 			const self = this
-			siblings.forEach(function (sibling) {
+			siblings.forEach((sibling) => {
 				if (sibling.classList.contains(self.cnList)) {
 					sibling.classList.add(CN_DDROPDOWN_LIST_SHOW)
 				}
