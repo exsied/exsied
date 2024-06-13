@@ -76,7 +76,7 @@ linkConf.clickLinkCb = (event) => {
 	console.info('plugin link clickLinkCb event: ', event)
 }
 
-const initExsied = () => {
+const initExsied = (locale?: string) => {
 	exsied.init({
 		id: 'app',
 		plugins: [
@@ -103,7 +103,7 @@ const initExsied = () => {
 			plugins.sourceCode,
 		],
 		enableToolbarBubble: true,
-		locale: 'en',
+		locale: locale || 'en',
 		hotkeys: [
 			{ keyStr: 'b', func: plugins.bold.commands[plugins.bold.name], modifierKeys: [KEY_CTRL] },
 			{ keyStr: 'i', func: plugins.italic.commands[plugins.italic.name], modifierKeys: [KEY_CTRL] },
@@ -180,10 +180,7 @@ for (const item of locales) {
 }
 localeSelect.addEventListener('change', (event) => {
 	const selectedValue = (event.target as HTMLSelectElement).value
-	console.log(`Selected value: ${selectedValue}`)
-
-	exsied.i18n.setLocale(selectedValue)
-	initExsied()
+	initExsied(selectedValue)
 })
 
 const btnsEle = document.getElementById('optBtns')
