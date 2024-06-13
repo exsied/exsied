@@ -151,7 +151,7 @@ export type PluginConf = {
 }
 ```
 
-and in plugin `lists`, it likes:
+and in plugin **lists**, it likes:
 
 ```ts
 export type PluginConf = {
@@ -173,9 +173,7 @@ export type PluginConf = {
 
 ### Plugin about
 
-The **about** plugin is automatically loaded by default.
-
-There is no need to add it to the `plugins` parameter of the `existing.init` function.
+The **about** plugin is automatically loaded by default. There is no need to add it to the `plugins` parameter of the `existing.init` function.
 
 If you have the authorization and want disable the **about** plugin:
 
@@ -217,9 +215,11 @@ It will process the `<pre><code>` tags.
 
 Due to the fact that **exsied** does not have any dependencies, so it cannot highlight or edit code, developers should overwrite the functions in `sourceCode.conf`:
 
-- renderData: Used to highlight code, **highlight.js** is recommended
-- editData: Used to edit code, **codemirror** is recommended. After editing, use **const ele = document.querySelector(`[${DATA_ATTR.sign}="${sign}"]`)** to find the original **code** element, and update it.
-- randomChars: Used to generate random chars.
+- renderDataCb: Used to highlight code, **highlight.js** is recommended
+- editDataCb: Used to edit code, **codemirror** is recommended. After editing, use **const ele = document.querySelector(`[${DATA_ATTR.sign}="${sign}"]`)** to find the original **code** element, and update it.
+- randomCharsCb: Used to generate random chars.
+- aferInitSourceCodeViewCb: call it afer init source code view, you can add highlight functions here.
+- inputInSourceCodeViewCb: call it when user input in source code view, you can add highlight functions here.
 
 #### Sample code
 
@@ -254,7 +254,7 @@ sourceCodeConf.editDataCb = (ele: HTMLElement, sign: string) => {
 	// do something
 }
 // replace the default randomChars with uuid
-sourceCodeConf.randomChars = () => {
+sourceCodeConf.randomCharsCb = () => {
 	return uuidv4()
 }
 ```
