@@ -19,9 +19,9 @@
 
 		<div id="app"></div>
 
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exsied/exsied@0.10.1/dist/style.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exsied/exsied@0.11.0/dist/style.css" />
 		<script type="module">
-			import { KEY_CTRL, exsied, plugins } from 'https://cdn.jsdelivr.net/npm/@exsied/exsied@0.10.1/dist/index.js'
+			import { KEY_CTRL, exsied, plugins } from 'https://cdn.jsdelivr.net/npm/@exsied/exsied@0.11.0/dist/index.js'
 
 			// plugin about
 			const aboutConf = plugins.about.conf
@@ -84,22 +84,6 @@
 				console.info('plugin link clickLinkCb event: ', event)
 			}
 
-			// config i18n
-			//
-			// Set a new  dict
-			// exsied.i18n.setDict('zh-Hans', {
-			// 	Title: '标题',
-			// 	Alternative: '别名',
-			// 	Styles: '样式',
-			// 	Width: '宽度',
-			// 	Height: '高度',
-			// })
-			// exsied.i18n.setLocale('zh-Hans')
-			//
-			// Use English
-			exsied.i18n.setBuiltInLocales()
-			exsied.i18n.setLocale('en')
-
 			const initExsied = () => {
 				exsied.init({
 					id: 'app',
@@ -127,6 +111,7 @@
 						plugins.sourceCode,
 					],
 					enableToolbarBubble: true,
+					locale: 'en',
 					hotkeys: [
 						{ keyStr: 'b', func: plugins.bold.commands[plugins.bold.name], modifierKeys: [KEY_CTRL] },
 						{ keyStr: 'i', func: plugins.italic.commands[plugins.italic.name], modifierKeys: [KEY_CTRL] },
@@ -140,9 +125,23 @@
 					},
 				})
 
-				exsied.setHtml("Hello world!")
+				exsied.setHtml(DEMO_CONTENT)
 			}
+
 			initExsied()
+
+			// custom locale
+			//
+			// Set a new  dict
+			// exsied.i18n.setDict('zh-CN', {
+			// 	Title: '标题',
+			// 	Alternative: '别名',
+			// 	Styles: '样式',
+			// 	Width: '宽度',
+			// 	Height: '高度',
+			// })
+			// exsied.i18n.setLocale('zh-CN')
+			//
 
 			// getContentBtn
 			const getContentBtn = document.createElement('button')

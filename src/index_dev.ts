@@ -76,22 +76,6 @@ linkConf.clickLinkCb = (event) => {
 	console.info('plugin link clickLinkCb event: ', event)
 }
 
-// config i18n
-//
-// Set a new  dict
-// exsied.i18n.setDict('zh-Hans', {
-// 	Title: '标题',
-// 	Alternative: '别名',
-// 	Styles: '样式',
-// 	Width: '宽度',
-// 	Height: '高度',
-// })
-// exsied.i18n.setLocale('zh-Hans')
-//
-// Use English
-exsied.i18n.setBuiltInLocales()
-exsied.i18n.setLocale('en')
-
 const initExsied = () => {
 	exsied.init({
 		id: 'app',
@@ -119,6 +103,7 @@ const initExsied = () => {
 			plugins.sourceCode,
 		],
 		enableToolbarBubble: true,
+		locale: 'en',
 		hotkeys: [
 			{ keyStr: 'b', func: plugins.bold.commands[plugins.bold.name], modifierKeys: [KEY_CTRL] },
 			{ keyStr: 'i', func: plugins.italic.commands[plugins.italic.name], modifierKeys: [KEY_CTRL] },
@@ -134,7 +119,21 @@ const initExsied = () => {
 
 	exsied.setHtml(DEMO_CONTENT)
 }
+
 initExsied()
+
+// custom locale
+//
+// Set a new  dict
+// exsied.i18n.setDict('zh-CN', {
+// 	Title: '标题',
+// 	Alternative: '别名',
+// 	Styles: '样式',
+// 	Width: '宽度',
+// 	Height: '高度',
+// })
+// exsied.i18n.setLocale('zh-CN')
+//
 
 // getContentBtn
 const getContentBtn = document.createElement('button')
