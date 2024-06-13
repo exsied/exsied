@@ -20,7 +20,7 @@ export type EventCallbackObject = {
 
 export const ELE_CLICK_CALLBACK_BY_TAG: EventCallbackObject = {}
 
-export const addEleClickCallbackByTag = (key: string, cb: EventCallback) => {
+export function addEleClickCallbackByTag(key: string, cb: EventCallback) {
 	let item = ELE_CLICK_CALLBACK_BY_TAG[key]
 	if (item) {
 		item.push(cb)
@@ -29,7 +29,7 @@ export const addEleClickCallbackByTag = (key: string, cb: EventCallback) => {
 	}
 }
 
-export const execEleEventClickCallbackByTag = (key: string, event: Event) => {
+export function execEleEventClickCallbackByTag(key: string, event: Event) {
 	let item = ELE_CLICK_CALLBACK_BY_TAG[key]
 	if (item) {
 		for (const cb of item) {
@@ -40,7 +40,7 @@ export const execEleEventClickCallbackByTag = (key: string, event: Event) => {
 
 export const ELE_CLICK_CALLBACK_BY_CLASS: EventCallbackObject = {}
 
-export const addEleClickCallbackByClass = (key: string, cb: EventCallback) => {
+export function addEleClickCallbackByClass(key: string, cb: EventCallback) {
 	let item = ELE_CLICK_CALLBACK_BY_CLASS[key]
 	if (item) {
 		item.push(cb)
@@ -49,7 +49,7 @@ export const addEleClickCallbackByClass = (key: string, cb: EventCallback) => {
 	}
 }
 
-export const execEleEventClickCallbackByClass = (key: string, event: Event) => {
+export function execEleEventClickCallbackByClass(key: string, event: Event) {
 	let item = ELE_CLICK_CALLBACK_BY_CLASS[key]
 	if (item) {
 		for (const cb of item) {
@@ -58,7 +58,7 @@ export const execEleEventClickCallbackByClass = (key: string, event: Event) => {
 	}
 }
 
-const bindEventClassName = (event: Event) => {
+function bindEventClassName(event: Event) {
 	const targetEle = event.target as HTMLElement
 	const classNames = targetEle.classList
 	if (classNames.length > 0 || classNames.contains(CN_BIND_EVENT)) {
@@ -68,25 +68,25 @@ const bindEventClassName = (event: Event) => {
 	}
 }
 
-export const bindAllEvents = () => {
+export function bindAllEvents() {
 	document.body.addEventListener('click', bindEventClassName)
 
 	Toolbar.bindBtnEvents()
 
 	if (HotkeyUtils.hasHotkeys()) {
-		exsied.elements.workplace.addEventListener('keydown', function (event) {
+		exsied.elements.workplace.addEventListener('keydown', (event) => {
 			HotkeyUtils.exec(event)
 		})
 	}
 }
 
-export const unbindAllEvent = () => {
+export function unbindAllEvent() {
 	document.body.removeEventListener('click', bindEventClassName)
 
 	Toolbar.unBindBtnEvents()
 
 	if (HotkeyUtils.hasHotkeys()) {
-		exsied.elements.workplace.removeEventListener('keydown', function (event) {
+		exsied.elements.workplace.removeEventListener('keydown', (event) => {
 			HotkeyUtils.exec(event)
 		})
 	}

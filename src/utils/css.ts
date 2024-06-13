@@ -8,7 +8,7 @@
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
 
-export const cssStyleDeclarationToString = (styleDeclaration: CSSStyleDeclaration) => {
+export function cssStyleDeclarationToString(styleDeclaration: CSSStyleDeclaration) {
 	let stylesString = ''
 
 	for (let i = 0; i < styleDeclaration.length; i++) {
@@ -23,7 +23,7 @@ export const cssStyleDeclarationToString = (styleDeclaration: CSSStyleDeclaratio
 	return stylesString.trim()
 }
 
-export const cssStyleDeclarationToKeyArray = (style: CSSStyleDeclaration) => {
+export function cssStyleDeclarationToKeyArray(style: CSSStyleDeclaration) {
 	const keyArr: string[] = []
 
 	for (let prop in style) {

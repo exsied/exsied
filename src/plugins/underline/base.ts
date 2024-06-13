@@ -13,7 +13,7 @@ import { exsied } from '../../core'
 export const PLUGIN_NAME = 'Underline'
 export const CN_ICON = 'exsied-btn-underline'
 
-export const isHighlight = () => {
+export function isHighlight() {
 	const allTagNamesArr = exsied.cursorAllParentsTagNamesArr
 	return allTagNamesArr.includes(TN_U)
 }

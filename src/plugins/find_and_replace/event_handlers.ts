@@ -33,7 +33,7 @@ let replaceText = ''
 let currentPosition = 0
 let totalCount = 0
 
-export const reset = () => {
+export function reset() {
 	findText = ''
 	replaceText = ''
 	currentPosition = 0
@@ -67,16 +67,16 @@ export function onClick(event: Event, isReplace: boolean) {
 		`
 	if (isReplace) {
 		contentHtml += `
-		<div class="${CN_FIND_BOX}">
-			<input class="${CN_REPLACE_INPUT}"/>
-			<div class="exsied-btn ${CN_REPLACE_THIS}">
-				<i class="exsied-icon exsied-btn-replace-this"></i>
+			<div class="${CN_FIND_BOX}">
+				<input class="${CN_REPLACE_INPUT}"/>
+				<div class="exsied-btn ${CN_REPLACE_THIS}">
+					<i class="exsied-icon exsied-btn-replace-this"></i>
+				</div>
+				<div class="exsied-btn ${CN_REPLACE_ALL}">
+					<i class="exsied-icon exsied-btn-replace-all"></i>
+				</div>
 			</div>
-			<div class="exsied-btn ${CN_REPLACE_ALL}">
-				<i class="exsied-icon exsied-btn-replace-all"></i>
-			</div>
-		</div>
-		`
+			`
 	}
 
 	const ele = createPopupView({

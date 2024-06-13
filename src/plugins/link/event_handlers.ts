@@ -35,7 +35,7 @@ export function insertLink() {
 	if (exsied.elements.workplace) DomUtils.addElementBySelection(exsied.elements.workplace, ele)
 }
 
-export const onClickLink = (event: Event) => {
+export function onClickLink(event: Event) {
 	event.stopPropagation()
 	event.preventDefault()
 
@@ -111,7 +111,7 @@ export const onClickLink = (event: Event) => {
 	}
 }
 
-export const onClickLinkEditBtn = (event: Event) => {
+export function onClickLinkEditBtn(event: Event) {
 	const root = (event.target as HTMLElement).closest(`.${CN_ROOT}`)
 	const previewView = root?.querySelector(`.${CN_PREVIEW}`) as HTMLElement
 	const editView = root?.querySelector(`.${CN_EDIT_VIEW}`) as HTMLElement
@@ -124,7 +124,7 @@ export const onClickLinkEditBtn = (event: Event) => {
 	editView.style.display = 'flex'
 }
 
-export const onClickLinkTrashBtn = (_event: Event) => {
+export function onClickLinkTrashBtn(_event: Event) {
 	const link = document.querySelector(`[${DATA_ATTR_TEMP_EDIT}="${PLUGIN_NAME}"]`) as HTMLAnchorElement
 	const textContent = link.textContent || link.innerText
 	link.parentNode?.replaceChild(document.createTextNode(textContent), link)
@@ -133,14 +133,14 @@ export const onClickLinkTrashBtn = (_event: Event) => {
 	DomUtils.removeElementById(POPUP_ID)
 }
 
-export const onClickLinkConcelBtn = (_event: Event) => {
+export function onClickLinkConcelBtn(_event: Event) {
 	const link = document.querySelector(`[${DATA_ATTR_TEMP_EDIT}="${PLUGIN_NAME}"]`) as HTMLAnchorElement
 	link.removeAttribute(DATA_ATTR_TEMP_EDIT)
 
 	DomUtils.removeElementById(POPUP_ID)
 }
 
-export const onClickLinkConfirmBtn = (event: Event) => {
+export function onClickLinkConfirmBtn(event: Event) {
 	const root = (event.target as HTMLElement).closest(`.${CN_ROOT}`)
 	const editView = root?.querySelector(`.${CN_EDIT_VIEW}`) as HTMLElement
 

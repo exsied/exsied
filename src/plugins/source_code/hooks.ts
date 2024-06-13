@@ -17,7 +17,7 @@ import { PLUGIN_CONF } from './base'
 const renderer = new DataRender()
 const SELECTOR = `pre code`
 
-export const renderElement = (item: Element) => {
+export function renderElement(item: Element) {
 	const eleSign = PLUGIN_CONF.randomCharsCb()
 
 	const ele = item as HTMLElement
@@ -68,14 +68,14 @@ export const renderElement = (item: Element) => {
 	renderer.addCtrlElements([editBtn, copyBtn, deleteBtn])
 }
 
-export const afterSetHtml = () => {
+export function afterSetHtml() {
 	const codeEles = exsied.elements.workplace.querySelectorAll(SELECTOR)
 	for (const item of codeEles) {
 		renderElement(item)
 	}
 }
 
-export const beforeGetHtml = () => {
+export function beforeGetHtml() {
 	const tempEle = document.createElement(TN_DIV)
 	tempEle.innerHTML = exsied.elements.workplace.innerHTML
 	const codeEles = tempEle.querySelectorAll(SELECTOR)

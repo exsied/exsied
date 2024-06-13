@@ -28,7 +28,7 @@ export const data: HistoryData = {
 	offset: 0,
 }
 
-export const update = () => {
+export function update() {
 	const html = exsied.elements.workplace.innerHTML
 	data.histories.push({
 		value: PLUGIN_CONF.compressCb ? PLUGIN_CONF.compressCb(html) : html,
@@ -52,10 +52,10 @@ const _do = (action: typeof REDO | typeof UNDO) => {
 	data.offset = currentOffset
 }
 
-export const redo = () => {
+export function redo() {
 	_do(REDO)
 }
 
-export const undo = () => {
+export function undo() {
 	_do(UNDO)
 }

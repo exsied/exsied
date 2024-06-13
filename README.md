@@ -271,7 +271,7 @@ import { v4 as uuidv4 } from 'uuid'
 hljs.registerLanguage('c', c)
 hljs.registerLanguage('cpp', cpp)
 
-export const highlighCode = (str: string, lang: string) => {
+export function highlighCode(str: string, lang: string){
 	if (lang in hljsLangMap) {
 		return hljs.highlight(str, { language: lang }).value
 	}

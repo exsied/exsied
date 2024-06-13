@@ -39,7 +39,7 @@ export type HookType = typeof HOOK_AFTER_INIT | typeof HOOK_AFTER_SET_HTML | typ
 
 export const PLUGINS: ExsiedPlugin[] = []
 
-export const execPluginHook = (hook: HookType) => {
+export function execPluginHook(hook: HookType) {
 	for (const item of PLUGINS) {
 		if (item.hooks) {
 			if (hook === HOOK_AFTER_INIT && item.hooks.afterInit) return item.hooks.afterInit()

@@ -24,7 +24,7 @@ const replaceElement = (
 		if (lastByChildren) {
 			const lastPartArray = Array.from(seRes.lastPart.childNodes)
 			lastPartArray.reverse()
-			lastPartArray.forEach(function (item) {
+			lastPartArray.forEach((item) => {
 				ancestorEle.after(item)
 			})
 		} else {
@@ -34,7 +34,7 @@ const replaceElement = (
 		if (middleByChildren) {
 			const middlePartArray = Array.from(seRes.middlePart.childNodes)
 			middlePartArray.reverse()
-			middlePartArray.forEach(function (item) {
+			middlePartArray.forEach((item) => {
 				ancestorEle.after(item)
 			})
 		} else {
@@ -44,7 +44,7 @@ const replaceElement = (
 		if (firstByChildren) {
 			const firstPartArray = Array.from(seRes.firstPart.childNodes)
 			firstPartArray.reverse()
-			firstPartArray.forEach(function (item) {
+			firstPartArray.forEach((item) => {
 				ancestorEle.after(item)
 			})
 		} else {
@@ -57,7 +57,7 @@ const replaceElement = (
 
 		if (firstByChildren) {
 			const firstPartArray = Array.from(seRes.firstPart.childNodes)
-			firstPartArray.forEach(function (item) {
+			firstPartArray.forEach((item) => {
 				ancestorEle.appendChild(item)
 			})
 		} else {
@@ -66,7 +66,7 @@ const replaceElement = (
 
 		if (middleByChildren) {
 			const middlePartArray = Array.from(seRes.middlePart.childNodes)
-			middlePartArray.forEach(function (item) {
+			middlePartArray.forEach((item) => {
 				ancestorEle.appendChild(item)
 			})
 		} else {
@@ -75,7 +75,7 @@ const replaceElement = (
 
 		if (lastByChildren) {
 			const lastPartArray = Array.from(seRes.lastPart.childNodes)
-			lastPartArray.forEach(function (item) {
+			lastPartArray.forEach((item) => {
 				ancestorEle.appendChild(item)
 			})
 		} else {
