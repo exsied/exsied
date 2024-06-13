@@ -1,7 +1,7 @@
 /*
  * Exited uses a dual license.
- * You may conditionally use exsed under the MIT License,
- * and if you do not meet the conditions, authorization is required
+ * You may conditionally use exsed under the MIT License, and
+ * if you do not meet the conditions, authorization is required.
  *
  * Existing license:
  *     https://github.com/exsied/exsied/blob/main/LICENSE
@@ -11,7 +11,7 @@ import { CN_ACTIVE } from '../../contants'
 import { exsied } from '../../core'
 import { Commands, ExsiedPlugin } from '../../core/plugin'
 import { Toolbar } from '../../ui/toolbar'
-import { CN_ICON_SUB, CN_ICON_SUP, PLUGIN_CONF, PLUGIN_NAME, isHighlightSup } from './base'
+import { CN_ICON_SUB, CN_ICON_SUP, PLUGIN_CONF, PLUGIN_NAME, isHighlightSub, isHighlightSup } from './base'
 import { formatTextSub, formatTextSup } from './event_handlers'
 import './styles.scss'
 
@@ -57,7 +57,7 @@ export const subscriptAndSupscript: ExsiedPlugin = {
 	checkHighlight: (_event) => {
 		const btnEleSub = exsied.elements.editor?.querySelector(`#${toolbarBtnIdsSub.normal}`)
 		if (btnEleSub) {
-			isHighlightSup() ? btnEleSub.classList.add(CN_ACTIVE) : btnEleSub.classList.remove(CN_ACTIVE)
+			isHighlightSub() ? btnEleSub.classList.add(CN_ACTIVE) : btnEleSub.classList.remove(CN_ACTIVE)
 		}
 
 		const btnEleSup = exsied.elements.editor?.querySelector(`#${toolbarBtnIdsSup.normal}`)

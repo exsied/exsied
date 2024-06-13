@@ -1,7 +1,7 @@
 /*
  * Exited uses a dual license.
- * You may conditionally use exsed under the MIT License,
- * and if you do not meet the conditions, authorization is required
+ * You may conditionally use exsed under the MIT License, and
+ * if you do not meet the conditions, authorization is required.
  *
  * Existing license:
  *     https://github.com/exsied/exsied/blob/main/LICENSE
@@ -77,14 +77,22 @@ const init = (conf: ExsiedInitConf) => {
 
 	const pluginNames: string[] = []
 	PLUGINS.map((plg) => {
-		if (!pluginNames.includes(plg.name)) {
-			pluginNames.push(plg.name)
+		try {
+			if (!pluginNames.includes(plg.name)) {
+				pluginNames.push(plg.name)
+			}
+		} catch (error) {
+			console.error('Exsied initialize plugin error: ', error, plg)
 		}
 	})
 
 	conf.plugins.map((plg) => {
-		if (!pluginNames.includes(plg.name)) {
-			PLUGINS.push(plg)
+		try {
+			if (!pluginNames.includes(plg.name)) {
+				PLUGINS.push(plg)
+			}
+		} catch (error) {
+			console.error('Exsied initialize plugin error: ', error, plg)
 		}
 	})
 
@@ -169,11 +177,14 @@ const getHtml = () => {
 }
 
 const setHtml = (content: string) => {
-	const workplace_ele = exsied.elements.workplace
-	workplace_ele.innerHTML = content
+	const workplaceEle = exsied.elements.workplace
+	workplaceEle.innerHTML = content
 
 	cleanWorkplaceEle()
 	execPluginHook(HOOK_AFTER_SET_HTML)
+
+	const inputEvent = new Event('input', { bubbles: true })
+	workplaceEle.dispatchEvent(inputEvent)
 }
 
 const newEmptyEle = (dataValue: string) => {

@@ -1,7 +1,7 @@
 /*
  * Exited uses a dual license.
- * You may conditionally use exsed under the MIT License,
- * and if you do not meet the conditions, authorization is required
+ * You may conditionally use exsed under the MIT License, and
+ * if you do not meet the conditions, authorization is required.
  *
  * Existing license:
  *     https://github.com/exsied/exsied/blob/main/LICENSE
@@ -80,6 +80,15 @@ export const onClickLink = (event: Event) => {
 	ele.style.left = rect.left + 'px'
 
 	document.body.appendChild(ele)
+
+	const clickLinkCb = PLUGIN_CONF.clickLinkCb
+	if (clickLinkCb) {
+		const link = ele.querySelector(`.${CN_PREVIEW} a`)
+		if (link) {
+			const eleLink = link as HTMLAnchorElement
+			eleLink.addEventListener('click', clickLinkCb)
+		}
+	}
 
 	const eleEditBtn = ele.querySelector(`.${CN_EDIT_BTN}`)
 	if (eleEditBtn) {

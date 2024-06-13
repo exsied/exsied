@@ -8,31 +8,30 @@
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
 
-export const PLUGIN_NAME = 'FindAndReplace'
-export const POPUP_ID = `exsied_${PLUGIN_NAME}_popup`
-export const CN_ICON_FIND = 'exsied-btn-find'
-export const CN_ICON_REPLACE = 'exsied-btn-replace'
-export const CN_FIND = 'find-view'
-export const CN_REPLACE = 'replace-view'
+export const PLUGIN_NAME = 'RedoAndUndo'
+export const CN_ICON_REDO = 'exsied-btn-redo'
+export const CN_ICON_UNDO = 'exsied-btn-undo'
 
 export type PluginConf = {
 	addToNormalToolbar: {
-		find: boolean
-		replace: boolean
+		redo: boolean
+		undo: boolean
 	}
 	addToBubbleToolbar: {
-		find: boolean
-		replace: boolean
+		redo: boolean
+		undo: boolean
 	}
+	compressCb?: (str: string) => any
+	uncompressCb?: (value: any) => string
 }
 
 export const PLUGIN_CONF: PluginConf = {
 	addToNormalToolbar: {
-		find: true,
-		replace: true,
+		redo: true,
+		undo: true,
 	},
 	addToBubbleToolbar: {
-		find: false,
-		replace: false,
+		redo: false,
+		undo: false,
 	},
 }

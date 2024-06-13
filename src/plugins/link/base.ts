@@ -1,7 +1,7 @@
 /*
  * Exited uses a dual license.
- * You may conditionally use exsed under the MIT License,
- * and if you do not meet the conditions, authorization is required
+ * You may conditionally use exsed under the MIT License, and
+ * if you do not meet the conditions, authorization is required.
  *
  * Existing license:
  *     https://github.com/exsied/exsied/blob/main/LICENSE
@@ -27,6 +27,7 @@ export type PluginConf = {
 	addToBubbleToolbar: boolean
 	defaultInnerHTML: string
 	defaultHref: string
+	clickLinkCb?: (event: MouseEvent) => void
 }
 
 export const PLUGIN_CONF: PluginConf = {

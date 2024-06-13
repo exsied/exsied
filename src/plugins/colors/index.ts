@@ -1,7 +1,7 @@
 /*
  * Exited uses a dual license.
- * You may conditionally use exsed under the MIT License,
- * and if you do not meet the conditions, authorization is required
+ * You may conditionally use exsed under the MIT License, and
+ * if you do not meet the conditions, authorization is required.
  *
  * Existing license:
  *     https://github.com/exsied/exsied/blob/main/LICENSE
@@ -25,7 +25,8 @@ import {
 import { showColorPickerBkg, showColorPickerText } from './event_handlers'
 import './styles.scss'
 
-const toolbarBtnIds = Toolbar.genButtonIdStd(PLUGIN_NAME, PLUGIN_NAME)
+const toolbarBtnIdsBkg = Toolbar.genButtonIdStd(PLUGIN_NAME, NAME_BACKGROUND)
+const toolbarBtnIdsText = Toolbar.genButtonIdStd(PLUGIN_NAME, NAME_TEXT)
 const commands: Commands = {}
 commands[NAME_BACKGROUND] = showColorPickerBkg
 commands[NAME_TEXT] = showColorPickerText
@@ -59,22 +60,38 @@ export const colors: ExsiedPlugin = {
 	],
 
 	addHandler: () => {
-		const btnEle = document.getElementById(toolbarBtnIds.normal)
-		if (btnEle) {
-			btnEle.addEventListener('mouseover', () => {
+		const btnEleBkg = document.getElementById(toolbarBtnIdsBkg.normal)
+		if (btnEleBkg) {
+			btnEleBkg.addEventListener('mouseover', () => {
+				SelectionUtils.backupSelection()
+			})
+		}
+		const btnEleText = document.getElementById(toolbarBtnIdsText.normal)
+		if (btnEleText) {
+			btnEleText.addEventListener('mouseover', () => {
 				SelectionUtils.backupSelection()
 			})
 		}
 	},
 	removeHandler: () => {},
 	checkHighlight: (event) => {
-		const btnEle = exsied.elements.editor?.querySelector(`#${toolbarBtnIds.normal}`) as HTMLElement
-		if (btnEle) {
+		const btnEleBkg = exsied.elements.editor?.querySelector(`#${toolbarBtnIdsBkg.normal}`) as HTMLElement
+		if (btnEleBkg) {
 			const targetEle = event.target as HTMLElement
 			const backgroundColor = DomUtils.getParentsStyleByKey(targetEle, 'background-color')
 
-			DomUtils.setStyleProperty(btnEle, {
+			DomUtils.setStyleProperty(btnEleBkg, {
 				backgroundColor,
+			} as unknown as CSSStyleDeclaration)
+		}
+
+		const btnEleText = exsied.elements.editor?.querySelector(`#${toolbarBtnIdsText.normal}`) as HTMLElement
+		if (btnEleText) {
+			const targetEle = event.target as HTMLElement
+			const color = DomUtils.getParentsStyleByKey(targetEle, 'color')
+
+			DomUtils.setStyleProperty(btnEleText, {
+				backgroundColor: color,
 			} as unknown as CSSStyleDeclaration)
 		}
 	},

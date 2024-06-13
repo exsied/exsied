@@ -19,9 +19,9 @@
 
 		<div id="app"></div>
 
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exsied/exsied@0.8.0/dist/style.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exsied/exsied@0.9.0/dist/style.css" />
 		<script type="module">
-			import { KEY_CTRL, exsied, plugins } from 'https://cdn.jsdelivr.net/npm/@exsied/exsied@0.8.0/dist/index.js'
+			import { KEY_CTRL, exsied, plugins } from 'https://cdn.jsdelivr.net/npm/@exsied/exsied@0.9.0/dist/index.js'
 
 			// plugin about
 			const aboutConf = plugins.about.conf
@@ -76,9 +76,19 @@
 				},
 			)
 
+			// plugin link
+			const linkConf = plugins.link.conf
+			linkConf.clickLinkCb = (event) => {
+				event.preventDefault()
+				alert('clicked link, the event detail in console')
+				console.info('plugin link clickLinkCb event: ', event)
+			}
+
 			exsied.init({
 				id: 'app',
 				plugins: [
+					plugins.redoAndUndo,
+					plugins.insertMenu,
 					plugins.bold,
 					plugins.italic,
 					plugins.underline,
@@ -95,7 +105,6 @@
 					plugins.textAlign,
 					plugins.indentAndOutdent,
 					plugins.subscriptAndSupscript,
-					plugins.insertMenu,
 					plugins.colors,
 					plugins.findAndReplace,
 					plugins.sourceCode,

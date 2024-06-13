@@ -1,7 +1,7 @@
 /*
  * Exited uses a dual license.
- * You may conditionally use exsed under the MIT License,
- * and if you do not meet the conditions, authorization is required
+ * You may conditionally use exsed under the MIT License, and
+ * if you do not meet the conditions, authorization is required.
  *
  * Existing license:
  *     https://github.com/exsied/exsied/blob/main/LICENSE
@@ -24,10 +24,11 @@ import { lists } from './plugins/lists'
 import { quote } from './plugins/quote'
 import { sourceCode } from './plugins/source_code'
 import { strikethrough } from './plugins/strikethrough'
-import { subscriptAndSupscript } from './plugins/subscript_and_suscript'
+import { subscriptAndSupscript } from './plugins/subscript_and_supcript'
 import { table } from './plugins/table'
 import { textAlign } from './plugins/text_align'
 import { underline } from './plugins/underline'
+import { redoAndUndo } from './plugins/undo_and_redo'
 import './styles/style.scss'
 
 export { ZERO_WIDTH_SPACE } from './contants'
@@ -50,6 +51,7 @@ export const plugins = {
 	link,
 	lists,
 	quote,
+	redoAndUndo,
 	sourceCode,
 	strikethrough,
 	subscriptAndSupscript,

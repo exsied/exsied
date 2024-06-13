@@ -1,7 +1,7 @@
 /*
  * Exited uses a dual license.
- * You may conditionally use exsed under the MIT License,
- * and if you do not meet the conditions, authorization is required
+ * You may conditionally use exsed under the MIT License, and
+ * if you do not meet the conditions, authorization is required.
  *
  * Existing license:
  *     https://github.com/exsied/exsied/blob/main/LICENSE
@@ -126,7 +126,7 @@ export class HotkeyUtils {
 
 		// TODO: Processing keyboard symbols with and without shift
 		const funcs = eventData[key.toLowerCase()]
-		if (funcs.length > 0) {
+		if (funcs && funcs.length > 0) {
 			for (const func of funcs) {
 				event.preventDefault()
 				if (func) func(event)

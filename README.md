@@ -5,6 +5,8 @@
 **Exied** is the main editor of [Enassi](https://github.com/enassi/enassi/).
 **Enassi** is your encryption assistant that supports multiple file types ( including markdown, source code, PDF, images, etc. ), supports file encryption and synchronization.
 
+**Exied** provides a variety of plugins that are basically ready to use out of the box, but there are a few plugins that need to be configured with callback functions to achieve a better user experience, such as **sourceCode** , **redoAndUndo** ,**fontSize** ,**fontFamily** .
+
 [Documents](https://enassi.pages.dev/en/exsied/about/) / [文档](https://enassi.pages.dev/zh-cn/exsied/about/)
 
 [Github repo](https://github.com/exsied/exsied) / [Gitee repo](https://gitee.com/exsied/exsied)
@@ -68,9 +70,9 @@ or
 
 ```html
 <script type="module">
-	import { exsied, plugins } from 'https://cdn.jsdelivr.net/npm/@exsied/exsied@0.8.0/dist/index.js'
+	import { exsied, plugins } from 'https://cdn.jsdelivr.net/npm/@exsied/exsied@0.9.0/dist/index.js'
 </script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exsied/exsied@0.8.0/dist/style.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exsied/exsied@0.9.0/dist/style.css" />
 ```
 
 When running **exsied** in the browser, please refer to `test_dist/index_esm.html`.
@@ -94,15 +96,80 @@ exsied.init({
 exsied.setHtml('some HTML code')
 ```
 
-## Dark mode
+## Style
+
+### Dark mode
 
 Add `class="dark"` to body.
+
+### Chromium scrollbar
+
+You can add some style, like:
+
+```css
+// scrollbar
+::-webkit-scrollbar {
+	width: 5px;
+	height: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+	-webkit-border-radius: 5px;
+	background-color: var(--exd-border-color);
+}
+
+::-webkit-scrollbar-corner {
+	display: none;
+}
+```
 
 ## Plugins
 
 We provide many built-in plugins, most of which are easy to use. Below are a few special plugins.
 
 You can set the `config` of a plugin to change some values. Take a look at the **about** plugin.
+
+### Configure
+
+All plugins have some toolbar conf, like:
+
+- **addToNormalToolbar**: add the button(s) and / or select(s) to **normal toolbar**
+- **addToNormalToolbarInsertMenu**: add the button(s) and / or select(s) to **normal toolbar's insert menu**
+- **addToBubbleToolbar**: add the button(s) and / or select(s) to **bubble toolbar**
+
+If the plugin **only has one button or select**, these three field is **boolean** type, otherwise they are **object** type.
+
+For example, in plugin **image**, it likes:
+
+```ts
+export type PluginConf = {
+	addToNormalToolbar: boolean
+	addToNormalToolbarInsertMenu: boolean
+	addToBubbleToolbar: boolean
+	defaultAlt: string
+	defaultSrc: string
+}
+```
+
+and in plugin `lists`, it likes:
+
+```ts
+export type PluginConf = {
+	addToNormalToolbar: {
+		ol: boolean
+		ul: boolean
+	}
+	addToNormalToolbarInsertMenu: {
+		ol: boolean
+		ul: boolean
+	}
+	addToBubbleToolbar: {
+		ol: boolean
+		ul: boolean
+	}
+	defaultInnerHTML: string
+}
+```
 
 ### Plugin about
 
@@ -144,7 +211,7 @@ plugins.about.conf.deveploers.push(
 )
 ```
 
-### Plugin code block
+### Plugin sourceCode
 
 It will process the `<pre><code>` tags.
 
@@ -178,12 +245,12 @@ export const highlighCode = (str: string, lang: string) => {
 
 const sourceCodeConf = plugins.sourceCode.conf as PluginConf
 
-sourceCodeConf.renderData = (ele: HTMLElement) => {
+sourceCodeConf.renderDataCb = (ele: HTMLElement) => {
 	const lang = ele.getAttribute('lang') || ''
 	const res = highlighCode(ele.innerHTML, lang)
 	return `<pre><code>${res}</code></pre>`
 }
-sourceCodeConf.editData = (ele: HTMLElement, sign: string) => {
+sourceCodeConf.editDataCb = (ele: HTMLElement, sign: string) => {
 	// do something
 }
 // replace the default randomChars with uuid
@@ -191,6 +258,13 @@ sourceCodeConf.randomChars = () => {
 	return uuidv4()
 }
 ```
+
+### Plugin redoAndUndo
+
+You can provied two callback in `redoAndUndo.conf` to compress and uncompress:
+
+- compressCb: (str: string) => any
+- uncompressCb: (value: any) => string
 
 ## I18N
 

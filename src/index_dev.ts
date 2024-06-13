@@ -1,7 +1,7 @@
 /*
  * Exited uses a dual license.
- * You may conditionally use exsed under the MIT License,
- * and if you do not meet the conditions, authorization is required
+ * You may conditionally use exsed under the MIT License, and
+ * if you do not meet the conditions, authorization is required.
  *
  * Existing license:
  *     https://github.com/exsied/exsied/blob/main/LICENSE
@@ -12,6 +12,7 @@ import { DEMO_CONTENT } from './demo_content'
 import { PluginConf as AboutPluginConf } from './plugins/about/base'
 import { PluginConf as FontFamilyPluginConf } from './plugins/font_family/base'
 import { PluginConf as FontSizePluginConf } from './plugins/font_size/base'
+import { PluginConf as LinkConf } from './plugins/link/base'
 import './styles/style.scss'
 
 // plugin about
@@ -67,9 +68,19 @@ fontFamilyConf.fontFamilyOptions.push(
 	},
 )
 
+// plugin link
+const linkConf = plugins.link.conf as LinkConf
+linkConf.clickLinkCb = (event) => {
+	event.preventDefault()
+	alert('clicked link, the event detail in console')
+	console.info('plugin link clickLinkCb event: ', event)
+}
+
 exsied.init({
 	id: 'app',
 	plugins: [
+		plugins.redoAndUndo,
+		plugins.insertMenu,
 		plugins.bold,
 		plugins.italic,
 		plugins.underline,
@@ -86,7 +97,6 @@ exsied.init({
 		plugins.textAlign,
 		plugins.indentAndOutdent,
 		plugins.subscriptAndSupscript,
-		plugins.insertMenu,
 		plugins.colors,
 		plugins.findAndReplace,
 		plugins.sourceCode,
@@ -98,10 +108,10 @@ exsied.init({
 		{ keyStr: 'u', func: plugins.underline.commands[plugins.underline.name], modifierKeys: [KEY_CTRL] },
 	],
 	hooks: {
-		onInput: (event) => {
-			const ele = event.target as HTMLElement
-			console.log('>>> hooks.onInput :', ele.innerHTML)
-		},
+		// onInput: (event) => {
+		// 	const ele = event.target as HTMLElement
+		// 	console.log('>>> hooks.onInput :', ele.innerHTML)
+		// },
 	},
 })
 

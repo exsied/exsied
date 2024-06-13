@@ -7,13 +7,10 @@
  *     https://github.com/exsied/exsied/blob/main/LICENSE
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
-import { FormatStyle } from '../../core/format/style'
-import { Style } from '../../types'
 
-export function formatFontSize(event: Event) {
-	const selectEle = event.target as HTMLSelectElement
+export const limitRange = (value: number, min: number, max: number) => {
+	if (value < min) return min
+	if (value > max) return max
 
-	const style: Style = {}
-	style.fontSize = selectEle.value
-	FormatStyle.formatSelected(style as CSSStyleDeclaration)
+	return value
 }

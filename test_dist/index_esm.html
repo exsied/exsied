@@ -7,6 +7,9 @@
 	</head>
 	<body>
 		<p>Exsied demo:</p>
+		<p>
+			<span id="optBtns"></span>
+		</p>
 		<div id="app"></div>
 
 		<link rel="stylesheet" href="../dist/style.css" />
@@ -14,6 +17,7 @@
 			import { DEMO_CONTENT } from '../demo_content.js'
 			import { KEY_CTRL, exsied, plugins } from '../dist/index.js'
 
+			// plugin about
 			plugins.about.conf.deveploers.push(
 				{
 					name: 'enassi github',
@@ -31,15 +35,58 @@
 				},
 			)
 
+			// plugin fontSize
+			const fontSizeConf = plugins.fontSize.conf
+			fontSizeConf.fontSizeOptions.push(
+				{
+					name: '18px',
+					value: '18px',
+					tooltipText: '',
+					iconClassName: '',
+				},
+				{
+					name: '28px',
+					value: '28px',
+					tooltipText: '',
+					iconClassName: '',
+				},
+			)
+
+			// plugin fontFamily
+			const fontFamilyConf = plugins.fontFamily.conf
+			fontFamilyConf.fontFamilyOptions.push(
+				{
+					name: 'fontFamily_1',
+					value: 'fontFamily_1',
+					tooltipText: '',
+					iconClassName: '',
+				},
+				{
+					name: 'fontFamily_2',
+					value: 'fontFamily_2',
+					tooltipText: '',
+					iconClassName: '',
+				},
+			)
+
+			// plugin link
+			const linkConf = plugins.link.conf
+			linkConf.clickLinkCb = (event) => {
+				event.preventDefault()
+				alert('clicked link, the event detail in console')
+				console.info('plugin link clickLinkCb event: ', event)
+			}
+
 			exsied.init({
 				id: 'app',
 				plugins: [
+					plugins.redoAndUndo,
+					plugins.insertMenu,
 					plugins.bold,
 					plugins.italic,
 					plugins.underline,
 					plugins.strikethrough,
 					plugins.headings,
-					plugins.subscriptAndSuperscript,
 					plugins.link,
 					plugins.image,
 					plugins.table,
@@ -50,6 +97,7 @@
 					plugins.fontFamily,
 					plugins.textAlign,
 					plugins.indentAndOutdent,
+					plugins.subscriptAndSupscript,
 					plugins.colors,
 					plugins.findAndReplace,
 					plugins.sourceCode,
@@ -79,6 +127,33 @@
 			})
 
 			exsied.i18n.setLocale('zh-CN')
+
+			//
+			const testBtn = document.createElement('button')
+			testBtn.innerHTML = 'Get content html'
+			testBtn.addEventListener('click', () => {
+				const html = exsied.getHtml()
+				console.log(' >>> Exsied content html :::', html)
+			})
+
+			const darkModeBtn = document.createElement('button')
+			darkModeBtn.innerHTML = 'Toggle dark mode'
+			darkModeBtn.addEventListener('click', () => {
+				const bodyEle = document.querySelector('body')
+				if (!bodyEle) return
+
+				if (bodyEle.classList.contains('dark')) {
+					bodyEle.classList.remove('dark')
+				} else {
+					bodyEle.classList.add('dark')
+				}
+			})
+
+			const btnsEle = document.getElementById('optBtns')
+			if (btnsEle) {
+				btnsEle.append(darkModeBtn)
+				btnsEle.append(testBtn)
+			}
 		</script>
 	</body>
 </html>
