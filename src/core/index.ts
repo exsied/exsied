@@ -37,6 +37,7 @@ export type ExsiedInitConf = {
 	id: string
 	plugins: ExsiedPlugin[]
 	enableToolbarBubble: boolean
+	locale?: string
 	hotkeys?: { keyStr: string; func: CommandFunc; modifierKeys: ModifierKeys[] }[]
 	dataAttrs?: { sign: string; signOriginal: string }
 	hooks?: {
@@ -97,6 +98,9 @@ const init = (conf: ExsiedInitConf) => {
 			console.error('Exsied initialize plugin error: ', error, plg)
 		}
 	})
+
+	I18N.setBuiltInLocales()
+	conf.locale ? I18N.setLocale(conf.locale) : I18N.setLocale('en')
 
 	if (conf.dataAttrs) exsied.dataAttrs = conf.dataAttrs
 

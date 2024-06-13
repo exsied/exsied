@@ -28,7 +28,7 @@ export class I18N {
 
 	static setLocale = (locale: string) => {
 		if (!this.fullDict[locale]) {
-			console.log('Unsupported locale : ' + locale)
+			console.error('Unsupported locale : ' + locale)
 			return
 		}
 

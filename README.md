@@ -70,9 +70,9 @@ or
 
 ```html
 <script type="module">
-	import { exsied, plugins } from 'https://cdn.jsdelivr.net/npm/@exsied/exsied@0.10.1/dist/index.js'
+	import { exsied, plugins } from 'https://cdn.jsdelivr.net/npm/@exsied/exsied@0.11.0/dist/index.js'
 </script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exsied/exsied@0.10.1/dist/style.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exsied/exsied@0.11.0/dist/style.css" />
 ```
 
 When running **exsied** in the browser, please refer to `test_dist/index_esm.html`.
@@ -91,6 +91,7 @@ exsied.init({
 		plugins.strikethrough, // ...
 	],
 	enableToolbarBubble: true,
+	locale: 'en',
 })
 
 exsied.setHtml('some HTML code')
@@ -98,12 +99,13 @@ exsied.setHtml('some HTML code')
 
 ## I18N
 
-Currently, **exsied** only supports English(en),French(fr), German(de), Russian(ru), Spanish(es), Simplified Chinese(zh-Hans), Traditional Chinese(zh-Hant).
+Currently, **exsied** only supports English(en), French(fr), German(de), Russian(ru), Spanish(es), Simplified Chinese(zh-Hans), and Traditional Chinese(zh-Hant).
 
-You can use the following functions to set an locale.
+You can add a `locale` parameter in `exsied.init` to set a default locale, or use the following functions to set a new locale.
+
+**Notice**: Changing the locale after `exsied.init` will require reinitializing **exsied** . Developers should backup the content first.
 
 ```js
-exsied.i18n.setBuiltInLocales()
 exsied.i18n.setLocale('en')
 ```
 
