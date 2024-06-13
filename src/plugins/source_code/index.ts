@@ -15,6 +15,7 @@ import './styles.scss'
 
 export const NAME_SOURCE_CODE_VIEW = 'sourceCodeView'
 export const NAME_INSERT_SOURCE_CODE_BOCK = 'insertSourceCodeBock'
+
 const commands: Commands = {}
 commands[NAME_SOURCE_CODE_VIEW] = toggleSourceView
 commands[NAME_INSERT_SOURCE_CODE_BOCK] = insertCodeBlock

@@ -38,6 +38,7 @@ import './styles.scss'
 const toolbarBtnIds = Toolbar.genButtonIdStd(PLUGIN_NAME, PLUGIN_NAME)
 const dropDownId = genDropdownId(toolbarBtnIds.normal)
 const triggerClassName = genTriggerClassName()
+
 const commands: Commands = {
 	formatDiv: formatParagraph,
 	formatH1,

@@ -70,9 +70,9 @@ or
 
 ```html
 <script type="module">
-	import { exsied, plugins } from 'https://cdn.jsdelivr.net/npm/@exsied/exsied@0.10.0/dist/index.js'
+	import { exsied, plugins } from 'https://cdn.jsdelivr.net/npm/@exsied/exsied@0.10.1/dist/index.js'
 </script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exsied/exsied@0.10.0/dist/style.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exsied/exsied@0.10.1/dist/style.css" />
 ```
 
 When running **exsied** in the browser, please refer to `test_dist/index_esm.html`.
@@ -94,6 +94,41 @@ exsied.init({
 })
 
 exsied.setHtml('some HTML code')
+```
+
+## I18N
+
+Currently, **exsied** only supports English(en),French(fr), German(de), Russian(ru), Spanish(es), Simplified Chinese(zh-Hans), Traditional Chinese(zh-Hant).
+
+You can use the following functions to set an locale.
+
+```js
+exsied.i18n.setBuiltInLocales()
+exsied.i18n.setLocale('en')
+```
+
+### Add support for other locales
+
+#### Setp1: serach all words
+
+Search `t('` in your IDE.
+
+#### Setp2: set a dict.
+
+```js
+exsied.i18n.setDict('zh-CN', {
+	Title: '标题',
+	Alternative: '别名',
+	Styles: '样式',
+	Width: '宽度',
+	Height: '高度',
+})
+```
+
+#### Setp3: set a locale.
+
+```js
+exsied.i18n.setLocale('zh-CN')
 ```
 
 ## Style
@@ -270,32 +305,6 @@ You can provied two callback in `redoAndUndo.conf` to compress and uncompress th
 You can provied a callback in `redoAndUndo.conf`:
 
 - clickLinkCb: handle click event of tag `a`
-
-## I18N
-
-Currently, **exsied** only supports English. Developers can add support for other locales by following these steps:
-
-### Setp1: serach all words
-
-Search `t('` in your IDE.
-
-### Setp2: set a dict.
-
-```js
-exsied.i18n.setDict('zh-CN', {
-	Title: '标题',
-	Alternative: '别名',
-	Styles: '样式',
-	Width: '宽度',
-	Height: '高度',
-})
-```
-
-### Setp3: set a locale.
-
-```js
-exsied.i18n.setLocale('zh-CN')
-```
 
 ## ABBR
 

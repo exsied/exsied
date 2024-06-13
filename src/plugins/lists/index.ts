@@ -17,7 +17,9 @@ import './styles.scss'
 
 const NAME_OL = 'OrderedList'
 const NAME_UL = 'UnorderedList'
+
 const toolbarBtnIds = Toolbar.genButtonIdStd(PLUGIN_NAME, PLUGIN_NAME)
+
 const commands: Commands = {}
 commands[NAME_OL] = insertOl
 commands[NAME_UL] = insertUl

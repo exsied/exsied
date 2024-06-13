@@ -17,6 +17,7 @@ import './styles.scss'
 
 export const NAME_FIND = 'find'
 export const NAME_REPLACE = 'replace'
+
 const commands: Commands = {}
 commands[NAME_FIND] = onClickFind
 commands[NAME_REPLACE] = onClickReplace

@@ -17,6 +17,7 @@ import { insertTable, showTableActionButtons } from './event_handlers'
 import './styles.scss'
 
 const toolbarBtnIds = Toolbar.genButtonIdStd(PLUGIN_NAME, PLUGIN_NAME)
+
 const commands: Commands = {}
 commands[PLUGIN_NAME] = insertTable
 

@@ -27,6 +27,7 @@ import './styles.scss'
 
 const toolbarBtnIdsBkg = Toolbar.genButtonIdStd(PLUGIN_NAME, NAME_BACKGROUND)
 const toolbarBtnIdsText = Toolbar.genButtonIdStd(PLUGIN_NAME, NAME_TEXT)
+
 const commands: Commands = {}
 commands[NAME_BACKGROUND] = showColorPickerBkg
 commands[NAME_TEXT] = showColorPickerText
