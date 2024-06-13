@@ -30,11 +30,12 @@
 
 		.exsied-dropdown-list-item {
 			display: flex;
-			padding: 0.5rem;
+			padding: 0.25rem 0.5rem;
 			cursor: pointer;
 
 			.icon {
 				padding-inline-end: 0.5rem;
+				padding-top: 0.25rem;
 			}
 		}
 	}

@@ -51,8 +51,7 @@ export function showAbout(event: Event) {
 	if (developersHtml)
 		contentHtml += `
 		<div class="exsied-developer-data">
-			<div>${t('This is an extended version developed by:')}</div>
-			${developersHtml}
+			<div>${t('This is an extended version developed by:', { value: developersHtml })}</div>			
 		</div>
 		`
 

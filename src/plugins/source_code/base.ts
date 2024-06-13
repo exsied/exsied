@@ -24,7 +24,7 @@ export type PluginConf = {
 	editDataCb: (ele: HTMLElement, sign: string) => void
 	aferInitSourceCodeViewCb: (sourceCodeWorkplaceEle: HTMLElement) => void
 	inputInSourceCodeViewCb: (sourceCodeWorkplaceEle: HTMLElement) => void
-	randomChars(): string
+	randomCharsCb(): string
 }
 
 export const PLUGIN_CONF: PluginConf = {
@@ -50,7 +50,7 @@ export const PLUGIN_CONF: PluginConf = {
 	inputInSourceCodeViewCb: (_sourceCodeWorkplaceEle: HTMLElement) => {
 		// Add highlight functions
 	},
-	randomChars: () => {
+	randomCharsCb: () => {
 		return randomChars(28)
 	},
 }

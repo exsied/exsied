@@ -11,6 +11,7 @@ import { CN_TOOLBAR_NORMAL_ELE, DATA_ATTR_CN_ICON, TN_DIV } from '../../contants
 import { exsied } from '../../core'
 import { DomUtils } from '../../core/dom_utils'
 import { execEleEventClickCallbackByTag } from '../../core/events'
+import { t } from '../../core/i18n'
 import { ChangeEventHandler, ClickEventHandler, PLUGINS } from '../../core/plugin'
 import { SelectionUtils } from '../../core/selection_utils'
 import { HTMLTagNames } from '../../types'
@@ -69,6 +70,16 @@ export const EXTTOOLBAR_NAME = 'ExtToolbar'
 export const PLUGINS_SELECT_ID: string[] = []
 export const INSERT_ELEMENT_BUTTONS: InsertElementButton[] = []
 
+const checkExistInsertElementButtons = (ctrl: InsertElementButton) => {
+	for (const iterator of INSERT_ELEMENT_BUTTONS) {
+		if (iterator.pluginName === ctrl.pluginName && iterator.ctrlName === ctrl.ctrlName) {
+			return true
+		}
+	}
+
+	return false
+}
+
 export class Toolbar {
 	static genButtonId = (tp: string, pluginName: string, ctrlName: string) => {
 		return `exsied-toolbar-btn___${tp}___${pluginName}---${ctrlName}`
@@ -82,7 +93,8 @@ export class Toolbar {
 
 	static genHtmlButton = (ctrl: ToolBarButton) => {
 		let btnIcon = ctrl.iconClassName ? `<i class="exsied-icon ${ctrl.iconClassName}"></i>` : ''
-		return `<button class="exsied-ctrl" id="___id___">${btnIcon}${ctrl.buttonText || ''}</button>`
+		const buttonText = ctrl.buttonText ? t(ctrl.buttonText) : ''
+		return `<button class="exsied-ctrl" id="___id___">${btnIcon}${buttonText || ''}</button>`
 	}
 
 	static genHtmlSelect = (ctrl: ToolBarSelect) => {
@@ -120,13 +132,14 @@ export class Toolbar {
 					const html = this.genHtmlButton(ctrl)
 					if (ctrl.addToNormalToolbar) ctrlHtmlArr.push(html.replace('___id___', ids.normal))
 					if (ctrl.addToNormalToolbarInsertMenu) {
-						INSERT_ELEMENT_BUTTONS.push({
+						const insertCtrl = {
 							pluginName: plg.name,
 							ctrlName: ctrl.name,
 							tooltipText: ctrl.tooltipText,
 							iconClassName: ctrl.iconClassName,
 							clickCallBack: ctrl.clickCallBack,
-						})
+						}
+						if (!checkExistInsertElementButtons(insertCtrl)) INSERT_ELEMENT_BUTTONS.push(insertCtrl)
 					}
 					if (ctrl.addToBubbleToolbar && bubbleBtnsEle) {
 						if (!DomUtils.existElementById(ids.bubble)) bubbleBtnsEle.innerHTML += html.replace('___id___', ids.bubble)

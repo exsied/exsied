@@ -7,6 +7,7 @@
  *     https://github.com/exsied/exsied/blob/main/LICENSE
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
+import { localesMap } from '../locales'
 import { KvStringString } from '../types'
 import { formatStringWithParams } from '../utils/string'
 
@@ -39,6 +40,19 @@ export class I18N {
 		let res = this.currentDict[words]
 		if (!res) res = words
 		return formatStringWithParams(res, params)
+	}
+
+	static setBuiltInLocales = () => {
+		for (const locale in localesMap) {
+			if (Object.prototype.hasOwnProperty.call(localesMap, locale)) {
+				const dict = localesMap[locale]
+
+				I18N.setDict(locale, dict)
+			}
+		}
+	}
+	static getLocaleNames = () => {
+		return Object.keys(this.fullDict)
 	}
 }
 

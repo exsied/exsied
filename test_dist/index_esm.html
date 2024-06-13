@@ -6,10 +6,17 @@
 		<title>Exsied</title>
 	</head>
 	<body>
-		<p>Exsied demo:</p>
+		<p>
+			Exsied demo:
+			<a href="https://exsied.pages.dev/demo">Live demo </a> /
+			<a href="https://enassi.pages.dev/en/exsied/about/">Document</a> /
+			<a href="https://github.com/exsied/exsied">Github repo</a> /
+			<a href="https://gitee.com/exsied/exsied">Gite repo</a>
+		</p>
 		<p>
 			<span id="optBtns"></span>
 		</p>
+
 		<div id="app"></div>
 
 		<link rel="stylesheet" href="../dist/style.css" />
@@ -18,20 +25,21 @@
 			import { KEY_CTRL, exsied, plugins } from '../dist/index.js'
 
 			// plugin about
-			plugins.about.conf.deveploers.push(
+			const aboutConf = plugins.about.conf
+			aboutConf.deveploers.push(
 				{
-					name: 'enassi github',
+					name: 'enassi',
 					repoLink: 'https://github.com/enassi/enassi',
 					webSiteLink: 'https://xxx.com/xxx',
 					email: 'xxx@xxx.xxx',
 					extContent: `Enassi's github repo`,
 				},
 				{
-					name: 'enassi gitee',
-					repoLink: 'https://gitee.com/enassi/enassi',
+					name: 'exsied',
+					repoLink: 'https://gitee.com/exsied/exsied',
 					webSiteLink: 'https://xxx.com/xxx',
 					email: 'xxx@xxx.xxx',
-					extContent: `Enassi's gitee repo`,
+					extContent: `Exsied's gitee repo`,
 				},
 			)
 
@@ -77,65 +85,75 @@
 				console.info('plugin link clickLinkCb event: ', event)
 			}
 
-			exsied.init({
-				id: 'app',
-				plugins: [
-					plugins.redoAndUndo,
-					plugins.insertMenu,
-					plugins.bold,
-					plugins.italic,
-					plugins.underline,
-					plugins.strikethrough,
-					plugins.headings,
-					plugins.link,
-					plugins.image,
-					plugins.table,
-					plugins.horizonalRule,
-					plugins.quote,
-					plugins.lists,
-					plugins.fontSize,
-					plugins.fontFamily,
-					plugins.textAlign,
-					plugins.indentAndOutdent,
-					plugins.subscriptAndSupscript,
-					plugins.colors,
-					plugins.findAndReplace,
-					plugins.sourceCode,
-				],
-				enableToolbarBubble: true,
-				hotkeys: [
-					{ keyStr: 'b', func: plugins.bold.commands[plugins.bold.name], modifierKeys: [KEY_CTRL] },
-					{ keyStr: 'i', func: plugins.italic.commands[plugins.italic.name], modifierKeys: [KEY_CTRL] },
-					{ keyStr: 'u', func: plugins.underline.commands[plugins.underline.name], modifierKeys: [KEY_CTRL] },
-				],
-				hooks: {
-					onInput: (event) => {
-						const ele = event.target
-						console.log('>>> hooks.onInput :', ele.innerHTML)
-					},
-				},
-			})
-
-			exsied.setHtml(DEMO_CONTENT)
-
-			exsied.i18n.setDict('zh-CN', {
-				Title: '标题',
-				Alternative: '别名',
-				Styles: '样式',
-				Width: '宽度',
-				Height: '高度',
-			})
-
-			exsied.i18n.setLocale('zh-CN')
-
+			// config i18n
 			//
-			const testBtn = document.createElement('button')
-			testBtn.innerHTML = 'Get content html'
-			testBtn.addEventListener('click', () => {
+			// Set a new  dict
+			// exsied.i18n.setDict('zh-Hans', {
+			// 	Title: '标题',
+			// 	Alternative: '别名',
+			// 	Styles: '样式',
+			// 	Width: '宽度',
+			// 	Height: '高度',
+			// })
+			// exsied.i18n.setLocale('zh-Hans')
+			//
+			// Use English
+			exsied.i18n.setBuiltInLocales()
+			exsied.i18n.setLocale('en')
+
+			const initExsied = () => {
+				exsied.init({
+					id: 'app',
+					plugins: [
+						plugins.redoAndUndo,
+						plugins.insertMenu,
+						plugins.bold,
+						plugins.italic,
+						plugins.underline,
+						plugins.strikethrough,
+						plugins.headings,
+						plugins.link,
+						plugins.image,
+						plugins.table,
+						plugins.horizonalRule,
+						plugins.quote,
+						plugins.lists,
+						plugins.fontSize,
+						plugins.fontFamily,
+						plugins.textAlign,
+						plugins.indentAndOutdent,
+						plugins.subscriptAndSupscript,
+						plugins.colors,
+						plugins.findAndReplace,
+						plugins.sourceCode,
+					],
+					enableToolbarBubble: true,
+					hotkeys: [
+						{ keyStr: 'b', func: plugins.bold.commands[plugins.bold.name], modifierKeys: [KEY_CTRL] },
+						{ keyStr: 'i', func: plugins.italic.commands[plugins.italic.name], modifierKeys: [KEY_CTRL] },
+						{ keyStr: 'u', func: plugins.underline.commands[plugins.underline.name], modifierKeys: [KEY_CTRL] },
+					],
+					hooks: {
+						// onInput: (event) => {
+						// 	const ele = event.target as HTMLElement
+						// 	console.log('>>> hooks.onInput :', ele.innerHTML)
+						// },
+					},
+				})
+
+				exsied.setHtml(DEMO_CONTENT)
+			}
+			initExsied()
+
+			// getContentBtn
+			const getContentBtn = document.createElement('button')
+			getContentBtn.innerHTML = 'Get content html'
+			getContentBtn.addEventListener('click', () => {
 				const html = exsied.getHtml()
 				console.log(' >>> Exsied content html :::', html)
 			})
 
+			// darkModeBtn
 			const darkModeBtn = document.createElement('button')
 			darkModeBtn.innerHTML = 'Toggle dark mode'
 			darkModeBtn.addEventListener('click', () => {
@@ -149,10 +167,34 @@
 				}
 			})
 
+			// change locale
+			const locales = ['de', 'es', 'en', 'fr', 'ru', 'zh-Hans', 'zh-Hant']
+			const localeLabel = document.createElement('span')
+			localeLabel.innerHTML = 'Locale:'
+			//
+			const localeSelect = document.createElement('select')
+			localeSelect.id = 'mySelect'
+			for (const iterator of locales) {
+				const optionElement = document.createElement('option')
+				optionElement.value = iterator
+				optionElement.text = ` ${iterator}`
+				localeSelect.appendChild(optionElement)
+			}
+			localeSelect.addEventListener('change', (event) => {
+				const selectedValue = event.target.value
+				console.log(`Selected value: ${selectedValue}`)
+
+				exsied.i18n.setLocale(selectedValue)
+				initExsied()
+			})
+
 			const btnsEle = document.getElementById('optBtns')
 			if (btnsEle) {
 				btnsEle.append(darkModeBtn)
-				btnsEle.append(testBtn)
+				btnsEle.append(getContentBtn)
+
+				btnsEle.append(localeLabel)
+				btnsEle.append(localeSelect)
 			}
 		</script>
 	</body>

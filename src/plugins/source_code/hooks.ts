@@ -18,7 +18,7 @@ const renderer = new DataRender()
 const SELECTOR = `pre code`
 
 export const renderElement = (item: Element) => {
-	const eleSign = PLUGIN_CONF.randomChars()
+	const eleSign = PLUGIN_CONF.randomCharsCb()
 
 	const ele = item as HTMLElement
 	renderer.setEle(ele, eleSign)

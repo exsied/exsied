@@ -70,9 +70,9 @@ or
 
 ```html
 <script type="module">
-	import { exsied, plugins } from 'https://cdn.jsdelivr.net/npm/@exsied/exsied@0.9.0/dist/index.js'
+	import { exsied, plugins } from 'https://cdn.jsdelivr.net/npm/@exsied/exsied@0.10.0/dist/index.js'
 </script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exsied/exsied@0.9.0/dist/style.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exsied/exsied@0.10.0/dist/style.css" />
 ```
 
 When running **exsied** in the browser, please refer to `test_dist/index_esm.html`.
@@ -107,7 +107,6 @@ Add `class="dark"` to body.
 You can add some style, like:
 
 ```css
-// scrollbar
 ::-webkit-scrollbar {
 	width: 5px;
 	height: 5px;
@@ -139,7 +138,7 @@ All plugins have some toolbar conf, like:
 
 If the plugin **only has one button or select**, these three field is **boolean** type, otherwise they are **object** type.
 
-For example, in plugin **image**, it likes:
+For example, in plugin **image**, like:
 
 ```ts
 export type PluginConf = {
@@ -151,7 +150,7 @@ export type PluginConf = {
 }
 ```
 
-and in plugin `lists`, it likes:
+and in plugin **lists**, like:
 
 ```ts
 export type PluginConf = {
@@ -173,9 +172,7 @@ export type PluginConf = {
 
 ### Plugin about
 
-The **about** plugin is automatically loaded by default.
-
-There is no need to add it to the `plugins` parameter of the `existing.init` function.
+The **about** plugin is automatically loaded by default. There is no need to add it to the `plugins` parameter of the `existing.init` function.
 
 If you have the authorization and want disable the **about** plugin:
 
@@ -217,9 +214,11 @@ It will process the `<pre><code>` tags.
 
 Due to the fact that **exsied** does not have any dependencies, so it cannot highlight or edit code, developers should overwrite the functions in `sourceCode.conf`:
 
-- renderData: Used to highlight code, **highlight.js** is recommended
-- editData: Used to edit code, **codemirror** is recommended. After editing, use **const ele = document.querySelector(`[${DATA_ATTR.sign}="${sign}"]`)** to find the original **code** element, and update it.
-- randomChars: Used to generate random chars.
+- renderDataCb: Used to highlight code, **highlight.js** is recommended
+- editDataCb: Used to edit code, **codemirror** is recommended. After editing, use **const ele = document.querySelector(`[${dataAttr.sign}="${sign}"]`)** to find the original **code** element, and update it.
+- randomCharsCb: Used to generate random chars.
+- aferInitSourceCodeViewCb: call it afer init source code view, you can add highlight functions here.
+- inputInSourceCodeViewCb: call it when user input in source code view, you can add highlight functions here.
 
 #### Sample code
 
@@ -254,17 +253,23 @@ sourceCodeConf.editDataCb = (ele: HTMLElement, sign: string) => {
 	// do something
 }
 // replace the default randomChars with uuid
-sourceCodeConf.randomChars = () => {
+sourceCodeConf.randomCharsCb = () => {
 	return uuidv4()
 }
 ```
 
 ### Plugin redoAndUndo
 
-You can provied two callback in `redoAndUndo.conf` to compress and uncompress:
+You can provied two callback in `redoAndUndo.conf` to compress and uncompress the content:
 
 - compressCb: (str: string) => any
 - uncompressCb: (value: any) => string
+
+### Plugin link
+
+You can provied a callback in `redoAndUndo.conf`:
+
+- clickLinkCb: handle click event of tag `a`
 
 ## I18N
 
@@ -274,7 +279,7 @@ Currently, **exsied** only supports English. Developers can add support for othe
 
 Search `t('` in your IDE.
 
-### Setp2: use `exsied.setDict` set a dict.
+### Setp2: set a dict.
 
 ```js
 exsied.i18n.setDict('zh-CN', {
@@ -286,7 +291,7 @@ exsied.i18n.setDict('zh-CN', {
 })
 ```
 
-### Setp3: use `exsied.setLocale` set a locale.
+### Setp3: set a locale.
 
 ```js
 exsied.i18n.setLocale('zh-CN')

@@ -69,6 +69,8 @@ export type Exsied = {
 		setDict: (locale: string, dict: KvStringString) => any
 		getLocale: () => string
 		setLocale: (locale: string) => any
+		setBuiltInLocales: () => void
+		getLocaleNames: () => string[]
 	}
 }
 
@@ -215,5 +217,7 @@ export const exsied: Exsied = {
 		setDict: I18N.setDict,
 		getLocale: I18N.getLocale,
 		setLocale: I18N.setLocale,
+		setBuiltInLocales: I18N.setBuiltInLocales,
+		getLocaleNames: I18N.getLocaleNames,
 	},
 }

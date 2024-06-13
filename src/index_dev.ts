@@ -76,65 +76,75 @@ linkConf.clickLinkCb = (event) => {
 	console.info('plugin link clickLinkCb event: ', event)
 }
 
-exsied.init({
-	id: 'app',
-	plugins: [
-		plugins.redoAndUndo,
-		plugins.insertMenu,
-		plugins.bold,
-		plugins.italic,
-		plugins.underline,
-		plugins.strikethrough,
-		plugins.headings,
-		plugins.link,
-		plugins.image,
-		plugins.table,
-		plugins.horizonalRule,
-		plugins.quote,
-		plugins.lists,
-		plugins.fontSize,
-		plugins.fontFamily,
-		plugins.textAlign,
-		plugins.indentAndOutdent,
-		plugins.subscriptAndSupscript,
-		plugins.colors,
-		plugins.findAndReplace,
-		plugins.sourceCode,
-	],
-	enableToolbarBubble: true,
-	hotkeys: [
-		{ keyStr: 'b', func: plugins.bold.commands[plugins.bold.name], modifierKeys: [KEY_CTRL] },
-		{ keyStr: 'i', func: plugins.italic.commands[plugins.italic.name], modifierKeys: [KEY_CTRL] },
-		{ keyStr: 'u', func: plugins.underline.commands[plugins.underline.name], modifierKeys: [KEY_CTRL] },
-	],
-	hooks: {
-		// onInput: (event) => {
-		// 	const ele = event.target as HTMLElement
-		// 	console.log('>>> hooks.onInput :', ele.innerHTML)
-		// },
-	},
-})
-
-exsied.setHtml(DEMO_CONTENT)
-
-exsied.i18n.setDict('zh-CN', {
-	Title: '标题',
-	Alternative: '别名',
-	Styles: '样式',
-	Width: '宽度',
-	Height: '高度',
-})
-
-exsied.i18n.setLocale('zh-CN')
-
+// config i18n
 //
-const testBtn = document.createElement('button')
-testBtn.innerHTML = 'Get content html'
-testBtn.addEventListener('click', () => {
+// Set a new  dict
+// exsied.i18n.setDict('zh-Hans', {
+// 	Title: '标题',
+// 	Alternative: '别名',
+// 	Styles: '样式',
+// 	Width: '宽度',
+// 	Height: '高度',
+// })
+// exsied.i18n.setLocale('zh-Hans')
+//
+// Use English
+exsied.i18n.setBuiltInLocales()
+exsied.i18n.setLocale('en')
+
+const initExsied = () => {
+	exsied.init({
+		id: 'app',
+		plugins: [
+			plugins.redoAndUndo,
+			plugins.insertMenu,
+			plugins.bold,
+			plugins.italic,
+			plugins.underline,
+			plugins.strikethrough,
+			plugins.headings,
+			plugins.link,
+			plugins.image,
+			plugins.table,
+			plugins.horizonalRule,
+			plugins.quote,
+			plugins.lists,
+			plugins.fontSize,
+			plugins.fontFamily,
+			plugins.textAlign,
+			plugins.indentAndOutdent,
+			plugins.subscriptAndSupscript,
+			plugins.colors,
+			plugins.findAndReplace,
+			plugins.sourceCode,
+		],
+		enableToolbarBubble: true,
+		hotkeys: [
+			{ keyStr: 'b', func: plugins.bold.commands[plugins.bold.name], modifierKeys: [KEY_CTRL] },
+			{ keyStr: 'i', func: plugins.italic.commands[plugins.italic.name], modifierKeys: [KEY_CTRL] },
+			{ keyStr: 'u', func: plugins.underline.commands[plugins.underline.name], modifierKeys: [KEY_CTRL] },
+		],
+		hooks: {
+			// onInput: (event) => {
+			// 	const ele = event.target as HTMLElement
+			// 	console.log('>>> hooks.onInput :', ele.innerHTML)
+			// },
+		},
+	})
+
+	exsied.setHtml(DEMO_CONTENT)
+}
+initExsied()
+
+// getContentBtn
+const getContentBtn = document.createElement('button')
+getContentBtn.innerHTML = 'Get content html'
+getContentBtn.addEventListener('click', () => {
 	const html = exsied.getHtml()
 	console.log(' >>> Exsied content html :::', html)
 })
 
+// darkModeBtn
 const darkModeBtn = document.createElement('button')
 darkModeBtn.innerHTML = 'Toggle dark mode'
 darkModeBtn.addEventListener('click', () => {
@@ -148,8 +158,32 @@ darkModeBtn.addEventListener('click', () => {
 	}
 })
 
+// change locale
+const locales = ['de', 'es', 'en', 'fr', 'ru', 'zh-Hans', 'zh-Hant']
+const localeLabel = document.createElement('span')
+localeLabel.innerHTML = 'Locale:'
+//
+const localeSelect = document.createElement('select')
+localeSelect.id = 'mySelect'
+for (const iterator of locales) {
+	const optionElement = document.createElement('option')
+	optionElement.value = iterator
+	optionElement.text = ` ${iterator}`
+	localeSelect.appendChild(optionElement)
+}
+localeSelect.addEventListener('change', (event) => {
+	const selectedValue = (event.target as HTMLSelectElement).value
+	console.log(`Selected value: ${selectedValue}`)
+
+	exsied.i18n.setLocale(selectedValue)
+	initExsied()
+})
+
 const btnsEle = document.getElementById('optBtns')
 if (btnsEle) {
 	btnsEle.append(darkModeBtn)
-	btnsEle.append(testBtn)
+	btnsEle.append(getContentBtn)
+
+	btnsEle.append(localeLabel)
+	btnsEle.append(localeSelect)
 }
