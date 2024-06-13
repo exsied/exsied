@@ -138,7 +138,7 @@ initExsied()
 
 // getContentBtn
 const getContentBtn = document.createElement('button')
-getContentBtn.innerHTML = 'Get content html'
+getContentBtn.innerHTML = 'Log content html'
 getContentBtn.addEventListener('click', () => {
 	const html = exsied.getHtml()
 	console.log(' >>> Exsied content html :::', html)
@@ -159,16 +159,24 @@ darkModeBtn.addEventListener('click', () => {
 })
 
 // change locale
-const locales = ['de', 'es', 'en', 'fr', 'ru', 'zh-Hans', 'zh-Hant']
+const locales = [
+	{ text: 'German(Deutsch)', symbol: 'de' },
+	{ text: 'Spanish(Español)', symbol: 'es' },
+	{ text: 'French(Français)', symbol: 'fr' },
+	{ text: 'English', symbol: 'en' },
+	{ text: 'Russian(Русский язык)', symbol: 'ru' },
+	{ text: 'Simplified Chinese(简体中文)', symbol: 'zh-Hans' },
+	{ text: 'Traditional Chinese(繁體中文)', symbol: 'zh-Hant' },
+]
 const localeLabel = document.createElement('span')
-localeLabel.innerHTML = 'Locale:'
+localeLabel.innerHTML = 'Change locale:'
 //
 const localeSelect = document.createElement('select')
 localeSelect.id = 'mySelect'
-for (const iterator of locales) {
+for (const item of locales) {
 	const optionElement = document.createElement('option')
-	optionElement.value = iterator
-	optionElement.text = ` ${iterator}`
+	optionElement.value = item.symbol
+	optionElement.text = item.text
 	localeSelect.appendChild(optionElement)
 }
 localeSelect.addEventListener('change', (event) => {
@@ -180,10 +188,9 @@ localeSelect.addEventListener('change', (event) => {
 })
 
 const btnsEle = document.getElementById('optBtns')
-if (btnsEle) {
-	btnsEle.append(darkModeBtn)
+if (btnsEle) {	
 	btnsEle.append(getContentBtn)
-
+	btnsEle.append(darkModeBtn)
 	btnsEle.append(localeLabel)
 	btnsEle.append(localeSelect)
 }
