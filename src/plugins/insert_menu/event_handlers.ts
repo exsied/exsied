@@ -30,8 +30,10 @@ export function showInsertMenu(event: Event) {
 
 		contentHtml += `
 			<div class="${CN_INSERT_MENU_ITEM}" ${dataName}="${name}">
-				<i class="exsied-icon ${item.iconClassName}"></i>
-				${t(item.tooltipText)}
+				<div class="icon">
+					<i class="exsied-icon ${item.iconClassName}"></i>
+				</div>
+				<div class="content">${t(item.tooltipText)}</div>								
 			</div>
 			`
 	}

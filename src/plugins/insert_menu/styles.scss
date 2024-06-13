@@ -18,11 +18,16 @@
 
 	.exsied-toolbar-insert-menu-item {
 		display: flex;
-		padding: 0.5rem;
+		padding: 0.25rem 0.5rem;
 		cursor: pointer;
 
-		.exsied-icon {
+		.icon {
 			padding-inline-end: 0.5rem;
+			padding-top: 0.25rem;
+
+			.exsied-icon {
+				padding-inline-end: 0.5rem;
+			}
 		}
 	}
 }
