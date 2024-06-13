@@ -9,6 +9,7 @@
  */
 import { TN_H1, TN_H2, TN_H3, TN_H4, TN_H5, TN_H6 } from '../../contants'
 import { exsied } from '../../core'
+import { t } from '../../core/i18n'
 import { Commands, ExsiedPlugin } from '../../core/plugin'
 import { genDropdownId, genTriggerClassName } from '../../ui/dropdown'
 import { Toolbar } from '../../ui/toolbar'
@@ -77,7 +78,7 @@ export const headings: ExsiedPlugin = {
 		const setDropDownTriggerText = (text: string) => {
 			const triggerEle = dropDownEle.querySelector(`.${triggerClassName}`)
 			if (triggerEle) {
-				triggerEle.innerHTML = text
+				triggerEle.innerHTML = t(text)
 
 				updated = true
 			}

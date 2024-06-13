@@ -1,15 +1,17 @@
-
 /*
  * Exited uses a dual license.
  * You may conditionally use exsed under the MIT License, and
  * if you do not meet the conditions, authorization is required.
- * 
- * Existing license: 
+ *
+ * Existing license:
  *     https://github.com/exsied/exsied/blob/main/LICENSE
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
 
 export const DEMO_CONTENT = `
+Hello world!
+
+<br/>
 <p>
   <strong>Exsied</strong>: <strong>Ex</strong>tremely <strong>si</strong>mple
   <strong>ed</strong>itor. The pronunciation is <code>/ɪkˈsiːd/</code>, the same
@@ -117,4 +119,3 @@ export const DEMO_CONTENT = `
   </code>
 </pre>
 `
-

@@ -11,6 +11,7 @@ import { CN_TOOLBAR_NORMAL_ELE, DATA_ATTR_CN_ICON, TN_DIV } from '../../contants
 import { exsied } from '../../core'
 import { DomUtils } from '../../core/dom_utils'
 import { execEleEventClickCallbackByTag } from '../../core/events'
+import { t } from '../../core/i18n'
 import { ChangeEventHandler, ClickEventHandler, PLUGINS } from '../../core/plugin'
 import { SelectionUtils } from '../../core/selection_utils'
 import { HTMLTagNames } from '../../types'
@@ -82,7 +83,8 @@ export class Toolbar {
 
 	static genHtmlButton = (ctrl: ToolBarButton) => {
 		let btnIcon = ctrl.iconClassName ? `<i class="exsied-icon ${ctrl.iconClassName}"></i>` : ''
-		return `<button class="exsied-ctrl" id="___id___">${btnIcon}${ctrl.buttonText || ''}</button>`
+		const buttonText = ctrl.buttonText ? t(ctrl.buttonText) : ''
+		return `<button class="exsied-ctrl" id="___id___">${btnIcon}${buttonText || ''}</button>`
 	}
 
 	static genHtmlSelect = (ctrl: ToolBarSelect) => {

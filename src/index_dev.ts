@@ -76,6 +76,19 @@ linkConf.clickLinkCb = (event) => {
 	console.info('plugin link clickLinkCb event: ', event)
 }
 
+// config i18n
+//
+// Set a new  dict
+// exsied.i18n.setDict('zh-Hans', {
+// 	Title: '标题',
+// 	Alternative: '别名',
+// 	Styles: '样式',
+// 	Width: '宽度',
+// 	Height: '高度',
+// })
+exsied.i18n.setBuiltInLocales()
+exsied.i18n.setLocale('zh-Hans')
+
 exsied.init({
 	id: 'app',
 	plugins: [
@@ -116,16 +129,6 @@ exsied.init({
 })
 
 exsied.setHtml(DEMO_CONTENT)
-
-exsied.i18n.setDict('zh-CN', {
-	Title: '标题',
-	Alternative: '别名',
-	Styles: '样式',
-	Width: '宽度',
-	Height: '高度',
-})
-
-exsied.i18n.setLocale('zh-CN')
 
 //
 const testBtn = document.createElement('button')

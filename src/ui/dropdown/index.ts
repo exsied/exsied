@@ -8,6 +8,7 @@
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
 import { CN_TEMP_ELE, DATA_ATTR_CN_ICON, TN_DIV } from '../../contants'
+import { t } from '../../core/i18n'
 import { SelectionUtils } from '../../core/selection_utils'
 import { tagNameLc } from '../../utils'
 import './styles.scss'
@@ -61,8 +62,8 @@ export class DropdownMenu {
 		triggerEle.classList.add(CN_DDROPDOWN_TRIGGER)
 		triggerEle.classList.add('exsied-ctrl')
 
-		const defaultText = ele.getAttribute('data-default-text')
-		triggerEle.innerHTML = `<span class="${genTriggerClassName()}">${defaultText || this.triggerDefaultText}</span>`
+		const defaultText = ele.getAttribute('data-default-text') || this.triggerDefaultText
+		triggerEle.innerHTML = `<span class="${genTriggerClassName()}">${t(defaultText)}</span>`
 
 		triggerEle.addEventListener('click', (event: Event) => {
 			const target = event.target
@@ -104,7 +105,7 @@ export class DropdownMenu {
 
 			listItem.innerHTML = `
 				<div class="icon">${icon}</div>
-				<div class="content">${content}</div>
+				<div class="content">${t(content)}</div>
 				`
 
 			listItem.addEventListener('click', (event: Event) => {

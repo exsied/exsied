@@ -8,7 +8,6 @@
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
 import { DomUtils } from '../../core/dom_utils'
-import { t } from '../../core/i18n'
 import { Commands, ExsiedPlugin } from '../../core/plugin'
 import { SelectionUtils } from '../../core/selection_utils'
 import { Toolbar } from '../../ui/toolbar'
@@ -28,7 +27,7 @@ export const insertMenu: ExsiedPlugin = {
 	toolBarControl: [
 		{
 			name: PLUGIN_NAME,
-			buttonText: t('Insert'),
+			buttonText: 'Insert',
 			tooltipText: 'Insert menu',
 			addToNormalToolbar: PLUGIN_CONF.addToNormalToolbar,
 			addToBubbleToolbar: PLUGIN_CONF.addToBubbleToolbar,

@@ -8,6 +8,7 @@
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
 import { CN_TEMP_ELE, DATA_ATTR_TEMP_EDIT } from '../../contants'
+import { t } from '../../core/i18n'
 import { ClickEventHandler } from '../../core/plugin'
 import { SelectionUtils } from '../../core/selection_utils'
 import { createPopupView } from '../../ui/popup_view'
@@ -30,7 +31,7 @@ export function showInsertMenu(event: Event) {
 		contentHtml += `
 			<div class="${CN_INSERT_MENU_ITEM}" ${dataName}="${name}">
 				<i class="exsied-icon ${item.iconClassName}"></i>
-				${item.ctrlName}
+				${t(item.tooltipText)}
 			</div>
 			`
 	}
