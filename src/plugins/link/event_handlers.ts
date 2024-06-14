@@ -80,6 +80,7 @@ export function onClickLink(event: Event) {
 	ele.style.left = rect.left + 'px'
 
 	document.body.appendChild(ele)
+	DomUtils.limitElementRect(ele)
 
 	const clickLinkCb = PLUGIN_CONF.clickLinkCb
 	if (clickLinkCb) {

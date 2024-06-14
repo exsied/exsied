@@ -9,6 +9,7 @@
  */
 import pkg from '../../../package.json'
 import { CN_TEMP_ELE, DATA_ATTR_TEMP_EDIT, LIB_NAME, LIB_REPO_GITHUB } from '../../contants'
+import { DomUtils } from '../../core/dom_utils'
 import { t } from '../../core/i18n'
 import { createPopupView } from '../../ui/popup_view'
 import { CN_ROOT, PLUGIN_CONF, PLUGIN_NAME, POPUP_ID } from './base'
@@ -71,4 +72,5 @@ export function showAbout(event: Event) {
 	ele.style.left = rect.left + 'px'
 
 	document.body.appendChild(ele)
+	DomUtils.limitElementRect(ele)
 }

@@ -94,6 +94,7 @@ export function onClick(event: Event, isReplace: boolean) {
 	ele.style.left = rect.left + 'px'
 
 	document.body.appendChild(ele)
+	DomUtils.limitElementRect(ele)
 
 	// find text input
 	const eleInput = ele.querySelector(`.${CN_FIND_INPUT}`)
