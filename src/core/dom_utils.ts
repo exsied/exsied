@@ -351,4 +351,34 @@ export class DomUtils {
 
 		return null
 	}
+
+	static limitElementRect(ele: HTMLElement) {
+		const windowHeight = window.innerHeight
+		const windowWidth = window.innerWidth
+		const rect = ele.getBoundingClientRect()
+
+		if (rect.right > windowWidth) {
+			ele.style.left = 'initial'
+			ele.style.right = '0'
+		}
+
+		if (rect.bottom > windowHeight) {
+			ele.style.top = 'initial'
+			ele.style.bottom = '0'
+		}
+
+		if (rect.height >= windowHeight) {
+			ele.style.top = '0'
+			ele.style.bottom = 'initial'
+			ele.style.height = `${windowHeight}px`
+		}
+
+		console.log(rect.width >= windowWidth)
+
+		if (rect.width >= windowWidth) {
+			ele.style.left = '0'
+			ele.style.right = 'initial'
+			ele.style.width = `${windowWidth}px`
+		}
+	}
 }

@@ -9,6 +9,7 @@
  */
 import {
 	CN_EDITOR_ELE,
+	CN_EXSIED_ELE,
 	CN_TOOLBAR_ELE,
 	CN_TOOLBAR_MAIN_ELE,
 	CN_TOOLBAR_NORMAL_ELE,
@@ -113,7 +114,7 @@ const init = (conf: ExsiedInitConf) => {
 	if (!editorEle) throw new Error('The exsied.elements.editor does not exist.')
 	exsied.elements.editor = editorEle as HTMLElement
 	editorEle.innerHTML = `
-		<div class="${CN_EDITOR_ELE}">  
+		<div class="${CN_EXSIED_ELE} ${CN_EDITOR_ELE}">  
 			<div class="${CN_TOOLBAR_ELE} ${CN_TOOLBAR_MAIN_ELE}">
 				<div class="${CN_TOOLBAR_NORMAL_ELE}">
 					${Toolbar.genToolbarStd()}

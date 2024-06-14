@@ -41,10 +41,10 @@ export const PLUGINS: ExsiedPlugin[] = []
 
 export function execPluginHook(hook: HookType) {
 	for (const item of PLUGINS) {
-		if (item.hooks) {
-			if (hook === HOOK_AFTER_INIT && item.hooks.afterInit) return item.hooks.afterInit()
-			if (hook === HOOK_AFTER_SET_HTML && item.hooks.afterSetHtml) return item.hooks.afterSetHtml()
-			if (hook === HOOK_BEFORE_GET_HTML && item.hooks.beforeGetHtml) return item.hooks.beforeGetHtml()
-		}
+		if (!item.hooks) continue
+
+		if (hook === HOOK_AFTER_INIT && item.hooks.afterInit) return item.hooks.afterInit()
+		if (hook === HOOK_AFTER_SET_HTML && item.hooks.afterSetHtml) return item.hooks.afterSetHtml()
+		if (hook === HOOK_BEFORE_GET_HTML && item.hooks.beforeGetHtml) return item.hooks.beforeGetHtml()
 	}
 }

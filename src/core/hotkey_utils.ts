@@ -9,18 +9,18 @@
  */
 import { CommandFunc } from './plugin'
 
-export type ModifierKeys = typeof KEY_ALT | typeof KEY_CTRL | typeof KEY_META | typeof KEY_SHIFT
-
-export type HotkeyEventsObj = {
-	[key: string]: CommandFunc[]
-}
-
-// Key
+// Key value
 // https://developer.mozilla.org/en-US/docs/Web/API/UI_Events/Keyboard_event_key_values
 export const KEY_ALT = 'Alt'
 export const KEY_CTRL = 'Control'
 export const KEY_SHIFT = 'Shift'
 export const KEY_META = 'Meta'
+
+export type ModifierKeys = typeof KEY_ALT | typeof KEY_CTRL | typeof KEY_META | typeof KEY_SHIFT
+
+export type HotkeyEventsObj = {
+	[key: string]: CommandFunc[]
+}
 
 // 4
 const altCtrlMetaShift: HotkeyEventsObj = {}

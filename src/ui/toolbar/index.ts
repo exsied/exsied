@@ -7,7 +7,7 @@
  *     https://github.com/exsied/exsied/blob/main/LICENSE
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
-import { CN_TOOLBAR_NORMAL_ELE, DATA_ATTR_CN_ICON, TN_DIV } from '../../contants'
+import { CN_EXSIED_ELE, CN_TOOLBAR_NORMAL_ELE, DATA_ATTR_CN_ICON, TN_DIV } from '../../contants'
 import { exsied } from '../../core'
 import { DomUtils } from '../../core/dom_utils'
 import { execEleEventClickCallbackByTag } from '../../core/events'
@@ -350,6 +350,7 @@ export class Toolbar {
 		if (!bubbleEle) {
 			const ele = document.createElement(TN_DIV)
 			ele.id = ID_BUBBLE_WRAP
+			ele.classList.add(CN_EXSIED_ELE)
 			ele.classList.add('exsied')
 
 			ele.innerHTML = `

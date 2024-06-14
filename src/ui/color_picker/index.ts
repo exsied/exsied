@@ -8,6 +8,7 @@
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
 import { CN_TEMP_ELE, DATA_ATTR_TEMP_EDIT } from '../../contants'
+import { DomUtils } from '../../core/dom_utils'
 import { t } from '../../core/i18n'
 import { createPopupView } from '../popup_view'
 import './styles.scss'
@@ -222,6 +223,7 @@ export class ColorPicker {
 		ele.style.left = rect.left + scrollLeft + 'px'
 
 		document.body.appendChild(ele)
+		DomUtils.limitElementRect(ele)
 
 		const elePickerBtnA = ele.querySelectorAll(`.${this.cnPickerBtnA}`)
 		if (elePickerBtnA) {

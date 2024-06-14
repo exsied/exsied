@@ -84,6 +84,7 @@ export class FormatStyle {
 				endNode.parentNode?.insertBefore(span, endNode)
 			}
 		}
+
 		const formatLastPart = (node: ChildNode): boolean | undefined => {
 			if (node.nodeType === Node.TEXT_NODE) {
 				const textNode = endNode as Text
@@ -103,8 +104,8 @@ export class FormatStyle {
 
 					textNode.textContent = ZERO_WIDTH_SPACE
 				}
-				DomUtils.setStyleProperty(span, style)
 
+				DomUtils.setStyleProperty(span, style)
 				return
 			}
 
@@ -116,7 +117,6 @@ export class FormatStyle {
 
 				if (item === endNode) {
 					formatEndNode(item)
-
 					return true
 				}
 
@@ -144,13 +144,11 @@ export class FormatStyle {
 
 			if (currentNode.contains(endNode)) {
 				formatLastPart(currentNode)
-
 				break
 			}
 
 			if (currentNode === endNode) {
 				formatLastPart(currentNode)
-
 				break
 			}
 

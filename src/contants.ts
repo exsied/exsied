@@ -12,12 +12,13 @@ export const LIB_NAME = 'Exsied'
 export const LIB_REPO_GITHUB = 'https://github.com/exsied/exsied'
 
 // Class names
+export const CN_EXSIED_ELE = 'exsied-ele'
 export const CN_EDITOR_ELE = 'exsied'
 export const CN_TOOLBAR_ELE = 'exsied-toolbar'
 export const CN_TOOLBAR_MAIN_ELE = 'exsied-toolbar-main'
 export const CN_TOOLBAR_NORMAL_ELE = 'exsied-toolbar-normal'
 export const CN_WORKPLACE_ELE = 'exsied-workplace'
-export const CN_TEMP_ELE = `exsied-temp-ele`
+export const CN_TEMP_ELE = 'exsied-temp-ele'
 export const CN_TEMP_ELE_HIGHLIGHT = `exsied-temp-ele-highlight`
 export const CN_BIND_EVENT = 'exsied-bind-event'
 export const CN_ACTIVE = 'exsied-active'
