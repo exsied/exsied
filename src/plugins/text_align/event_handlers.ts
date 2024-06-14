@@ -11,7 +11,7 @@ import { FormatStyle } from '../../core/format/style'
 import { SelectionUtils } from '../../core/selection_utils'
 import { Style } from '../../types'
 
-function format  (value: string)  {
+function format(value: string) {
 	const style: Style = {}
 	style.textAlign = value
 	const cursorEle = SelectionUtils.getCursorNode()

@@ -84,7 +84,7 @@ export class FormatStyle {
 				endNode.parentNode?.insertBefore(span, endNode)
 			}
 		}
-		
+
 		const formatLastPart = (node: ChildNode): boolean | undefined => {
 			if (node.nodeType === Node.TEXT_NODE) {
 				const textNode = endNode as Text
