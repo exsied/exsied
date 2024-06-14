@@ -12,19 +12,23 @@
 }
 
 .exsied-find-box {
-	display: flex;
 	padding: 0.5rem;
+	display: flex;
+
+	.exsied-find-actions {
+		display: flex;
+	}
 
 	.exsied-find-count {
-		padding: 0.5rem;
 		display: flex;
+		padding: 0.5rem;
 	}
 
 	.exsied-btn {
 		cursor: pointer;
 		display: flex;
 		align-items: center;
-		padding: 0 0.25rem;
+		padding: 0.5rem;
 
 		i.exsied-btn-prev {
 			@include bkgSvgIcon;
@@ -55,5 +59,11 @@
 			@include bkgSvgIcon;
 			background-image: url(../../icons/replace-filled.svg);
 		}
+	}
+}
+
+@media (max-width: 576px) {
+	.exsied-find-box {
+		display: block;
 	}
 }

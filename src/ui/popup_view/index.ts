@@ -7,7 +7,7 @@
  *     https://github.com/exsied/exsied/blob/main/LICENSE
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
-import { TN_DIV } from '../../contants'
+import { CN_EXSIED_ELE, TN_DIV } from '../../contants'
 import { DomUtils } from '../../core/dom_utils'
 import { EventCallback } from '../../core/events'
 import { KvStringString } from '../../types'
@@ -75,6 +75,7 @@ export const createPopupView = (props: PopupViewProps) => {
 	const ele = document.createElement(TN_DIV)
 	ele.id = props.id
 	ele.innerHTML = htmlContent
+	ele.classList.add(CN_EXSIED_ELE)
 	ele.classList.add(CN_POPUP_VIEW)
 
 	for (const className of props.classNames) {

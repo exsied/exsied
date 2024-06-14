@@ -16,6 +16,7 @@ import { CN_FIND, PLUGIN_NAME, POPUP_ID } from './base'
 import { FindAndReplace } from './find'
 
 const CN_FIND_BOX = 'exsied-find-box'
+const CN_FIND_ACTIONS = 'exsied-find-actions'
 const CN_FIND_INPUT = 'exsied-find-input'
 const CN_FIND_COUNT = 'exsied-find-count'
 const CN_FIND_COUNT_CURRENT = 'exsied-find-count-current'
@@ -46,22 +47,24 @@ export function onClick(event: Event, isReplace: boolean) {
 	let contentHtml = `
 		<div class="${CN_FIND_BOX}">
 			<input class="${CN_FIND_INPUT}"/>
-			<div class="${CN_FIND_COUNT}">
-				<div class="${CN_FIND_COUNT_CURRENT}">0</div>
-				/
-				<div class="${CN_FIND_COUNT_TOTAL}">0</div>
-			</div>
-			<div class="exsied-btn ${CN_PREV}">
-				<i class="exsied-icon exsied-btn-prev"></i>
-			</div>
-			<div class="exsied-btn ${CN_NEXT}">
-				<i class="exsied-icon exsied-btn-next"></i>
-			</div>
-			<div class="exsied-btn ${CN_HIGHLIGHT_ALL}">
-				<i class="exsied-icon exsied-btn-hightlight-all"></i>
-			</div>
-			<div class="exsied-btn ${CN_CLOSE}">
-				<i class="exsied-icon exsied-btn-close"></i>
+			<div class="${CN_FIND_ACTIONS}">
+				<div class="${CN_FIND_COUNT}">
+					<div class="${CN_FIND_COUNT_CURRENT}">0</div>
+					/
+					<div class="${CN_FIND_COUNT_TOTAL}">0</div>
+				</div>
+				<div class="exsied-btn ${CN_PREV}">
+					<i class="exsied-icon exsied-btn-prev"></i>
+				</div>
+				<div class="exsied-btn ${CN_NEXT}">
+					<i class="exsied-icon exsied-btn-next"></i>
+				</div>
+				<div class="exsied-btn ${CN_HIGHLIGHT_ALL}">
+					<i class="exsied-icon exsied-btn-hightlight-all"></i>
+				</div>
+				<div class="exsied-btn ${CN_CLOSE}">
+					<i class="exsied-icon exsied-btn-close"></i>
+				</div>
 			</div>
 		</div>
 		`
@@ -69,11 +72,13 @@ export function onClick(event: Event, isReplace: boolean) {
 		contentHtml += `
 			<div class="${CN_FIND_BOX}">
 				<input class="${CN_REPLACE_INPUT}"/>
-				<div class="exsied-btn ${CN_REPLACE_THIS}">
-					<i class="exsied-icon exsied-btn-replace-this"></i>
-				</div>
-				<div class="exsied-btn ${CN_REPLACE_ALL}">
-					<i class="exsied-icon exsied-btn-replace-all"></i>
+				<div class="${CN_FIND_ACTIONS}">
+					<div class="exsied-btn ${CN_REPLACE_THIS}">
+						<i class="exsied-icon exsied-btn-replace-this"></i>
+					</div>
+					<div class="exsied-btn ${CN_REPLACE_ALL}">
+						<i class="exsied-icon exsied-btn-replace-all"></i>
+					</div>
 				</div>
 			</div>
 			`
