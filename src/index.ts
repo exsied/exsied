@@ -7,10 +7,14 @@
  *     https://github.com/exsied/exsied/blob/main/LICENSE
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
+import { DomUtils } from './core/dom_utils'
+import { HotkeyUtils } from './core/hotkey_utils'
+import { SelectionUtils } from './core/selection_utils'
 import { about } from './plugins/about'
 import { bold } from './plugins/bold'
 import { colors } from './plugins/colors'
 import { findAndReplace } from './plugins/find_and_replace'
+import { FindAndReplace } from './plugins/find_and_replace/find'
 import { fontFamily } from './plugins/font_family'
 import { fontSize } from './plugins/font_size'
 import { headings } from './plugins/headings'
@@ -30,6 +34,8 @@ import { textAlign } from './plugins/text_align'
 import { underline } from './plugins/underline'
 import { redoAndUndo } from './plugins/undo_and_redo'
 import './styles/style.scss'
+import { ColorPicker } from './ui/color_picker'
+import { DropdownMenu } from './ui/dropdown'
 
 export { ZERO_WIDTH_SPACE } from './contants'
 export { exsied } from './core'
@@ -58,4 +64,13 @@ export const plugins = {
 	table,
 	textAlign,
 	underline,
+}
+
+export const utils = {
+	ColorPicker,
+	DomUtils,
+	DropdownMenu,
+	FindAndReplace,
+	HotkeyUtils,
+	SelectionUtils,
 }
