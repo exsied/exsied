@@ -9,7 +9,7 @@
  */
 
 export const PLUGIN_NAME = 'HorizonalRule'
-export const CN_ICON = 'exsied-btn-hr'
+export const CN_ICON = 'exsied-icon-hr'
 
 export type PluginConf = {
 	addToNormalToolbar: boolean

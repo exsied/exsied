@@ -9,8 +9,8 @@
  */
 
 export const PLUGIN_NAME = 'IndentAndOutdent'
-export const CN_ICON_INDENT = 'exsied-btn-indent'
-export const CN_ICON_OUTDENT = 'exsied-btn-outdent'
+export const CN_ICON_INDENT = 'exsied-icon-indent'
+export const CN_ICON_OUTDENT = 'exsied-icon-outdent'
 
 export type PluginConf = {
 	addToNormalToolbar: {

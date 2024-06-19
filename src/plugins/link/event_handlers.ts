@@ -48,19 +48,19 @@ export function onClickLink(event: Event) {
 		  		${targetEle.innerText || PLUGIN_CONF.defaultInnerHTML}
 			</a>
 			<div class="exsied-btn ${CN_EDIT_BTN}">
-          		<i class="exsied-icon exsied-btn-edit"></i>
+          		<i class="exsied-icon exsied-icon-edit"></i>
 		  	</div>
 			<div class="exsied-btn ${CN_TRASH}">
-          		<i class="exsied-icon exsied-btn-trash"></i>
+          		<i class="exsied-icon exsied-icon-trash"></i>
 			</div>
         </div>
         <div class="${CN_EDIT_VIEW}" style="display: none">
         	<input class="${CN_EDIT_INPUT}" value="">	
 			<div class="exsied-btn ${CN_CANCEL_BTN}">
-				<i class="exsied-icon exsied-btn-cancel"></i>
+				<i class="exsied-icon exsied-icon-cancel"></i>
 			</div>
 			<div class="exsied-btn ${CN_CONFIRM_BTN}">
-				<i class="exsied-icon exsied-btn-confirm"></i>
+				<i class="exsied-icon exsied-icon-confirm"></i>
 			</div>
         </div>
         `

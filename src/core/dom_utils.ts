@@ -373,7 +373,6 @@ export class DomUtils {
 			ele.style.height = `${windowHeight}px`
 		}
 
-		console.log(rect.width >= windowWidth)
 
 		if (rect.width >= windowWidth) {
 			ele.style.left = '0'

@@ -1,12 +1,12 @@
 @import '../../styles/mixin.scss';
 
 .exsied .exsied-toolbar {
-	i.exsied-btn-redo {
+	i.exsied-icon-redo {
 		@include bkgSvgIcon;
 		background-image: url(../../icons/arrow-clockwise.svg);
 	}
 
-	i.exsied-btn-undo {
+	i.exsied-icon-undo {
 		@include bkgSvgIcon;
 		background-image: url(../../icons/arrow-counterclockwise.svg);
 	}

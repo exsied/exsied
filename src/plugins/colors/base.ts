@@ -9,8 +9,8 @@
  */
 
 export const PLUGIN_NAME = 'Colors'
-export const CN_ICON_BKG = 'exsied-btn-background-color'
-export const CN_ICON_TEXT = 'exsied-btn-text-color'
+export const CN_ICON_BKG = 'exsied-icon-background-color'
+export const CN_ICON_TEXT = 'exsied-icon-text-color'
 export const NAME_BACKGROUND = 'backgroundColor'
 export const NAME_TEXT = 'textColor'
 export const POPUP_ID_BKG = `exsied_${PLUGIN_NAME}_popup_bkg`

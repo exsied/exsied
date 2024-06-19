@@ -9,7 +9,7 @@
  */
 
 export const PLUGIN_NAME = 'Image'
-export const CN_ICON = 'exsied-btn-image'
+export const CN_ICON = 'exsied-icon-image'
 export const CN_RESIZER = 'exsied-image-resizer'
 export const CN_BTN_TL = 'exsied-image-resizer-tl'
 export const CN_BTN_TC = 'exsied-image-resizer-tc'

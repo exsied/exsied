@@ -9,8 +9,8 @@
  */
 
 export const PLUGIN_NAME = 'RedoAndUndo'
-export const CN_ICON_REDO = 'exsied-btn-redo'
-export const CN_ICON_UNDO = 'exsied-btn-undo'
+export const CN_ICON_REDO = 'exsied-icon-redo'
+export const CN_ICON_UNDO = 'exsied-icon-undo'
 
 export type PluginConf = {
 	addToNormalToolbar: {

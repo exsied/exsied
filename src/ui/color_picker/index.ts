@@ -27,9 +27,9 @@ export class ColorPicker {
 	private cnGrid = 'exsied-color-grid'
 	private cnColorBlock = 'exsied-color-block'
 	private cnColorList = 'exsied-color-list'
-	private cnPickerBtnA = 'exsied-btn-color-a'
-	private cnPickerBtnB = 'exsied-btn-color-b'
-	private cnPickerBtnItem = 'exsied-btn-color-item'
+	private cnPickerBtnA = 'exsied-icon-color-a'
+	private cnPickerBtnB = 'exsied-icon-color-b'
+	private cnPickerBtnItem = 'exsied-icon-color-item'
 
 	private presetColors: string[] = []
 	private stepArr: number[] = []

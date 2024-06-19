@@ -1,12 +1,12 @@
 @import '../../styles/mixin.scss';
 
 .exsied .exsied-toolbar {
-	i.exsied-btn-sup {
+	i.exsied-icon-sup {
 		@include bkgSvgIcon;
 		background-image: url(../../icons/superscript.svg);
 	}
 
-	i.exsied-btn-sub {
+	i.exsied-icon-sub {
 		@include bkgSvgIcon;
 		background-image: url(../../icons/subscript.svg);
 	}

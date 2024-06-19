@@ -9,7 +9,7 @@
  */
 
 export const PLUGIN_NAME = 'Quote'
-export const CN_ICON = 'exsied-btn-quote'
+export const CN_ICON = 'exsied-icon-quote'
 
 export type PluginConf = {
 	addToNormalToolbar: boolean

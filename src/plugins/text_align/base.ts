@@ -9,9 +9,9 @@
  */
 
 export const PLUGIN_NAME = 'TextAlign'
-export const CN_ICON_CENTER = 'exsied-btn-center'
-export const CN_ICON_LEFT = 'exsied-btn-left'
-export const CN_ICON_RIGHT = 'exsied-btn-right'
+export const CN_ICON_CENTER = 'exsied-icon-center'
+export const CN_ICON_LEFT = 'exsied-icon-left'
+export const CN_ICON_RIGHT = 'exsied-icon-right'
 
 export type PluginConf = {
 	addToNormalToolbar: {

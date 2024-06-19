@@ -12,7 +12,7 @@ import { exsied } from '../../core'
 import { DomUtils } from '../../core/dom_utils'
 import { FormatTaName } from '../../core/format/tag_name'
 import { createPopupView } from '../../ui/popup_view'
-import { CN_FIND, PLUGIN_NAME, POPUP_ID } from './base'
+import { CN_FIND, CN_REGEX, PLUGIN_NAME, POPUP_ID } from './base'
 import { FindAndReplace } from './find'
 
 const CN_FIND_BOX = 'exsied-find-box'
@@ -41,29 +41,30 @@ export function reset() {
 	totalCount = 0
 }
 
-export function onClick(event: Event, isReplace: boolean) {
-	const targetEle = event.target as HTMLAnchorElement
-
+export function showFindBox(top: number, left: number, isReplace: boolean) {
 	let contentHtml = `
 		<div class="${CN_FIND_BOX}">
 			<input class="${CN_FIND_INPUT}"/>
 			<div class="${CN_FIND_ACTIONS}">
+				<div class="exsied-btn ${CN_REGEX}">
+					<i class="exsied-icon exsied-icon-regex"></i>
+				</div>
 				<div class="${CN_FIND_COUNT}">
 					<div class="${CN_FIND_COUNT_CURRENT}">0</div>
 					/
 					<div class="${CN_FIND_COUNT_TOTAL}">0</div>
 				</div>
 				<div class="exsied-btn ${CN_PREV}">
-					<i class="exsied-icon exsied-btn-prev"></i>
+					<i class="exsied-icon exsied-icon-prev"></i>
 				</div>
 				<div class="exsied-btn ${CN_NEXT}">
-					<i class="exsied-icon exsied-btn-next"></i>
+					<i class="exsied-icon exsied-icon-next"></i>
 				</div>
 				<div class="exsied-btn ${CN_HIGHLIGHT_ALL}">
-					<i class="exsied-icon exsied-btn-hightlight-all"></i>
+					<i class="exsied-icon exsied-icon-hightlight-all"></i>
 				</div>
 				<div class="exsied-btn ${CN_CLOSE}">
-					<i class="exsied-icon exsied-btn-close"></i>
+					<i class="exsied-icon exsied-icon-close"></i>
 				</div>
 			</div>
 		</div>
@@ -74,10 +75,10 @@ export function onClick(event: Event, isReplace: boolean) {
 				<input class="${CN_REPLACE_INPUT}"/>
 				<div class="${CN_FIND_ACTIONS}">
 					<div class="exsied-btn ${CN_REPLACE_THIS}">
-						<i class="exsied-icon exsied-btn-replace-this"></i>
+						<i class="exsied-icon exsied-icon-replace-this"></i>
 					</div>
 					<div class="exsied-btn ${CN_REPLACE_ALL}">
-						<i class="exsied-icon exsied-btn-replace-all"></i>
+						<i class="exsied-icon exsied-icon-replace-all"></i>
 					</div>
 				</div>
 			</div>
@@ -93,10 +94,9 @@ export function onClick(event: Event, isReplace: boolean) {
 		contentHtml,
 	})
 
-	const rect = targetEle.getBoundingClientRect()
 	ele.style.position = 'absolute'
-	ele.style.top = rect.bottom + 'px'
-	ele.style.left = rect.left + 'px'
+	ele.style.top = top + 'px'
+	ele.style.left = left + 'px'
 
 	document.body.appendChild(ele)
 	DomUtils.limitElementRect(ele)
@@ -238,6 +238,15 @@ export function onClick(event: Event, isReplace: boolean) {
 			FindAndReplace.replaceTextAll(exsied.elements.workplace as HTMLElement, findText, replaceText)
 		})
 	}
+
+	return ele
+}
+
+export function onClick(event: Event, isReplace: boolean) {
+	const targetEle = event.target as HTMLAnchorElement
+	const rect = targetEle.getBoundingClientRect()
+
+	showFindBox(rect.bottom, rect.left, isReplace)
 }
 
 export function onClickFind(event: Event) {

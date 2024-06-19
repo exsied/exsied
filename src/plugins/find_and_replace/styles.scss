@@ -1,11 +1,11 @@
 @import '../../styles/mixin.scss';
 
 .exsied .exsied-toolbar {
-	i.exsied-btn-find {
+	i.exsied-icon-find {
 		@include bkgSvgIcon;
 		background-image: url(../../icons/find.svg);
 	}
-	i.exsied-btn-replace {
+	i.exsied-icon-replace {
 		@include bkgSvgIcon;
 		background-image: url(../../icons/replace.svg);
 	}
@@ -13,7 +13,7 @@
 
 .exsied-find-box {
 	padding: 0.5rem;
-	display: flex;
+	display: block;
 
 	.exsied-find-actions {
 		display: flex;
@@ -30,40 +30,45 @@
 		align-items: center;
 		padding: 0.5rem;
 
-		i.exsied-btn-prev {
+		&.exsied-btn-regex {
+			&.active {
+				color: var(--exd-highlight-color);
+			}
+		}
+
+		i.exsied-icon-prev {
 			@include bkgSvgIcon;
 			background-image: url(../../icons/chevron-up.svg);
 		}
 
-		i.exsied-btn-next {
+		i.exsied-icon-next {
 			@include bkgSvgIcon;
 			background-image: url(../../icons/chevron-down.svg);
 		}
 
-		i.exsied-btn-hightlight-all {
+		i.exsied-icon-hightlight-all {
 			@include bkgSvgIcon;
 			background-image: url(../../icons/highlight.svg);
 		}
 
-		i.exsied-btn-close {
+		i.exsied-icon-close {
 			@include bkgSvgIcon;
 			background-image: url(../../icons/close.svg);
 		}
 
-		i.exsied-btn-replace-this {
+		i.exsied-icon-regex {
+			@include bkgSvgIcon;
+			background-image: url(../../icons/regex.svg);
+		}
+
+		i.exsied-icon-replace-this {
 			@include bkgSvgIcon;
 			background-image: url(../../icons/replace-empty.svg);
 		}
 
-		i.exsied-btn-replace-all {
+		i.exsied-icon-replace-all {
 			@include bkgSvgIcon;
 			background-image: url(../../icons/replace-filled.svg);
 		}
-	}
-}
-
-@media (max-width: 576px) {
-	.exsied-find-box {
-		display: block;
 	}
 }

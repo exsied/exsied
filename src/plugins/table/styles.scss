@@ -6,7 +6,7 @@
 }
 
 .exsied .exsied-toolbar {
-	i.exsied-btn-table {
+	i.exsied-icon-table {
 		@include bkgSvgIcon;
 		background-image: url(../../icons/table.svg);
 	}
@@ -31,7 +31,7 @@
 	}
 }
 
-.exsied-btn-table-cell-action {
+.exsied-icon-table-cell-action {
 	display: inline-block;
 	position: absolute;
 	border-radius: 1rem;
@@ -94,25 +94,25 @@
 			}
 		}
 
-		&.exsied-btn-add-to-top {
+		&.exsied-icon-add-to-top {
 			border: solid var(--table-border-color);
 			border-radius: 0.5rem 0.5rem 0 0;
 			border-width: 1px 1px 0 1px;
 		}
 
-		&.exsied-btn-add-to-right {
+		&.exsied-icon-add-to-right {
 			border: solid var(--table-border-color);
 			border-radius: 0 0.5rem 0.5rem 0;
 			border-width: 1px 1px 1px 0;
 		}
 
-		&.exsied-btn-add-to-bottom {
+		&.exsied-icon-add-to-bottom {
 			border: solid var(--table-border-color);
 			border-radius: 0 0 0.5rem 0.5rem;
 			border-width: 0 1px 1px 1px;
 		}
 
-		&.exsied-btn-add-to-left {
+		&.exsied-icon-add-to-left {
 			border: solid var(--table-border-color);
 			border-radius: 0.5rem 0 0 0.5rem;
 			border-width: 1px 0 1px 1px;

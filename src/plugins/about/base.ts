@@ -9,7 +9,7 @@
  */
 
 export const PLUGIN_NAME = 'About'
-export const CN_ICON = 'exsied-btn-about'
+export const CN_ICON = 'exsied-icon-about'
 export const POPUP_ID = `exsied_${PLUGIN_NAME}_popup`
 export const CN_ROOT = 'exsied-about-view'
 

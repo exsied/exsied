@@ -11,9 +11,9 @@ import { exsied } from '../../core'
 import { randomChars } from '../../utils/string'
 
 export const PLUGIN_NAME = 'SourceCode'
-export const CN_ICON_BRACES = 'exsied-btn-braces'
-export const CN_ICON_XML = 'exsied-btn-xml'
-export const CN_ICON_BACK = 'exsied-btn-back'
+export const CN_ICON_BRACES = 'exsied-icon-braces'
+export const CN_ICON_XML = 'exsied-icon-xml'
+export const CN_ICON_BACK = 'exsied-icon-back'
 export const ID_SOURCE_CODE_EDIT_VIEW = 'sourceCodeEditView'
 
 export type PluginConf = {

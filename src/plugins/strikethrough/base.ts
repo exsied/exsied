@@ -11,7 +11,7 @@ import { TN_DEL, TN_S } from '../../contants'
 import { exsied } from '../../core'
 
 export const PLUGIN_NAME = 'Strikethrough'
-export const CN_ICON = 'exsied-btn-strikethrough'
+export const CN_ICON = 'exsied-icon-strikethrough'
 
 export const isHighlight = () => {
 	const allTagNamesArr = exsied.cursorAllParentsTagNamesArr

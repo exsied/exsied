@@ -1,7 +1,7 @@
 @import '../../styles/mixin.scss';
 
 .exsied .exsied-toolbar {
-	i.exsied-btn-about {
+	i.exsied-icon-about {
 		@include bkgSvgIcon;
 		background-image: url(../../icons/question.svg);
 	}
