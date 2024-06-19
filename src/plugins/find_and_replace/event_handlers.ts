@@ -7,7 +7,7 @@
  *     https://github.com/exsied/exsied/blob/main/LICENSE
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
-import { CN_TEMP_ELE, CN_TEMP_ELE_HIGHLIGHT, TN_SPAN } from '../../contants'
+import { CN_ACTIVE, CN_TEMP_ELE, CN_TEMP_ELE_HIGHLIGHT, TN_SPAN } from '../../contants'
 import { exsied } from '../../core'
 import { DomUtils } from '../../core/dom_utils'
 import { FormatTaName } from '../../core/format/tag_name'
@@ -33,6 +33,7 @@ let findText = ''
 let replaceText = ''
 let currentPosition = 0
 let totalCount = 0
+let isReMode = false
 
 export function reset() {
 	findText = ''
@@ -101,6 +102,19 @@ export function showFindBox(top: number, left: number, isReplace: boolean) {
 	document.body.appendChild(ele)
 	DomUtils.limitElementRect(ele)
 
+	// regex button
+	const eleRegex = ele.querySelector(`.${CN_REGEX}`)
+	if (eleRegex) {
+		eleRegex.addEventListener('click', (_event) => {
+			if (eleRegex.classList.contains(CN_ACTIVE)) {
+				eleRegex.classList.remove(CN_ACTIVE)
+			} else {
+				eleRegex.classList.add(CN_ACTIVE)
+				isReMode = !isReMode
+			}
+		})
+	}
+
 	// find text input
 	const eleInput = ele.querySelector(`.${CN_FIND_INPUT}`)
 	const eleCurrentPosition = ele.querySelector(`.${CN_FIND_COUNT_CURRENT}`)
@@ -110,8 +124,9 @@ export function showFindBox(top: number, left: number, isReplace: boolean) {
 		eleInput.addEventListener('input', (event) => {
 			const targetInput = event.target as HTMLInputElement
 			findText = targetInput.value
-			const ranges = FindAndReplace.findRanges(exsied.elements.workplace as HTMLElement, findText)
+			if (!findText) return
 
+			const ranges = FindAndReplace.findRanges(exsied.elements.workplace as HTMLElement, findText, isReMode)
 			if (ranges.length > 0) {
 				currentPosition = 0
 				totalCount = ranges ? ranges.length : 0
@@ -137,7 +152,7 @@ export function showFindBox(top: number, left: number, isReplace: boolean) {
 				currentPosition = totalCount - 1
 			}
 
-			const ranges = FindAndReplace.findRanges(exsied.elements.workplace as HTMLElement, findText)
+			const ranges = FindAndReplace.findRanges(exsied.elements.workplace as HTMLElement, findText, isReMode)
 			if (!ranges) return
 
 			if (eleCurrentPosition) eleCurrentPosition.innerHTML = `${currentPosition + 1}`
@@ -159,7 +174,7 @@ export function showFindBox(top: number, left: number, isReplace: boolean) {
 
 			if (eleCurrentPosition) eleCurrentPosition.innerHTML = `${currentPosition + 1}`
 
-			const ranges = FindAndReplace.findRanges(exsied.elements.workplace as HTMLElement, findText)
+			const ranges = FindAndReplace.findRanges(exsied.elements.workplace as HTMLElement, findText, isReMode)
 			if (!ranges) return
 			const range = ranges[currentPosition]
 
@@ -173,13 +188,13 @@ export function showFindBox(top: number, left: number, isReplace: boolean) {
 		elehHighlightALl.addEventListener('click', (_event) => {
 			if (findText === '') return
 
-			const ranges = FindAndReplace.findRanges(exsied.elements.workplace as HTMLElement, findText)
+			const ranges = FindAndReplace.findRanges(exsied.elements.workplace as HTMLElement, findText, isReMode)
 			if (!ranges) return
 
 			FormatTaName.formatSelected(TN_SPAN, ranges[0], `${CN_TEMP_ELE_HIGHLIGHT}`)
 
 			const highlightByIndex = (index: number) => {
-				const ranges = FindAndReplace.findRanges(exsied.elements.workplace as HTMLElement, findText)
+				const ranges = FindAndReplace.findRanges(exsied.elements.workplace as HTMLElement, findText, isReMode)
 				if (!ranges) return
 
 				FormatTaName.formatSelected(TN_SPAN, ranges[index], `${CN_TEMP_ELE_HIGHLIGHT}`)
@@ -218,7 +233,7 @@ export function showFindBox(top: number, left: number, isReplace: boolean) {
 		eleReplaceThis.addEventListener('click', (_event) => {
 			if (findText === '') return
 
-			const ranges = FindAndReplace.findRanges(exsied.elements.workplace as HTMLElement, findText)
+			const ranges = FindAndReplace.findRanges(exsied.elements.workplace as HTMLElement, findText, isReMode)
 			if (!ranges) return
 
 			const range = ranges[currentPosition - 1]
@@ -232,7 +247,7 @@ export function showFindBox(top: number, left: number, isReplace: boolean) {
 		eleReplaceAll.addEventListener('click', (_event) => {
 			if (findText === '') return
 
-			const ranges = FindAndReplace.findRanges(exsied.elements.workplace as HTMLElement, findText)
+			const ranges = FindAndReplace.findRanges(exsied.elements.workplace as HTMLElement, findText, isReMode)
 			if (!ranges) return
 
 			FindAndReplace.replaceTextAll(exsied.elements.workplace as HTMLElement, findText, replaceText)

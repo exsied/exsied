@@ -66,28 +66,53 @@ const insertNode = (range: Range, node: Node) => {
 }
 
 export class FindAndReplace {
-	static findRanges(rootNode: HTMLElement, findText: string) {
+	static findRanges(rootNode: HTMLElement, findText: string, isReMode?: boolean) {
 		const ranges: Range[] = []
+		let re = null
 
-		function traverseTextNodes(node: Node) {
+		if (isReMode) {
+			try {
+				let safePatternString = findText
+				re = new RegExp(safePatternString)
+			} catch (error) {
+				console.error('new RegExp error')
+
+				return ranges
+			}
+		}
+
+		function traverseTextNodes(node: Node, re: RegExp | null) {
 			if (node.nodeType === Node.TEXT_NODE && node.textContent) {
-				let index = node.textContent.indexOf(findText)
-				while (index !== -1) {
+				let text = ''
+				let index = 0
+
+				if (re === null) {
+					text = findText
+					index = node.textContent.indexOf(text)
+				} else {
+					let matches = node.textContent.match(re)
+					if (matches) {
+						text = matches[0]
+						index = node.textContent.indexOf(text)
+					}
+				}
+
+				while (text !== '' && index >= 0) {
 					let range = document.createRange()
 					range.setStart(node, index)
-					range.setEnd(node, index + findText.length)
+					range.setEnd(node, index + text.length)
 					ranges.push(range)
 
-					index = node.textContent.indexOf(findText, index + findText.length)
+					index = node.textContent.indexOf(text, index + text.length)
 				}
 			}
 
 			for (let i = 0; i < node.childNodes.length; i++) {
-				traverseTextNodes(node.childNodes[i])
+				traverseTextNodes(node.childNodes[i], re)
 			}
 		}
 
-		traverseTextNodes(rootNode)
+		traverseTextNodes(rootNode, re)
 		return ranges
 	}
 
@@ -105,8 +130,8 @@ export class FindAndReplace {
 		}
 	}
 
-	static replaceTextAll(container: HTMLElement, findText: string, replaceText: string) {
-		const ranges = this.findRanges(container, findText)
+	static replaceTextAll(container: HTMLElement, findText: string, replaceText: string, isReMode?: boolean) {
+		const ranges = this.findRanges(container, findText, isReMode)
 		if (ranges) {
 			for (const range of ranges) {
 				this.replaceText(range, replaceText)
