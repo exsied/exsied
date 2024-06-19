@@ -154,10 +154,9 @@ export function showFindBox(top: number, left: number, isReplace: boolean) {
 
 			const ranges = FindAndReplace.findRanges(exsied.elements.workplace as HTMLElement, findText, isReMode)
 			if (!ranges) return
+			const range = ranges[currentPosition]
 
 			if (eleCurrentPosition) eleCurrentPosition.innerHTML = `${currentPosition + 1}`
-
-			const range = ranges[currentPosition]
 			FormatTaName.formatSelected(TN_SPAN, range, CN_TEMP_ELE_HIGHLIGHT)
 		})
 	}
@@ -172,11 +171,11 @@ export function showFindBox(top: number, left: number, isReplace: boolean) {
 				currentPosition = 0
 			}
 
-			if (eleCurrentPosition) eleCurrentPosition.innerHTML = `${currentPosition + 1}`
-
 			const ranges = FindAndReplace.findRanges(exsied.elements.workplace as HTMLElement, findText, isReMode)
 			if (!ranges) return
 			const range = ranges[currentPosition]
+
+			if (eleCurrentPosition && ranges.length > 0) eleCurrentPosition.innerHTML = `${currentPosition + 1}`
 
 			FormatTaName.formatSelected(TN_SPAN, range, `${CN_TEMP_ELE_HIGHLIGHT}`)
 		})
