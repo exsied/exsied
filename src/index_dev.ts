@@ -19,11 +19,11 @@ import './styles/style.scss'
 const aboutConf = plugins.about.conf as AboutPluginConf
 aboutConf.deveploers.push(
 	{
-		name: 'enassi',
-		repoLink: 'https://github.com/enassi/enassi',
+		name: 'fivim',
+		repoLink: 'https://github.com/fivim/fivim',
 		webSiteLink: 'https://xxx.com/xxx',
 		email: 'xxx@xxx.xxx',
-		extContent: `Enassi's github repo`,
+		extContent: `Fivim's github repo`,
 	},
 	{
 		name: 'exsied',

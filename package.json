@@ -2,7 +2,7 @@
 	"name": "@exsied/exsied",
 	"private": false,
 	"version": "0.12.0",
-	"description": "Exsied is a WYSIWYG editor from enassi.",
+	"description": "Exsied is a WYSIWYG editor from fivim.",
 	"type": "module",
 	"files": [
 		"dist"
