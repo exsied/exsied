@@ -35,7 +35,7 @@ let currentPosition = 0
 let totalCount = 0
 let isReMode = false
 
-export function reset() {
+export function resetValue() {
 	findText = ''
 	replaceText = ''
 	currentPosition = 0
@@ -126,6 +126,8 @@ export function showFindBox(top: number, left: number, isReplace: boolean) {
 			findText = targetInput.value
 			if (!findText) return
 
+			clearHighLight()
+
 			const ranges = FindAndReplace.findRanges(exsied.elements.workplace as HTMLElement, findText, isReMode)
 			if (ranges.length > 0) {
 				currentPosition = 0
@@ -137,7 +139,10 @@ export function showFindBox(top: number, left: number, isReplace: boolean) {
 				const range = ranges[currentPosition]
 				FormatTaName.formatSelected(TN_SPAN, range, `${CN_TEMP_ELE_HIGHLIGHT}`)
 			} else {
-				reset()
+				resetValue()
+
+				if (eleCurrentPosition) eleCurrentPosition.innerHTML = `${0}`
+				if (eleTotal) eleTotal.innerHTML = `${0}`
 			}
 		})
 	}
@@ -213,7 +218,7 @@ export function showFindBox(top: number, left: number, isReplace: boolean) {
 		eleClose.addEventListener('click', (_event) => {
 			ele.remove()
 			clearHighLight()
-			reset()
+			resetValue()
 		})
 	}
 
@@ -235,7 +240,7 @@ export function showFindBox(top: number, left: number, isReplace: boolean) {
 			const ranges = FindAndReplace.findRanges(exsied.elements.workplace as HTMLElement, findText, isReMode)
 			if (!ranges) return
 
-			const range = ranges[currentPosition - 1]
+			const range = ranges[currentPosition]
 			FindAndReplace.replaceText(range, replaceText)
 		})
 	}
@@ -246,10 +251,7 @@ export function showFindBox(top: number, left: number, isReplace: boolean) {
 		eleReplaceAll.addEventListener('click', (_event) => {
 			if (findText === '') return
 
-			const ranges = FindAndReplace.findRanges(exsied.elements.workplace as HTMLElement, findText, isReMode)
-			if (!ranges) return
-
-			FindAndReplace.replaceTextAll(exsied.elements.workplace as HTMLElement, findText, replaceText)
+			FindAndReplace.replaceTextAll(exsied.elements.workplace as HTMLElement, findText, replaceText, isReMode)
 		})
 	}
 
@@ -271,6 +273,16 @@ export function onClickReplace(event: Event) {
 	onClick(event, true)
 }
 
-const clearHighLight = () => {
+export const clearHighLight = () => {
+	const elements = document.getElementsByClassName(CN_TEMP_ELE_HIGHLIGHT)
+	for (let i = elements.length - 1; i >= 0; i--) {
+		const element = elements[i]
+		while (element.firstChild) {
+			element.parentNode?.insertBefore(element.firstChild, element)
+		}
+
+		element.parentNode?.removeChild(element)
+	}
+
 	DomUtils.promoteChildNodesByTagName(TN_SPAN, CN_TEMP_ELE_HIGHLIGHT)
 }
