@@ -73,6 +73,12 @@ export class DomUtils {
 		}
 	}
 
+	static insertNodeAfterRange(range: Range, node: Node) {
+		const clonedRange = range.cloneRange()
+		clonedRange.setEnd(clonedRange.endContainer, clonedRange.endOffset)
+		clonedRange.insertNode(node)
+	}
+
 	static addElementBySelection = (rootNode: HTMLElement, node: Node) => {
 		if (!rootNode || !rootNode.contentEditable || rootNode.contentEditable !== 'true') {
 			throw new Error('The provided element is not editable or does not exist.')
@@ -372,8 +378,6 @@ export class DomUtils {
 			ele.style.bottom = 'initial'
 			ele.style.height = `${windowHeight}px`
 		}
-
-		console.log(rect.width >= windowWidth)
 
 		if (rect.width >= windowWidth) {
 			ele.style.left = '0'

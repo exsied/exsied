@@ -1,37 +1,37 @@
 @import '../../styles/mixin.scss';
 
 .exsied .exsied-toolbar {
-	i.exsied-btn-paragraph {
+	i.exsied-icon-paragraph {
 		@include bkgSvgIcon;
 		background-image: url(../../icons/paragraph.svg);
 	}
 
-	i.exsied-btn-h1 {
+	i.exsied-icon-h1 {
 		@include bkgSvgIcon;
 		background-image: url(../../icons/h1.svg);
 	}
 
-	i.exsied-btn-h2 {
+	i.exsied-icon-h2 {
 		@include bkgSvgIcon;
 		background-image: url(../../icons/h2.svg);
 	}
 
-	i.exsied-btn-h3 {
+	i.exsied-icon-h3 {
 		@include bkgSvgIcon;
 		background-image: url(../../icons/h3.svg);
 	}
 
-	i.exsied-btn-h4 {
+	i.exsied-icon-h4 {
 		@include bkgSvgIcon;
 		background-image: url(../../icons/h4.svg);
 	}
 
-	i.exsied-btn-h5 {
+	i.exsied-icon-h5 {
 		@include bkgSvgIcon;
 		background-image: url(../../icons/h5.svg);
 	}
 
-	i.exsied-btn-h6 {
+	i.exsied-icon-h6 {
 		@include bkgSvgIcon;
 		background-image: url(../../icons/h6.svg);
 	}

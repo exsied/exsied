@@ -1,7 +1,7 @@
 @import '../../styles/mixin.scss';
 
 .exsied .exsied-toolbar {
-	i.exsied-btn-strikethrough {
+	i.exsied-icon-strikethrough {
 		@include bkgSvgIcon;
 		background-image: url(../../icons/strik.svg);
 	}

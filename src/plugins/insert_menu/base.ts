@@ -9,7 +9,7 @@
  */
 
 export const PLUGIN_NAME = 'InsertMenu'
-export const CN_ICON = 'exsied-btn-plus'
+export const CN_ICON = 'exsied-icon-plus'
 export const POPUP_ID = `exsied_${PLUGIN_NAME}_popup`
 export const CN_ROOT = 'exsied-insert-menu-view'
 

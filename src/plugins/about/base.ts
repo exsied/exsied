@@ -9,7 +9,7 @@
  */
 
 export const PLUGIN_NAME = 'About'
-export const CN_ICON = 'exsied-btn-about'
+export const CN_ICON = 'exsied-icon-about'
 export const POPUP_ID = `exsied_${PLUGIN_NAME}_popup`
 export const CN_ROOT = 'exsied-about-view'
 
@@ -33,18 +33,18 @@ export const PLUGIN_CONF: PluginConf = {
 	deveploers: [
 		// This is a demo infomation.
 		// {
-		// 	name: 'enassi github',
-		// 	repoLink: 'https://github.com/enassi/enassi',
+		// 	name: 'fivim github',
+		// 	repoLink: 'https://github.com/fivim/fivim',
 		// 	webSiteLink: 'https://xxx.com/xxx',
 		// 	email: 'xxx@xxx.xxx',
-		// 	extContent: `Enassi's github repo`,
+		// 	extContent: `Fivim's github repo`,
 		// },
 		// {
-		// 	name: 'enassi gitee',
-		// 	repoLink: 'https://gitee.com/enassi/enassi',
+		// 	name: 'fivim gitee',
+		// 	repoLink: 'https://gitee.com/fivim/fivim',
 		// 	webSiteLink: 'https://xxx.com/xxx',
 		// 	email: 'xxx@xxx.xxx',
-		// 	extContent: `Enassi's gitee repo`,
+		// 	extContent: `Fivim's gitee repo`,
 		// },
 	],
 }

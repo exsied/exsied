@@ -102,30 +102,30 @@ export function showTableActionPopup(event: Event) {
 	const contentHtml = `
 		<div class="exsied-table-edit-actions">
 			<div class="exsied-cell"></div>  
-			<div class="exsied-cell exsied-btn exsied-btn-add-to-top">
+			<div class="exsied-cell exsied-btn exsied-icon-add-to-top">
 				<i class="exsied-icon add"></i>
 			</div>  
 			<div class="exsied-cell"></div>  
-			<div class="exsied-cell exsied-btn exsied-btn-add-to-left">
+			<div class="exsied-cell exsied-btn exsied-icon-add-to-left">
 				<i class="exsied-icon add"></i>
 			</div>  
 			<div class="exsied-cell"></div>  
-			<div class="exsied-cell exsied-btn exsied-btn-add-to-right">
+			<div class="exsied-cell exsied-btn exsied-icon-add-to-right">
 				<i class="exsied-icon add"></i>
 			</div>  
 			<div class="exsied-cell"></div>  
-			<div class="exsied-cell exsied-btn exsied-btn-add-to-bottom">
+			<div class="exsied-cell exsied-btn exsied-icon-add-to-bottom">
 				<i class="exsied-icon add"></i>
 			</div>  
 			<div class="exsied-cell"></div>  
 
-			<div class="exsied-cell exsied-btn exsied-btn-delete-row">
+			<div class="exsied-cell exsied-btn exsied-icon-delete-row">
 				<i class="exsied-icon delete-row"></i>
 			</div>  
-			<div class="exsied-cell exsied-btn exsied-btn-delete-column">
+			<div class="exsied-cell exsied-btn exsied-icon-delete-column">
 				<i class="exsied-icon delete-column"></i>
 			</div>  
-			<div class="exsied-cell exsied-btn exsied-btn-delete-table">
+			<div class="exsied-cell exsied-btn exsied-icon-delete-table">
 				<i class="exsied-icon trash"></i>
 			</div>  
 		</div>
@@ -156,25 +156,25 @@ export function showTableActionPopup(event: Event) {
 
 	document.body.appendChild(ele)
 
-	const btnAddToTop = ele.querySelector(`.exsied-btn-add-to-top`)
+	const btnAddToTop = ele.querySelector(`.exsied-icon-add-to-top`)
 	if (btnAddToTop) btnAddToTop.addEventListener('click', clickBtnAddToTop)
 
-	const btnAddToLeft = ele.querySelector(`.exsied-btn-add-to-left`)
+	const btnAddToLeft = ele.querySelector(`.exsied-icon-add-to-left`)
 	if (btnAddToLeft) btnAddToLeft.addEventListener('click', clickBtnAddToLeft)
 
-	const btnAddToRight = ele.querySelector(`.exsied-btn-add-to-right`)
+	const btnAddToRight = ele.querySelector(`.exsied-icon-add-to-right`)
 	if (btnAddToRight) btnAddToRight.addEventListener('click', clickBtnAddToRight)
 
-	const btnAddToBottom = ele.querySelector(`.exsied-btn-add-to-bottom`)
+	const btnAddToBottom = ele.querySelector(`.exsied-icon-add-to-bottom`)
 	if (btnAddToBottom) btnAddToBottom.addEventListener('click', clickBtnAddToBottom)
 
-	const btnDeleteRow = ele.querySelector(`.exsied-btn-delete-row`)
+	const btnDeleteRow = ele.querySelector(`.exsied-icon-delete-row`)
 	if (btnDeleteRow) btnDeleteRow.addEventListener('click', clickDeleteRow)
 
-	const btnDeleteColumn = ele.querySelector(`.exsied-btn-delete-column`)
+	const btnDeleteColumn = ele.querySelector(`.exsied-icon-delete-column`)
 	if (btnDeleteColumn) btnDeleteColumn.addEventListener('click', clickDeleteColumn)
 
-	const btnDeleteTable = ele.querySelector(`.exsied-btn-delete-table`)
+	const btnDeleteTable = ele.querySelector(`.exsied-icon-delete-table`)
 	if (btnDeleteTable) btnDeleteTable.addEventListener('click', clickDeleteTable)
 }
 

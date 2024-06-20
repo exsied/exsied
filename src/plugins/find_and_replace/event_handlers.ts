@@ -7,12 +7,12 @@
  *     https://github.com/exsied/exsied/blob/main/LICENSE
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
-import { CN_TEMP_ELE, CN_TEMP_ELE_HIGHLIGHT, TN_SPAN } from '../../contants'
+import { CN_ACTIVE, CN_TEMP_ELE, CN_TEMP_ELE_HIGHLIGHT, TN_SPAN } from '../../contants'
 import { exsied } from '../../core'
 import { DomUtils } from '../../core/dom_utils'
 import { FormatTaName } from '../../core/format/tag_name'
 import { createPopupView } from '../../ui/popup_view'
-import { CN_FIND, PLUGIN_NAME, POPUP_ID } from './base'
+import { CN_FIND, CN_REGEX, PLUGIN_NAME, POPUP_ID } from './base'
 import { FindAndReplace } from './find'
 
 const CN_FIND_BOX = 'exsied-find-box'
@@ -33,37 +33,39 @@ let findText = ''
 let replaceText = ''
 let currentPosition = 0
 let totalCount = 0
+let isReMode = false
 
-export function reset() {
+export function resetValue() {
 	findText = ''
 	replaceText = ''
 	currentPosition = 0
 	totalCount = 0
 }
 
-export function onClick(event: Event, isReplace: boolean) {
-	const targetEle = event.target as HTMLAnchorElement
-
+export function showFindBox(top: number, left: number, isReplace: boolean) {
 	let contentHtml = `
 		<div class="${CN_FIND_BOX}">
 			<input class="${CN_FIND_INPUT}"/>
 			<div class="${CN_FIND_ACTIONS}">
+				<div class="exsied-btn ${CN_REGEX}">
+					<i class="exsied-icon exsied-icon-regex"></i>
+				</div>
 				<div class="${CN_FIND_COUNT}">
 					<div class="${CN_FIND_COUNT_CURRENT}">0</div>
 					/
 					<div class="${CN_FIND_COUNT_TOTAL}">0</div>
 				</div>
 				<div class="exsied-btn ${CN_PREV}">
-					<i class="exsied-icon exsied-btn-prev"></i>
+					<i class="exsied-icon exsied-icon-prev"></i>
 				</div>
 				<div class="exsied-btn ${CN_NEXT}">
-					<i class="exsied-icon exsied-btn-next"></i>
+					<i class="exsied-icon exsied-icon-next"></i>
 				</div>
 				<div class="exsied-btn ${CN_HIGHLIGHT_ALL}">
-					<i class="exsied-icon exsied-btn-hightlight-all"></i>
+					<i class="exsied-icon exsied-icon-hightlight-all"></i>
 				</div>
 				<div class="exsied-btn ${CN_CLOSE}">
-					<i class="exsied-icon exsied-btn-close"></i>
+					<i class="exsied-icon exsied-icon-close"></i>
 				</div>
 			</div>
 		</div>
@@ -74,10 +76,10 @@ export function onClick(event: Event, isReplace: boolean) {
 				<input class="${CN_REPLACE_INPUT}"/>
 				<div class="${CN_FIND_ACTIONS}">
 					<div class="exsied-btn ${CN_REPLACE_THIS}">
-						<i class="exsied-icon exsied-btn-replace-this"></i>
+						<i class="exsied-icon exsied-icon-replace-this"></i>
 					</div>
 					<div class="exsied-btn ${CN_REPLACE_ALL}">
-						<i class="exsied-icon exsied-btn-replace-all"></i>
+						<i class="exsied-icon exsied-icon-replace-all"></i>
 					</div>
 				</div>
 			</div>
@@ -93,13 +95,25 @@ export function onClick(event: Event, isReplace: boolean) {
 		contentHtml,
 	})
 
-	const rect = targetEle.getBoundingClientRect()
 	ele.style.position = 'absolute'
-	ele.style.top = rect.bottom + 'px'
-	ele.style.left = rect.left + 'px'
+	ele.style.top = top + 'px'
+	ele.style.left = left + 'px'
 
 	document.body.appendChild(ele)
 	DomUtils.limitElementRect(ele)
+
+	// regex button
+	const eleRegex = ele.querySelector(`.${CN_REGEX}`)
+	if (eleRegex) {
+		eleRegex.addEventListener('click', (_event) => {
+			if (eleRegex.classList.contains(CN_ACTIVE)) {
+				eleRegex.classList.remove(CN_ACTIVE)
+			} else {
+				eleRegex.classList.add(CN_ACTIVE)
+				isReMode = !isReMode
+			}
+		})
+	}
 
 	// find text input
 	const eleInput = ele.querySelector(`.${CN_FIND_INPUT}`)
@@ -110,8 +124,11 @@ export function onClick(event: Event, isReplace: boolean) {
 		eleInput.addEventListener('input', (event) => {
 			const targetInput = event.target as HTMLInputElement
 			findText = targetInput.value
-			const ranges = FindAndReplace.findRanges(exsied.elements.workplace as HTMLElement, findText)
+			if (!findText) return
 
+			clearHighLight()
+
+			const ranges = FindAndReplace.findRanges(exsied.elements.workplace as HTMLElement, findText, isReMode)
 			if (ranges.length > 0) {
 				currentPosition = 0
 				totalCount = ranges ? ranges.length : 0
@@ -122,7 +139,10 @@ export function onClick(event: Event, isReplace: boolean) {
 				const range = ranges[currentPosition]
 				FormatTaName.formatSelected(TN_SPAN, range, `${CN_TEMP_ELE_HIGHLIGHT}`)
 			} else {
-				reset()
+				resetValue()
+
+				if (eleCurrentPosition) eleCurrentPosition.innerHTML = `${0}`
+				if (eleTotal) eleTotal.innerHTML = `${0}`
 			}
 		})
 	}
@@ -137,12 +157,11 @@ export function onClick(event: Event, isReplace: boolean) {
 				currentPosition = totalCount - 1
 			}
 
-			const ranges = FindAndReplace.findRanges(exsied.elements.workplace as HTMLElement, findText)
+			const ranges = FindAndReplace.findRanges(exsied.elements.workplace as HTMLElement, findText, isReMode)
 			if (!ranges) return
+			const range = ranges[currentPosition]
 
 			if (eleCurrentPosition) eleCurrentPosition.innerHTML = `${currentPosition + 1}`
-
-			const range = ranges[currentPosition]
 			FormatTaName.formatSelected(TN_SPAN, range, CN_TEMP_ELE_HIGHLIGHT)
 		})
 	}
@@ -157,11 +176,11 @@ export function onClick(event: Event, isReplace: boolean) {
 				currentPosition = 0
 			}
 
-			if (eleCurrentPosition) eleCurrentPosition.innerHTML = `${currentPosition + 1}`
-
-			const ranges = FindAndReplace.findRanges(exsied.elements.workplace as HTMLElement, findText)
+			const ranges = FindAndReplace.findRanges(exsied.elements.workplace as HTMLElement, findText, isReMode)
 			if (!ranges) return
 			const range = ranges[currentPosition]
+
+			if (eleCurrentPosition && ranges.length > 0) eleCurrentPosition.innerHTML = `${currentPosition + 1}`
 
 			FormatTaName.formatSelected(TN_SPAN, range, `${CN_TEMP_ELE_HIGHLIGHT}`)
 		})
@@ -173,13 +192,13 @@ export function onClick(event: Event, isReplace: boolean) {
 		elehHighlightALl.addEventListener('click', (_event) => {
 			if (findText === '') return
 
-			const ranges = FindAndReplace.findRanges(exsied.elements.workplace as HTMLElement, findText)
+			const ranges = FindAndReplace.findRanges(exsied.elements.workplace as HTMLElement, findText, isReMode)
 			if (!ranges) return
 
 			FormatTaName.formatSelected(TN_SPAN, ranges[0], `${CN_TEMP_ELE_HIGHLIGHT}`)
 
 			const highlightByIndex = (index: number) => {
-				const ranges = FindAndReplace.findRanges(exsied.elements.workplace as HTMLElement, findText)
+				const ranges = FindAndReplace.findRanges(exsied.elements.workplace as HTMLElement, findText, isReMode)
 				if (!ranges) return
 
 				FormatTaName.formatSelected(TN_SPAN, ranges[index], `${CN_TEMP_ELE_HIGHLIGHT}`)
@@ -199,7 +218,7 @@ export function onClick(event: Event, isReplace: boolean) {
 		eleClose.addEventListener('click', (_event) => {
 			ele.remove()
 			clearHighLight()
-			reset()
+			resetValue()
 		})
 	}
 
@@ -218,10 +237,10 @@ export function onClick(event: Event, isReplace: boolean) {
 		eleReplaceThis.addEventListener('click', (_event) => {
 			if (findText === '') return
 
-			const ranges = FindAndReplace.findRanges(exsied.elements.workplace as HTMLElement, findText)
+			const ranges = FindAndReplace.findRanges(exsied.elements.workplace as HTMLElement, findText, isReMode)
 			if (!ranges) return
 
-			const range = ranges[currentPosition - 1]
+			const range = ranges[currentPosition]
 			FindAndReplace.replaceText(range, replaceText)
 		})
 	}
@@ -232,12 +251,18 @@ export function onClick(event: Event, isReplace: boolean) {
 		eleReplaceAll.addEventListener('click', (_event) => {
 			if (findText === '') return
 
-			const ranges = FindAndReplace.findRanges(exsied.elements.workplace as HTMLElement, findText)
-			if (!ranges) return
-
-			FindAndReplace.replaceTextAll(exsied.elements.workplace as HTMLElement, findText, replaceText)
+			FindAndReplace.replaceTextAll(exsied.elements.workplace as HTMLElement, findText, replaceText, isReMode)
 		})
 	}
+
+	return ele
+}
+
+export function onClick(event: Event, isReplace: boolean) {
+	const targetEle = event.target as HTMLAnchorElement
+	const rect = targetEle.getBoundingClientRect()
+
+	showFindBox(rect.bottom, rect.left, isReplace)
 }
 
 export function onClickFind(event: Event) {
@@ -248,6 +273,16 @@ export function onClickReplace(event: Event) {
 	onClick(event, true)
 }
 
-const clearHighLight = () => {
+export const clearHighLight = () => {
+	const elements = document.getElementsByClassName(CN_TEMP_ELE_HIGHLIGHT)
+	for (let i = elements.length - 1; i >= 0; i--) {
+		const element = elements[i]
+		while (element.firstChild) {
+			element.parentNode?.insertBefore(element.firstChild, element)
+		}
+
+		element.parentNode?.removeChild(element)
+	}
+
 	DomUtils.promoteChildNodesByTagName(TN_SPAN, CN_TEMP_ELE_HIGHLIGHT)
 }

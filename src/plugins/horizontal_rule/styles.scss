@@ -1,7 +1,7 @@
 @import '../../styles/mixin.scss';
 
 .exsied .exsied-toolbar {
-	i.exsied-btn-hr {
+	i.exsied-icon-hr {
 		@include bkgSvgIcon;
 		background-image: url(../../icons/hr.svg);
 	}

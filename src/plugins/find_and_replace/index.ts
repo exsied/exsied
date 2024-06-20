@@ -7,12 +7,11 @@
  *     https://github.com/exsied/exsied/blob/main/LICENSE
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
-import { CN_TEMP_ELE_HIGHLIGHT } from '../../contants'
 import { exsied } from '../../core'
 import { DomUtils } from '../../core/dom_utils'
 import { Commands, ExsiedPlugin } from '../../core/plugin'
 import { CN_ICON_FIND, CN_ICON_REPLACE, PLUGIN_CONF, PLUGIN_NAME, POPUP_ID } from './base'
-import { onClickFind, onClickReplace, reset } from './event_handlers'
+import { clearHighLight, onClickFind, onClickReplace, resetValue } from './event_handlers'
 import './styles.scss'
 
 export const NAME_FIND = 'find'
@@ -55,18 +54,9 @@ export const findAndReplace: ExsiedPlugin = {
 	checkHighlight: (_event) => {},
 	removeTempEle: (_event) => {
 		DomUtils.removeElementById(POPUP_ID)
-		reset()
+		resetValue()
+		clearHighLight()
 
-		// Remove temp elements
-		const elements = document.getElementsByClassName(CN_TEMP_ELE_HIGHLIGHT)
-		for (let i = elements.length - 1; i >= 0; i--) {
-			const element = elements[i]
-			while (element.firstChild) {
-				element.parentNode?.insertBefore(element.firstChild, element)
-			}
-
-			element.parentNode?.removeChild(element)
-		}
 		if (exsied.elements.workplace) {
 			const workplace_ele = exsied.elements.workplace
 			DomUtils.mergeAdjacentTextNodes(workplace_ele)

@@ -11,7 +11,7 @@ import { TN_U } from '../../contants'
 import { exsied } from '../../core'
 
 export const PLUGIN_NAME = 'Underline'
-export const CN_ICON = 'exsied-btn-underline'
+export const CN_ICON = 'exsied-icon-underline'
 
 export function isHighlight() {
 	const allTagNamesArr = exsied.cursorAllParentsTagNamesArr

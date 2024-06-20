@@ -10,10 +10,11 @@
 
 export const PLUGIN_NAME = 'FindAndReplace'
 export const POPUP_ID = `exsied_${PLUGIN_NAME}_popup`
-export const CN_ICON_FIND = 'exsied-btn-find'
-export const CN_ICON_REPLACE = 'exsied-btn-replace'
+export const CN_ICON_FIND = 'exsied-icon-find'
+export const CN_ICON_REPLACE = 'exsied-icon-replace'
 export const CN_FIND = 'find-view'
 export const CN_REPLACE = 'replace-view'
+export const CN_REGEX = 'exsied-btn-regex'
 
 export type PluginConf = {
 	addToNormalToolbar: {

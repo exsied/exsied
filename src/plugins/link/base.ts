@@ -10,7 +10,7 @@
 import { LIB_NAME, LIB_REPO_GITHUB } from '../../contants'
 
 export const PLUGIN_NAME = 'Link'
-export const CN_ICON = 'exsied-btn-link'
+export const CN_ICON = 'exsied-icon-link'
 export const POPUP_ID = `exsied_${PLUGIN_NAME}_popup`
 export const CN_ROOT = 'exsied-link-editor'
 export const CN_EDIT_BTN = 'exsied-link-edit'

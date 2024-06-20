@@ -2,12 +2,12 @@
 
 **Exsied**: **Ex**tremely **si**mple **ed**itor. The pronunciation is `/ɪkˈsiːd/`, the same as **exceed**.
 
-**Exied** is the main editor of [Enassi](https://github.com/enassi/enassi/).
-**Enassi** is your encryption assistant that supports multiple file types ( including markdown, source code, PDF, images, etc. ), supports file encryption and synchronization.
+**Exied** is the main editor of [Fivim](https://github.com/fivim/fivim/).
+**Fivim** is your encryption assistant that supports multiple file types ( including markdown, source code, PDF, images, etc. ), supports file encryption and synchronization.
 
 **Exied** provides a variety of plugins that are basically ready to use out of the box, but there are a few plugins that need to be configured with callback functions to achieve a better user experience, such as **sourceCode** , **redoAndUndo** ,**fontSize** ,**fontFamily** .
 
-[Documents](https://enassi.pages.dev/en/exsied/about/) / [文档](https://enassi.pages.dev/zh-cn/exsied/about/)
+[Documents](https://fivim.pages.dev/en/exsied/about/) / [文档](https://fivim.pages.dev/zh-cn/exsied/about/)
 
 [Github repo](https://github.com/exsied/exsied) / [Gitee repo](https://gitee.com/exsied/exsied)
 
@@ -37,7 +37,7 @@ Existing license:
 
 ## Donate
 
-1. [Open collective](https://opencollective.com/enassi)
+1. [Open collective](https://opencollective.com/fivim)
 
 2. [Alipay / Weixin pay](https://github.com/newproplus)
 
@@ -229,18 +229,18 @@ import { exsied, plugins } from '@exsied/exsied'
 
 plugins.about.conf.deveploers.push(
 	{
-		name: 'enassi github',
-		repoLink: 'https://github.com/enassi/enassi',
+		name: 'fivim github',
+		repoLink: 'https://github.com/fivim/fivim',
 		webSiteLink: 'https://xxx.com/xxx',
 		email: 'xxx@xxx.xxx',
-		extContent: `Enassi's github repo`,
+		extContent: `Fivim's github repo`,
 	},
 	{
-		name: 'enassi gitee',
-		repoLink: 'https://gitee.com/enassi/enassi',
+		name: 'fivim gitee',
+		repoLink: 'https://gitee.com/fivim/fivim',
 		webSiteLink: 'https://xxx.com/xxx',
 		email: 'xxx@xxx.xxx',
-		extContent: `Enassi's gitee repo`,
+		extContent: `Fivim's gitee repo`,
 	},
 )
 ```

@@ -58,8 +58,6 @@ export function showInsertMenu(event: Event) {
 		if (name && eventMap[name]) {
 			const itemEle = item as HTMLElement
 			itemEle.addEventListener('click', () => {
-				console.log(456, name, eventMap[name])
-
 				SelectionUtils.restoreSelection()
 				eventMap[name](event as MouseEvent)
 			})

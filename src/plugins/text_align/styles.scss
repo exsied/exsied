@@ -1,17 +1,17 @@
 @import '../../styles/mixin.scss';
 
 .exsied .exsied-toolbar {
-	i.exsied-btn-center {
+	i.exsied-icon-center {
 		@include bkgSvgIcon;
 		background-image: url(../../icons/center.svg);
 	}
 
-	i.exsied-btn-left {
+	i.exsied-icon-left {
 		@include bkgSvgIcon;
 		background-image: url(../../icons/left.svg);
 	}
 
-	i.exsied-btn-right {
+	i.exsied-icon-right {
 		@include bkgSvgIcon;
 		background-image: url(../../icons/right.svg);
 	}

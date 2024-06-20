@@ -1,20 +1,22 @@
 {
 	"name": "@exsied/exsied",
 	"private": false,
-	"version": "0.12.0",
-	"description": "Exsied is a WYSIWYG editor from enassi.",
+	"version": "0.13.0",
+	"description": "Exsied is a WYSIWYG editor from fivim.",
 	"type": "module",
 	"files": [
 		"dist"
 	],
-	"main": "./dist/index.umd.cjs",
+	"publishConfig": {
+		"access": "public"
+	},
 	"module": "./dist/index.js",
 	"types": "./dist/index.d.ts",
 	"exports": {
 		".": {
 			"types": "./dist/index.d.ts",
 			"import": "./dist/index.js",
-			"require": "./dist/index.umd.cjs"
+			"default": "./dist/index.js"
 		},
 		"./style.css": "./dist/style.css"
 	},
@@ -40,6 +42,9 @@
 		"@types/node": "^20.14.2",
 		"sass": "^1.77.5",
 		"typescript": "^5.4.5",
-		"vite": "^5.2.13"
-	}
+		"vite": "^5.2.13",
+		"vite-plugin-dts": "^3.9.1",
+		"vite-tsconfig-paths": "^4.3.2"
+	},
+	"dependencies": {}
 }

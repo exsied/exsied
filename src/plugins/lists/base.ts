@@ -9,8 +9,8 @@
  */
 
 export const PLUGIN_NAME = 'Lists'
-export const CN_ICON_OL = 'exsied-btn-ol'
-export const CN_ICON_UL = 'exsied-btn-ul'
+export const CN_ICON_OL = 'exsied-icon-ol'
+export const CN_ICON_UL = 'exsied-icon-ul'
 
 export type PluginConf = {
 	addToNormalToolbar: {

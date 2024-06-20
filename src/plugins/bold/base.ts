@@ -11,7 +11,7 @@ import { TN_B, TN_STRONG } from '../../contants'
 import { exsied } from '../../core'
 
 export const PLUGIN_NAME = 'Bold'
-export const CN_ICON = 'exsied-btn-blod'
+export const CN_ICON = 'exsied-icon-blod'
 
 export const isHighlight = () => {
 	const allTagNamesArr = exsied.cursorAllParentsTagNamesArr
