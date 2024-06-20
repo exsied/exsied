@@ -8,6 +8,8 @@
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
 import { DomUtils } from './core/dom_utils'
+import { FormatStyle } from './core/format/style'
+import { FormatTaName } from './core/format/tag_name'
 import { HotkeyUtils } from './core/hotkey_utils'
 import { SelectionUtils } from './core/selection_utils'
 import { about } from './plugins/about'
@@ -37,7 +39,7 @@ import './styles/style.scss'
 import { ColorPicker } from './ui/color_picker'
 import { DropdownMenu } from './ui/dropdown'
 
-export { ZERO_WIDTH_SPACE } from './contants'
+export * from './contants'
 export { exsied } from './core'
 export { KEY_ALT, KEY_CTRL, KEY_META, KEY_SHIFT } from './core/hotkey_utils'
 
@@ -71,6 +73,8 @@ export const utils = {
 	DomUtils,
 	DropdownMenu,
 	FindAndReplace,
+	FormatStyle,
+	FormatTaName,
 	HotkeyUtils,
 	SelectionUtils,
 }
