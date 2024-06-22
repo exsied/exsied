@@ -18,6 +18,7 @@ export const ID_SOURCE_CODE_EDIT_VIEW = 'sourceCodeEditView'
 
 export type PluginConf = {
 	addToNormalToolbar: boolean
+	addToNormalToolbarInsertMenu?: boolean
 	addToBubbleToolbar: boolean
 	defaultText: string
 	renderDataCb: (ele: HTMLElement) => string
@@ -28,7 +29,8 @@ export type PluginConf = {
 }
 
 export const PLUGIN_CONF: PluginConf = {
-	addToNormalToolbar: true,
+	addToNormalToolbar: false,
+	addToNormalToolbarInsertMenu: true,
 	addToBubbleToolbar: false,
 	defaultText: '// Source code placeholder',
 	renderDataCb: (ele: HTMLElement) => {
