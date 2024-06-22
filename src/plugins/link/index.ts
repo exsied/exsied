@@ -10,7 +10,7 @@
 import { CN_ACTIVE, TN_A } from '../../contants'
 import { exsied } from '../../core'
 import { DomUtils } from '../../core/dom_utils'
-import { addEleClickCallbackByTag } from '../../core/events'
+import { EleClickCallback } from '../../core/events'
 import { Commands, ExsiedPlugin } from '../../core/plugin'
 import { Toolbar } from '../../ui/toolbar'
 import { CN_ICON, PLUGIN_CONF, PLUGIN_NAME, POPUP_ID } from './base'
@@ -42,7 +42,7 @@ export const link: ExsiedPlugin = {
 	],
 
 	addHandler: () => {
-		addEleClickCallbackByTag(TN_A, onClickLink)
+		EleClickCallback.addByTag(TN_A, onClickLink)
 	},
 	removeHandler: () => {},
 	checkHighlight: (_event) => {
