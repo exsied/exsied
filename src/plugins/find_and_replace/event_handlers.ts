@@ -11,7 +11,7 @@ import { CN_ACTIVE, CN_TEMP_ELE, CN_TEMP_ELE_HIGHLIGHT, TN_SPAN } from '../../co
 import { exsied } from '../../core'
 import { DomUtils } from '../../core/dom_utils'
 import { FormatTaName } from '../../core/format/tag_name'
-import { createPopupView } from '../../ui/popup_view'
+import { PopupView } from '../../ui/popup_view'
 import { CN_FIND, CN_REGEX, PLUGIN_NAME, POPUP_ID } from './base'
 import { FindAndReplace } from './find'
 
@@ -86,7 +86,7 @@ export function showFindBox(top: number, left: number, isReplace: boolean) {
 			`
 	}
 
-	const ele = createPopupView({
+	const ele = PopupView.create({
 		id: POPUP_ID,
 		classNames: [CN_TEMP_ELE, CN_FIND_BOX],
 		attrs: { TEMP_EDIT_ID: PLUGIN_NAME },

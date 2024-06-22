@@ -7,16 +7,10 @@
  *     https://github.com/exsied/exsied/blob/main/LICENSE
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
-import { DomUtils } from './core/dom_utils'
-import { FormatStyle } from './core/format/style'
-import { FormatTaName } from './core/format/tag_name'
-import { HotkeyUtils } from './core/hotkey_utils'
-import { SelectionUtils } from './core/selection_utils'
 import { about } from './plugins/about'
 import { bold } from './plugins/bold'
 import { colors } from './plugins/colors'
 import { findAndReplace } from './plugins/find_and_replace'
-import { FindAndReplace } from './plugins/find_and_replace/find'
 import { fontFamily } from './plugins/font_family'
 import { fontSize } from './plugins/font_size'
 import { headings } from './plugins/headings'
@@ -36,9 +30,17 @@ import { textAlign } from './plugins/text_align'
 import { underline } from './plugins/underline'
 import { redoAndUndo } from './plugins/undo_and_redo'
 import './styles/style.scss'
-import { ColorPicker } from './ui/color_picker'
-import { DropdownMenu } from './ui/dropdown'
 
+export { DomUtils } from './core/dom_utils'
+export { FormatStyle } from './core/format/style'
+export { FormatTaName } from './core/format/tag_name'
+export { HotkeyUtils } from './core/hotkey_utils'
+export { SelectionUtils } from './core/selection_utils'
+export { FindAndReplace } from './plugins/find_and_replace/find'
+export { ColorPicker } from './ui/color_picker'
+export { DropdownMenu } from './ui/dropdown'
+export { PopupView } from './ui/popup_view'
+export { Toolbar } from './ui/toolbar'
 export * from './contants'
 export { exsied } from './core'
 export { KEY_ALT, KEY_CTRL, KEY_META, KEY_SHIFT } from './core/hotkey_utils'
@@ -66,15 +68,4 @@ export const plugins = {
 	table,
 	textAlign,
 	underline,
-}
-
-export const utils = {
-	ColorPicker,
-	DomUtils,
-	DropdownMenu,
-	FindAndReplace,
-	FormatStyle,
-	FormatTaName,
-	HotkeyUtils,
-	SelectionUtils,
 }

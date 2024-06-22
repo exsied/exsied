@@ -11,7 +11,7 @@ import pkg from '../../../package.json'
 import { CN_TEMP_ELE, DATA_ATTR_TEMP_EDIT, LIB_NAME, LIB_REPO_GITHUB } from '../../contants'
 import { DomUtils } from '../../core/dom_utils'
 import { t } from '../../core/i18n'
-import { createPopupView } from '../../ui/popup_view'
+import { PopupView } from '../../ui/popup_view'
 import { CN_ROOT, PLUGIN_CONF, PLUGIN_NAME, POPUP_ID } from './base'
 
 export function showAbout(event: Event) {
@@ -56,7 +56,7 @@ export function showAbout(event: Event) {
 			</div>
 			`
 
-	const ele = createPopupView({
+	const ele = PopupView.create({
 		id: POPUP_ID,
 		classNames: [CN_TEMP_ELE, CN_ROOT],
 		attrs: { TEMP_EDIT_ID: PLUGIN_NAME },
