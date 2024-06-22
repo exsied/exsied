@@ -1,8 +1,0 @@
-@import '../../styles/mixin.scss';
-
-.exsied .exsied-toolbar {
-	i.exsied-icon-blod {
-		@include bkgSvgIcon;
-		background-image: url(../../icons/bold.svg);
-	}
-}

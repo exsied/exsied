@@ -1,16 +1,5 @@
 @import '../../styles/mixin.scss';
 
-.exsied .exsied-toolbar {
-	i.exsied-icon-find {
-		@include bkgSvgIcon;
-		background-image: url(../../icons/find.svg);
-	}
-	i.exsied-icon-replace {
-		@include bkgSvgIcon;
-		background-image: url(../../icons/replace.svg);
-	}
-}
-
 .exsied-find-box {
 	padding: 0.5rem;
 	display: block;
@@ -35,41 +24,6 @@
 			&.exsied-active {
 				background-color: var(--exd-highlight-color);
 			}
-		}
-
-		i.exsied-icon-prev {
-			@include bkgSvgIcon;
-			background-image: url(../../icons/chevron-up.svg);
-		}
-
-		i.exsied-icon-next {
-			@include bkgSvgIcon;
-			background-image: url(../../icons/chevron-down.svg);
-		}
-
-		i.exsied-icon-hightlight-all {
-			@include bkgSvgIcon;
-			background-image: url(../../icons/highlight.svg);
-		}
-
-		i.exsied-icon-close {
-			@include bkgSvgIcon;
-			background-image: url(../../icons/close.svg);
-		}
-
-		i.exsied-icon-regex {
-			@include bkgSvgIcon;
-			background-image: url(../../icons/regex.svg);
-		}
-
-		i.exsied-icon-replace-this {
-			@include bkgSvgIcon;
-			background-image: url(../../icons/replace-empty.svg);
-		}
-
-		i.exsied-icon-replace-all {
-			@include bkgSvgIcon;
-			background-image: url(../../icons/replace-filled.svg);
 		}
 	}
 }

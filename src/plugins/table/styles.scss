@@ -5,13 +5,6 @@
 	--table-action-button-background-color: #aaaaaa;
 }
 
-.exsied .exsied-toolbar {
-	i.exsied-icon-table {
-		@include bkgSvgIcon;
-		background-image: url(../../icons/table.svg);
-	}
-}
-
 .exsied .exsied-workplace {
 	table {
 		border-collapse: collapse;
@@ -69,28 +62,6 @@
 
 			i {
 				padding: 0.5rem;
-			}
-
-			i.add {
-				@include bkgSvgIcon;
-				background-image: url(../../icons/plus.svg);
-			}
-
-			i.delete-row {
-				@include bkgSvgIcon;
-				background-image: url(../../icons/table-delete-row.svg);
-			}
-
-			i.delete-column {
-				@include bkgSvgIcon;
-				background-image: url(../../icons/table-delete-row.svg);
-
-				transform: rotate(90deg);
-			}
-
-			i.trash {
-				@include bkgSvgIcon;
-				background-image: url(../../icons/trash.svg);
 			}
 		}
 

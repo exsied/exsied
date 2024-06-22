@@ -1,0 +1,251 @@
+@import '../styles/mixin.scss';
+
+i.exsied-icon-about {
+	@include bkgSvgIcon;
+	background-image: url(../icons/question.svg);
+}
+
+i.exsied-icon-blod {
+	@include bkgSvgIcon;
+	background-image: url(../icons/bold.svg);
+}
+
+i.exsied-icon-background-color {
+	@include bkgSvgIcon;
+	background-image: url(../icons/background-color.svg);
+}
+
+i.exsied-icon-text-color {
+	@include bkgSvgIcon;
+	background-image: url(../icons/text-color.svg);
+}
+
+i.exsied-icon-find {
+	@include bkgSvgIcon;
+	background-image: url(../icons/find.svg);
+}
+
+i.exsied-icon-replace {
+	@include bkgSvgIcon;
+	background-image: url(../icons/replace.svg);
+}
+
+i.exsied-icon-prev {
+	@include bkgSvgIcon;
+	background-image: url(../icons/chevron-up.svg);
+}
+
+i.exsied-icon-next {
+	@include bkgSvgIcon;
+	background-image: url(../icons/chevron-down.svg);
+}
+
+i.exsied-icon-hightlight-all {
+	@include bkgSvgIcon;
+	background-image: url(../icons/highlight.svg);
+}
+
+i.exsied-icon-close {
+	@include bkgSvgIcon;
+	background-image: url(../icons/close.svg);
+}
+
+i.exsied-icon-regex {
+	@include bkgSvgIcon;
+	background-image: url(../icons/regex.svg);
+}
+
+i.exsied-icon-replace-this {
+	@include bkgSvgIcon;
+	background-image: url(../icons/replace-empty.svg);
+}
+
+i.exsied-icon-replace-all {
+	@include bkgSvgIcon;
+	background-image: url(../icons/replace-filled.svg);
+}
+
+i.exsied-icon-paragraph {
+	@include bkgSvgIcon;
+	background-image: url(../icons/paragraph.svg);
+}
+
+i.exsied-icon-h1 {
+	@include bkgSvgIcon;
+	background-image: url(../icons/h1.svg);
+}
+
+i.exsied-icon-h2 {
+	@include bkgSvgIcon;
+	background-image: url(../icons/h2.svg);
+}
+
+i.exsied-icon-h3 {
+	@include bkgSvgIcon;
+	background-image: url(../icons/h3.svg);
+}
+
+i.exsied-icon-h4 {
+	@include bkgSvgIcon;
+	background-image: url(../icons/h4.svg);
+}
+
+i.exsied-icon-h5 {
+	@include bkgSvgIcon;
+	background-image: url(../icons/h5.svg);
+}
+
+i.exsied-icon-h6 {
+	@include bkgSvgIcon;
+	background-image: url(../icons/h6.svg);
+}
+
+i.exsied-icon-hr {
+	@include bkgSvgIcon;
+	background-image: url(../icons/hr.svg);
+}
+
+i.exsied-icon-image {
+	@include bkgSvgIcon;
+	background-image: url(../icons/image.svg);
+}
+
+i.exsied-icon-indent {
+	@include bkgSvgIcon;
+	background-image: url(../icons/indent.svg);
+}
+
+i.exsied-icon-outdent {
+	@include bkgSvgIcon;
+	background-image: url(../icons/outdent.svg);
+}
+
+i.exsied-icon-plus {
+	@include bkgSvgIcon;
+	background-image: url(../icons/plus.svg);
+}
+
+i.exsied-icon-italic {
+	@include bkgSvgIcon;
+	background-image: url(../icons/italic.svg);
+}
+
+i.exsied-icon-link {
+	@include bkgSvgIcon;
+	background-image: url(../icons/link.svg);
+}
+
+i.exsied-icon-edit {
+	@include bkgSvgIcon;
+	background-image: url(../icons/edit.svg);
+}
+
+i.exsied-icon-trash {
+	@include bkgSvgIcon;
+	background-image: url(../icons/trash.svg);
+}
+
+i.exsied-icon-cancel {
+	@include bkgSvgIcon;
+	background-image: url(../icons/close.svg);
+}
+
+i.exsied-icon-confirm {
+	@include bkgSvgIcon;
+	background-image: url(../icons/confirm.svg);
+}
+i.exsied-icon-ol {
+	@include bkgSvgIcon;
+	background-image: url(../icons/ol.svg);
+}
+
+i.exsied-icon-ul {
+	@include bkgSvgIcon;
+	background-image: url(../icons/ul.svg);
+}
+
+i.exsied-icon-braces {
+	@include bkgSvgIcon;
+	background-image: url(../icons/braces.svg);
+}
+
+i.exsied-icon-xml {
+	@include bkgSvgIcon;
+	background-image: url(../icons/xml.svg);
+}
+
+i.exsied-icon-back {
+	@include bkgSvgIcon;
+	background-image: url(../icons/arrow-left-circle.svg);
+}
+
+i.exsied-icon-quote {
+	@include bkgSvgIcon;
+	background-image: url(../icons/quote.svg);
+}
+
+i.exsied-icon-sup {
+	@include bkgSvgIcon;
+	background-image: url(../icons/superscript.svg);
+}
+
+i.exsied-icon-sub {
+	@include bkgSvgIcon;
+	background-image: url(../icons/subscript.svg);
+}
+
+i.exsied-icon-strikethrough {
+	@include bkgSvgIcon;
+	background-image: url(../icons/strik.svg);
+}
+
+i.exsied-icon-table {
+	@include bkgSvgIcon;
+	background-image: url(../icons/table.svg);
+}
+
+i.exsied-icon-add {
+	@include bkgSvgIcon;
+	background-image: url(../icons/plus.svg);
+}
+
+i.exsied-icon-delete-row {
+	@include bkgSvgIcon;
+	background-image: url(../icons/table-delete-row.svg);
+}
+
+i.exsied-icon-delete-column {
+	@include bkgSvgIcon;
+	background-image: url(../icons/table-delete-row.svg);
+	transform: rotate(90deg);
+}
+
+i.exsied-icon-center {
+	@include bkgSvgIcon;
+	background-image: url(../icons/center.svg);
+}
+
+i.exsied-icon-left {
+	@include bkgSvgIcon;
+	background-image: url(../icons/left.svg);
+}
+
+i.exsied-icon-right {
+	@include bkgSvgIcon;
+	background-image: url(../icons/right.svg);
+}
+
+i.exsied-icon-underline {
+	@include bkgSvgIcon;
+	background-image: url(../icons/underline.svg);
+}
+
+i.exsied-icon-redo {
+	@include bkgSvgIcon;
+	background-image: url(../icons/arrow-clockwise.svg);
+}
+
+i.exsied-icon-undo {
+	@include bkgSvgIcon;
+	background-image: url(../icons/arrow-counterclockwise.svg);
+}

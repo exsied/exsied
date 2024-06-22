@@ -103,30 +103,30 @@ export function showTableActionPopup(event: Event) {
 		<div class="exsied-table-edit-actions">
 			<div class="exsied-cell"></div>  
 			<div class="exsied-cell exsied-btn exsied-icon-add-to-top">
-				<i class="exsied-icon add"></i>
+				<i class="exsied-icon exsied-icon-add"></i>
 			</div>  
 			<div class="exsied-cell"></div>  
 			<div class="exsied-cell exsied-btn exsied-icon-add-to-left">
-				<i class="exsied-icon add"></i>
+				<i class="exsied-icon exsied-icon-add"></i>
 			</div>  
 			<div class="exsied-cell"></div>  
 			<div class="exsied-cell exsied-btn exsied-icon-add-to-right">
-				<i class="exsied-icon add"></i>
+				<i class="exsied-icon exsied-icon-add"></i>
 			</div>  
 			<div class="exsied-cell"></div>  
 			<div class="exsied-cell exsied-btn exsied-icon-add-to-bottom">
-				<i class="exsied-icon add"></i>
+				<i class="exsied-icon exsied-icon-add"></i>
 			</div>  
 			<div class="exsied-cell"></div>  
 
 			<div class="exsied-cell exsied-btn exsied-icon-delete-row">
-				<i class="exsied-icon delete-row"></i>
+				<i class="exsied-icon exsied-icon-delete-row"></i>
 			</div>  
 			<div class="exsied-cell exsied-btn exsied-icon-delete-column">
-				<i class="exsied-icon delete-column"></i>
+				<i class="exsied-icon exsied-icon-delete-column"></i>
 			</div>  
 			<div class="exsied-cell exsied-btn exsied-icon-delete-table">
-				<i class="exsied-icon trash"></i>
+				<i class="exsied-icon exsied-icon-trash"></i>
 			</div>  
 		</div>
 		`
@@ -142,8 +142,6 @@ export function showTableActionPopup(event: Event) {
 		actionsButtons: [],
 	})
 
-	const width = 150
-
 	const targetEle = event.target as HTMLElement
 	const rect = targetEle.getBoundingClientRect()
 	const scrollTop = window.pageYOffset || window.scrollY
@@ -152,7 +150,6 @@ export function showTableActionPopup(event: Event) {
 	ele.style.position = 'absolute'
 	ele.style.top = rect.top + scrollTop + 'px'
 	ele.style.right = window.innerWidth - rect.right + scrollLeft + 'px'
-	ele.style.width = width + 'px'
 
 	document.body.appendChild(ele)
 
