@@ -1,12 +1,3 @@
-@import '../../styles/mixin.scss';
-
-.exsied .exsied-toolbar {
-	i.exsied-icon-plus {
-		@include bkgSvgIcon;
-		background-image: url(../../icons/plus.svg);
-	}
-}
-
 .exsied-insert-menu-view {
 	border: none;
 	border-radius: 0;

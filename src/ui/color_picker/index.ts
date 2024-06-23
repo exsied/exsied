@@ -10,7 +10,7 @@
 import { CN_TEMP_ELE, DATA_ATTR_TEMP_EDIT } from '../../contants'
 import { DomUtils } from '../../core/dom_utils'
 import { t } from '../../core/i18n'
-import { createPopupView } from '../popup_view'
+import { PopupView } from '../popup_view'
 import './styles.scss'
 
 type ClickColotItemCallback = (color: string) => void
@@ -201,12 +201,12 @@ export class ColorPicker {
 		return chunks
 	}
 
-	showColorPicker(event: Event) {
+	showPopup(event: Event) {
 		const targetEle = event.target as HTMLAnchorElement
 		targetEle.setAttribute(DATA_ATTR_TEMP_EDIT, this.plugin_name)
 
 		const renderData = this.getRenderData()
-		const ele = createPopupView({
+		const ele = PopupView.create({
 			id: this.popup_id,
 			classNames: [CN_TEMP_ELE],
 			attrs: { TEMP_EDIT_ID: this.plugin_name },

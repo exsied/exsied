@@ -29,7 +29,8 @@ export const sourceCode: ExsiedPlugin = {
 		{
 			name: NAME_SOURCE_CODE_VIEW,
 			tooltipText: 'Source code view',
-			addToNormalToolbar: PLUGIN_CONF.addToNormalToolbar,
+			addToNormalToolbar: true, // TODO
+			addToNormalToolbarInsertMenu: false, // TODO
 			addToBubbleToolbar: PLUGIN_CONF.addToBubbleToolbar,
 
 			eleType: 'button',
@@ -38,8 +39,9 @@ export const sourceCode: ExsiedPlugin = {
 		},
 		{
 			name: NAME_INSERT_SOURCE_CODE_BOCK,
-			tooltipText: 'Insert source code bock',
+			tooltipText: 'Source code bock',
 			addToNormalToolbar: PLUGIN_CONF.addToNormalToolbar,
+			addToNormalToolbarInsertMenu: PLUGIN_CONF.addToNormalToolbarInsertMenu,
 			addToBubbleToolbar: PLUGIN_CONF.addToBubbleToolbar,
 
 			eleType: 'button',

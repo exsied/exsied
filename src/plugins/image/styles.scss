@@ -1,12 +1,5 @@
 @import '../../styles/mixin.scss';
 
-.exsied .exsied-toolbar {
-	i.exsied-icon-image {
-		@include bkgSvgIcon;
-		background-image: url(../../icons/image.svg);
-	}
-}
-
 .exsied .exsied-workplace {
 	img {
 		&.exsied-active {

@@ -1,12 +1,5 @@
 @import '../../styles/mixin.scss';
 
-.exsied .exsied-toolbar {
-	i.exsied-icon-link {
-		@include bkgSvgIcon;
-		background-image: url(../../icons/link.svg);
-	}
-}
-
 .exsied-link-editor {
 	display: flex;
 	max-width: 400px;
@@ -32,30 +25,9 @@
 		}
 
 		.exsied-btn {
-			cursor: pointer;
 			display: flex;
 			align-items: center;
 			padding: 0 0.25rem;
-
-			i.exsied-icon-edit {
-				@include bkgSvgIcon;
-				background-image: url(../../icons/edit.svg);
-			}
-
-			i.exsied-icon-trash {
-				@include bkgSvgIcon;
-				background-image: url(../../icons/trash.svg);
-			}
-
-			i.exsied-icon-cancel {
-				@include bkgSvgIcon;
-				background-image: url(../../icons/close.svg);
-			}
-
-			i.exsied-icon-confirm {
-				@include bkgSvgIcon;
-				background-image: url(../../icons/confirm.svg);
-			}
 		}
 	}
 }

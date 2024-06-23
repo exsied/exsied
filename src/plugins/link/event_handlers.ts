@@ -11,7 +11,7 @@ import { CN_TEMP_ELE, DATA_ATTR_TEMP_EDIT, TN_A } from '../../contants'
 import { exsied } from '../../core'
 import { DomUtils } from '../../core/dom_utils'
 import { SelectionUtils } from '../../core/selection_utils'
-import { createPopupView } from '../../ui/popup_view'
+import { PopupView } from '../../ui/popup_view'
 import {
 	CN_CANCEL_BTN,
 	CN_CONFIRM_BTN,
@@ -65,7 +65,7 @@ export function onClickLink(event: Event) {
         </div>
         `
 
-	const ele = createPopupView({
+	const ele = PopupView.create({
 		id: POPUP_ID,
 		classNames: [CN_TEMP_ELE, CN_ROOT],
 		attrs: { TEMP_EDIT_ID: PLUGIN_NAME },
@@ -93,26 +93,26 @@ export function onClickLink(event: Event) {
 
 	const eleEditBtn = ele.querySelector(`.${CN_EDIT_BTN}`)
 	if (eleEditBtn) {
-		eleEditBtn.addEventListener('click', onClickLinkEditBtn)
+		eleEditBtn.addEventListener('click', onClickEditBtn)
 	}
 
 	const eleTrashBtn = ele.querySelector(`.${CN_TRASH}`)
 	if (eleTrashBtn) {
-		eleTrashBtn.addEventListener('click', onClickLinkTrashBtn)
+		eleTrashBtn.addEventListener('click', onClickTrashBtn)
 	}
 
 	const eleCancelBtn = ele.querySelector(`.${CN_CANCEL_BTN}`)
 	if (eleCancelBtn) {
-		eleCancelBtn.addEventListener('click', onClickLinkConcelBtn)
+		eleCancelBtn.addEventListener('click', onClickCancelBtn)
 	}
 
 	const eleconfirmBtn = ele.querySelector(`.${CN_CONFIRM_BTN}`)
 	if (eleconfirmBtn) {
-		eleconfirmBtn.addEventListener('click', onClickLinkConfirmBtn)
+		eleconfirmBtn.addEventListener('click', onClickConfirmBtn)
 	}
 }
 
-export function onClickLinkEditBtn(event: Event) {
+export function onClickEditBtn(event: Event) {
 	const root = (event.target as HTMLElement).closest(`.${CN_ROOT}`)
 	const previewView = root?.querySelector(`.${CN_PREVIEW}`) as HTMLElement
 	const editView = root?.querySelector(`.${CN_EDIT_VIEW}`) as HTMLElement
@@ -125,23 +125,23 @@ export function onClickLinkEditBtn(event: Event) {
 	editView.style.display = 'flex'
 }
 
-export function onClickLinkTrashBtn(_event: Event) {
-	const link = document.querySelector(`[${DATA_ATTR_TEMP_EDIT}="${PLUGIN_NAME}"]`) as HTMLAnchorElement
-	const textContent = link.textContent || link.innerText
-	link.parentNode?.replaceChild(document.createTextNode(textContent), link)
-	link.removeAttribute(DATA_ATTR_TEMP_EDIT)
+export function onClickTrashBtn(_event: Event) {
+	const ele = document.querySelector(`[${DATA_ATTR_TEMP_EDIT}="${PLUGIN_NAME}"]`) as HTMLAnchorElement
+	const textContent = ele.textContent || ele.innerText
+	ele.parentNode?.replaceChild(document.createTextNode(textContent), ele)
+	ele.removeAttribute(DATA_ATTR_TEMP_EDIT)
 
 	DomUtils.removeElementById(POPUP_ID)
 }
 
-export function onClickLinkConcelBtn(_event: Event) {
-	const link = document.querySelector(`[${DATA_ATTR_TEMP_EDIT}="${PLUGIN_NAME}"]`) as HTMLAnchorElement
-	link.removeAttribute(DATA_ATTR_TEMP_EDIT)
+export function onClickCancelBtn(_event: Event) {
+	const ele = document.querySelector(`[${DATA_ATTR_TEMP_EDIT}="${PLUGIN_NAME}"]`) as HTMLAnchorElement
+	ele.removeAttribute(DATA_ATTR_TEMP_EDIT)
 
 	DomUtils.removeElementById(POPUP_ID)
 }
 
-export function onClickLinkConfirmBtn(event: Event) {
+export function onClickConfirmBtn(event: Event) {
 	const root = (event.target as HTMLElement).closest(`.${CN_ROOT}`)
 	const editView = root?.querySelector(`.${CN_EDIT_VIEW}`) as HTMLElement
 

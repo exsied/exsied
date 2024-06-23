@@ -1,12 +1,3 @@
-@import '../../styles/mixin.scss';
-
-.exsied .exsied-toolbar {
-	i.exsied-icon-about {
-		@include bkgSvgIcon;
-		background-image: url(../../icons/question.svg);
-	}
-}
-
 .exsied-about-view {
 	min-width: 200px;
 

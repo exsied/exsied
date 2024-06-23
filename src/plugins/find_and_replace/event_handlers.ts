@@ -11,7 +11,7 @@ import { CN_ACTIVE, CN_TEMP_ELE, CN_TEMP_ELE_HIGHLIGHT, TN_SPAN } from '../../co
 import { exsied } from '../../core'
 import { DomUtils } from '../../core/dom_utils'
 import { FormatTaName } from '../../core/format/tag_name'
-import { createPopupView } from '../../ui/popup_view'
+import { PopupView } from '../../ui/popup_view'
 import { CN_FIND, CN_REGEX, PLUGIN_NAME, POPUP_ID } from './base'
 import { FindAndReplace } from './find'
 
@@ -24,7 +24,6 @@ const CN_FIND_COUNT_TOTAL = 'exsied-find-count-total'
 const CN_REPLACE_INPUT = 'exsied-replace-input'
 const CN_PREV = 'exsied-prev'
 const CN_NEXT = 'exsied-next'
-const CN_CLOSE = 'exsied-close'
 const CN_HIGHLIGHT_ALL = 'exsied-hightlight-all'
 const CN_REPLACE_THIS = 'exsied-replace-this'
 const CN_REPLACE_ALL = 'exsied-replace-all'
@@ -64,9 +63,6 @@ export function showFindBox(top: number, left: number, isReplace: boolean) {
 				<div class="exsied-btn ${CN_HIGHLIGHT_ALL}">
 					<i class="exsied-icon exsied-icon-hightlight-all"></i>
 				</div>
-				<div class="exsied-btn ${CN_CLOSE}">
-					<i class="exsied-icon exsied-icon-close"></i>
-				</div>
 			</div>
 		</div>
 		`
@@ -86,7 +82,7 @@ export function showFindBox(top: number, left: number, isReplace: boolean) {
 			`
 	}
 
-	const ele = createPopupView({
+	const ele = PopupView.create({
 		id: POPUP_ID,
 		classNames: [CN_TEMP_ELE, CN_FIND_BOX],
 		attrs: { TEMP_EDIT_ID: PLUGIN_NAME },
@@ -209,16 +205,6 @@ export function showFindBox(top: number, left: number, isReplace: boolean) {
 				if (index > 0) highlightByIndex(index)
 				index++
 			}
-		})
-	}
-
-	// close button
-	const eleClose = ele.querySelector(`.${CN_CLOSE}`)
-	if (eleClose) {
-		eleClose.addEventListener('click', (_event) => {
-			ele.remove()
-			clearHighLight()
-			resetValue()
 		})
 	}
 

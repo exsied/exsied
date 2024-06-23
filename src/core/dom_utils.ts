@@ -7,6 +7,7 @@
  *     https://github.com/exsied/exsied/blob/main/LICENSE
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
+import { exsied } from '.'
 import { TN_DIV, TN_P } from '../contants'
 import { HTMLTagNames } from '../types'
 import { tagNameLc } from '../utils'
@@ -97,7 +98,10 @@ export class DomUtils {
 			range.collapse(true)
 		}
 
-		range.insertNode(node)
+		const workplaceEle = exsied.elements.workplace
+		if (workplaceEle.contains(range.startContainer) && workplaceEle.contains(range.endContainer)) {
+			range.insertNode(node)
+		}
 	}
 
 	static tableAddRow(table: HTMLTableElement, index: number) {

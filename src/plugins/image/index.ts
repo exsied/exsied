@@ -10,7 +10,7 @@
 import { CN_ACTIVE, TN_IMG } from '../../contants'
 import { exsied } from '../../core'
 import { DomUtils } from '../../core/dom_utils'
-import { addEleClickCallbackByClass, addEleClickCallbackByTag } from '../../core/events'
+import { EleClickCallback } from '../../core/events'
 import { Commands, ExsiedPlugin } from '../../core/plugin'
 import { Toolbar } from '../../ui/toolbar'
 import { CN_BTN_SETTING, CN_ICON, PLUGIN_CONF, PLUGIN_NAME, RESIZER_ID } from './base'
@@ -42,9 +42,8 @@ export const image: ExsiedPlugin = {
 	],
 
 	addHandler: () => {
-		addEleClickCallbackByTag(TN_IMG, onClickImage)
-
-		addEleClickCallbackByClass(CN_BTN_SETTING, onClickImageSettingButton)
+		EleClickCallback.addByTag(TN_IMG, onClickImage)
+		EleClickCallback.addByClass(CN_BTN_SETTING, onClickImageSettingButton)
 	},
 	removeHandler: () => {},
 	checkHighlight: (_event) => {

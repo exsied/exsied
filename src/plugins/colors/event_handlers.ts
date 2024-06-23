@@ -23,7 +23,7 @@ export function showColorPickerBkg(event: Event) {
 		}
 	})
 
-	picker.showColorPicker(event)
+	picker.showPopup(event)
 }
 
 export function showColorPickerText(event: Event) {
@@ -36,5 +36,5 @@ export function showColorPickerText(event: Event) {
 		}
 	})
 
-	picker.showColorPicker(event)
+	picker.showPopup(event)
 }

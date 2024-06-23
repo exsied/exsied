@@ -33,30 +33,33 @@ export type PopupViewProps = {
 export const CN_POPUP_VIEW = 'exsied-popup-view'
 export const CN_POPUP_CLOSE_BTN = 'exsied-icon-close'
 
-export const createPopupView = (props: PopupViewProps) => {
-	let contentAttrsStr = ''
+export class PopupView {
+	static create = (props: PopupViewProps) => {
+		let contentAttrsStr = ''
 
-	Object.keys(props.contentAttrs).forEach((key) => {
-		if (key !== '') contentAttrsStr += ` ${key}="${props.contentAttrs[key]}"`
-	})
+		Object.keys(props.contentAttrs).forEach((key) => {
+			if (key !== '') contentAttrsStr += ` ${key}="${props.contentAttrs[key]}"`
+		})
 
-	const htmlTitlebar = props.titlebarText
-		? `					
+		const htmlTitlebar = props.titlebarText
+			? `					
 		<div class="exsied-popup-titlebar">
 			<div class="exsied-popup-titlebar-content">${props.titlebarText}</div>
 			<div class="exsied-popup-titlebar-actions">
-				<i class="exsied-icon ${CN_POPUP_CLOSE_BTN}"></i>
+				<div class="exsied-btn">
+					<i class="exsied-icon ${CN_POPUP_CLOSE_BTN}"></i>
+				</div>
 			</div>
 		</div>
 		`
-		: ''
+			: ''
 
-	let htmlActionButtons = ''
-	props.actionsButtons?.map((value, _index) => {
-		htmlActionButtons += `<button id="${value.id}">${value.text}</button>`
-	})
+		let htmlActionButtons = ''
+		props.actionsButtons?.map((value, _index) => {
+			htmlActionButtons += `<button id="${value.id}">${value.text}</button>`
+		})
 
-	let htmlContent = `					
+		let htmlContent = `					
 		<div
 			class="exsied-popup-content ${props.contentClassNames.join(' ')}" 
 			${contentAttrsStr}
@@ -65,44 +68,45 @@ export const createPopupView = (props: PopupViewProps) => {
 			${props.contentHtml}
 		</div>
 		`
-	if (htmlActionButtons) {
-		htmlContent += `
+		if (htmlActionButtons) {
+			htmlContent += `
 			<div class="exsied-popup-actions">
 				${htmlActionButtons}
 			</div>`
-	}
-
-	const ele = document.createElement(TN_DIV)
-	ele.id = props.id
-	ele.innerHTML = htmlContent
-	ele.classList.add(CN_EXSIED_ELE)
-	ele.classList.add(CN_POPUP_VIEW)
-
-	for (const className of props.classNames) {
-		ele.classList.add(className)
-	}
-
-	for (const key in props.attrs) {
-		ele.setAttribute(key, props.attrs[key])
-	}
-
-	if (props.titlebarText) {
-		const closeBtn = ele.querySelector(`.${CN_POPUP_CLOSE_BTN}`)
-		if (closeBtn) {
-			closeBtn.addEventListener('click', (event) => {
-				const targetEle = event.target as HTMLElement
-				const popupEle = targetEle.closest(`.${CN_POPUP_VIEW}`)
-				if (popupEle) DomUtils.removeElementById(popupEle.id)
-			})
 		}
-	}
 
-	props.actionsButtons?.map((value, _index) => {
-		const btnEle = ele.querySelector(`#${value.id}`)
-		if (btnEle) {
-			btnEle.addEventListener('click', value.callback)
+		const ele = document.createElement(TN_DIV)
+		ele.id = props.id
+		ele.innerHTML = htmlContent
+		ele.classList.add(CN_EXSIED_ELE)
+		ele.classList.add(CN_POPUP_VIEW)
+
+		for (const className of props.classNames) {
+			ele.classList.add(className)
 		}
-	})
 
-	return ele
+		for (const key in props.attrs) {
+			ele.setAttribute(key, props.attrs[key])
+		}
+
+		if (props.titlebarText) {
+			const closeBtn = ele.querySelector(`.${CN_POPUP_CLOSE_BTN}`)
+			if (closeBtn) {
+				closeBtn.addEventListener('click', (event) => {
+					const targetEle = event.target as HTMLElement
+					const popupEle = targetEle.closest(`.${CN_POPUP_VIEW}`)
+					if (popupEle) DomUtils.removeElementById(popupEle.id)
+				})
+			}
+		}
+
+		props.actionsButtons?.map((value, _index) => {
+			const btnEle = ele.querySelector(`#${value.id}`)
+			if (btnEle) {
+				btnEle.addEventListener('click', value.callback)
+			}
+		})
+
+		return ele
+	}
 }

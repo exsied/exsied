@@ -11,7 +11,7 @@ import { CN_TEMP_ELE, DATA_ATTR_TEMP_EDIT } from '../../contants'
 import { t } from '../../core/i18n'
 import { ClickEventHandler } from '../../core/plugin'
 import { SelectionUtils } from '../../core/selection_utils'
-import { createPopupView } from '../../ui/popup_view'
+import { PopupView } from '../../ui/popup_view'
 import { INSERT_ELEMENT_BUTTONS } from '../../ui/toolbar'
 import { CN_ROOT, PLUGIN_NAME, POPUP_ID } from './base'
 
@@ -38,7 +38,7 @@ export function showInsertMenu(event: Event) {
 			`
 	}
 
-	const ele = createPopupView({
+	const ele = PopupView.create({
 		id: POPUP_ID,
 		classNames: [CN_TEMP_ELE, CN_ROOT, 'exsied'],
 		attrs: { TEMP_EDIT_ID: PLUGIN_NAME },

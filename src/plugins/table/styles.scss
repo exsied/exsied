@@ -5,13 +5,6 @@
 	--table-action-button-background-color: #aaaaaa;
 }
 
-.exsied .exsied-toolbar {
-	i.exsied-icon-table {
-		@include bkgSvgIcon;
-		background-image: url(../../icons/table.svg);
-	}
-}
-
 .exsied .exsied-workplace {
 	table {
 		border-collapse: collapse;
@@ -61,8 +54,6 @@
 		padding: 0.5rem;
 
 		&.exsied-btn {
-			cursor: pointer;
-
 			&:hover {
 				background-color: var(--exd-highlight-color);
 			}
@@ -70,52 +61,30 @@
 			i {
 				padding: 0.5rem;
 			}
+		}
 
-			i.add {
-				@include bkgSvgIcon;
-				background-image: url(../../icons/plus.svg);
-			}
-
-			i.delete-row {
-				@include bkgSvgIcon;
-				background-image: url(../../icons/table-delete-row.svg);
-			}
-
-			i.delete-column {
-				@include bkgSvgIcon;
-				background-image: url(../../icons/table-delete-row.svg);
-
-				transform: rotate(90deg);
-			}
-
-			i.trash {
-				@include bkgSvgIcon;
-				background-image: url(../../icons/trash.svg);
-			}
+		&.exsied-icon-add-to-top,
+		&.exsied-icon-add-to-right,
+		&.exsied-icon-add-to-bottom,
+		&.exsied-icon-add-to-left {
+			border: solid var(--table-border-color);
+			border-width: 1px;
 		}
 
 		&.exsied-icon-add-to-top {
-			border: solid var(--table-border-color);
 			border-radius: 0.5rem 0.5rem 0 0;
-			border-width: 1px 1px 0 1px;
 		}
 
 		&.exsied-icon-add-to-right {
-			border: solid var(--table-border-color);
 			border-radius: 0 0.5rem 0.5rem 0;
-			border-width: 1px 1px 1px 0;
 		}
 
 		&.exsied-icon-add-to-bottom {
-			border: solid var(--table-border-color);
 			border-radius: 0 0 0.5rem 0.5rem;
-			border-width: 0 1px 1px 1px;
 		}
 
 		&.exsied-icon-add-to-left {
-			border: solid var(--table-border-color);
 			border-radius: 0.5rem 0 0 0.5rem;
-			border-width: 1px 0 1px 1px;
 		}
 	}
 }
