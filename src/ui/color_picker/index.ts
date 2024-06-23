@@ -201,7 +201,7 @@ export class ColorPicker {
 		return chunks
 	}
 
-	showColorPicker(event: Event) {
+	showPopup(event: Event) {
 		const targetEle = event.target as HTMLAnchorElement
 		targetEle.setAttribute(DATA_ATTR_TEMP_EDIT, this.plugin_name)
 
