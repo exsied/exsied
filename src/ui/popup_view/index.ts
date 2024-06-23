@@ -46,7 +46,9 @@ export class PopupView {
 		<div class="exsied-popup-titlebar">
 			<div class="exsied-popup-titlebar-content">${props.titlebarText}</div>
 			<div class="exsied-popup-titlebar-actions">
-				<i class="exsied-icon ${CN_POPUP_CLOSE_BTN}"></i>
+				<div class="exsied-btn">
+					<i class="exsied-icon ${CN_POPUP_CLOSE_BTN}"></i>
+				</div>
 			</div>
 		</div>
 		`

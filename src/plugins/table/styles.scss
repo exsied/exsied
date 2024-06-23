@@ -54,8 +54,6 @@
 		padding: 0.5rem;
 
 		&.exsied-btn {
-			cursor: pointer;
-
 			&:hover {
 				background-color: var(--exd-highlight-color);
 			}
@@ -65,28 +63,28 @@
 			}
 		}
 
-		&.exsied-icon-add-to-top {
+		&.exsied-icon-add-to-top,
+		&.exsied-icon-add-to-right,
+		&.exsied-icon-add-to-bottom,
+		&.exsied-icon-add-to-left {
 			border: solid var(--table-border-color);
+			border-width: 1px;
+		}
+
+		&.exsied-icon-add-to-top {
 			border-radius: 0.5rem 0.5rem 0 0;
-			border-width: 1px 1px 0 1px;
 		}
 
 		&.exsied-icon-add-to-right {
-			border: solid var(--table-border-color);
 			border-radius: 0 0.5rem 0.5rem 0;
-			border-width: 1px 1px 1px 0;
 		}
 
 		&.exsied-icon-add-to-bottom {
-			border: solid var(--table-border-color);
 			border-radius: 0 0 0.5rem 0.5rem;
-			border-width: 0 1px 1px 1px;
 		}
 
 		&.exsied-icon-add-to-left {
-			border: solid var(--table-border-color);
 			border-radius: 0.5rem 0 0 0.5rem;
-			border-width: 1px 0 1px 1px;
 		}
 	}
 }

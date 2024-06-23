@@ -35,14 +35,6 @@
 		.exsied-popup-titlebar-content {
 			flex-grow: 1;
 		}
-		.exsied-popup-titlebar-actions {
-			i.exsied-icon-close::after {
-				@include bkgSvgIcon;
-				background-image: url(../../icons/close.svg);
-
-				cursor: pointer;
-			}
-		}
 	}
 
 	.exsied-popup-content {

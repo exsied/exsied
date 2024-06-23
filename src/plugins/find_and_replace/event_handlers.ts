@@ -24,7 +24,6 @@ const CN_FIND_COUNT_TOTAL = 'exsied-find-count-total'
 const CN_REPLACE_INPUT = 'exsied-replace-input'
 const CN_PREV = 'exsied-prev'
 const CN_NEXT = 'exsied-next'
-const CN_CLOSE = 'exsied-close'
 const CN_HIGHLIGHT_ALL = 'exsied-hightlight-all'
 const CN_REPLACE_THIS = 'exsied-replace-this'
 const CN_REPLACE_ALL = 'exsied-replace-all'
@@ -63,9 +62,6 @@ export function showFindBox(top: number, left: number, isReplace: boolean) {
 				</div>
 				<div class="exsied-btn ${CN_HIGHLIGHT_ALL}">
 					<i class="exsied-icon exsied-icon-hightlight-all"></i>
-				</div>
-				<div class="exsied-btn ${CN_CLOSE}">
-					<i class="exsied-icon exsied-icon-close"></i>
 				</div>
 			</div>
 		</div>
@@ -209,16 +205,6 @@ export function showFindBox(top: number, left: number, isReplace: boolean) {
 				if (index > 0) highlightByIndex(index)
 				index++
 			}
-		})
-	}
-
-	// close button
-	const eleClose = ele.querySelector(`.${CN_CLOSE}`)
-	if (eleClose) {
-		eleClose.addEventListener('click', (_event) => {
-			ele.remove()
-			clearHighLight()
-			resetValue()
 		})
 	}
 
