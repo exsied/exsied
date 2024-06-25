@@ -7,7 +7,6 @@
  *     https://github.com/exsied/exsied/blob/main/LICENSE
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
-import { exsied } from '../../core'
 import { randomChars } from '../../utils/string'
 
 export const PLUGIN_NAME = 'SourceCode'
@@ -23,8 +22,8 @@ export type PluginConf = {
 	defaultText: string
 	renderDataCb: (ele: HTMLElement) => string
 	editDataCb: (ele: HTMLElement, sign: string) => void
-	aferInitSourceCodeViewCb: (sourceCodeWorkplaceEle: HTMLElement) => void
-	inputInSourceCodeViewCb: (sourceCodeWorkplaceEle: HTMLElement) => void
+	toggleSourceViewCb?: () => void
+	toggleSourceViewAferInitCb?: (sourceCodeWorkplaceEle: HTMLElement) => void
 	randomCharsCb(): string
 }
 
@@ -44,14 +43,7 @@ export const PLUGIN_CONF: PluginConf = {
 	},
 	editDataCb: (_ele: HTMLElement, _sign: string) => {
 		alert(`Developer didn't implement the callback: ${PLUGIN_NAME}.conf.editData`)
-	},
-	aferInitSourceCodeViewCb: (sourceCodeWorkplaceEle: HTMLElement) => {
-		// Add highlight functions
-		sourceCodeWorkplaceEle.textContent = exsied.elements.workplace.innerHTML
-	},
-	inputInSourceCodeViewCb: (_sourceCodeWorkplaceEle: HTMLElement) => {
-		// Add highlight functions
-	},
+	},	
 	randomCharsCb: () => {
 		return randomChars(28)
 	},

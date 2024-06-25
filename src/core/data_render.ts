@@ -56,13 +56,18 @@ export class DataRender {
 		retuleEle.innerHTML = renderHtml
 
 		const parentEle = this.ele.parentElement as HTMLElement
+		let eee: HTMLElement | null = null
 		if (tagNameLc(parentEle) === 'pre') {
-			parentEle.after(this.previewEle)
-			parentEle.style.display = 'none'
+			eee = parentEle
 		} else {
-			this.ele.after(this.previewEle)
-			this.ele.style.display = 'none'
+			eee = this.ele
 		}
+
+		if (eee.nextElementSibling?.classList.contains(CN_PREVIEW_BLOCK)) {
+			eee.nextElementSibling.remove()
+		}
+		eee.after(this.previewEle)
+		eee.style.display = 'none'
 	}
 
 	addCtrlElements(ctrlElements: HTMLElement[]) {

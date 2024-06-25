@@ -12,7 +12,17 @@ import { ToolBarControl } from '../ui/toolbar'
 export type ClickEventHandler = (event: MouseEvent) => any
 export type ChangeEventHandler = (event: Event) => any
 
-export type CommandFunc = (event: Event) => any
+export interface EventWithElement extends Event {
+	customElement: Element
+}
+
+export function getEventWithElementEle(event: Event | EventWithElement) {
+	if ('customElement' in event) return event.customElement
+
+	return null
+}
+
+export type CommandFunc = (event: Event | EventWithElement) => any
 export type Commands = { [key: string]: CommandFunc }
 
 export interface ExsiedPlugin {
