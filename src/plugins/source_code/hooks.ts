@@ -11,6 +11,7 @@ import { TN_BUTTON, TN_DIV } from '../../contants'
 import { exsied } from '../../core'
 import { CN_PREVIEW_BLOCK, DataRender, dataAttr } from '../../core/data_render'
 import { t } from '../../core/i18n'
+import { EventWithElement, getEventWithElementEle } from '../../core/plugin'
 import { tagNameLc } from '../../utils'
 import { PLUGIN_CONF } from './base'
 
@@ -66,6 +67,11 @@ export function renderElement(item: Element) {
 	})
 
 	renderer.addCtrlElements([editBtn, copyBtn, deleteBtn])
+}
+
+export function renderCodeEle(event: Event | EventWithElement) {
+	const ele = getEventWithElementEle(event)
+	if (ele) renderElement(ele)
 }
 
 export function afterSetHtml() {

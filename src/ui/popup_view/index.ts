@@ -59,15 +59,15 @@ export class PopupView {
 			htmlActionButtons += `<button id="${value.id}">${value.text}</button>`
 		})
 
-		let htmlContent = `					
-		<div
-			class="exsied-popup-content ${props.contentClassNames.join(' ')}" 
-			${contentAttrsStr}
-		>
+		let htmlContent = `
 			${htmlTitlebar}
-			${props.contentHtml}
-		</div>
-		`
+			<div
+				class="exsied-popup-content ${props.contentClassNames.join(' ')}" 
+				${contentAttrsStr}
+			>
+				${props.contentHtml}
+			</div>
+			`
 		if (htmlActionButtons) {
 			htmlContent += `
 			<div class="exsied-popup-actions">

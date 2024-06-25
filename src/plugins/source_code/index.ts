@@ -10,7 +10,7 @@
 import { Commands, ExsiedPlugin } from '../../core/plugin'
 import { CN_ICON_BRACES, CN_ICON_XML, PLUGIN_CONF, PLUGIN_NAME } from './base'
 import { insertCodeBlock, toggleSourceView } from './event_handlers'
-import { afterSetHtml, beforeGetHtml } from './hooks'
+import { afterSetHtml, beforeGetHtml, renderCodeEle } from './hooks'
 import './styles.scss'
 
 export const NAME_SOURCE_CODE_VIEW = 'sourceCodeView'
@@ -19,6 +19,7 @@ export const NAME_INSERT_SOURCE_CODE_BOCK = 'insertSourceCodeBock'
 const commands: Commands = {}
 commands[NAME_SOURCE_CODE_VIEW] = toggleSourceView
 commands[NAME_INSERT_SOURCE_CODE_BOCK] = insertCodeBlock
+commands['renderCodeEle'] = renderCodeEle
 
 export const sourceCode: ExsiedPlugin = {
 	name: PLUGIN_NAME,
