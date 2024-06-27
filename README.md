@@ -7,7 +7,7 @@
 
 **Exied** provides a variety of plugins that are basically ready to use out of the box, but there are a few plugins that need to be configured with callback functions to achieve a better user experience, such as **sourceCode** , **redoAndUndo** ,**fontSize** ,**fontFamily** .
 
-[Documents](https://fivim.pages.dev/en/exsied/about/) / [文档](https://fivim.pages.dev/zh-cn/exsied/about/)
+[Documents](https://fivim.top/en/exsied/about/) / [文档](https://fivim.top/zh-cn/exsied/about/)
 
 [Github repo](https://github.com/exsied/exsied) / [Gitee repo](https://gitee.com/exsied/exsied)
 
