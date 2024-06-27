@@ -21,7 +21,7 @@ Hello world!
 <p>  
   <a href="https://github.com/exsied/exsied">Github repo </a> /
   <a href="https://gitee.com/exsied/exsied">Gitee repo </a> /
-  <a href="https://fivim.pages.dev/en/exsied/about/">Document </a>
+  <a href="https://fivim.top/en/exsied/about/">Document </a>
 </p>
 
 <p>
