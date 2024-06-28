@@ -28,6 +28,8 @@ export type PluginConf = {
 	defaultInnerHTML: string
 	defaultHref: string
 	clickLinkCb?: (event: MouseEvent) => void
+	displayLinkCb: (link: string) => string
+	saveLinkCb: (link: string) => string
 }
 
 export const PLUGIN_CONF: PluginConf = {
@@ -36,4 +38,6 @@ export const PLUGIN_CONF: PluginConf = {
 	addToBubbleToolbar: true,
 	defaultInnerHTML: LIB_NAME,
 	defaultHref: LIB_REPO_GITHUB,
+	displayLinkCb: (link: string) => link,
+	saveLinkCb: (link: string) => link,
 }

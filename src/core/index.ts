@@ -34,6 +34,12 @@ import {
 	execPluginHook,
 } from './plugin'
 
+export type Hooks = {
+	onInput?: (event: Event) => void
+	beforeGetHtml?: (html: string) => string
+	beforeSetHtml?: (html: string) => string
+}
+
 export type ExsiedInitConf = {
 	id: string
 	plugins: ExsiedPlugin[]
@@ -41,9 +47,7 @@ export type ExsiedInitConf = {
 	locale?: string
 	hotkeys?: { keyStr: string; func: CommandFunc; modifierKeys: ModifierKeys[] }[]
 	dataAttrs?: { sign: string; signOriginal: string }
-	hooks?: {
-		onInput?: (event: Event) => void
-	}
+	hooks?: Hooks
 	iAbideByExsiedLicenseAndDisableTheAboutPlugin?: boolean
 }
 
@@ -65,8 +69,6 @@ export type Exsied = {
 	range: Range | null
 	cursorAllParentsTagNamesArr: string[]
 
-	dataAttrs?: { sign: string; signOriginal: string }
-
 	i18n: {
 		setDict: (locale: string, dict: KvStringString) => any
 		getLocale: () => string
@@ -74,6 +76,9 @@ export type Exsied = {
 		setBuiltInLocales: () => void
 		getLocaleNames: () => string[]
 	}
+
+	dataAttrs?: { sign: string; signOriginal: string }
+	hooks?: Hooks
 }
 
 const init = (conf: ExsiedInitConf) => {
@@ -140,6 +145,7 @@ const init = (conf: ExsiedInitConf) => {
 		}
 	}
 
+	exsied.hooks = conf.hooks
 	if (conf.hooks) {
 		if (conf.hooks.onInput) {
 			const hooksOnInput = conf.hooks.onInput
@@ -178,12 +184,22 @@ const cleanWorkplaceEle = () => {
 
 const getHtml = () => {
 	cleanWorkplaceEle()
-	const html = execPluginHook(HOOK_BEFORE_GET_HTML)
-	if (html) return html.replaceAll(ZERO_WIDTH_SPACE, '')
+	let html = execPluginHook(HOOK_BEFORE_GET_HTML)
+	if (html) {
+		html = html.replaceAll(ZERO_WIDTH_SPACE, '')
+		if (exsied.hooks && exsied.hooks.beforeGetHtml) {
+			html = exsied.hooks.beforeGetHtml(html)
+		}
+		return html
+	}
 	return ''
 }
 
-const setHtml = (content: string) => {
+const setHtml = (html: string) => {
+	let content = html
+	if (exsied.hooks && exsied.hooks.beforeSetHtml) {
+		content = exsied.hooks.beforeSetHtml(content)
+	}
 	const workplaceEle = exsied.elements.workplace
 	workplaceEle.innerHTML = content
 

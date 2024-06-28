@@ -42,10 +42,12 @@ export function onClickLink(event: Event) {
 	const targetEle = event.target as HTMLAnchorElement
 	targetEle.setAttribute(DATA_ATTR_TEMP_EDIT, PLUGIN_NAME)
 
+	const link = targetEle.href || PLUGIN_CONF.defaultHref
+
 	const contentHtml = `					
         <div class="${CN_PREVIEW}">
-        	<a href="${targetEle.href || PLUGIN_CONF.defaultHref}" target="_blank" rel="noopener noreferrer">
-		  		${targetEle.innerText || PLUGIN_CONF.defaultInnerHTML}
+        	<a href="${link}" target="_blank" rel="noopener noreferrer">
+		  		${PLUGIN_CONF.displayLinkCb(link)}
 			</a>
 			<div class="exsied-btn ${CN_EDIT_BTN}">
           		<i class="exsied-icon exsied-icon-edit"></i>
@@ -119,7 +121,7 @@ export function onClickEditBtn(event: Event) {
 
 	const link = previewView.querySelector(`a`) as HTMLAnchorElement
 	const input = editView.querySelector(`.${CN_EDIT_INPUT}`) as HTMLInputElement
-	input.value = link.href
+	input.value = PLUGIN_CONF.displayLinkCb(link.href)
 
 	previewView.style.display = 'none'
 	editView.style.display = 'flex'
@@ -147,7 +149,7 @@ export function onClickConfirmBtn(event: Event) {
 
 	const link = document.querySelector(`[${DATA_ATTR_TEMP_EDIT}="${PLUGIN_NAME}"]`) as HTMLAnchorElement
 	const input = editView.querySelector(`.${CN_EDIT_INPUT}`) as HTMLInputElement
-	link.setAttribute('href', input.value)
+	link.setAttribute('href', PLUGIN_CONF.saveLinkCb(input.value))
 	link.removeAttribute(DATA_ATTR_TEMP_EDIT)
 
 	DomUtils.removeElementById(POPUP_ID)
