@@ -7,9 +7,9 @@
  *     https://github.com/exsied/exsied/blob/main/LICENSE
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
-import { exsied } from '../../core'
 import { DomUtils } from '../../core/dom_utils'
 import { Commands, ExsiedPlugin } from '../../core/plugin'
+import { ELE_TYPE_BUTTON } from '../../ui/toolbar'
 import { CN_ICON_FIND, CN_ICON_REPLACE, PLUGIN_CONF, PLUGIN_NAME, POPUP_ID } from './base'
 import { clearHighLight, onClickFind, onClickReplace, resetValue } from './event_handlers'
 import './styles.scss'
@@ -33,7 +33,7 @@ export const findAndReplace: ExsiedPlugin = {
 			addToNormalToolbar: PLUGIN_CONF.addToNormalToolbar.find,
 			addToBubbleToolbar: PLUGIN_CONF.addToBubbleToolbar.find,
 
-			eleType: 'button',
+			eleType: ELE_TYPE_BUTTON,
 			iconClassName: CN_ICON_FIND,
 			clickCallBack: commands[NAME_FIND],
 		},
@@ -43,7 +43,7 @@ export const findAndReplace: ExsiedPlugin = {
 			addToNormalToolbar: PLUGIN_CONF.addToNormalToolbar.replace,
 			addToBubbleToolbar: PLUGIN_CONF.addToBubbleToolbar.replace,
 
-			eleType: 'button',
+			eleType: ELE_TYPE_BUTTON,
 			iconClassName: CN_ICON_REPLACE,
 			clickCallBack: commands[NAME_REPLACE],
 		},

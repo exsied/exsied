@@ -63,6 +63,11 @@ export type ToolBarControlIds = {
 	bubble: string
 }
 
+export const emptyToolBarControlIds: ToolBarControlIds = {
+	normal: '<empty>',
+	bubble: '<empty>',
+}
+
 export type InsertElementButton = {
 	pluginName: string
 	ctrlName: string

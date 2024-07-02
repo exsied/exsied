@@ -10,7 +10,7 @@
 import { DomUtils } from '../../core/dom_utils'
 import { Commands, ExsiedPlugin } from '../../core/plugin'
 import { SelectionUtils } from '../../core/selection_utils'
-import { Toolbar } from '../../ui/toolbar'
+import { ELE_TYPE_BUTTON, Toolbar } from '../../ui/toolbar'
 import { CN_ICON, PLUGIN_CONF, PLUGIN_NAME, POPUP_ID } from './base'
 import { showInsertMenu } from './event_handlers'
 import './styles.scss'
@@ -33,7 +33,7 @@ export const insertMenu: ExsiedPlugin = {
 			addToNormalToolbar: PLUGIN_CONF.addToNormalToolbar,
 			addToBubbleToolbar: PLUGIN_CONF.addToBubbleToolbar,
 
-			eleType: 'button',
+			eleType: ELE_TYPE_BUTTON,
 			iconClassName: CN_ICON,
 			clickCallBack: commands[PLUGIN_NAME],
 		},

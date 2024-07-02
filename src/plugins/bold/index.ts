@@ -12,20 +12,33 @@ import { TN_B, TN_STRONG } from '../../contants'
 import { Exsied } from '../../core'
 import { FormatTaName } from '../../core/format/tag_name'
 import { Commands, ExsiedPlugin } from '../../core/plugin'
-import { ELE_TYPE_BUTTON, ToolBarControlIds } from '../../ui/toolbar'
-import { CN_ICON, PLUGIN_CONF, PLUGIN_NAME } from './base'
-import './styles.scss'
+import { ELE_TYPE_BUTTON, ToolBarControlIds, emptyToolBarControlIds } from '../../ui/toolbar'
+
+export const CN_ICON = 'exsied-icon-blod'
+
+export type PluginConf = {
+	addToNormalToolbar: boolean
+	addToBubbleToolbar: boolean
+	addToNormalToolbarInsertMenu: boolean
+}
 
 export class Bold implements ExsiedPlugin<Exsied> {
-	exsied: Exsied | undefined
-	toolbarBtnIds: ToolBarControlIds | null = null
+	private exsied: Exsied | undefined
+	private toolbarBtnIds: ToolBarControlIds = emptyToolBarControlIds
+
+	name = 'Bold'
+	conf: PluginConf = {
+		addToNormalToolbar: true,
+		addToNormalToolbarInsertMenu: false,
+		addToBubbleToolbar: true,
+	}
 
 	init = (exsied: Exsied): void => {
 		this.exsied = exsied
 	}
 
 	afterExsiedInit = () => {
-		this.toolbarBtnIds = this.exsied?.toolbar?.genButtonIdStd(PLUGIN_NAME, PLUGIN_NAME) || null
+		this.toolbarBtnIds = this.exsied?.toolbar?.genButtonIdStd(this.name, 'index') || emptyToolBarControlIds
 	}
 
 	isHighlight = () => {
@@ -43,20 +56,17 @@ export class Bold implements ExsiedPlugin<Exsied> {
 		}
 	}
 
-	name = PLUGIN_NAME
-	conf = PLUGIN_CONF
-
 	commands: Commands = {
 		formatBold: this.formatTextBold,
 	}
 
 	toolBarControl = [
 		{
-			name: PLUGIN_NAME,
+			name: this.name,
 			tooltipText: 'Bold',
-			addToNormalToolbar: PLUGIN_CONF.addToNormalToolbar,
-			addToNormalToolbarInsertMenu: PLUGIN_CONF.addToNormalToolbarInsertMenu,
-			addToBubbleToolbar: PLUGIN_CONF.addToBubbleToolbar,
+			addToNormalToolbar: this.conf.addToNormalToolbar,
+			addToNormalToolbarInsertMenu: this.conf.addToNormalToolbarInsertMenu,
+			addToBubbleToolbar: this.conf.addToBubbleToolbar,
 
 			eleType: ELE_TYPE_BUTTON,
 			iconClassName: CN_ICON,

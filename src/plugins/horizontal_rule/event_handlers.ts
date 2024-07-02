@@ -8,7 +8,7 @@
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
 import { TN_HR } from '../../contants'
-import { exsied } from '../../core'
+
 
 
 export function insertHorizontalRule() {

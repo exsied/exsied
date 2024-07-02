@@ -8,9 +8,9 @@
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
 import { CN_ACTIVE } from '../../contants'
-import { exsied } from '../../core'
+
 import { Commands, ExsiedPlugin } from '../../core/plugin'
-import { Toolbar } from '../../ui/toolbar'
+import { ELE_TYPE_BUTTON, Toolbar } from '../../ui/toolbar'
 import { CN_ICON_SUB, CN_ICON_SUP, PLUGIN_CONF, PLUGIN_NAME, isHighlightSub, isHighlightSup } from './base'
 import { formatTextSub, formatTextSup } from './event_handlers'
 import './styles.scss'
@@ -37,7 +37,7 @@ export const subscriptAndSupscript: ExsiedPlugin = {
 			addToNormalToolbar: PLUGIN_CONF.addToNormalToolbar.sub,
 			addToBubbleToolbar: PLUGIN_CONF.addToBubbleToolbar.sub,
 
-			eleType: 'button',
+			eleType: ELE_TYPE_BUTTON,
 			iconClassName: CN_ICON_SUB,
 			clickCallBack: commands[NAME_SUB],
 		},
@@ -47,7 +47,7 @@ export const subscriptAndSupscript: ExsiedPlugin = {
 			addToNormalToolbar: PLUGIN_CONF.addToNormalToolbar.sup,
 			addToBubbleToolbar: PLUGIN_CONF.addToBubbleToolbar.sup,
 
-			eleType: 'button',
+			eleType: ELE_TYPE_BUTTON,
 			iconClassName: CN_ICON_SUP,
 			clickCallBack: commands[NAME_SUP],
 		},

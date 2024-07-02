@@ -8,11 +8,10 @@
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
 import { CN_ACTIVE, TN_IMG } from '../../contants'
-import { exsied } from '../../core'
 import { DomUtils } from '../../core/dom_utils'
 import { EleClickCallback } from '../../core/events'
 import { Commands, ExsiedPlugin } from '../../core/plugin'
-import { Toolbar } from '../../ui/toolbar'
+import { ELE_TYPE_BUTTON, Toolbar } from '../../ui/toolbar'
 import { CN_BTN_SETTING, CN_ICON, PLUGIN_CONF, PLUGIN_NAME, RESIZER_ID } from './base'
 import { insertImage, onClickImage, onClickImageSettingButton } from './event_handlers'
 import './styles.scss'
@@ -35,7 +34,7 @@ export const image: ExsiedPlugin = {
 			addToNormalToolbarInsertMenu: PLUGIN_CONF.addToNormalToolbarInsertMenu,
 			addToBubbleToolbar: PLUGIN_CONF.addToBubbleToolbar,
 
-			eleType: 'button',
+			eleType: ELE_TYPE_BUTTON,
 			iconClassName: CN_ICON,
 			clickCallBack: commands[PLUGIN_NAME],
 		},

@@ -8,9 +8,9 @@
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
 import { CN_ACTIVE, TN_BLOCKQUOTE, TN_Q } from '../../contants'
-import { exsied } from '../../core'
+
 import { Commands, ExsiedPlugin } from '../../core/plugin'
-import { Toolbar } from '../../ui/toolbar'
+import { ELE_TYPE_BUTTON, Toolbar } from '../../ui/toolbar'
 import { CN_ICON_OL, CN_ICON_UL, PLUGIN_CONF, PLUGIN_NAME } from './base'
 import { insertOl, insertUl } from './event_handlers'
 import './styles.scss'
@@ -37,7 +37,7 @@ export const lists: ExsiedPlugin = {
 			addToNormalToolbarInsertMenu: PLUGIN_CONF.addToNormalToolbarInsertMenu.ol,
 			addToBubbleToolbar: PLUGIN_CONF.addToBubbleToolbar.ol,
 
-			eleType: 'button',
+			eleType: ELE_TYPE_BUTTON,
 			iconClassName: CN_ICON_OL,
 			clickCallBack: commands[NAME_OL],
 		},
@@ -48,7 +48,7 @@ export const lists: ExsiedPlugin = {
 			addToNormalToolbarInsertMenu: PLUGIN_CONF.addToNormalToolbarInsertMenu.ul,
 			addToBubbleToolbar: PLUGIN_CONF.addToBubbleToolbar.ul,
 
-			eleType: 'button',
+			eleType: ELE_TYPE_BUTTON,
 			iconClassName: CN_ICON_UL,
 			clickCallBack: commands[NAME_UL],
 		},

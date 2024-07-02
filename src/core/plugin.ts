@@ -30,7 +30,7 @@ export interface ExsiedPlugin<T> {
 
 	name: string
 	conf: any
-	commands: Commands
+	commands?: Commands
 	toolBarControl?: ToolBarControl[]
 	addHandler: () => any
 	removeHandler: () => any
@@ -41,7 +41,7 @@ export interface ExsiedPlugin<T> {
 		afterSetHtml?: () => void
 		beforeGetHtml?: () => string
 	}
-	afterExsiedInit: () => void
+	afterExsiedInit?: () => void
 }
 
 export const HOOK_AFTER_INIT = 1

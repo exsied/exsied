@@ -8,7 +8,7 @@
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
 import { TN_SUB, TN_SUP } from '../../contants'
-import { exsied } from '../../core'
+
 
 export const PLUGIN_NAME = 'SubscriptAndSuperscript'
 export const CN_ICON_SUB = 'exsied-icon-sub'

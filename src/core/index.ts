@@ -16,7 +16,7 @@ import {
 	CN_WORKPLACE_ELE,
 	ZERO_WIDTH_SPACE,
 } from '../contants'
-import pluginAbout from '../plugins/about'
+import { About } from '../plugins/about'
 import { KvStringString } from '../types'
 import { DropdownMenu } from '../ui/dropdown'
 import { Toolbar } from '../ui/toolbar'
@@ -77,7 +77,11 @@ export class Exsied {
 	}
 
 	init(conf: ExsiedInitConf) {
-		if (!conf.iAbideByExsiedLicenseAndDisableTheAboutPlugin) conf.plugins.push(pluginAbout)
+		if (!conf.iAbideByExsiedLicenseAndDisableTheAboutPlugin) {
+			const plgAboud = new About()
+			plgAboud.init(this)
+			conf.plugins.push(plgAboud)
+		}
 
 		const pluginNames: string[] = []
 		this.plugins.map((plg) => {
@@ -264,4 +268,8 @@ export class Exsied {
 
 	dataAttrs?: { sign: string; signOriginal: string }
 	hooks?: Hooks
+
+	genPopupId = (pluginName: string, ctrlName: string) => {
+		return `exsied-popup___${pluginName}---${ctrlName}___${this.containerId}`
+	}
 }

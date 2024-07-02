@@ -8,6 +8,7 @@
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
 import { Commands, ExsiedPlugin } from '../../core/plugin'
+import { ELE_TYPE_BUTTON } from '../../ui/toolbar'
 import { CN_ICON_BRACES, CN_ICON_XML, PLUGIN_CONF, PLUGIN_NAME } from './base'
 import { insertCodeBlock, toggleSourceView } from './event_handlers'
 import { afterSetHtml, beforeGetHtml, renderCodeEle } from './hooks'
@@ -34,7 +35,7 @@ export const sourceCode: ExsiedPlugin = {
 			addToNormalToolbarInsertMenu: false, // TODO
 			addToBubbleToolbar: PLUGIN_CONF.addToBubbleToolbar,
 
-			eleType: 'button',
+			eleType: ELE_TYPE_BUTTON,
 			iconClassName: CN_ICON_XML,
 			clickCallBack: commands[NAME_SOURCE_CODE_VIEW],
 		},
@@ -45,7 +46,7 @@ export const sourceCode: ExsiedPlugin = {
 			addToNormalToolbarInsertMenu: PLUGIN_CONF.addToNormalToolbarInsertMenu,
 			addToBubbleToolbar: PLUGIN_CONF.addToBubbleToolbar,
 
-			eleType: 'button',
+			eleType: ELE_TYPE_BUTTON,
 			iconClassName: CN_ICON_BRACES,
 			clickCallBack: commands[NAME_INSERT_SOURCE_CODE_BOCK],
 		},

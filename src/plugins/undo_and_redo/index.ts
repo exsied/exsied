@@ -7,8 +7,9 @@
  *     https://github.com/exsied/exsied/blob/main/LICENSE
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
-import { exsied } from '../../core'
+
 import { Commands, ExsiedPlugin } from '../../core/plugin'
+import { ELE_TYPE_BUTTON } from '../../ui/toolbar'
 import { CN_ICON_REDO, CN_ICON_UNDO, PLUGIN_CONF, PLUGIN_NAME } from './base'
 import { redo, undo, update } from './event_handlers'
 import './styles.scss'
@@ -32,7 +33,7 @@ export const redoAndUndo: ExsiedPlugin = {
 			addToNormalToolbar: PLUGIN_CONF.addToNormalToolbar.undo,
 			addToBubbleToolbar: PLUGIN_CONF.addToBubbleToolbar.undo,
 
-			eleType: 'button',
+			eleType: ELE_TYPE_BUTTON,
 			iconClassName: CN_ICON_UNDO,
 			clickCallBack: commands[NAME_UNDO],
 		},
@@ -42,7 +43,7 @@ export const redoAndUndo: ExsiedPlugin = {
 			addToNormalToolbar: PLUGIN_CONF.addToNormalToolbar.redo,
 			addToBubbleToolbar: PLUGIN_CONF.addToBubbleToolbar.redo,
 
-			eleType: 'button',
+			eleType: ELE_TYPE_BUTTON,
 			iconClassName: CN_ICON_REDO,
 			clickCallBack: commands[NAME_REDO],
 		},

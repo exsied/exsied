@@ -8,7 +8,7 @@
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
 import { CN_TEMP_ELE, DATA_ATTR_TEMP_EDIT, TN_DIV, TN_TABLE, TN_TD, TN_TH } from '../../contants'
-import { exsied } from '../../core'
+
 import { DomUtils } from '../../core/dom_utils'
 import { t } from '../../core/i18n'
 import { PopupView } from '../../ui/popup_view'

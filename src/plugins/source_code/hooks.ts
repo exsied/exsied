@@ -8,7 +8,7 @@
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
 import { TN_BUTTON, TN_DIV } from '../../contants'
-import { exsied } from '../../core'
+
 import { CN_PREVIEW_BLOCK, DataRender, dataAttr } from '../../core/data_render'
 import { t } from '../../core/i18n'
 import { EventWithElement, getEventWithElementEle } from '../../core/plugin'

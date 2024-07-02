@@ -8,10 +8,10 @@
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
 import { TN_CODE, TN_DIV, TN_PRE } from '../../contants'
-import { exsied } from '../../core'
+
 import { DomUtils } from '../../core/dom_utils'
 import { SelectionUtils } from '../../core/selection_utils'
-import { ID_TOOLBAR_EXT, Toolbar } from '../../ui/toolbar'
+import { ELE_TYPE_BUTTON, ID_TOOLBAR_EXT, Toolbar } from '../../ui/toolbar'
 import { CN_ICON_BACK, ID_SOURCE_CODE_EDIT_VIEW, PLUGIN_CONF } from './base'
 import { renderElement } from './hooks'
 
@@ -37,7 +37,7 @@ export function toggleSourceView() {
 			addToNormalToolbar: false,
 			addToBubbleToolbar: false,
 
-			eleType: 'button',
+			eleType: ELE_TYPE_BUTTON,
 			iconClassName: CN_ICON_BACK,
 			clickCallBack: () => {
 				const extToolbar = exsied.elements.toolbarMain.querySelector(`#${ID_TOOLBAR_EXT}`)

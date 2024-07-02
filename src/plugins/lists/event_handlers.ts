@@ -8,7 +8,7 @@
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
 import { TN_OL, TN_UL } from '../../contants'
-import { exsied } from '../../core'
+
 import { DomUtils } from '../../core/dom_utils'
 import { SelectionUtils } from '../../core/selection_utils'
 import { PLUGIN_CONF } from './base'

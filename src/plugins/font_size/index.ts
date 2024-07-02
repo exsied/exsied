@@ -9,7 +9,7 @@
  */
 import { Commands, ExsiedPlugin } from '../../core/plugin'
 import { genDropdownId } from '../../ui/dropdown'
-import { Toolbar } from '../../ui/toolbar'
+import { ELE_TYPE_SELECT, Toolbar } from '../../ui/toolbar'
 import { PLUGIN_CONF, PLUGIN_NAME } from './base'
 import { formatFontSize } from './event_handlers'
 import './styles.scss'
@@ -32,7 +32,7 @@ export const fontSize: ExsiedPlugin = {
 			addToNormalToolbar: PLUGIN_CONF.addToNormalToolbar,
 			addToBubbleToolbar: PLUGIN_CONF.addToBubbleToolbar,
 
-			eleType: 'select',
+			eleType: ELE_TYPE_SELECT,
 			changeCallBack: commands[PLUGIN_NAME],
 			defaultText: 'Font size',
 			options: PLUGIN_CONF.fontSizeOptions,

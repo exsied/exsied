@@ -8,9 +8,9 @@
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
 import { CN_ACTIVE, TN_BLOCKQUOTE, TN_Q } from '../../contants'
-import { exsied } from '../../core'
+
 import { Commands, ExsiedPlugin } from '../../core/plugin'
-import { Toolbar } from '../../ui/toolbar'
+import { ELE_TYPE_BUTTON, Toolbar } from '../../ui/toolbar'
 import { CN_ICON_CENTER, CN_ICON_LEFT, CN_ICON_RIGHT, PLUGIN_CONF, PLUGIN_NAME } from './base'
 import { formatTextCenter, formatTextLeft, formatTextRight } from './event_handlers'
 import './styles.scss'
@@ -37,7 +37,7 @@ export const textAlign: ExsiedPlugin = {
 			addToNormalToolbar: PLUGIN_CONF.addToNormalToolbar.left,
 			addToBubbleToolbar: PLUGIN_CONF.addToBubbleToolbar.left,
 
-			eleType: 'button',
+			eleType: ELE_TYPE_BUTTON,
 			iconClassName: CN_ICON_LEFT,
 			clickCallBack: commands[NAME_LEFT],
 		},
@@ -47,7 +47,7 @@ export const textAlign: ExsiedPlugin = {
 			addToNormalToolbar: PLUGIN_CONF.addToNormalToolbar.center,
 			addToBubbleToolbar: PLUGIN_CONF.addToBubbleToolbar.center,
 
-			eleType: 'button',
+			eleType: ELE_TYPE_BUTTON,
 			iconClassName: CN_ICON_CENTER,
 			clickCallBack: commands[NAME_CENTER],
 		},
@@ -57,7 +57,7 @@ export const textAlign: ExsiedPlugin = {
 			addToNormalToolbar: PLUGIN_CONF.addToNormalToolbar.right,
 			addToBubbleToolbar: PLUGIN_CONF.addToBubbleToolbar.right,
 
-			eleType: 'button',
+			eleType: ELE_TYPE_BUTTON,
 			iconClassName: CN_ICON_RIGHT,
 			clickCallBack: commands[NAME_RIGHT],
 		},

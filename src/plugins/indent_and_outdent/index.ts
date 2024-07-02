@@ -8,9 +8,9 @@
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
 import { CN_ACTIVE, TN_BLOCKQUOTE, TN_Q } from '../../contants'
-import { exsied } from '../../core'
+
 import { Commands, ExsiedPlugin } from '../../core/plugin'
-import { Toolbar } from '../../ui/toolbar'
+import { ELE_TYPE_BUTTON, Toolbar } from '../../ui/toolbar'
 import { CN_ICON_INDENT, CN_ICON_OUTDENT, PLUGIN_CONF, PLUGIN_NAME } from './base'
 import { formatIndent, formatOutdent } from './event_handlers'
 import './styles.scss'
@@ -35,7 +35,7 @@ export const indentAndOutdent: ExsiedPlugin = {
 			addToNormalToolbar: PLUGIN_CONF.addToNormalToolbar.indent,
 			addToBubbleToolbar: PLUGIN_CONF.addToBubbleToolbar.indent,
 
-			eleType: 'button',
+			eleType: ELE_TYPE_BUTTON,
 			iconClassName: CN_ICON_INDENT,
 			clickCallBack: commands[NAME_INDENT],
 		},
@@ -45,7 +45,7 @@ export const indentAndOutdent: ExsiedPlugin = {
 			addToNormalToolbar: PLUGIN_CONF.addToNormalToolbar.outent,
 			addToBubbleToolbar: PLUGIN_CONF.addToBubbleToolbar.outent,
 
-			eleType: 'button',
+			eleType: ELE_TYPE_BUTTON,
 			iconClassName: CN_ICON_OUTDENT,
 			clickCallBack: commands[NAME_OUTDENT],
 		},

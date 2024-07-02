@@ -7,7 +7,7 @@
  *     https://github.com/exsied/exsied/blob/main/LICENSE
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
-import { exsied } from '../../core'
+
 import { limitRange } from '../../utils/number'
 import { PLUGIN_CONF } from './base'
 

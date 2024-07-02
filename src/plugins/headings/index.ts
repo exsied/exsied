@@ -8,11 +8,10 @@
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
 import { TN_H1, TN_H2, TN_H3, TN_H4, TN_H5, TN_H6 } from '../../contants'
-import { exsied } from '../../core'
 import { t } from '../../core/i18n'
 import { Commands, ExsiedPlugin } from '../../core/plugin'
 import { genDropdownId, genTriggerClassName } from '../../ui/dropdown'
-import { Toolbar } from '../../ui/toolbar'
+import { ELE_TYPE_SELECT, Toolbar } from '../../ui/toolbar'
 import {
 	NAME_HEADING_1,
 	NAME_HEADING_2,
@@ -62,7 +61,7 @@ export const headings: ExsiedPlugin = {
 			addToNormalToolbar: PLUGIN_CONF.addToNormalToolbar,
 			addToBubbleToolbar: PLUGIN_CONF.addToBubbleToolbar,
 
-			eleType: 'select',
+			eleType: ELE_TYPE_SELECT,
 			changeCallBack: commands[PLUGIN_NAME],
 			defaultText: 'Headings',
 			options: PLUGIN_CONF.headingsOptions,

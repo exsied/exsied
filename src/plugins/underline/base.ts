@@ -8,7 +8,7 @@
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
 import { TN_U } from '../../contants'
-import { exsied } from '../../core'
+
 
 export const PLUGIN_NAME = 'Underline'
 export const CN_ICON = 'exsied-icon-underline'

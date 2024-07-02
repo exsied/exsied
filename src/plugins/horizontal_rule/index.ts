@@ -8,6 +8,7 @@
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
 import { Commands, ExsiedPlugin } from '../../core/plugin'
+import { ELE_TYPE_BUTTON } from '../../ui/toolbar'
 import { CN_ICON, PLUGIN_CONF, PLUGIN_NAME } from './base'
 import { insertHorizontalRule } from './event_handlers'
 import './styles.scss'
@@ -28,7 +29,7 @@ export const horizonalRule: ExsiedPlugin = {
 			addToNormalToolbarInsertMenu: PLUGIN_CONF.addToNormalToolbarInsertMenu,
 			addToBubbleToolbar: PLUGIN_CONF.addToBubbleToolbar,
 
-			eleType: 'button',
+			eleType: ELE_TYPE_BUTTON,
 			iconClassName: CN_ICON,
 			clickCallBack: commands[PLUGIN_NAME],
 		},
