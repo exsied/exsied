@@ -21,6 +21,7 @@ import { FontFamily } from './plugins/font_family'
 import { FontSize } from './plugins/font_size'
 import { Headings } from './plugins/headings'
 import { HorizonalRule } from './plugins/horizontal_rule'
+import { Image } from './plugins/image'
 import './styles/style.scss'
 
 // // plugin about
@@ -102,6 +103,9 @@ const initExsied = (containerId: string, content: string, locale?: string) => {
 	const horizonalRule = new HorizonalRule()
 	horizonalRule.init(exsied)
 
+	const image = new Image()
+	image.init(exsied)
+
 	exsied.init({
 		plugins: [
 			// 			plugins.redoAndUndo,
@@ -132,6 +136,7 @@ const initExsied = (containerId: string, content: string, locale?: string) => {
 			fontSize,
 			headings,
 			horizonalRule,
+			image
 		],
 		enableToolbarBubble: true,
 		locale: locale || 'en',
