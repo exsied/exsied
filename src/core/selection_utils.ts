@@ -7,7 +7,6 @@
  *     https://github.com/exsied/exsied/blob/main/LICENSE
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
-import { exsied } from '.'
 import { TN_SPAN, TN_TEMP } from '../contants'
 import { HTMLTagNames } from '../types'
 import { tagNameLc } from '../utils'
@@ -95,6 +94,30 @@ export class SelectionUtils {
 				ele.appendChild(firstFragment.firstChild.cloneNode(true))
 				firstFragment.firstChild.remove()
 			}
+		}
+	}
+
+	static addElementBySelection = (rootNode: HTMLElement, node: Node) => {
+		if (!rootNode || !rootNode.contentEditable || rootNode.contentEditable !== 'true') {
+			throw new Error('The provided element is not editable or does not exist.')
+		}
+
+		let range: Range | null = null
+		const sel = window.getSelection()
+		if (sel && sel.rangeCount > 0) {
+			range = sel.getRangeAt(0)
+			range.deleteContents()
+		}
+
+		if (!range) {
+			range = document.createRange()
+			range.selectNodeContents(rootNode)
+			range.collapse(true)
+		}
+
+		const workplaceEle = exsied.elements.workplace
+		if (workplaceEle.contains(range.startContainer) && workplaceEle.contains(range.endContainer)) {
+			range.insertNode(node)
 		}
 	}
 

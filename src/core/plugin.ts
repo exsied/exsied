@@ -25,7 +25,9 @@ export function getEventWithElementEle(event: Event | EventWithElement) {
 export type CommandFunc = (event: Event | EventWithElement) => any
 export type Commands = { [key: string]: CommandFunc }
 
-export interface ExsiedPlugin {
+export interface ExsiedPlugin<T> {
+	init(host: T): void
+
 	name: string
 	conf: any
 	commands: Commands
@@ -39,22 +41,9 @@ export interface ExsiedPlugin {
 		afterSetHtml?: () => void
 		beforeGetHtml?: () => string
 	}
+	afterExsiedInit: () => void
 }
 
 export const HOOK_AFTER_INIT = 1
 export const HOOK_AFTER_SET_HTML = 2
 export const HOOK_BEFORE_GET_HTML = 3
-
-export type HookType = typeof HOOK_AFTER_INIT | typeof HOOK_AFTER_SET_HTML | typeof HOOK_BEFORE_GET_HTML
-
-export const PLUGINS: ExsiedPlugin[] = []
-
-export function execPluginHook(hook: HookType) {
-	for (const item of PLUGINS) {
-		if (!item.hooks) continue
-
-		if (hook === HOOK_AFTER_INIT && item.hooks.afterInit) return item.hooks.afterInit()
-		if (hook === HOOK_AFTER_SET_HTML && item.hooks.afterSetHtml) return item.hooks.afterSetHtml()
-		if (hook === HOOK_BEFORE_GET_HTML && item.hooks.beforeGetHtml) return item.hooks.beforeGetHtml()
-	}
-}

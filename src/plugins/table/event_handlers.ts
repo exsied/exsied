@@ -30,7 +30,7 @@ export function insertTable() {
 		</tbody>
 		`
 
-	if (exsied.elements.workplace) DomUtils.addElementBySelection(exsied.elements.workplace, ele)
+	if (exsied.elements.workplace) SelectionUtils.addElementBySelection(exsied.elements.workplace, ele)
 }
 
 export function showTableActionButtons(event: Event) {

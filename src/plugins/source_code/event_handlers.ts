@@ -68,7 +68,7 @@ export function insertCodeBlock() {
 	const text = SelectionUtils.getSelectedText()
 	codeEle.textContent = text ? text : PLUGIN_CONF.defaultText
 	ele.appendChild(codeEle)
-	if (exsied.elements.workplace) DomUtils.addElementBySelection(exsied.elements.workplace, ele)
+	if (exsied.elements.workplace) SelectionUtils.addElementBySelection(exsied.elements.workplace, ele)
 
 	renderElement(codeEle)
 }

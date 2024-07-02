@@ -14,25 +14,17 @@ import {
 	CN_TOOLBAR_MAIN_ELE,
 	CN_TOOLBAR_NORMAL_ELE,
 	CN_WORKPLACE_ELE,
-	TN_DIV,
 	ZERO_WIDTH_SPACE,
 } from '../contants'
 import pluginAbout from '../plugins/about'
 import { KvStringString } from '../types'
+import { DropdownMenu } from '../ui/dropdown'
 import { Toolbar } from '../ui/toolbar'
 import { DomUtils } from './dom_utils'
-import { bindAllEvents, unbindAllEvent } from './events'
+import { bindEventClassName } from './events'
 import { HotkeyUtils, ModifierKeys } from './hotkey_utils'
 import { I18N } from './i18n'
-import {
-	CommandFunc,
-	ExsiedPlugin,
-	HOOK_AFTER_INIT,
-	HOOK_AFTER_SET_HTML,
-	HOOK_BEFORE_GET_HTML,
-	PLUGINS,
-	execPluginHook,
-} from './plugin'
+import { CommandFunc, ExsiedPlugin, HOOK_AFTER_INIT, HOOK_AFTER_SET_HTML, HOOK_BEFORE_GET_HTML } from './plugin'
 
 export type Hooks = {
 	onInput?: (event: Event) => void
@@ -40,9 +32,10 @@ export type Hooks = {
 	beforeSetHtml?: (html: string) => string
 }
 
+export type HookType = typeof HOOK_AFTER_INIT | typeof HOOK_AFTER_SET_HTML | typeof HOOK_BEFORE_GET_HTML
+
 export type ExsiedInitConf = {
-	id: string
-	plugins: ExsiedPlugin[]
+	plugins: ExsiedPlugin<Exsied>[]
 	enableToolbarBubble: boolean
 	locale?: string
 	hotkeys?: { keyStr: string; func: CommandFunc; modifierKeys: ModifierKeys[] }[]
@@ -51,198 +44,224 @@ export type ExsiedInitConf = {
 	iAbideByExsiedLicenseAndDisableTheAboutPlugin?: boolean
 }
 
-export type Exsied = {
-	containerId: string
-	enableToolbarBubble: boolean
-	elements: {
-		editor: HTMLElement
-		toolbarMain: HTMLElement
-		toolbarBubble: HTMLElement
-		workplace: HTMLElement
-	}
-
-	init: (conf: ExsiedInitConf) => any
-	getHtml: () => string
-	setHtml: (content: string) => any
-	destroy: () => any
-
-	range: Range | null
-	cursorAllParentsTagNamesArr: string[]
-
-	i18n: {
-		setDict: (locale: string, dict: KvStringString) => any
-		getLocale: () => string
-		setLocale: (locale: string) => any
-		setBuiltInLocales: () => void
-		getLocaleNames: () => string[]
-	}
-
-	dataAttrs?: { sign: string; signOriginal: string }
-	hooks?: Hooks
+export type ExsiedElements = {
+	editor: HTMLElement | null
+	toolbarMain: HTMLElement | null
+	toolbarBubble: HTMLElement | null
+	workplace: HTMLElement | null
 }
 
-const init = (conf: ExsiedInitConf) => {
-	if (!conf.iAbideByExsiedLicenseAndDisableTheAboutPlugin) conf.plugins.push(pluginAbout)
+export type ExsiedElementsI18n = {
+	setDict: (locale: string, dict: KvStringString) => any
+	getLocale: () => string
+	setLocale: (locale: string) => any
+	setBuiltInLocales: () => void
+	getLocaleNames: () => string[]
+}
 
-	const pluginNames: string[] = []
-	PLUGINS.map((plg) => {
-		try {
-			if (!pluginNames.includes(plg.name)) {
-				pluginNames.push(plg.name)
-			}
-		} catch (error) {
-			console.error('Exsied initialize plugin error: ', error, plg)
-		}
-	})
+export class Exsied {
+	containerId = ''
+	enableToolbarBubble = false
+	elements: ExsiedElements = {
+		editor: null,
+		toolbarMain: null,
+		toolbarBubble: null,
+		workplace: null,
+	}
+	toolbar: Toolbar | null = null
+	dropdownMenu: DropdownMenu | null = null
+	plugins: ExsiedPlugin<Exsied>[] = []
 
-	conf.plugins.map((plg) => {
-		try {
-			if (!pluginNames.includes(plg.name)) {
-				PLUGINS.push(plg)
-			}
-		} catch (error) {
-			console.error('Exsied initialize plugin error: ', error, plg)
-		}
-	})
-
-	I18N.setBuiltInLocales()
-	conf.locale ? I18N.setLocale(conf.locale) : I18N.setLocale('en')
-
-	exsied.containerId = conf.id
-
-	if (conf.dataAttrs) exsied.dataAttrs = conf.dataAttrs
-
-	if (conf.enableToolbarBubble) {
-		exsied.enableToolbarBubble = conf.enableToolbarBubble
-		Toolbar.initBubble()
+	constructor(containerId: string) {
+		this.containerId = containerId
 	}
 
-	const editorEle = document.querySelector(`#${conf.id}`)
-	if (!editorEle) throw new Error('The exsied.elements.editor does not exist.')
-	exsied.elements.editor = editorEle as HTMLElement
-	editorEle.innerHTML = `
-		<div class="${CN_EXSIED_ELE} ${CN_EDITOR_ELE}">  
-			<div class="${CN_TOOLBAR_ELE} ${CN_TOOLBAR_MAIN_ELE}">
-				<div class="${CN_TOOLBAR_NORMAL_ELE}">
-					${Toolbar.genToolbarStd()}
+	init(conf: ExsiedInitConf) {
+		if (!conf.iAbideByExsiedLicenseAndDisableTheAboutPlugin) conf.plugins.push(pluginAbout)
+
+		const pluginNames: string[] = []
+		this.plugins.map((plg) => {
+			try {
+				if (!pluginNames.includes(plg.name)) {
+					pluginNames.push(plg.name)
+				}
+			} catch (error) {
+				console.error('Exsied initialize plugin error: ', error, plg)
+			}
+		})
+
+		conf.plugins.map((plg) => {
+			try {
+				if (!pluginNames.includes(plg.name)) {
+					this.plugins.push(plg)
+				}
+			} catch (error) {
+				console.error('Exsied initialize plugin error: ', error, plg)
+			}
+		})
+
+		this.toolbar = new Toolbar(this)
+		this.dropdownMenu = new DropdownMenu(this)
+
+		I18N.setBuiltInLocales()
+		conf.locale ? I18N.setLocale(conf.locale) : I18N.setLocale('en')
+
+		if (conf.dataAttrs) this.dataAttrs = conf.dataAttrs
+
+		if (conf.hotkeys) {
+			for (const item of conf.hotkeys) {
+				HotkeyUtils.set(item.keyStr, item.func, item.modifierKeys)
+			}
+		}
+
+		this.hooks = conf.hooks
+		if (conf.hooks) {
+			if (conf.hooks.onInput) {
+				const hooksOnInput = conf.hooks.onInput
+				this.elements.workplace?.addEventListener('input', (event) => {
+					hooksOnInput(event)
+				})
+			}
+		}
+
+		if (conf.enableToolbarBubble) {
+			this.enableToolbarBubble = conf.enableToolbarBubble
+			this.toolbar.initBubble()
+		}
+
+		const editorEle = document.querySelector(`#${this.containerId}`)
+		if (!editorEle) throw new Error('The exsied.elements.editor does not exist.')
+		this.elements.editor = editorEle as HTMLElement
+		editorEle.innerHTML = `
+				<div class="${CN_EXSIED_ELE} ${CN_EDITOR_ELE}">  
+					<div class="${CN_TOOLBAR_ELE} ${CN_TOOLBAR_MAIN_ELE}">
+						<div class="${CN_TOOLBAR_NORMAL_ELE}">
+							${this.toolbar.genToolbarStd()}
+						</div>
+					</div>
+					<div class="${CN_WORKPLACE_ELE}" contentEditable="true"></div>
 				</div>
-			</div>
-			<div class="${CN_WORKPLACE_ELE}" contentEditable="true"></div>
-		</div>
-		`
+				`
 
-	const toolbarMainEle = editorEle.querySelector(`.${CN_TOOLBAR_MAIN_ELE}`)
-	if (!toolbarMainEle) throw new Error('The exsied.elements.toolbar does not exist.')
-	exsied.elements.toolbarMain = toolbarMainEle as HTMLElement
+		const toolbarMainEle = editorEle.querySelector(`.${CN_TOOLBAR_MAIN_ELE}`)
+		if (!toolbarMainEle) throw new Error('The exsied.elements.toolbar does not exist.')
+		this.elements.toolbarMain = toolbarMainEle as HTMLElement
 
-	const workplaceEle = editorEle.querySelector(`.${CN_WORKPLACE_ELE}`)
-	if (!workplaceEle) throw new Error('The exsied.elements.workplace does not exist.')
-	exsied.elements.workplace = workplaceEle as HTMLElement
+		const workplaceEle = editorEle.querySelector(`.${CN_WORKPLACE_ELE}`)
+		if (!workplaceEle) throw new Error('The exsied.elements.workplace does not exist.')
+		this.elements.workplace = workplaceEle as HTMLElement
 
-	if (conf.hotkeys) {
-		for (const item of conf.hotkeys) {
-			HotkeyUtils.set(item.keyStr, item.func, item.modifierKeys)
+		this.toolbar?.initDropdownElements()
+
+		this.bindAllEvents()
+
+		this.execPluginHook(HOOK_AFTER_INIT)
+
+		this.plugins.map((plg) => {
+			if (typeof plg.afterExsiedInit === 'function') {
+				plg.afterExsiedInit()
+			}
+		})
+
+		return this
+	}
+
+	afterExsiedInit = () => {}
+
+	execPluginHook = (hook: HookType) => {
+		for (const item of this.plugins) {
+			if (!item.hooks) continue
+
+			if (hook === HOOK_AFTER_INIT && item.hooks.afterInit) return item.hooks.afterInit()
+			if (hook === HOOK_AFTER_SET_HTML && item.hooks.afterSetHtml) return item.hooks.afterSetHtml()
+			if (hook === HOOK_BEFORE_GET_HTML && item.hooks.beforeGetHtml) return item.hooks.beforeGetHtml()
 		}
 	}
 
-	exsied.hooks = conf.hooks
-	if (conf.hooks) {
-		if (conf.hooks.onInput) {
-			const hooksOnInput = conf.hooks.onInput
-			exsied.elements.workplace.addEventListener('input', (event) => {
-				hooksOnInput(event)
+	bindAllEvents() {
+		document.body.addEventListener('click', bindEventClassName)
+
+		this.toolbar?.bindBtnEvents()
+
+		if (HotkeyUtils.hasHotkeys()) {
+			this.elements.workplace?.addEventListener('keydown', (event) => {
+				HotkeyUtils.exec(event)
 			})
 		}
 	}
 
-	Toolbar.initDropdownElements()
+	unbindAllEvent() {
+		document.body.removeEventListener('click', bindEventClassName)
 
-	bindAllEvents()
+		this.toolbar?.unBindBtnEvents()
 
-	execPluginHook(HOOK_AFTER_INIT)
-
-	return exsied
-}
-
-const destroy = () => {
-	unbindAllEvent() // TODO: delete
-
-	exsied.elements.editor.remove()
-}
-
-const cleanWorkplaceEle = () => {
-	const workplaceEle = exsied.elements.workplace
-
-	DomUtils.replaceTagName(workplaceEle, 'STRONG', 'b')
-	DomUtils.replaceTagName(workplaceEle, 'EM', 'i')
-	DomUtils.replaceTagName(workplaceEle, 'DEL', 's')
-
-	DomUtils.removeNestedTags(workplaceEle, ['B'])
-	DomUtils.removeNestedTags(workplaceEle, ['I'])
-	DomUtils.removeNestedTags(workplaceEle, ['S'])
-	DomUtils.removeNestedTags(workplaceEle, ['U'])
-
-	DomUtils.mergeAdjacentTextNodes(workplaceEle)
-	// DomUtils.mergeConsecutiveSameTags(workplace_ele, ['B', 'I', 'S', 'U', 'SUB', 'SUP'])
-}
-
-const getHtml = () => {
-	cleanWorkplaceEle()
-	let html = execPluginHook(HOOK_BEFORE_GET_HTML)
-	if (html) {
-		html = html.replaceAll(ZERO_WIDTH_SPACE, '')
-		if (exsied.hooks && exsied.hooks.beforeGetHtml) {
-			html = exsied.hooks.beforeGetHtml(html)
+		if (HotkeyUtils.hasHotkeys()) {
+			this.elements.workplace?.removeEventListener('keydown', (event) => {
+				HotkeyUtils.exec(event)
+			})
 		}
-		return html
 	}
-	return ''
-}
 
-const setHtml = (html: string) => {
-	let content = html
-	if (exsied.hooks && exsied.hooks.beforeSetHtml) {
-		content = exsied.hooks.beforeSetHtml(content)
+	cleanWorkplaceEle() {
+		const workplaceEle = this.elements.workplace
+		if (!workplaceEle) return
+
+		DomUtils.replaceTagName(workplaceEle, 'STRONG', 'b')
+		DomUtils.replaceTagName(workplaceEle, 'EM', 'i')
+		DomUtils.replaceTagName(workplaceEle, 'DEL', 's')
+
+		DomUtils.removeNestedTags(workplaceEle, ['B'])
+		DomUtils.removeNestedTags(workplaceEle, ['I'])
+		DomUtils.removeNestedTags(workplaceEle, ['S'])
+		DomUtils.removeNestedTags(workplaceEle, ['U'])
+
+		DomUtils.mergeAdjacentTextNodes(workplaceEle)
+		// DomUtils.mergeConsecutiveSameTags(workplace_ele, ['B', 'I', 'S', 'U', 'SUB', 'SUP'])
 	}
-	const workplaceEle = exsied.elements.workplace
-	workplaceEle.innerHTML = content
+	getHtml() {
+		this.cleanWorkplaceEle()
+		let html = this.execPluginHook(HOOK_BEFORE_GET_HTML)
+		if (html) {
+			html = html.replaceAll(ZERO_WIDTH_SPACE, '')
+			if (this.hooks && this.hooks.beforeGetHtml) {
+				html = this.hooks.beforeGetHtml(html)
+			}
+			return html
+		}
+		return ''
+	}
+	setHtml(content: string) {
+		if (this.hooks && this.hooks.beforeSetHtml) {
+			content = this.hooks.beforeSetHtml(content)
+		}
+		const workplaceEle = this.elements.workplace
+		if (!workplaceEle) return
 
-	cleanWorkplaceEle()
-	execPluginHook(HOOK_AFTER_SET_HTML)
+		workplaceEle.innerHTML = content
 
-	const inputEvent = new Event('input', { bubbles: true })
-	workplaceEle.dispatchEvent(inputEvent)
-}
+		this.cleanWorkplaceEle()
+		this.execPluginHook(HOOK_AFTER_SET_HTML)
 
-const newEmptyEle = (dataValue: string) => {
-	const divEle = document.createElement(TN_DIV)
-	divEle.setAttribute(`data-exsied-empty-ele`, dataValue)
-	return divEle
-}
+		const inputEvent = new Event('input', { bubbles: true })
+		workplaceEle.dispatchEvent(inputEvent)
+	}
+	destroy() {
+		this.unbindAllEvent() // TODO: delete
 
-export const exsied: Exsied = {
-	containerId: '',
-	enableToolbarBubble: true,
-	elements: {
-		editor: newEmptyEle('editorEle'),
-		toolbarMain: newEmptyEle('toolbarEle'),
-		toolbarBubble: newEmptyEle('toolbarBubbleEle'),
-		workplace: newEmptyEle('workplaceEle'),
-	},
+		this.elements.editor?.remove()
+	}
 
-	range: null,
-	cursorAllParentsTagNamesArr: [],
+	range: Range | null = null
+	cursorAllParentsTagNamesArr: string[] = []
 
-	init,
-	getHtml,
-	setHtml,
-	destroy,
-
-	i18n: {
+	i18n: ExsiedElementsI18n = {
 		setDict: I18N.setDict,
 		getLocale: I18N.getLocale,
 		setLocale: I18N.setLocale,
 		setBuiltInLocales: I18N.setBuiltInLocales,
 		getLocaleNames: I18N.getLocaleNames,
-	},
+	}
+
+	dataAttrs?: { sign: string; signOriginal: string }
+	hooks?: Hooks
 }

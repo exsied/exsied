@@ -19,5 +19,5 @@ export function insertQuote() {
 	const ele = document.createElement(TN_Q)
 	ele.innerHTML = selectedEles && selectedEles.innerHTML ? selectedEles.innerHTML : PLUGIN_CONF.defaultInnerHTML
 
-	if (exsied.elements.workplace) DomUtils.addElementBySelection(exsied.elements.workplace, ele)
+	if (exsied.elements.workplace) SelectionUtils.addElementBySelection(exsied.elements.workplace, ele)
 }

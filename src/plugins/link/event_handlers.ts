@@ -32,7 +32,7 @@ export function insertLink() {
 	const ele = document.createElement(TN_A)
 	ele.href = PLUGIN_CONF.defaultHref
 	ele.innerHTML = selectedEles && selectedEles.innerHTML ? selectedEles.innerHTML : PLUGIN_CONF.defaultInnerHTML
-	if (exsied.elements.workplace) DomUtils.addElementBySelection(exsied.elements.workplace, ele)
+	if (exsied.elements.workplace) SelectionUtils.addElementBySelection(exsied.elements.workplace, ele)
 }
 
 export function onClickLink(event: Event) {

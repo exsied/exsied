@@ -8,7 +8,7 @@
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
 import { CN_TEMP_ELE, DATA_ATTR_CN_ICON, TN_DIV } from '../../contants'
-import { exsied } from '../../core'
+import { Exsied } from '../../core'
 import { t } from '../../core/i18n'
 import { SelectionUtils } from '../../core/selection_utils'
 import { tagNameLc } from '../../utils'
@@ -18,28 +18,33 @@ export const CN_DDROPDOWN = 'exsied-dropdown'
 export const CN_DDROPDOWN_LIST_SHOW = 'exsied-dropdown-list-show'
 export const CN_DDROPDOWN_TRIGGER = 'exsied-dropdown-trigger'
 
-export function genDropdownId(id: string) {
-	return `${id}---dropdown---${exsied.containerId}`
-}
-
-export function genTriggerClassName() {
-	return `${CN_DDROPDOWN_TRIGGER}_text`
-}
-
 const DATA_ATTR_TEXT = 'data-text'
 const DATA_ATTR_VALUE = 'data-value'
 
 export class DropdownMenu {
-	private eleId: string
+	exsied: Exsied
+	private eleId: string = ''
 	private ele: HTMLElement | undefined
 
 	private cnList = 'exsied-dropdown-list'
 	private cnListItem = 'exsied-dropdown-list-item'
 	private triggerDefaultText = '---'
 
-	constructor(selectId: string) {
+	constructor(exsied: Exsied) {
+		this.exsied = exsied
+	}
+
+	initSelect(selectId: string) {
 		this.eleId = selectId
 		this.init()
+	}
+
+	genDropdownId(id: string) {
+		return `${id}---dropdown---${this.exsied.containerId}`
+	}
+
+	genTriggerClassName() {
+		return `${CN_DDROPDOWN_TRIGGER}_text`
 	}
 
 	init() {
@@ -57,14 +62,14 @@ export class DropdownMenu {
 		this.ele = document.createElement(TN_DIV)
 		this.ele.classList.add(CN_DDROPDOWN)
 		this.ele.classList.add(CN_TEMP_ELE)
-		this.ele.id = genDropdownId(this.eleId)
+		this.ele.id = this.genDropdownId(this.eleId)
 
 		const triggerEle = document.createElement('button')
 		triggerEle.classList.add(CN_DDROPDOWN_TRIGGER)
 		triggerEle.classList.add('exsied-ctrl')
 
 		const defaultText = ele.getAttribute('data-default-text') || this.triggerDefaultText
-		triggerEle.innerHTML = `<span class="${genTriggerClassName()}">${t(defaultText)}</span>`
+		triggerEle.innerHTML = `<span class="${this.genTriggerClassName()}">${t(defaultText)}</span>`
 
 		triggerEle.addEventListener('click', (event: Event) => {
 			const target = event.target

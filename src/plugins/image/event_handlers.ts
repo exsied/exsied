@@ -35,7 +35,7 @@ export function insertImage() {
 	const ele = document.createElement(TN_IMG)
 	ele.src = PLUGIN_CONF.defaultSrc
 	ele.alt = PLUGIN_CONF.defaultAlt
-	if (exsied.elements.workplace) DomUtils.addElementBySelection(exsied.elements.workplace, ele)
+	if (exsied.elements.workplace) SelectionUtils.addElementBySelection(exsied.elements.workplace, ele)
 }
 
 export function onClickImage(event: Event) {

@@ -19,7 +19,7 @@ export function insert(tagName: typeof TN_OL | typeof TN_UL) {
 	const ele = document.createElement(tagName)
 	ele.innerHTML = selectedEles && selectedEles.innerHTML ? selectedEles.innerHTML : PLUGIN_CONF.defaultInnerHTML
 
-	if (exsied.elements.workplace) DomUtils.addElementBySelection(exsied.elements.workplace, ele)
+	if (exsied.elements.workplace) SelectionUtils.addElementBySelection(exsied.elements.workplace, ele)
 }
 
 export function insertOl() {

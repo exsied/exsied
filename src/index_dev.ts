@@ -7,108 +7,150 @@
  *     https://github.com/exsied/exsied/blob/main/LICENSE
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
-import { KEY_CTRL, exsied, plugins } from './'
+// import { KEY_CTRL, plugins } from './'
+import { Exsied } from './core'
 import { DEMO_CONTENT } from './demo_content'
-import { PluginConf as AboutPluginConf } from './plugins/about/base'
-import { PluginConf as FontFamilyPluginConf } from './plugins/font_family/base'
-import { PluginConf as FontSizePluginConf } from './plugins/font_size/base'
-import { PluginConf as LinkConf } from './plugins/link/base'
+// import { PluginConf as AboutPluginConf } from './plugins/about/base'
+// import { PluginConf as FontFamilyPluginConf } from './plugins/font_family/base'
+// import { PluginConf as FontSizePluginConf } from './plugins/font_size/base'
+// import { PluginConf as LinkConf } from './plugins/link/base'
+import { Bold } from './plugins/bold'
 import './styles/style.scss'
 
-// plugin about
-const aboutConf = plugins.about.conf as AboutPluginConf
-aboutConf.deveploers.push(
-	{
-		name: 'fivim',
-		repoLink: 'https://github.com/fivim/fivim',
-		webSiteLink: 'https://xxx.com/xxx',
-		email: 'xxx@xxx.xxx',
-		extContent: `Fivim's github repo`,
-	},
-	{
-		name: 'exsied',
-		repoLink: 'https://gitee.com/exsied/exsied',
-		webSiteLink: 'https://xxx.com/xxx',
-		email: 'xxx@xxx.xxx',
-		extContent: `Exsied's gitee repo`,
-	},
-)
+// class A {
+// 	public property: number = 10
+// 	public num: number = 10
 
-// plugin fontSize
-const fontSizeConf = plugins.fontSize.conf as FontSizePluginConf
-fontSizeConf.fontSizeOptions.push(
-	{
-		name: '18px',
-		value: '18px',
-		tooltipText: '',
-		iconClassName: '',
-	},
-	{
-		name: '28px',
-		value: '28px',
-		tooltipText: '',
-		iconClassName: '',
-	},
-)
+// 	public method(): void {
+// 		console.log('这是 A 的方法')
+// 	}
+// }
+// interface IPlugin<T> {
+// 	init(host: T): void
+// }
 
-// plugin fontFamily
-const fontFamilyConf = plugins.fontFamily.conf as FontFamilyPluginConf
-fontFamilyConf.fontFamilyOptions.push(
-	{
-		name: 'fontFamily_1',
-		value: 'fontFamily_1',
-		tooltipText: '',
-		iconClassName: '',
-	},
-	{
-		name: 'fontFamily_2',
-		value: 'fontFamily_2',
-		tooltipText: '',
-		iconClassName: '',
-	},
-)
+// class B implements IPlugin<A> {
+// 	private _host: A | undefined
+// 	public init(host: A): void {
+// 		this._host = host
 
-// plugin link
-const linkConf = plugins.link.conf as LinkConf
-linkConf.clickLinkCb = (event) => {
-	event.preventDefault()
-	alert('clicked link, the event detail in console')
-	console.info('plugin link clickLinkCb event: ', event)
-}
+// 		console.log(`插件 B 已连接到 ${this._host.property}`)
+// 	}
 
-const initExsied = (id: string, content: string, locale?: string) => {	
+// 	public enhanceMethod(): void {
+// 		console.log('在插件 B 中增强 A 的方法')
+
+// 		this._host?.method()
+// 		console.log(this._host?.num);
+
+// 	}
+// }
+
+// const a = new A()
+// const b = new B()
+
+// b.init(a) // 将 A 的实例传递给 B 的 init 方法
+// b.enhanceMethod() // 调用 B 的方法，该方法会访问 A 的方法
+
+// // plugin about
+// const aboutConf = plugins.about.conf as AboutPluginConf
+// aboutConf.deveploers.push(
+// 	{
+// 		name: 'fivim',
+// 		repoLink: 'https://github.com/fivim/fivim',
+// 		webSiteLink: 'https://xxx.com/xxx',
+// 		email: 'xxx@xxx.xxx',
+// 		extContent: `Fivim's github repo`,
+// 	},
+// 	{
+// 		name: 'exsied',
+// 		repoLink: 'https://gitee.com/exsied/exsied',
+// 		webSiteLink: 'https://xxx.com/xxx',
+// 		email: 'xxx@xxx.xxx',
+// 		extContent: `Exsied's gitee repo`,
+// 	},
+// )
+
+// // plugin fontSize
+// const fontSizeConf = plugins.fontSize.conf as FontSizePluginConf
+// fontSizeConf.fontSizeOptions.push(
+// 	{
+// 		name: '18px',
+// 		value: '18px',
+// 		tooltipText: '',
+// 		iconClassName: '',
+// 	},
+// 	{
+// 		name: '28px',
+// 		value: '28px',
+// 		tooltipText: '',
+// 		iconClassName: '',
+// 	},
+// )
+
+// // plugin fontFamily
+// const fontFamilyConf = plugins.fontFamily.conf as FontFamilyPluginConf
+// fontFamilyConf.fontFamilyOptions.push(
+// 	{
+// 		name: 'fontFamily_1',
+// 		value: 'fontFamily_1',
+// 		tooltipText: '',
+// 		iconClassName: '',
+// 	},
+// 	{
+// 		name: 'fontFamily_2',
+// 		value: 'fontFamily_2',
+// 		tooltipText: '',
+// 		iconClassName: '',
+// 	},
+// )
+
+// // plugin link
+// const linkConf = plugins.link.conf as LinkConf
+// linkConf.clickLinkCb = (event) => {
+// 	event.preventDefault()
+// 	alert('clicked link, the event detail in console')
+// 	console.info('plugin link clickLinkCb event: ', event)
+// }
+
+const initExsied = (containerId: string, content: string, locale?: string) => {
+	const exsied = new Exsied(containerId)
+
+	const bold = new Bold()
+	bold.init(exsied)
+
 	exsied.init({
-		id: id,
 		plugins: [
-			plugins.redoAndUndo,
-			plugins.insertMenu,
-			plugins.bold,
-			plugins.italic,
-			plugins.underline,
-			plugins.strikethrough,
-			plugins.headings,
-			plugins.link,
-			plugins.image,
-			plugins.table,
-			plugins.horizonalRule,
-			plugins.quote,
-			plugins.lists,
-			plugins.fontSize,
-			plugins.fontFamily,
-			plugins.textAlign,
-			plugins.indentAndOutdent,
-			plugins.subscriptAndSupscript,
-			plugins.colors,
-			plugins.findAndReplace,
-			plugins.sourceCode,
+			// 			plugins.redoAndUndo,
+			// 			plugins.insertMenu,
+			// 			plugins.bold,
+			// 			plugins.italic,
+			// 			plugins.underline,
+			// 			plugins.strikethrough,
+			// 			plugins.headings,
+			// 			plugins.link,
+			// 			plugins.image,
+			// 			plugins.table,
+			// 			plugins.horizonalRule,
+			// 			plugins.quote,
+			// 			plugins.lists,
+			// 			plugins.fontSize,
+			// 			plugins.fontFamily,
+			// 			plugins.textAlign,
+			// 			plugins.indentAndOutdent,
+			// 			plugins.subscriptAndSupscript,
+			// 			plugins.colors,
+			// 			plugins.findAndReplace,
+			// 			plugins.sourceCode,
+			bold,
 		],
 		enableToolbarBubble: true,
 		locale: locale || 'en',
-		hotkeys: [
-			{ keyStr: 'b', func: plugins.bold.commands[plugins.bold.name], modifierKeys: [KEY_CTRL] },
-			{ keyStr: 'i', func: plugins.italic.commands[plugins.italic.name], modifierKeys: [KEY_CTRL] },
-			{ keyStr: 'u', func: plugins.underline.commands[plugins.underline.name], modifierKeys: [KEY_CTRL] },
-		],
+		// hotkeys: [
+		// 	{ keyStr: 'b', func: plugins.bold.commands[plugins.bold.name], modifierKeys: [KEY_CTRL] },
+		// 	{ keyStr: 'i', func: plugins.italic.commands[plugins.italic.name], modifierKeys: [KEY_CTRL] },
+		// 	{ keyStr: 'u', func: plugins.underline.commands[plugins.underline.name], modifierKeys: [KEY_CTRL] },
+		// ],
 		hooks: {
 			// onInput: (event) => {
 			// 	const ele = event.target as HTMLElement
@@ -138,14 +180,6 @@ initExsied(eleIdLong, DEMO_CONTENT)
 // })
 // exsied.i18n.setLocale('zh-CN')
 //
-
-// getContentBtn
-const getContentBtn = document.createElement('button')
-getContentBtn.innerHTML = 'Log content html'
-getContentBtn.addEventListener('click', () => {
-	const html = exsied.getHtml()
-	console.log(' >>> Exsied content html :::', html)
-})
 
 // darkModeBtn
 const darkModeBtn = document.createElement('button')
@@ -189,7 +223,6 @@ localeSelect.addEventListener('change', (event) => {
 
 const btnsEle = document.getElementById('optBtns')
 if (btnsEle) {
-	btnsEle.append(getContentBtn)
 	btnsEle.append(darkModeBtn)
 	btnsEle.append(localeLabel)
 	btnsEle.append(localeSelect)
