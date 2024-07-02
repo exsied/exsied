@@ -15,42 +15,8 @@ import { DEMO_CONTENT } from './demo_content'
 // import { PluginConf as FontSizePluginConf } from './plugins/font_size/base'
 // import { PluginConf as LinkConf } from './plugins/link/base'
 import { Bold } from './plugins/bold'
+import { FindAndReplace } from './plugins/find_and_replace'
 import './styles/style.scss'
-
-// class A {
-// 	public property: number = 10
-// 	public num: number = 10
-
-// 	public method(): void {
-// 		console.log('这是 A 的方法')
-// 	}
-// }
-// interface IPlugin<T> {
-// 	init(host: T): void
-// }
-
-// class B implements IPlugin<A> {
-// 	private _host: A | undefined
-// 	public init(host: A): void {
-// 		this._host = host
-
-// 		console.log(`插件 B 已连接到 ${this._host.property}`)
-// 	}
-
-// 	public enhanceMethod(): void {
-// 		console.log('在插件 B 中增强 A 的方法')
-
-// 		this._host?.method()
-// 		console.log(this._host?.num);
-
-// 	}
-// }
-
-// const a = new A()
-// const b = new B()
-
-// b.init(a) // 将 A 的实例传递给 B 的 init 方法
-// b.enhanceMethod() // 调用 B 的方法，该方法会访问 A 的方法
 
 // // plugin about
 // const aboutConf = plugins.about.conf as AboutPluginConf
@@ -119,6 +85,9 @@ const initExsied = (containerId: string, content: string, locale?: string) => {
 	const bold = new Bold()
 	bold.init(exsied)
 
+	const findAndReplace = new FindAndReplace()
+	findAndReplace.init(exsied)
+
 	exsied.init({
 		plugins: [
 			// 			plugins.redoAndUndo,
@@ -143,6 +112,7 @@ const initExsied = (containerId: string, content: string, locale?: string) => {
 			// 			plugins.findAndReplace,
 			// 			plugins.sourceCode,
 			bold,
+			findAndReplace
 		],
 		enableToolbarBubble: true,
 		locale: locale || 'en',

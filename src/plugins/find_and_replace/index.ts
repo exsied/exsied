@@ -7,61 +7,99 @@
  *     https://github.com/exsied/exsied/blob/main/LICENSE
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
+import { Exsied } from '../../core'
 import { DomUtils } from '../../core/dom_utils'
 import { Commands, ExsiedPlugin } from '../../core/plugin'
 import { ELE_TYPE_BUTTON } from '../../ui/toolbar'
-import { CN_ICON_FIND, CN_ICON_REPLACE, PLUGIN_CONF, PLUGIN_NAME, POPUP_ID } from './base'
-import { clearHighLight, onClickFind, onClickReplace, resetValue } from './event_handlers'
+import { clearHighLight, onClick, resetValue } from './event_handlers'
 import './styles.scss'
+
+export type PluginConf = {
+	addToNormalToolbar: {
+		find: boolean
+		replace: boolean
+	}
+	addToBubbleToolbar: {
+		find: boolean
+		replace: boolean
+	}
+}
+
+export const CN_ICON_FIND = 'exsied-icon-find'
+export const CN_ICON_REPLACE = 'exsied-icon-replace'
 
 export const NAME_FIND = 'find'
 export const NAME_REPLACE = 'replace'
 
-const commands: Commands = {}
-commands[NAME_FIND] = onClickFind
-commands[NAME_REPLACE] = onClickReplace
+export class FindAndReplace implements ExsiedPlugin<Exsied> {
+	private exsied: Exsied | undefined
+	private popupId = ''
+	// private toolbarBtnIds: ToolBarControlIds = emptyToolBarControlIds
 
-export const findAndReplace: ExsiedPlugin = {
-	name: PLUGIN_NAME,
-	conf: PLUGIN_CONF,
-	commands,
+	name = 'FindAndReplace'
+	conf: PluginConf = {
+		addToNormalToolbar: {
+			find: true,
+			replace: true,
+		},
+		addToBubbleToolbar: {
+			find: false,
+			replace: false,
+		},
+	}
 
-	toolBarControl: [
+	init = (exsied: Exsied): void => {
+		this.exsied = exsied
+		this.popupId = this.exsied?.genPopupId(this.name, 'index') || ''
+	}
+
+	afterExsiedInit = () => {
+		// this.toolbarBtnIds = this.exsied?.toolbar?.genButtonIdStd(this.name, 'index') || emptyToolBarControlIds
+	}
+
+	commands: Commands = {
+		find: (event: Event) => {
+			onClick(event, false, this.exsied as Exsied, this.popupId, this.name)
+		},
+		replace: (event: Event) => {
+			onClick(event, true, this.exsied as Exsied, this.popupId, this.name)
+		},
+	}
+
+	toolBarControl = [
 		{
 			name: NAME_FIND,
 			tooltipText: 'Find',
-			addToNormalToolbar: PLUGIN_CONF.addToNormalToolbar.find,
-			addToBubbleToolbar: PLUGIN_CONF.addToBubbleToolbar.find,
+			addToNormalToolbar: this.conf.addToNormalToolbar.find,
+			addToBubbleToolbar: this.conf.addToBubbleToolbar.find,
 
 			eleType: ELE_TYPE_BUTTON,
 			iconClassName: CN_ICON_FIND,
-			clickCallBack: commands[NAME_FIND],
+			clickCallBack: this.commands[NAME_FIND],
 		},
 		{
 			name: NAME_REPLACE,
 			tooltipText: 'Replace',
-			addToNormalToolbar: PLUGIN_CONF.addToNormalToolbar.replace,
-			addToBubbleToolbar: PLUGIN_CONF.addToBubbleToolbar.replace,
+			addToNormalToolbar: this.conf.addToNormalToolbar.replace,
+			addToBubbleToolbar: this.conf.addToBubbleToolbar.replace,
 
 			eleType: ELE_TYPE_BUTTON,
 			iconClassName: CN_ICON_REPLACE,
-			clickCallBack: commands[NAME_REPLACE],
+			clickCallBack: this.commands[NAME_REPLACE],
 		},
-	],
+	]
 
-	addHandler: () => {},
-	removeHandler: () => {},
-	checkHighlight: (_event) => {},
-	removeTempEle: (_event) => {
-		DomUtils.removeElementById(POPUP_ID)
+	addHandler = () => {}
+	removeHandler = () => {}
+	checkHighlight = (_event: any) => {}
+	removeTempEle = (_event: any) => {
+		DomUtils.removeElementById(this.popupId)
 		resetValue()
 		clearHighLight()
 
-		if (exsied.elements.workplace) {
-			const workplace_ele = exsied.elements.workplace
+		if (this.exsied?.elements.workplace) {
+			const workplace_ele = this.exsied.elements.workplace
 			DomUtils.mergeAdjacentTextNodes(workplace_ele)
 		}
-	},
+	}
 }
-
-export default findAndReplace
