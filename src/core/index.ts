@@ -108,6 +108,8 @@ const init = (conf: ExsiedInitConf) => {
 	I18N.setBuiltInLocales()
 	conf.locale ? I18N.setLocale(conf.locale) : I18N.setLocale('en')
 
+	exsied.containerId = conf.id
+
 	if (conf.dataAttrs) exsied.dataAttrs = conf.dataAttrs
 
 	if (conf.enableToolbarBubble) {
@@ -137,8 +139,6 @@ const init = (conf: ExsiedInitConf) => {
 	if (!workplaceEle) throw new Error('The exsied.elements.workplace does not exist.')
 	exsied.elements.workplace = workplaceEle as HTMLElement
 
-	Toolbar.initDropdownElements()
-
 	if (conf.hotkeys) {
 		for (const item of conf.hotkeys) {
 			HotkeyUtils.set(item.keyStr, item.func, item.modifierKeys)
@@ -155,9 +155,13 @@ const init = (conf: ExsiedInitConf) => {
 		}
 	}
 
+	Toolbar.initDropdownElements()
+
 	bindAllEvents()
 
 	execPluginHook(HOOK_AFTER_INIT)
+
+	return exsied
 }
 
 const destroy = () => {

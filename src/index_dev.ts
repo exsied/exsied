@@ -76,9 +76,9 @@ linkConf.clickLinkCb = (event) => {
 	console.info('plugin link clickLinkCb event: ', event)
 }
 
-const initExsied = (locale?: string) => {
+const initExsied = (id: string, content: string, locale?: string) => {	
 	exsied.init({
-		id: 'app',
+		id: id,
 		plugins: [
 			plugins.redoAndUndo,
 			plugins.insertMenu,
@@ -117,10 +117,14 @@ const initExsied = (locale?: string) => {
 		},
 	})
 
-	exsied.setHtml(DEMO_CONTENT)
+	exsied.setHtml(content)
 }
 
-initExsied()
+const eleIdShort = 'appShort'
+const eleIdLong = 'appLong'
+
+initExsied(eleIdShort, 'short demo')
+initExsied(eleIdLong, DEMO_CONTENT)
 
 // custom locale
 //
@@ -180,7 +184,7 @@ for (const item of locales) {
 }
 localeSelect.addEventListener('change', (event) => {
 	const selectedValue = (event.target as HTMLSelectElement).value
-	initExsied(selectedValue)
+	initExsied(eleIdLong, DEMO_CONTENT, selectedValue)
 })
 
 const btnsEle = document.getElementById('optBtns')

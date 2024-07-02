@@ -8,6 +8,7 @@
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
 import { CN_TEMP_ELE, DATA_ATTR_CN_ICON, TN_DIV } from '../../contants'
+import { exsied } from '../../core'
 import { t } from '../../core/i18n'
 import { SelectionUtils } from '../../core/selection_utils'
 import { tagNameLc } from '../../utils'
@@ -18,7 +19,7 @@ export const CN_DDROPDOWN_LIST_SHOW = 'exsied-dropdown-list-show'
 export const CN_DDROPDOWN_TRIGGER = 'exsied-dropdown-trigger'
 
 export function genDropdownId(id: string) {
-	return `${id}---dropdown`
+	return `${id}---dropdown---${exsied.containerId}`
 }
 
 export function genTriggerClassName() {

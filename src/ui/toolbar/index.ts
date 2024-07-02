@@ -82,7 +82,7 @@ const checkExistInsertElementButtons = (ctrl: InsertElementButton) => {
 
 export class Toolbar {
 	static genButtonId = (tp: string, pluginName: string, ctrlName: string) => {
-		return `exsied-toolbar-btn___${tp}___${pluginName}---${ctrlName}`
+		return `exsied-toolbar-btn___${tp}___${pluginName}---${ctrlName}---${exsied.containerId}`
 	}
 	static genButtonIdStd = (pluginName: string, ctrlName: string) => {
 		return {
@@ -286,6 +286,7 @@ export class Toolbar {
 
 	static initDropdownElements = () => {
 		PLUGINS_SELECT_ID.map((id) => {
+
 			if (!DomUtils.existElementById(genDropdownId(id))) new DropdownMenu(id)
 		})
 	}
