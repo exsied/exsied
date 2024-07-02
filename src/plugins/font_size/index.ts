@@ -7,46 +7,80 @@
  *     https://github.com/exsied/exsied/blob/main/LICENSE
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
+import { Exsied } from '../../core'
+import { FormatStyle } from '../../core/format/style'
 import { Commands, ExsiedPlugin } from '../../core/plugin'
-import { genDropdownId } from '../../ui/dropdown'
-import { ELE_TYPE_SELECT, Toolbar } from '../../ui/toolbar'
-import { PLUGIN_CONF, PLUGIN_NAME } from './base'
-import { formatFontSize } from './event_handlers'
-import './styles.scss'
+import { Style } from '../../types'
+import { ELE_TYPE_SELECT, ToolBarControlIds, ToolBarSelectOption, emptyToolBarControlIds } from '../../ui/toolbar'
 
-const toolbarBtnIds = Toolbar.genButtonIdStd(PLUGIN_NAME, PLUGIN_NAME)
-const dropDownId = genDropdownId(toolbarBtnIds.normal)
-
-const commands: Commands = {}
-commands[PLUGIN_NAME] = formatFontSize
-
-export const fontSize: ExsiedPlugin = {
-	name: PLUGIN_NAME,
-	conf: PLUGIN_CONF,
-	commands,
-
-	toolBarControl: [
-		{
-			name: PLUGIN_NAME,
-			tooltipText: 'Font size',
-			addToNormalToolbar: PLUGIN_CONF.addToNormalToolbar,
-			addToBubbleToolbar: PLUGIN_CONF.addToBubbleToolbar,
-
-			eleType: ELE_TYPE_SELECT,
-			changeCallBack: commands[PLUGIN_NAME],
-			defaultText: 'Font size',
-			options: PLUGIN_CONF.fontSizeOptions,
-		},
-	],
-
-	addHandler: () => {},
-	removeHandler: () => {},
-	checkHighlight: (_event) => {
-		// TODO:
-	},
-	removeTempEle: (_event) => {
-		Toolbar.hideDropdowntList(dropDownId)
-	},
+export type PluginConf = {
+	addToNormalToolbar: boolean
+	addToBubbleToolbar: boolean
+	fontSizeOptions: ToolBarSelectOption[]
 }
 
-export default fontSize
+export class FontSize implements ExsiedPlugin<Exsied> {
+	private exsied: Exsied | undefined
+	// private popupId = ''
+	private toolbarBtnIds: ToolBarControlIds = emptyToolBarControlIds
+
+	name = 'fontFamily'
+
+	conf: PluginConf = {
+		addToNormalToolbar: true,
+		addToBubbleToolbar: false,
+		fontSizeOptions: [
+			// {
+			// 	name: '8px',
+			// 	value: '8px',
+			// 	tooltipText: '',
+			// 	iconClassName: '',
+			// },
+		],
+	}
+
+	init = (exsied: Exsied): void => {
+		this.exsied = exsied
+		// this.popupId = this.exsied?.genPopupId(this.name, 'index') || ''
+	}
+
+	afterExsiedInit = () => {
+		this.toolbarBtnIds = this.exsied?.toolbar?.genButtonIdStd(this.name, 'index') || emptyToolBarControlIds
+	}
+
+	formatFontSize(event: Event) {
+		const selectEle = event.target as HTMLSelectElement
+
+		const style: Style = {}
+		style.fontSize = selectEle.value
+		FormatStyle.formatSelected(style as CSSStyleDeclaration)
+	}
+
+	commands: Commands = {
+		formatFontSize: this.formatFontSize,
+	}
+
+	toolBarControl = [
+		{
+			name: this.name,
+			tooltipText: 'Font size',
+			addToNormalToolbar: this.conf.addToNormalToolbar,
+			addToBubbleToolbar: this.conf.addToBubbleToolbar,
+
+			eleType: ELE_TYPE_SELECT,
+			changeCallBack: this.commands[this.name],
+			defaultText: 'Font size',
+			options: this.conf.fontSizeOptions,
+		},
+	]
+
+	addHandler = () => {}
+	removeHandler = () => {}
+	checkHighlight = (_event: any) => {
+		// TODO:
+	}
+	removeTempEle = (_event: any) => {
+		const dropDownId = this.exsied?.dropdownMenu?.genDropdownId(this.toolbarBtnIds.normal) || ''
+		this.exsied?.toolbar?.hideDropdowntList(dropDownId)
+	}
+}

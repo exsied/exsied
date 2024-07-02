@@ -15,8 +15,10 @@ import { DEMO_CONTENT } from './demo_content'
 // import { PluginConf as FontSizePluginConf } from './plugins/font_size/base'
 // import { PluginConf as LinkConf } from './plugins/link/base'
 import { Bold } from './plugins/bold'
+import { Colors } from './plugins/colors'
 import { FindAndReplace } from './plugins/find_and_replace'
 import { FontFamily } from './plugins/font_family'
+import { FontSize } from './plugins/font_size'
 import './styles/style.scss'
 
 // // plugin about
@@ -38,23 +40,6 @@ import './styles/style.scss'
 // 	},
 // )
 
-// // plugin fontSize
-// const fontSizeConf = plugins.fontSize.conf as FontSizePluginConf
-// fontSizeConf.fontSizeOptions.push(
-// 	{
-// 		name: '18px',
-// 		value: '18px',
-// 		tooltipText: '',
-// 		iconClassName: '',
-// 	},
-// 	{
-// 		name: '28px',
-// 		value: '28px',
-// 		tooltipText: '',
-// 		iconClassName: '',
-// 	},
-// )
-
 // // plugin link
 // const linkConf = plugins.link.conf as LinkConf
 // linkConf.clickLinkCb = (event) => {
@@ -72,9 +57,12 @@ const initExsied = (containerId: string, content: string, locale?: string) => {
 	const findAndReplace = new FindAndReplace()
 	findAndReplace.init(exsied)
 
+	const colors = new Colors()
+	colors.init(exsied)
+
 	const fontFamily = new FontFamily()
 	fontFamily.init(exsied)
-	fontFamily.conf.fontFamilyOptions.push(
+	fontFamily.conf.fontFamilyOptions = [
 		{
 			name: 'fontFamily_1',
 			value: 'fontFamily_1',
@@ -87,7 +75,24 @@ const initExsied = (containerId: string, content: string, locale?: string) => {
 			tooltipText: '',
 			iconClassName: '',
 		},
-	)
+	]
+
+	const fontSize = new FontSize()
+	fontSize.init(exsied)
+	fontSize.conf.fontSizeOptions = [
+		{
+			name: '18px',
+			value: '18px',
+			tooltipText: '18px',
+			iconClassName: '',
+		},
+		{
+			name: '28px',
+			value: '28px',
+			tooltipText: '28px',
+			iconClassName: '',
+		},
+	]
 
 	exsied.init({
 		plugins: [
@@ -113,8 +118,10 @@ const initExsied = (containerId: string, content: string, locale?: string) => {
 			// 			plugins.findAndReplace,
 			// 			plugins.sourceCode,
 			bold,
+			colors,
 			findAndReplace,
 			fontFamily,
+			fontSize,
 		],
 		enableToolbarBubble: true,
 		locale: locale || 'en',
