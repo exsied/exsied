@@ -20,6 +20,7 @@ import { FindAndReplace } from './plugins/find_and_replace'
 import { FontFamily } from './plugins/font_family'
 import { FontSize } from './plugins/font_size'
 import { Headings } from './plugins/headings'
+import { HorizonalRule } from './plugins/horizontal_rule'
 import './styles/style.scss'
 
 // // plugin about
@@ -98,6 +99,9 @@ const initExsied = (containerId: string, content: string, locale?: string) => {
 	const headings = new Headings()
 	headings.init(exsied)
 
+	const horizonalRule = new HorizonalRule()
+	horizonalRule.init(exsied)
+
 	exsied.init({
 		plugins: [
 			// 			plugins.redoAndUndo,
@@ -127,6 +131,7 @@ const initExsied = (containerId: string, content: string, locale?: string) => {
 			fontFamily,
 			fontSize,
 			headings,
+			horizonalRule,
 		],
 		enableToolbarBubble: true,
 		locale: locale || 'en',
