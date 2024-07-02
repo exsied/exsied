@@ -40,11 +40,11 @@ export class DropdownMenu {
 	}
 
 	genDropdownId(id: string) {
-		return `${id}---dropdown---${this.exsied.containerId}`
+		return `${id}___dropdown___${this.exsied.containerId}`
 	}
 
 	genTriggerClassName() {
-		return `${CN_DDROPDOWN_TRIGGER}_text`
+		return `${CN_DDROPDOWN_TRIGGER}_text___${this.exsied.containerId}`
 	}
 
 	private init() {

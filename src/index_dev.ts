@@ -19,6 +19,7 @@ import { Colors } from './plugins/colors'
 import { FindAndReplace } from './plugins/find_and_replace'
 import { FontFamily } from './plugins/font_family'
 import { FontSize } from './plugins/font_size'
+import { Headings } from './plugins/headings'
 import './styles/style.scss'
 
 // // plugin about
@@ -94,6 +95,9 @@ const initExsied = (containerId: string, content: string, locale?: string) => {
 		},
 	]
 
+	const headings = new Headings()
+	headings.init(exsied)
+
 	exsied.init({
 		plugins: [
 			// 			plugins.redoAndUndo,
@@ -122,6 +126,7 @@ const initExsied = (containerId: string, content: string, locale?: string) => {
 			findAndReplace,
 			fontFamily,
 			fontSize,
+			headings,
 		],
 		enableToolbarBubble: true,
 		locale: locale || 'en',
