@@ -23,7 +23,7 @@ const DATA_ATTR_VALUE = 'data-value'
 
 export class DropdownMenu {
 	exsied: Exsied
-	private eleId: string = ''
+	private selectId: string = ''
 	private ele: HTMLElement | undefined
 
 	private cnList = 'exsied-dropdown-list'
@@ -35,7 +35,7 @@ export class DropdownMenu {
 	}
 
 	initSelect(selectId: string) {
-		this.eleId = selectId
+		this.selectId = selectId
 		this.init()
 	}
 
@@ -47,13 +47,13 @@ export class DropdownMenu {
 		return `${CN_DDROPDOWN_TRIGGER}_text`
 	}
 
-	init() {
-		const ele = document.getElementById(this.eleId)
+	private init() {
+		const ele = document.getElementById(this.selectId)
 		if (!ele) {
-			throw new Error(`No <select> element found with ID: ${this.eleId}`)
+			throw new Error(`No <select> element found with ID: ${this.selectId}`)
 		}
 		if (tagNameLc(ele) !== 'select') {
-			throw new Error(`This element is not a <select> element, ID: ${this.eleId}`)
+			throw new Error(`This element is not a <select> element, ID: ${this.selectId}`)
 		}
 
 		const nativeSelect = ele as HTMLSelectElement
@@ -62,7 +62,7 @@ export class DropdownMenu {
 		this.ele = document.createElement(TN_DIV)
 		this.ele.classList.add(CN_DDROPDOWN)
 		this.ele.classList.add(CN_TEMP_ELE)
-		this.ele.id = this.genDropdownId(this.eleId)
+		this.ele.id = this.genDropdownId(this.selectId)
 
 		const triggerEle = document.createElement('button')
 		triggerEle.classList.add(CN_DDROPDOWN_TRIGGER)
@@ -140,7 +140,7 @@ export class DropdownMenu {
 				if (triggerEle) triggerEle.innerHTML = DT || this.triggerDefaultText
 
 				// Set orginal select's option
-				const select = document.querySelector(`#${this.eleId}`) as HTMLSelectElement
+				const select = document.querySelector(`#${this.selectId}`) as HTMLSelectElement
 				if (!select) return
 
 				const secondOption = select.options

@@ -16,6 +16,7 @@ import { DEMO_CONTENT } from './demo_content'
 // import { PluginConf as LinkConf } from './plugins/link/base'
 import { Bold } from './plugins/bold'
 import { FindAndReplace } from './plugins/find_and_replace'
+import { FontFamily } from './plugins/font_family'
 import './styles/style.scss'
 
 // // plugin about
@@ -54,23 +55,6 @@ import './styles/style.scss'
 // 	},
 // )
 
-// // plugin fontFamily
-// const fontFamilyConf = plugins.fontFamily.conf as FontFamilyPluginConf
-// fontFamilyConf.fontFamilyOptions.push(
-// 	{
-// 		name: 'fontFamily_1',
-// 		value: 'fontFamily_1',
-// 		tooltipText: '',
-// 		iconClassName: '',
-// 	},
-// 	{
-// 		name: 'fontFamily_2',
-// 		value: 'fontFamily_2',
-// 		tooltipText: '',
-// 		iconClassName: '',
-// 	},
-// )
-
 // // plugin link
 // const linkConf = plugins.link.conf as LinkConf
 // linkConf.clickLinkCb = (event) => {
@@ -87,6 +71,23 @@ const initExsied = (containerId: string, content: string, locale?: string) => {
 
 	const findAndReplace = new FindAndReplace()
 	findAndReplace.init(exsied)
+
+	const fontFamily = new FontFamily()
+	fontFamily.init(exsied)
+	fontFamily.conf.fontFamilyOptions.push(
+		{
+			name: 'fontFamily_1',
+			value: 'fontFamily_1',
+			tooltipText: '',
+			iconClassName: '',
+		},
+		{
+			name: 'fontFamily_2',
+			value: 'fontFamily_2',
+			tooltipText: '',
+			iconClassName: '',
+		},
+	)
 
 	exsied.init({
 		plugins: [
@@ -112,7 +113,8 @@ const initExsied = (containerId: string, content: string, locale?: string) => {
 			// 			plugins.findAndReplace,
 			// 			plugins.sourceCode,
 			bold,
-			findAndReplace
+			findAndReplace,
+			fontFamily,
 		],
 		enableToolbarBubble: true,
 		locale: locale || 'en',

@@ -12,11 +12,12 @@ import { t } from '../../core/i18n'
 import { ClickEventHandler } from '../../core/plugin'
 import { SelectionUtils } from '../../core/selection_utils'
 import { PopupView } from '../../ui/popup_view'
-import { INSERT_ELEMENT_BUTTONS } from '../../ui/toolbar'
+
 import { CN_ROOT, PLUGIN_NAME, POPUP_ID } from './base'
 
 export const CN_INSERT_MENU_ITEM = 'exsied-toolbar-insert-menu-item'
 export const dataName = 'data-name'
+
 export function showInsertMenu(event: Event) {
 	const targetEle = event.target as HTMLAnchorElement
 	targetEle.setAttribute(DATA_ATTR_TEMP_EDIT, PLUGIN_NAME)

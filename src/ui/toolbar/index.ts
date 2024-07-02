@@ -80,25 +80,26 @@ export const CN_BUBBLE_BTNS = 'exsied-btns'
 export const ID_TOOLBAR_EXT = 'exsied-toolbar-ext'
 export const ID_BUBBLE_WRAP = 'exsied-toolbar-bubble-wrap'
 export const EXTTOOLBAR_NAME = 'ExtToolbar'
-export const PLUGINS_SELECT_ID: string[] = []
-export const INSERT_ELEMENT_BUTTONS: InsertElementButton[] = []
-
-const checkExistInsertElementButtons = (ctrl: InsertElementButton) => {
-	for (const iterator of INSERT_ELEMENT_BUTTONS) {
-		if (iterator.pluginName === ctrl.pluginName && iterator.ctrlName === ctrl.ctrlName) {
-			return true
-		}
-	}
-
-	return false
-}
 
 export class Toolbar {
 	exsied: Exsied
 	dropdownMenu: DropdownMenu | null = null
 
+	pluginsSelectId: string[] = []
+	insertElementButtons: InsertElementButton[] = []
+
 	constructor(exsied: Exsied) {
 		this.exsied = exsied
+	}
+
+	checkExistInsertElementButtons = (ctrl: InsertElementButton) => {
+		for (const iterator of this.insertElementButtons) {
+			if (iterator.pluginName === ctrl.pluginName && iterator.ctrlName === ctrl.ctrlName) {
+				return true
+			}
+		}
+
+		return false
 	}
 
 	genButtonId = (typ: string, pluginName: string, ctrlName: string) => {
@@ -161,7 +162,7 @@ export class Toolbar {
 							iconClassName: ctrlr.iconClassName,
 							clickCallBack: ctrlr.clickCallBack,
 						}
-						if (!checkExistInsertElementButtons(insertCtrl)) INSERT_ELEMENT_BUTTONS.push(insertCtrl)
+						if (!this.checkExistInsertElementButtons(insertCtrl)) this.insertElementButtons.push(insertCtrl)
 					}
 					if (ctrl.addToBubbleToolbar && bubbleBtnsEle) {
 						if (!DomUtils.existElementById(ids.bubble)) bubbleBtnsEle.innerHTML += html.replace('___id___', ids.bubble)
@@ -173,11 +174,11 @@ export class Toolbar {
 					const html = this.genHtmlSelect(ctrlr)
 					if (ctrlr.addToNormalToolbar) {
 						ctrlHtmlArr.push(html.replace('___id___', ids.normal))
-						if (!PLUGINS_SELECT_ID.includes(ids.normal)) PLUGINS_SELECT_ID.push(ids.normal)
+						if (!this.pluginsSelectId.includes(ids.normal)) this.pluginsSelectId.push(ids.normal)
 					}
 					if (ctrlr.addToBubbleToolbar && bubbleBtnsEle) {
 						bubbleBtnsEle.innerHTML += html.replace('___id___', ids.bubble)
-						if (!PLUGINS_SELECT_ID.includes(ids.bubble)) PLUGINS_SELECT_ID.push(ids.bubble)
+						if (!this.pluginsSelectId.includes(ids.bubble)) this.pluginsSelectId.push(ids.bubble)
 					}
 				}
 			}
@@ -206,7 +207,7 @@ export class Toolbar {
 			if (ctrl.eleType === ELE_TYPE_SELECT) {
 				const html = this.genHtmlSelect(ctrl as ToolBarSelect)
 				ctrlHtmlArr.push(html.replace('___id___', ids.ext))
-				if (!PLUGINS_SELECT_ID.includes(ids.ext)) PLUGINS_SELECT_ID.push(ids.ext)
+				if (!this.pluginsSelectId.includes(ids.ext)) this.pluginsSelectId.push(ids.ext)
 			}
 		}
 
@@ -321,7 +322,7 @@ export class Toolbar {
 	}
 
 	initDropdownElements = () => {
-		PLUGINS_SELECT_ID.map((id) => {
+		this.pluginsSelectId.map((id) => {
 			const dropdownMenu = this.exsied.dropdownMenu
 			if (!DomUtils.existElementById(dropdownMenu?.genDropdownId(id) || '')) dropdownMenu?.initSelect(id)
 		})
