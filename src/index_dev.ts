@@ -26,6 +26,7 @@ import { IndentAndOutdent } from './plugins/indent_and_outdent'
 import { InsertMenu } from './plugins/insert_menu'
 import { Italic } from './plugins/italic'
 import { Link } from './plugins/link'
+import { Lists } from './plugins/lists'
 import './styles/style.scss'
 
 // // plugin about
@@ -122,6 +123,9 @@ const initExsied = (containerId: string, content: string, locale?: string) => {
 	const link = new Link()
 	link.init(exsied)
 
+	const lists = new Lists()
+	lists.init(exsied)
+
 	exsied.init({
 		plugins: [
 			// 			plugins.redoAndUndo,
@@ -157,6 +161,7 @@ const initExsied = (containerId: string, content: string, locale?: string) => {
 			insertMenu,
 			italic,
 			link,
+			lists,
 		],
 		enableToolbarBubble: true,
 		locale: locale || 'en',
