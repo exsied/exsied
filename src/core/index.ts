@@ -97,6 +97,7 @@ export class Exsied {
 		conf.plugins.map((plg) => {
 			try {
 				if (!pluginNames.includes(plg.name)) {
+					plg.init(this)
 					this.plugins.push(plg)
 				}
 			} catch (error) {
@@ -162,15 +163,15 @@ export class Exsied {
 		this.execPluginHook(HOOK_AFTER_INIT)
 
 		this.plugins.map((plg) => {
-			if (typeof plg.afterExsiedInit === 'function') {
-				plg.afterExsiedInit()
+			if (typeof plg.afterToolbarInit === 'function') {
+				plg.afterToolbarInit()
 			}
 		})
 
 		return this
 	}
 
-	afterExsiedInit = () => {}
+	afterToolbarInit = () => {}
 
 	execPluginHook = (hook: HookType) => {
 		for (const item of this.plugins) {

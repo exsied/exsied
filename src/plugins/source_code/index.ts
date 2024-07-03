@@ -68,7 +68,7 @@ export class SourceCode implements ExsiedPlugin<Exsied> {
 		// this.popupId = this.exsied?.genPopupId(this.name, 'index') || ''
 	}
 
-	afterExsiedInit = () => {
+	afterToolbarInit = () => {
 		this.toolbarBtnIds = this.exsied?.toolbar?.genButtonIdStd(this.name, 'index') || emptyToolBarControlIds
 	}
 
@@ -130,7 +130,7 @@ export class SourceCode implements ExsiedPlugin<Exsied> {
 		ele.appendChild(codeEle)
 		if (this.exsied?.elements.workplace) SelectionUtils.addElementBySelection(this.exsied?.elements.workplace, ele)
 
-		renderElement(codeEle)
+		renderElement(this.exsied, codeEle)
 	}
 
 	commands: Commands = { toggleSourceView: this.toggleSourceView, insertCodeBlock: this.insertCodeBlock }

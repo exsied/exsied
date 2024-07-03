@@ -42,7 +42,7 @@ export interface ExsiedPlugin<T> {
 		afterSetHtml?: (exsied: Exsied) => void
 		beforeGetHtml?: (exsied: Exsied) => string
 	}
-	afterExsiedInit?: () => void
+	afterToolbarInit?: () => void
 }
 
 export const HOOK_AFTER_INIT = 1

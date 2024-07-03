@@ -67,16 +67,10 @@ const initExsied = (containerId: string, content: string, locale?: string) => {
 	const exsied = new Exsied(containerId)
 
 	const bold = new Bold()
-	bold.init(exsied)
-
 	const findAndReplace = new FindAndReplace()
-	findAndReplace.init(exsied)
-
 	const colors = new Colors()
-	colors.init(exsied)
 
 	const fontFamily = new FontFamily()
-	fontFamily.init(exsied)
 	fontFamily.conf.fontFamilyOptions = [
 		{
 			name: 'fontFamily_1',
@@ -93,7 +87,6 @@ const initExsied = (containerId: string, content: string, locale?: string) => {
 	]
 
 	const fontSize = new FontSize()
-	fontSize.init(exsied)
 	fontSize.conf.fontSizeOptions = [
 		{
 			name: '18px',
@@ -110,49 +103,20 @@ const initExsied = (containerId: string, content: string, locale?: string) => {
 	]
 
 	const headings = new Headings()
-	headings.init(exsied)
-
 	const horizonalRule = new HorizonalRule()
-	horizonalRule.init(exsied)
-
 	const image = new Image()
-	image.init(exsied)
-
 	const indentAndOutdent = new IndentAndOutdent()
-	indentAndOutdent.init(exsied)
-
 	const insertMenu = new InsertMenu()
-	insertMenu.init(exsied)
-
 	const italic = new Italic()
-	italic.init(exsied)
-
 	const link = new Link()
-	link.init(exsied)
-
 	const lists = new Lists()
-	lists.init(exsied)
-
 	const quote = new Quote()
-	quote.init(exsied)
-
 	const strikethrough = new Strikethrough()
-	quote.init(exsied)
-
 	const subscriptAndSupscript = new SubscriptAndSupscript()
-	subscriptAndSupscript.init(exsied)
-
 	const table = new Table()
-	table.init(exsied)
-
 	const textAlign = new TextAlign()
-	textAlign.init(exsied)
-
 	const underline = new Underline()
-	underline.init(exsied)
-
 	const redoAndUndo = new RedoAndUndo()
-	redoAndUndo.init(exsied)
 
 	exsied.init({
 		plugins: [

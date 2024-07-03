@@ -59,7 +59,7 @@ export class Colors implements ExsiedPlugin<Exsied> {
 		this.popupIdText = this.exsied?.genPopupId(this.name, NAME_TEXT) || ''
 	}
 
-	afterExsiedInit = () => {
+	afterToolbarInit = () => {
 		this.toolbarBtnIdsBkg = this.exsied?.toolbar?.genButtonIdStd(this.name, NAME_BACKGROUND) || emptyToolBarControlIds
 		this.toolbarBtnIdsText = this.exsied?.toolbar?.genButtonIdStd(this.name, NAME_TEXT) || emptyToolBarControlIds
 	}

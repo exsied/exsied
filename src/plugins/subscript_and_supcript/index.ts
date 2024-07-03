@@ -53,7 +53,7 @@ export class SubscriptAndSupscript implements ExsiedPlugin<Exsied> {
 		// this.popupId = this.exsied?.genPopupId(this.name, 'index') || ''
 	}
 
-	afterExsiedInit = () => {
+	afterToolbarInit = () => {
 		this.toolbarBtnIdsSub = this.exsied?.toolbar?.genButtonIdStd(this.name, 'sub') || emptyToolBarControlIds
 		this.toolbarBtnIdsSup = this.exsied?.toolbar?.genButtonIdStd(this.name, 'sup') || emptyToolBarControlIds
 	}

@@ -37,7 +37,7 @@ export class Bold implements ExsiedPlugin<Exsied> {
 		this.exsied = exsied
 	}
 
-	afterExsiedInit = () => {
+	afterToolbarInit = () => {
 		this.toolbarBtnIds = this.exsied?.toolbar?.genButtonIdStd(this.name, 'index') || emptyToolBarControlIds
 	}
 

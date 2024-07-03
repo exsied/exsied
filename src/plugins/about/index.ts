@@ -67,7 +67,7 @@ export class About implements ExsiedPlugin<Exsied> {
 		this.popupId = this.exsied?.genPopupId(this.name, 'index') || ''
 	}
 
-	afterExsiedInit = () => {}
+	afterToolbarInit = () => {}
 
 	showAbout = (event: Event) => {
 		const targetEle = event.target as HTMLAnchorElement

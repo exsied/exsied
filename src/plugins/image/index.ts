@@ -59,7 +59,7 @@ export class Image implements ExsiedPlugin<Exsied> {
 		this.popupId = this.exsied?.genPopupId(this.name, 'index') || ''
 	}
 
-	afterExsiedInit = () => {
+	afterToolbarInit = () => {
 		this.toolbarBtnIds = this.exsied?.toolbar?.genButtonIdStd(this.name, 'index') || emptyToolBarControlIds
 	}
 
