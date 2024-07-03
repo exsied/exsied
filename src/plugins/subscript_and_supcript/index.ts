@@ -7,66 +7,122 @@
  *     https://github.com/exsied/exsied/blob/main/LICENSE
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
-import { CN_ACTIVE } from '../../contants'
-
+import { CN_ACTIVE, TN_SUB, TN_SUP } from '../../contants'
+import { Exsied } from '../../core'
+import { FormatTaName } from '../../core/format/tag_name'
 import { Commands, ExsiedPlugin } from '../../core/plugin'
-import { ELE_TYPE_BUTTON, Toolbar } from '../../ui/toolbar'
-import { CN_ICON_SUB, CN_ICON_SUP, PLUGIN_CONF, PLUGIN_NAME, isHighlightSub, isHighlightSup } from './base'
-import { formatTextSub, formatTextSup } from './event_handlers'
-import './styles.scss'
+import { ELE_TYPE_BUTTON, ToolBarControlIds, Toolbar, emptyToolBarControlIds } from '../../ui/toolbar'
 
-export const NAME_SUB = 'Subscript'
-export const NAME_SUP = 'Supscript'
+export type PluginConf = {
+	addToNormalToolbar: {
+		sub: boolean
+		sup: boolean
+	}
+	addToBubbleToolbar: {
+		sub: boolean
+		sup: boolean
+	}
+}
 
-const toolbarBtnIdsSub = Toolbar.genButtonIdStd(PLUGIN_NAME, NAME_SUB)
-const toolbarBtnIdsSup = Toolbar.genButtonIdStd(PLUGIN_NAME, NAME_SUP)
+export const PLUGIN_NAME = 'SubscriptAndSuperscript'
+export const CN_ICON_SUB = 'exsied-icon-sub'
+export const CN_ICON_SUP = 'exsied-icon-sup'
 
-const commands: Commands = {}
-commands[NAME_SUB] = formatTextSub
-commands[NAME_SUP] = formatTextSup
 
-export const subscriptAndSupscript: ExsiedPlugin = {
-	name: PLUGIN_NAME,
-	conf: PLUGIN_CONF,
-	commands,
 
-	toolBarControl: [
+export class SubscriptAndSupscript implements ExsiedPlugin<Exsied> {
+	private exsied: Exsied | undefined
+	// private popupId = ''
+	private toolbarBtnIdsSub: ToolBarControlIds = emptyToolBarControlIds
+	private toolbarBtnIdsSup: ToolBarControlIds = emptyToolBarControlIds
+
+	name = 'SubscriptAndSupscript'
+	conf: PluginConf = {
+		addToNormalToolbar: {
+			sub: true,
+			sup: true,
+		},
+		addToBubbleToolbar: {
+			sub: false,
+			sup: false,
+		},
+	}
+
+	init = (exsied: Exsied): void => {
+		this.exsied = exsied
+		// this.popupId = this.exsied?.genPopupId(this.name, 'index') || ''
+	}
+
+	afterExsiedInit = () => {
+		this.toolbarBtnIdsSub = this.exsied?.toolbar?.genButtonIdStd(this.name, 'sub') || emptyToolBarControlIds
+		this.toolbarBtnIdsSup = this.exsied?.toolbar?.genButtonIdStd(this.name, 'sup') || emptyToolBarControlIds
+	}
+
+	isHighlightSub = () => {
+		const allTagNamesArr = this.exsied?.cursorAllParentsTagNamesArr || []
+		return allTagNamesArr.includes(TN_SUB)
+	}
+
+	isHighlightSup = () => {
+		const allTagNamesArr = this.exsied?.cursorAllParentsTagNamesArr || []
+		return allTagNamesArr.includes(TN_SUP)
+	}
+
+	formatTextSub = () => {
+		if (this.isHighlightSub()) {
+			FormatTaName.unformatSelected(TN_SUB)
+		} else {
+			FormatTaName.formatSelected(TN_SUB)
+		}
+	}
+
+	formatTextSup = () => {
+		if (this.isHighlightSup()) {
+			FormatTaName.unformatSelected(TN_SUP)
+		} else {
+			FormatTaName.formatSelected(TN_SUP)
+		}
+	}
+	commands: Commands = {
+		formatTextSub: this.formatTextSub,
+		formatTextSup: this.formatTextSup,
+	}
+
+	toolBarControl = [
 		{
-			name: NAME_SUB,
+			name: "Subscript",
 			tooltipText: 'Subscript',
-			addToNormalToolbar: PLUGIN_CONF.addToNormalToolbar.sub,
-			addToBubbleToolbar: PLUGIN_CONF.addToBubbleToolbar.sub,
+			addToNormalToolbar: this.conf.addToNormalToolbar.sub,
+			addToBubbleToolbar: this.conf.addToBubbleToolbar.sub,
 
 			eleType: ELE_TYPE_BUTTON,
 			iconClassName: CN_ICON_SUB,
-			clickCallBack: commands[NAME_SUB],
+			clickCallBack: this.commands['formatTextSub'],
 		},
 		{
-			name: NAME_SUP,
+			name: "Supscript",
 			tooltipText: 'Supscript',
-			addToNormalToolbar: PLUGIN_CONF.addToNormalToolbar.sup,
-			addToBubbleToolbar: PLUGIN_CONF.addToBubbleToolbar.sup,
+			addToNormalToolbar: this.conf.addToNormalToolbar.sup,
+			addToBubbleToolbar: this.conf.addToBubbleToolbar.sup,
 
 			eleType: ELE_TYPE_BUTTON,
 			iconClassName: CN_ICON_SUP,
-			clickCallBack: commands[NAME_SUP],
+			clickCallBack: this.commands['formatTextSup'],
 		},
-	],
+	]
 
-	addHandler: () => {},
-	removeHandler: () => {},
-	checkHighlight: (_event) => {
-		const btnEleSub = exsied.elements.editor?.querySelector(`#${toolbarBtnIdsSub.normal}`)
+	addHandler = () => {}
+	removeHandler = () => {}
+	checkHighlight = (_event: any) => {
+		const btnEleSub = this.exsied?.elements.editor?.querySelector(`#${this.toolbarBtnIdsSub.normal}`)
 		if (btnEleSub) {
-			isHighlightSub() ? btnEleSub.classList.add(CN_ACTIVE) : btnEleSub.classList.remove(CN_ACTIVE)
+			this.isHighlightSub() ? btnEleSub.classList.add(CN_ACTIVE) : btnEleSub.classList.remove(CN_ACTIVE)
 		}
 
-		const btnEleSup = exsied.elements.editor?.querySelector(`#${toolbarBtnIdsSup.normal}`)
+		const btnEleSup = this.exsied?.elements.editor?.querySelector(`#${this.toolbarBtnIdsSup.normal}`)
 		if (btnEleSup) {
-			isHighlightSup() ? btnEleSup.classList.add(CN_ACTIVE) : btnEleSup.classList.remove(CN_ACTIVE)
+			this.isHighlightSup() ? btnEleSup.classList.add(CN_ACTIVE) : btnEleSup.classList.remove(CN_ACTIVE)
 		}
-	},
-	removeTempEle: (_event) => {},
+	}
+	removeTempEle = (_event: any) => {}
 }
-
-export default subscriptAndSupscript

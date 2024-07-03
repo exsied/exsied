@@ -29,6 +29,7 @@ import { Link } from './plugins/link'
 import { Lists } from './plugins/lists'
 import { Quote } from './plugins/quote'
 import { Strikethrough } from './plugins/strikethrough'
+import { SubscriptAndSupscript } from './plugins/subscript_and_supcript'
 import './styles/style.scss'
 
 // // plugin about
@@ -134,6 +135,9 @@ const initExsied = (containerId: string, content: string, locale?: string) => {
 	const strikethrough = new Strikethrough()
 	quote.init(exsied)
 
+	const subscriptAndSupscript = new SubscriptAndSupscript()
+	subscriptAndSupscript.init(exsied)
+
 	exsied.init({
 		plugins: [
 			bold,
@@ -151,6 +155,7 @@ const initExsied = (containerId: string, content: string, locale?: string) => {
 			lists,
 			quote,
 			strikethrough,
+			subscriptAndSupscript,
 		],
 		enableToolbarBubble: true,
 		locale: locale || 'en',
