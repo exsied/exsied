@@ -27,6 +27,7 @@ import { InsertMenu } from './plugins/insert_menu'
 import { Italic } from './plugins/italic'
 import { Link } from './plugins/link'
 import { Lists } from './plugins/lists'
+import { Quote } from './plugins/quote'
 import './styles/style.scss'
 
 // // plugin about
@@ -126,6 +127,9 @@ const initExsied = (containerId: string, content: string, locale?: string) => {
 	const lists = new Lists()
 	lists.init(exsied)
 
+	const quote = new Quote()
+	quote.init(exsied)
+
 	exsied.init({
 		plugins: [
 			// 			plugins.redoAndUndo,
@@ -162,6 +166,7 @@ const initExsied = (containerId: string, content: string, locale?: string) => {
 			italic,
 			link,
 			lists,
+			quote,
 		],
 		enableToolbarBubble: true,
 		locale: locale || 'en',
