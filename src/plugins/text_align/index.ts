@@ -8,74 +8,134 @@
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
 import { CN_ACTIVE, TN_BLOCKQUOTE, TN_Q } from '../../contants'
-
+import { Exsied } from '../../core'
+import { FormatStyle } from '../../core/format/style'
 import { Commands, ExsiedPlugin } from '../../core/plugin'
-import { ELE_TYPE_BUTTON, Toolbar } from '../../ui/toolbar'
-import { CN_ICON_CENTER, CN_ICON_LEFT, CN_ICON_RIGHT, PLUGIN_CONF, PLUGIN_NAME } from './base'
-import { formatTextCenter, formatTextLeft, formatTextRight } from './event_handlers'
-import './styles.scss'
+import { SelectionUtils } from '../../core/selection_utils'
+import { Style } from '../../types'
+import { ELE_TYPE_BUTTON, ToolBarControlIds, emptyToolBarControlIds } from '../../ui/toolbar'
 
-const NAME_CENTER = 'textCenter'
-const NAME_LEFT = 'textLeft'
-const NAME_RIGHT = 'textRight'
-const toolbarBtnIds = Toolbar.genButtonIdStd(PLUGIN_NAME, PLUGIN_NAME)
+export type PluginConf = {
+	addToNormalToolbar: {
+		center: boolean
+		left: boolean
+		right: boolean
+	}
+	addToBubbleToolbar: {
+		center: boolean
+		left: boolean
+		right: boolean
+	}
+	defaultInnerHTML: string
+}
 
-const commands: Commands = {}
-commands[NAME_CENTER] = formatTextCenter
-commands[NAME_LEFT] = formatTextLeft
-commands[NAME_RIGHT] = formatTextRight
+export const CN_ICON_CENTER = 'exsied-icon-center'
+export const CN_ICON_LEFT = 'exsied-icon-left'
+export const CN_ICON_RIGHT = 'exsied-icon-right'
 
-export const textAlign: ExsiedPlugin = {
-	name: PLUGIN_NAME,
-	conf: PLUGIN_CONF,
-	commands,
+export class TextAlign implements ExsiedPlugin<Exsied> {
+	private exsied: Exsied | undefined
+	// private popupId = ''
+	private toolbarBtnIds: ToolBarControlIds = emptyToolBarControlIds
 
-	toolBarControl: [
+	name = 'TextAlign'
+
+	conf: PluginConf = {
+		addToNormalToolbar: {
+			center: true,
+			left: true,
+			right: true,
+		},
+		addToBubbleToolbar: {
+			center: false,
+			left: false,
+			right: false,
+		},
+		defaultInnerHTML: `
+			<li></li>  
+			<li></li>  
+			<li></li>  
+			`,
+	}
+
+	init = (exsied: Exsied): void => {
+		this.exsied = exsied
+		// this.popupId = this.exsied?.genPopupId(this.name, 'index') || ''
+	}
+
+	afterExsiedInit = () => {
+		this.toolbarBtnIds = this.exsied?.toolbar?.genButtonIdStd(this.name, 'index') || emptyToolBarControlIds
+	}
+
+	format = (value: string) => {
+		const style: Style = {}
+		style.textAlign = value
+		const cursorEle = SelectionUtils.getCursorNode()
+		if (cursorEle) FormatStyle.formatBlockEle(cursorEle as HTMLElement, style as CSSStyleDeclaration)
+	}
+
+	formatTextCenter = (_event: Event) => {
+		this.format('center')
+	}
+
+	formatTextLeft = (_event: Event) => {
+		this.format('left')
+	}
+
+	formatTextRight = (_event: Event) => {
+		this.format('right')
+	}
+
+	commands: Commands = {
+		formatTextCenter: this.formatTextCenter,
+		formatTextLeft: this.formatTextLeft,
+		formatTextRight: this.formatTextRight,
+	}
+
+	toolBarControl = [
 		{
-			name: NAME_LEFT,
+			name: 'Text left',
 			tooltipText: 'Text left',
-			addToNormalToolbar: PLUGIN_CONF.addToNormalToolbar.left,
-			addToBubbleToolbar: PLUGIN_CONF.addToBubbleToolbar.left,
+			addToNormalToolbar: this.conf.addToNormalToolbar.left,
+			addToBubbleToolbar: this.conf.addToBubbleToolbar.left,
 
 			eleType: ELE_TYPE_BUTTON,
 			iconClassName: CN_ICON_LEFT,
-			clickCallBack: commands[NAME_LEFT],
+			clickCallBack: this.commands['formatTextLeft'],
 		},
 		{
-			name: NAME_CENTER,
+			name: 'Text center',
 			tooltipText: 'Text center',
-			addToNormalToolbar: PLUGIN_CONF.addToNormalToolbar.center,
-			addToBubbleToolbar: PLUGIN_CONF.addToBubbleToolbar.center,
+			addToNormalToolbar: this.conf.addToNormalToolbar.center,
+			addToBubbleToolbar: this.conf.addToBubbleToolbar.center,
 
 			eleType: ELE_TYPE_BUTTON,
 			iconClassName: CN_ICON_CENTER,
-			clickCallBack: commands[NAME_CENTER],
+			clickCallBack: this.commands['formatTextCenter'],
 		},
 		{
-			name: NAME_RIGHT,
+			name: 'Text right',
 			tooltipText: 'Text right',
-			addToNormalToolbar: PLUGIN_CONF.addToNormalToolbar.right,
-			addToBubbleToolbar: PLUGIN_CONF.addToBubbleToolbar.right,
+			addToNormalToolbar: this.conf.addToNormalToolbar.right,
+			addToBubbleToolbar: this.conf.addToBubbleToolbar.right,
 
 			eleType: ELE_TYPE_BUTTON,
 			iconClassName: CN_ICON_RIGHT,
-			clickCallBack: commands[NAME_RIGHT],
+			clickCallBack: this.commands['formatTextRight'],
 		},
-	],
+	]
 
-	addHandler: () => {},
-	removeHandler: () => {},
-	checkHighlight: (_event) => {
-		const btnEle = exsied.elements.editor?.querySelector(`#${toolbarBtnIds.normal}`)
+	addHandler = () => {}
+	removeHandler = () => {}
+	checkHighlight = (_event: any) => {
+		const btnEle = this.exsied?.elements.editor?.querySelector(`#${this.toolbarBtnIds.normal}`)
 
 		if (btnEle) {
-			const allTagNamesArr = exsied.cursorAllParentsTagNamesArr
+			const allTagNamesArr = this.exsied?.cursorAllParentsTagNamesArr || []
 			allTagNamesArr.includes(TN_Q) || allTagNamesArr.includes(TN_BLOCKQUOTE)
 				? btnEle.classList.add(CN_ACTIVE)
 				: btnEle.classList.remove(CN_ACTIVE)
 		}
-	},
-	removeTempEle: (_event) => {},
+	}
+	removeTempEle = (_event: any) => {}
 }
-
-export default textAlign

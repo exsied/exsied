@@ -31,6 +31,7 @@ import { Quote } from './plugins/quote'
 import { Strikethrough } from './plugins/strikethrough'
 import { SubscriptAndSupscript } from './plugins/subscript_and_supcript'
 import { Table } from './plugins/table'
+import { TextAlign } from './plugins/text_align'
 import './styles/style.scss'
 
 // // plugin about
@@ -142,6 +143,9 @@ const initExsied = (containerId: string, content: string, locale?: string) => {
 	const table = new Table()
 	table.init(exsied)
 
+	const textAlign = new TextAlign()
+	textAlign.init(exsied)
+
 	exsied.init({
 		plugins: [
 			bold,
@@ -160,7 +164,8 @@ const initExsied = (containerId: string, content: string, locale?: string) => {
 			quote,
 			strikethrough,
 			subscriptAndSupscript,
-			table
+			table,
+			textAlign,
 		],
 		enableToolbarBubble: true,
 		locale: locale || 'en',
