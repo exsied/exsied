@@ -23,8 +23,9 @@ import { Headings } from './plugins/headings'
 import { HorizonalRule } from './plugins/horizontal_rule'
 import { Image } from './plugins/image'
 import { IndentAndOutdent } from './plugins/indent_and_outdent'
-import {InsertMenu}  from './plugins/insert_menu'
+import { InsertMenu } from './plugins/insert_menu'
 import { Italic } from './plugins/italic'
+import { Link } from './plugins/link'
 import './styles/style.scss'
 
 // // plugin about
@@ -118,6 +119,9 @@ const initExsied = (containerId: string, content: string, locale?: string) => {
 	const italic = new Italic()
 	italic.init(exsied)
 
+	const link = new Link()
+	link.init(exsied)
+
 	exsied.init({
 		plugins: [
 			// 			plugins.redoAndUndo,
@@ -151,7 +155,8 @@ const initExsied = (containerId: string, content: string, locale?: string) => {
 			image,
 			indentAndOutdent,
 			insertMenu,
-			italic
+			italic,
+			link,
 		],
 		enableToolbarBubble: true,
 		locale: locale || 'en',
