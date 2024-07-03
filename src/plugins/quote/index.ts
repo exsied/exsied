@@ -24,7 +24,7 @@ export const PLUGIN_NAME = 'Quote'
 export const CN_ICON = 'exsied-icon-quote'
 
 export class Quote implements ExsiedPlugin<Exsied> {
-	private exsied: Exsied | undefined
+	private exsied: Exsied = new Exsied('')
 	// private popupId = ''
 	private toolbarBtnIds: ToolBarControlIds = emptyToolBarControlIds
 	name = 'Quote'
@@ -41,7 +41,7 @@ export class Quote implements ExsiedPlugin<Exsied> {
 	}
 
 	afterToolbarInit = () => {
-		this.toolbarBtnIds = this.exsied?.toolbar?.genButtonIdStd(this.name, 'index') || emptyToolBarControlIds
+		this.toolbarBtnIds = this.exsied.toolbar.genButtonIdStd(this.name, 'index') || emptyToolBarControlIds
 	}
 
 	insertQuote = () => {
@@ -50,7 +50,7 @@ export class Quote implements ExsiedPlugin<Exsied> {
 		const ele = document.createElement(TN_Q)
 		ele.innerHTML = selectedEles && selectedEles.innerHTML ? selectedEles.innerHTML : this.conf.defaultInnerHTML
 
-		if (this.exsied?.elements.workplace) SelectionUtils.addElementBySelection(this.exsied.elements.workplace, ele)
+		if (this.exsied?.elements.workplace) this.exsied.selectionUtils.addElementBySelection(this.exsied.elements.workplace, ele)
 	}
 
 	commands: Commands = {
@@ -74,7 +74,7 @@ export class Quote implements ExsiedPlugin<Exsied> {
 	addHandler = () => {}
 	removeHandler = () => {}
 	checkHighlight = (_event: any) => {
-		const btnEle = this.exsied?.elements.editor?.querySelector(`#${this.toolbarBtnIds.normal}`)
+		const btnEle = this.exsied?.elements.editor.querySelector(`#${this.toolbarBtnIds.normal}`)
 
 		if (btnEle) {
 			const allTagNamesArr = this.exsied?.cursorAllParentsTagNamesArr || []

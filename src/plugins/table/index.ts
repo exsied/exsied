@@ -32,7 +32,7 @@ export const DATA_ROW_INDEX = 'data-row-index'
 export const DATA_COLUNM_INDEX = 'data-column-index'
 
 export class Table implements ExsiedPlugin<Exsied> {
-	private exsied: Exsied | undefined
+	private exsied: Exsied = new Exsied('')
 	// private popupId = ''
 	private toolbarBtnIds: ToolBarControlIds = emptyToolBarControlIds
 
@@ -50,7 +50,7 @@ export class Table implements ExsiedPlugin<Exsied> {
 	}
 
 	afterToolbarInit = () => {
-		this.toolbarBtnIds = this.exsied?.toolbar?.genButtonIdStd(this.name, 'index') || emptyToolBarControlIds
+		this.toolbarBtnIds = this.exsied.toolbar.genButtonIdStd(this.name, 'index') || emptyToolBarControlIds
 	}
 
 	insertTable = () => {
@@ -68,7 +68,7 @@ export class Table implements ExsiedPlugin<Exsied> {
 			</tbody>
 			`
 
-		if (this.exsied?.elements.workplace) SelectionUtils.addElementBySelection(this.exsied.elements.workplace, ele)
+		if (this.exsied?.elements.workplace) this.exsied.selectionUtils.addElementBySelection(this.exsied.elements.workplace, ele)
 	}
 
 	commands: Commands = { insertTable: this.insertTable }
@@ -92,7 +92,7 @@ export class Table implements ExsiedPlugin<Exsied> {
 	}
 	removeHandler = () => {}
 	checkHighlight = (_event: any) => {
-		const btnEle = this.exsied?.elements.editor?.querySelector(`#${this.toolbarBtnIds.normal}`)
+		const btnEle = this.exsied?.elements.editor.querySelector(`#${this.toolbarBtnIds.normal}`)
 
 		if (btnEle) {
 			const allTagNamesArr = this.exsied?.cursorAllParentsTagNamesArr || []

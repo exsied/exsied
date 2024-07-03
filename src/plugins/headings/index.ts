@@ -35,7 +35,7 @@ export const OPTION_HEADING5 = TN_H5
 export const OPTION_HEADING6 = TN_H6
 
 export class Headings implements ExsiedPlugin<Exsied> {
-	private exsied: Exsied | undefined
+	private exsied: Exsied = new Exsied('')
 	private popupId = ''
 	private toolbarBtnIds: ToolBarControlIds = emptyToolBarControlIds
 
@@ -95,7 +95,7 @@ export class Headings implements ExsiedPlugin<Exsied> {
 	}
 
 	afterToolbarInit = () => {
-		this.toolbarBtnIds = this.exsied?.toolbar?.genButtonIdStd(this.name, 'index') || emptyToolBarControlIds
+		this.toolbarBtnIds = this.exsied.toolbar.genButtonIdStd(this.name, 'index') || emptyToolBarControlIds
 	}
 
 	formatParagraph = (_event: Event) => {
@@ -204,6 +204,6 @@ export class Headings implements ExsiedPlugin<Exsied> {
 	}
 	removeTempEle = (_event: any) => {
 		const dropDownId = this.exsied?.dropdownMenu?.genDropdownId(this.toolbarBtnIds.normal) || ''
-		this.exsied?.toolbar?.hideDropdowntList(dropDownId)
+		this.exsied.toolbar.hideDropdowntList(dropDownId)
 	}
 }

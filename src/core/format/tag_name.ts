@@ -7,6 +7,7 @@
  *     https://github.com/exsied/exsied/blob/main/LICENSE
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
+import { Exsied } from '..'
 import { TN_SPAN } from '../../contants'
 import { HTMLTagNames } from '../../types'
 import { SelectionUtils, SplitElementRes } from '../selection_utils'

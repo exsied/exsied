@@ -34,7 +34,7 @@ export const CN_ICON_LEFT = 'exsied-icon-left'
 export const CN_ICON_RIGHT = 'exsied-icon-right'
 
 export class TextAlign implements ExsiedPlugin<Exsied> {
-	private exsied: Exsied | undefined
+	private exsied: Exsied = new Exsied('')
 	// private popupId = ''
 	private toolbarBtnIds: ToolBarControlIds = emptyToolBarControlIds
 
@@ -64,7 +64,7 @@ export class TextAlign implements ExsiedPlugin<Exsied> {
 	}
 
 	afterToolbarInit = () => {
-		this.toolbarBtnIds = this.exsied?.toolbar?.genButtonIdStd(this.name, 'index') || emptyToolBarControlIds
+		this.toolbarBtnIds = this.exsied.toolbar.genButtonIdStd(this.name, 'index') || emptyToolBarControlIds
 	}
 
 	format = (value: string) => {
@@ -128,7 +128,7 @@ export class TextAlign implements ExsiedPlugin<Exsied> {
 	addHandler = () => {}
 	removeHandler = () => {}
 	checkHighlight = (_event: any) => {
-		const btnEle = this.exsied?.elements.editor?.querySelector(`#${this.toolbarBtnIds.normal}`)
+		const btnEle = this.exsied?.elements.editor.querySelector(`#${this.toolbarBtnIds.normal}`)
 
 		if (btnEle) {
 			const allTagNamesArr = this.exsied?.cursorAllParentsTagNamesArr || []

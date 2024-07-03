@@ -49,7 +49,7 @@ export const NAME_REDO = 'Redo'
 export const NAME_UNDO = 'Undo'
 
 export class RedoAndUndo implements ExsiedPlugin<Exsied> {
-	private exsied: Exsied | undefined
+	private exsied: Exsied = new Exsied('')
 	// private popupId = ''
 	private toolbarBtnIds: ToolBarControlIds = emptyToolBarControlIds
 
@@ -71,7 +71,7 @@ export class RedoAndUndo implements ExsiedPlugin<Exsied> {
 	}
 
 	afterToolbarInit = () => {
-		this.toolbarBtnIds = this.exsied?.toolbar?.genButtonIdStd(this.name, 'index') || emptyToolBarControlIds
+		this.toolbarBtnIds = this.exsied.toolbar.genButtonIdStd(this.name, 'index') || emptyToolBarControlIds
 	}
 
 	update = () => {

@@ -7,6 +7,7 @@
  *     https://github.com/exsied/exsied/blob/main/LICENSE
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
+import { Exsied } from '.'
 import { TN_SPAN, TN_TEMP } from '../contants'
 import { HTMLTagNames } from '../types'
 import { tagNameLc } from '../utils'
@@ -19,33 +20,68 @@ export type SplitElementRes = {
 	lastPart: HTMLElement
 }
 
-export class SelectionUtils {
-	static getRange = () => {
-		return exsied.range
+export class SelectionUtilsInExsied {
+	private exsied: Exsied | null = null
+
+	constructor(exsied: Exsied) {
+		this.exsied = exsied
 	}
 
-	static setRange = (r: Range) => {
-		exsied.range = r
-	}
+	// getRange = () => {
+	// 	if (this.exsied) return this.exsied.range
+	// 	return null
+	// }
 
-	static backupSelection = () => {
+	// setRange = (r: Range) => {
+	// 	if (this.exsied) this.exsied.range = r
+	// }
+
+	backupSelection = () => {
 		const selection = window.getSelection()
 		if (!selection) return
 		if (selection.rangeCount > 0) {
-			exsied.range = selection.getRangeAt(0)
+			if (this.exsied) this.exsied.range = selection.getRangeAt(0)
 		}
 	}
 
-	static restoreSelection = () => {
+	restoreSelection = () => {
 		const selection = window.getSelection()
 		if (!selection) return
 
 		selection.removeAllRanges()
-		if (exsied.range) {
-			selection.addRange(exsied.range)
+		if (this.exsied && this.exsied.range) {
+			selection.addRange(this.exsied.range)
 		}
 	}
 
+	addElementBySelection = (rootNode: HTMLElement, node: Node) => {
+		if (!rootNode || !rootNode.contentEditable || rootNode.contentEditable !== 'true') {
+			throw new Error('The provided element is not editable or does not exist.')
+		}
+
+		let range: Range | null = null
+		const sel = window.getSelection()
+		if (sel && sel.rangeCount > 0) {
+			range = sel.getRangeAt(0)
+			range.deleteContents()
+		}
+
+		if (!range) {
+			range = document.createRange()
+			range.selectNodeContents(rootNode)
+			range.collapse(true)
+		}
+
+		if (this.exsied) {
+			const workplaceEle = this.exsied.elements.workplace
+			if (workplaceEle.contains(range.startContainer) && workplaceEle.contains(range.endContainer)) {
+				range.insertNode(node)
+			}
+		}
+	}
+}
+
+export class SelectionUtils {
 	static getSelectedEles = () => {
 		const selection = window.getSelection()
 		if (!selection || selection.rangeCount === 0) return
@@ -94,30 +130,6 @@ export class SelectionUtils {
 				ele.appendChild(firstFragment.firstChild.cloneNode(true))
 				firstFragment.firstChild.remove()
 			}
-		}
-	}
-
-	static addElementBySelection = (rootNode: HTMLElement, node: Node) => {
-		if (!rootNode || !rootNode.contentEditable || rootNode.contentEditable !== 'true') {
-			throw new Error('The provided element is not editable or does not exist.')
-		}
-
-		let range: Range | null = null
-		const sel = window.getSelection()
-		if (sel && sel.rangeCount > 0) {
-			range = sel.getRangeAt(0)
-			range.deleteContents()
-		}
-
-		if (!range) {
-			range = document.createRange()
-			range.selectNodeContents(rootNode)
-			range.collapse(true)
-		}
-
-		const workplaceEle = exsied.elements.workplace
-		if (workplaceEle.contains(range.startContainer) && workplaceEle.contains(range.endContainer)) {
-			range.insertNode(node)
 		}
 	}
 

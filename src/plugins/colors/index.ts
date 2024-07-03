@@ -34,7 +34,7 @@ export const CN_ICON_BKG = 'exsied-icon-background-color'
 export const CN_ICON_TEXT = 'exsied-icon-text-color'
 
 export class Colors implements ExsiedPlugin<Exsied> {
-	private exsied: Exsied | undefined
+	private exsied: Exsied = new Exsied('')
 	private toolbarBtnIdsBkg: ToolBarControlIds = emptyToolBarControlIds
 	private toolbarBtnIdsText: ToolBarControlIds = emptyToolBarControlIds
 	private popupIdBkg = ''
@@ -60,13 +60,13 @@ export class Colors implements ExsiedPlugin<Exsied> {
 	}
 
 	afterToolbarInit = () => {
-		this.toolbarBtnIdsBkg = this.exsied?.toolbar?.genButtonIdStd(this.name, NAME_BACKGROUND) || emptyToolBarControlIds
-		this.toolbarBtnIdsText = this.exsied?.toolbar?.genButtonIdStd(this.name, NAME_TEXT) || emptyToolBarControlIds
+		this.toolbarBtnIdsBkg = this.exsied.toolbar.genButtonIdStd(this.name, NAME_BACKGROUND) || emptyToolBarControlIds
+		this.toolbarBtnIdsText = this.exsied.toolbar.genButtonIdStd(this.name, NAME_TEXT) || emptyToolBarControlIds
 	}
 
 	showColorPickerBkg = (event: Event) => {
 		const picker = new ColorPicker(this.popupIdBkg, this.name, this.conf.presetColors, (color: string) => {
-			SelectionUtils.restoreSelection()
+			this.exsied.selectionUtils.restoreSelection()
 			if (color) {
 				const style: Style = {}
 				style.backgroundColor = color
@@ -79,7 +79,7 @@ export class Colors implements ExsiedPlugin<Exsied> {
 
 	showColorPickerText = (event: Event) => {
 		const picker = new ColorPicker(this.popupIdText, this.name, this.conf.presetColors, (color: string) => {
-			SelectionUtils.restoreSelection()
+			this.exsied.selectionUtils.restoreSelection()
 			if (color) {
 				const style: Style = {}
 				style.color = color
@@ -122,19 +122,19 @@ export class Colors implements ExsiedPlugin<Exsied> {
 		const btnEleBkg = document.getElementById(this.toolbarBtnIdsBkg?.normal)
 		if (btnEleBkg) {
 			btnEleBkg.addEventListener('mouseover', () => {
-				SelectionUtils.backupSelection()
+				this.exsied.selectionUtils.backupSelection()
 			})
 		}
 		const btnEleText = document.getElementById(this.toolbarBtnIdsText.normal)
 		if (btnEleText) {
 			btnEleText.addEventListener('mouseover', () => {
-				SelectionUtils.backupSelection()
+				this.exsied.selectionUtils.backupSelection()
 			})
 		}
 	}
 	removeHandler = () => {}
 	checkHighlight = (event: any) => {
-		const btnEleBkg = this.exsied?.elements.editor?.querySelector(`#${this.toolbarBtnIdsBkg.normal}`) as HTMLElement
+		const btnEleBkg = this.exsied?.elements.editor.querySelector(`#${this.toolbarBtnIdsBkg.normal}`) as HTMLElement
 		if (btnEleBkg) {
 			const targetEle = event.target as HTMLElement
 			const backgroundColor = DomUtils.getParentsStyleByKey(targetEle, 'background-color')
@@ -144,7 +144,7 @@ export class Colors implements ExsiedPlugin<Exsied> {
 			} as unknown as CSSStyleDeclaration)
 		}
 
-		const btnEleText = this.exsied?.elements.editor?.querySelector(`#${this.toolbarBtnIdsText.normal}`) as HTMLElement
+		const btnEleText = this.exsied?.elements.editor.querySelector(`#${this.toolbarBtnIdsText.normal}`) as HTMLElement
 		if (btnEleText) {
 			const targetEle = event.target as HTMLElement
 			const color = DomUtils.getParentsStyleByKey(targetEle, 'color')

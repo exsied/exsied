@@ -36,7 +36,7 @@ export const CN_ICON = 'exsied-icon-about'
 export const CN_ROOT = 'exsied-about-view'
 
 export class About implements ExsiedPlugin<Exsied> {
-	private exsied: Exsied | undefined
+	private exsied: Exsied = new Exsied('')
 	private popupId = ''
 
 	name = 'About'

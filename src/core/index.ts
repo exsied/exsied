@@ -25,6 +25,7 @@ import { bindEventClassName } from './events'
 import { HotkeyUtils, ModifierKeys } from './hotkey_utils'
 import { I18N } from './i18n'
 import { CommandFunc, ExsiedPlugin, HOOK_AFTER_INIT, HOOK_AFTER_SET_HTML, HOOK_BEFORE_GET_HTML } from './plugin'
+import { SelectionUtilsInExsied } from './selection_utils'
 
 export type Hooks = {
 	onInput?: (exsied: Exsied, event: Event) => void
@@ -45,10 +46,10 @@ export type ExsiedInitConf = {
 }
 
 export type ExsiedElements = {
-	editor: HTMLElement | null
-	toolbarMain: HTMLElement | null
-	toolbarBubble: HTMLElement | null
-	workplace: HTMLElement | null
+	editor: HTMLElement
+	toolbarMain: HTMLElement
+	toolbarBubble: HTMLElement
+	workplace: HTMLElement
 }
 
 export type ExsiedElementsI18n = {
@@ -59,18 +60,21 @@ export type ExsiedElementsI18n = {
 	getLocaleNames: () => string[]
 }
 
+const emptyEle = document.createElement('empty-element')
+
 export class Exsied {
 	containerId = ''
 	enableToolbarBubble = false
 	elements: ExsiedElements = {
-		editor: null,
-		toolbarMain: null,
-		toolbarBubble: null,
-		workplace: null,
+		editor: emptyEle,
+		toolbarMain: emptyEle,
+		toolbarBubble: emptyEle,
+		workplace: emptyEle,
 	}
-	toolbar: Toolbar | null = null
-	dropdownMenu: DropdownMenu | null = null
 	plugins: ExsiedPlugin<Exsied>[] = []
+	toolbar: Toolbar = new Toolbar(this)
+	dropdownMenu = new DropdownMenu(this)
+	selectionUtils = new SelectionUtilsInExsied(this)
 
 	constructor(containerId: string) {
 		this.containerId = containerId
@@ -105,9 +109,6 @@ export class Exsied {
 			}
 		})
 
-		this.toolbar = new Toolbar(this)
-		this.dropdownMenu = new DropdownMenu(this)
-
 		I18N.setBuiltInLocales()
 		conf.locale ? I18N.setLocale(conf.locale) : I18N.setLocale('en')
 
@@ -123,7 +124,7 @@ export class Exsied {
 		if (conf.hooks) {
 			if (conf.hooks.onInput) {
 				const hooksOnInput = conf.hooks.onInput
-				this.elements.workplace?.addEventListener('input', (event) => {
+				this.elements.workplace.addEventListener('input', (event) => {
 					hooksOnInput(this, event)
 				})
 			}
@@ -156,7 +157,7 @@ export class Exsied {
 		if (!workplaceEle) throw new Error('The exsied.elements.workplace does not exist.')
 		this.elements.workplace = workplaceEle as HTMLElement
 
-		this.toolbar?.initDropdownElements()
+		this.toolbar.initDropdownElements()
 
 		this.bindAllEvents()
 
@@ -186,10 +187,10 @@ export class Exsied {
 	bindAllEvents() {
 		document.body.addEventListener('click', bindEventClassName)
 
-		this.toolbar?.bindBtnEvents()
+		this.toolbar.bindBtnEvents()
 
 		if (HotkeyUtils.hasHotkeys()) {
-			this.elements.workplace?.addEventListener('keydown', (event) => {
+			this.elements.workplace.addEventListener('keydown', (event) => {
 				HotkeyUtils.exec(event)
 			})
 		}
@@ -198,10 +199,10 @@ export class Exsied {
 	unbindAllEvent() {
 		document.body.removeEventListener('click', bindEventClassName)
 
-		this.toolbar?.unBindBtnEvents()
+		this.toolbar.unBindBtnEvents()
 
 		if (HotkeyUtils.hasHotkeys()) {
-			this.elements.workplace?.removeEventListener('keydown', (event) => {
+			this.elements.workplace.removeEventListener('keydown', (event) => {
 				HotkeyUtils.exec(event)
 			})
 		}
@@ -253,7 +254,7 @@ export class Exsied {
 	destroy() {
 		this.unbindAllEvent() // TODO: delete
 
-		this.elements.editor?.remove()
+		this.elements.editor.remove()
 	}
 
 	range: Range | null = null

@@ -31,7 +31,7 @@ export const CN_INSERT_MENU_ITEM = 'exsied-toolbar-insert-menu-item'
 export const dataName = 'data-name'
 
 export class InsertMenu implements ExsiedPlugin<Exsied> {
-	private exsied: Exsied | undefined
+	private exsied: Exsied = new Exsied('')
 	// private popupId = ''
 	private toolbarBtnIds: ToolBarControlIds = emptyToolBarControlIds
 
@@ -47,7 +47,7 @@ export class InsertMenu implements ExsiedPlugin<Exsied> {
 	}
 
 	afterToolbarInit = () => {
-		this.toolbarBtnIds = this.exsied?.toolbar?.genButtonIdStd(this.name, 'index') || emptyToolBarControlIds
+		this.toolbarBtnIds = this.exsied.toolbar.genButtonIdStd(this.name, 'index') || emptyToolBarControlIds
 	}
 
 	showInsertMenu = (event: Event) => {
@@ -57,7 +57,7 @@ export class InsertMenu implements ExsiedPlugin<Exsied> {
 		let contentHtml = ``
 		const eventMap: { [key: string]: ClickEventHandler } = {}
 
-		const insertElementButtons = this.exsied?.toolbar?.insertElementButtons || []
+		const insertElementButtons = this.exsied.toolbar.insertElementButtons || []
 
 		for (const item of insertElementButtons) {
 			const name = `${item.pluginName}___${item.ctrlName}`
@@ -93,7 +93,7 @@ export class InsertMenu implements ExsiedPlugin<Exsied> {
 			if (name && eventMap[name]) {
 				const itemEle = item as HTMLElement
 				itemEle.addEventListener('click', () => {
-					SelectionUtils.restoreSelection()
+					this.exsied.selectionUtils.restoreSelection()
 					eventMap[name](event as MouseEvent)
 				})
 			}
@@ -124,7 +124,7 @@ export class InsertMenu implements ExsiedPlugin<Exsied> {
 		const btnEle = document.getElementById(this.toolbarBtnIds.normal)
 		if (btnEle) {
 			btnEle.addEventListener('mouseover', () => {
-				SelectionUtils.backupSelection()
+				this.exsied.selectionUtils.backupSelection()
 			})
 		}
 	}

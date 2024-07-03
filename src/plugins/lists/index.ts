@@ -37,7 +37,7 @@ const NAME_OL = 'OrderedList'
 const NAME_UL = 'UnorderedList'
 
 export class Lists implements ExsiedPlugin<Exsied> {
-	private exsied: Exsied | undefined
+	private exsied: Exsied = new Exsied('')
 	// private popupId = ''
 	private toolbarBtnIds: ToolBarControlIds = emptyToolBarControlIds
 
@@ -68,7 +68,7 @@ export class Lists implements ExsiedPlugin<Exsied> {
 	}
 
 	afterToolbarInit = () => {
-		this.toolbarBtnIds = this.exsied?.toolbar?.genButtonIdStd(this.name, 'index') || emptyToolBarControlIds
+		this.toolbarBtnIds = this.exsied.toolbar.genButtonIdStd(this.name, 'index') || emptyToolBarControlIds
 	}
 
 	insert = (tagName: typeof TN_OL | typeof TN_UL) => {
@@ -77,7 +77,7 @@ export class Lists implements ExsiedPlugin<Exsied> {
 		const ele = document.createElement(tagName)
 		ele.innerHTML = selectedEles && selectedEles.innerHTML ? selectedEles.innerHTML : this.conf.defaultInnerHTML
 
-		if (this.exsied?.elements.workplace) SelectionUtils.addElementBySelection(this.exsied.elements.workplace, ele)
+		if (this.exsied?.elements.workplace) this.exsied.selectionUtils.addElementBySelection(this.exsied.elements.workplace, ele)
 	}
 
 	commands: Commands = {
@@ -117,7 +117,7 @@ export class Lists implements ExsiedPlugin<Exsied> {
 	addHandler = () => {}
 	removeHandler = () => {}
 	checkHighlight = (_event: any) => {
-		const btnEle = this.exsied?.elements.editor?.querySelector(`#${this.toolbarBtnIds.normal}`)
+		const btnEle = this.exsied?.elements.editor.querySelector(`#${this.toolbarBtnIds.normal}`)
 
 		if (btnEle) {
 			const allTagNamesArr = this.exsied?.cursorAllParentsTagNamesArr || []

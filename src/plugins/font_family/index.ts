@@ -20,7 +20,7 @@ export type PluginConf = {
 }
 
 export class FontFamily implements ExsiedPlugin<Exsied> {
-	private exsied: Exsied | undefined
+	private exsied: Exsied = new Exsied('')
 	// private popupId = ''
 	private toolbarBtnIds: ToolBarControlIds = emptyToolBarControlIds
 
@@ -44,7 +44,7 @@ export class FontFamily implements ExsiedPlugin<Exsied> {
 	}
 
 	afterToolbarInit = () => {
-		this.toolbarBtnIds = this.exsied?.toolbar?.genButtonIdStd(this.name, 'index') || emptyToolBarControlIds
+		this.toolbarBtnIds = this.exsied.toolbar.genButtonIdStd(this.name, 'index') || emptyToolBarControlIds
 	}
 
 	formatFontFamily = (event: Event) => {
@@ -80,6 +80,6 @@ export class FontFamily implements ExsiedPlugin<Exsied> {
 	}
 	removeTempEle = (_event: any) => {
 		const dropDownId = this.exsied?.dropdownMenu?.genDropdownId(this.toolbarBtnIds.normal) || ''
-		this.exsied?.toolbar?.hideDropdowntList(dropDownId)
+		this.exsied.toolbar.hideDropdowntList(dropDownId)
 	}
 }

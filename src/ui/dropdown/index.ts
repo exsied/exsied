@@ -89,7 +89,7 @@ export class DropdownMenu {
 		})
 
 		triggerEle.addEventListener('mouseover', () => {
-			SelectionUtils.backupSelection()
+			this.exsied.selectionUtils.backupSelection()
 		})
 
 		const listEle = document.createElement(TN_DIV)
@@ -152,7 +152,7 @@ export class DropdownMenu {
 				}
 
 				// Manually triggering the change event to execute the modification.
-				SelectionUtils.restoreSelection()
+				this.exsied.selectionUtils.restoreSelection()
 				const changeEvent = new Event('change', { bubbles: true })
 				select.dispatchEvent(changeEvent)
 			})

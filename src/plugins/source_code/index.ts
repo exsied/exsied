@@ -36,7 +36,7 @@ export const NAME_SOURCE_CODE_VIEW = 'sourceCodeView'
 export const NAME_INSERT_SOURCE_CODE_BOCK = 'insertSourceCodeBock'
 
 export class SourceCode implements ExsiedPlugin<Exsied> {
-	private exsied: Exsied | undefined
+	private exsied: Exsied = new Exsied('')
 	// private popupId = ''
 	private toolbarBtnIds: ToolBarControlIds = emptyToolBarControlIds
 
@@ -69,7 +69,7 @@ export class SourceCode implements ExsiedPlugin<Exsied> {
 	}
 
 	afterToolbarInit = () => {
-		this.toolbarBtnIds = this.exsied?.toolbar?.genButtonIdStd(this.name, 'index') || emptyToolBarControlIds
+		this.toolbarBtnIds = this.exsied.toolbar.genButtonIdStd(this.name, 'index') || emptyToolBarControlIds
 	}
 
 	toggleSourceView = () => {
@@ -89,7 +89,7 @@ export class SourceCode implements ExsiedPlugin<Exsied> {
 		workplaceEle.after(sourceCodeWorkplaceEle)
 		workplaceEle.style.display = 'none'
 
-		this.exsied?.toolbar?.genToolbarExt([
+		this.exsied.toolbar.genToolbarExt([
 			{
 				name: 'exit',
 				buttonText: 'Exit',
@@ -109,7 +109,7 @@ export class SourceCode implements ExsiedPlugin<Exsied> {
 						workplaceEle.innerHTML = sourceCodeWorkplaceEle.textContent || ''
 					}
 
-					this.exsied?.toolbar?.hideNormalToolbar(false)
+					this.exsied.toolbar.hideNormalToolbar(false)
 				},
 			},
 		])
@@ -128,7 +128,7 @@ export class SourceCode implements ExsiedPlugin<Exsied> {
 		const text = SelectionUtils.getSelectedText()
 		codeEle.textContent = text ? text : this.conf.defaultText
 		ele.appendChild(codeEle)
-		if (this.exsied?.elements.workplace) SelectionUtils.addElementBySelection(this.exsied?.elements.workplace, ele)
+		if (this.exsied?.elements.workplace) this.exsied.selectionUtils.addElementBySelection(this.exsied?.elements.workplace, ele)
 
 		renderElement(this.exsied, codeEle)
 	}

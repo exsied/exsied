@@ -42,7 +42,7 @@ export type PluginConf = {
 }
 
 export class Image implements ExsiedPlugin<Exsied> {
-	private exsied: Exsied | undefined
+	private exsied: Exsied = new Exsied('')
 	private popupId = ''
 	private toolbarBtnIds: ToolBarControlIds = emptyToolBarControlIds
 	name = 'Image'
@@ -60,14 +60,14 @@ export class Image implements ExsiedPlugin<Exsied> {
 	}
 
 	afterToolbarInit = () => {
-		this.toolbarBtnIds = this.exsied?.toolbar?.genButtonIdStd(this.name, 'index') || emptyToolBarControlIds
+		this.toolbarBtnIds = this.exsied.toolbar.genButtonIdStd(this.name, 'index') || emptyToolBarControlIds
 	}
 
 	insertImage() {
 		const ele = document.createElement(TN_IMG)
 		ele.src = this.conf.defaultSrc
 		ele.alt = this.conf.defaultAlt
-		if (this.exsied?.elements.workplace) SelectionUtils.addElementBySelection(this.exsied?.elements.workplace, ele)
+		if (this.exsied?.elements.workplace) this.exsied.selectionUtils.addElementBySelection(this.exsied?.elements.workplace, ele)
 	}
 
 	commands: Commands = {
@@ -94,7 +94,7 @@ export class Image implements ExsiedPlugin<Exsied> {
 	}
 	removeHandler = () => {}
 	checkHighlight = (_event: any) => {
-		const btnEle = this.exsied?.elements.editor?.querySelector(`#${this.toolbarBtnIds.normal}`)
+		const btnEle = this.exsied?.elements.editor.querySelector(`#${this.toolbarBtnIds.normal}`)
 
 		if (btnEle) {
 			const allTagNamesArr = this.exsied?.cursorAllParentsTagNamesArr || []

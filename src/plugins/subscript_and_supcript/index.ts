@@ -31,7 +31,7 @@ export const CN_ICON_SUP = 'exsied-icon-sup'
 
 
 export class SubscriptAndSupscript implements ExsiedPlugin<Exsied> {
-	private exsied: Exsied | undefined
+	private exsied: Exsied = new Exsied('')
 	// private popupId = ''
 	private toolbarBtnIdsSub: ToolBarControlIds = emptyToolBarControlIds
 	private toolbarBtnIdsSup: ToolBarControlIds = emptyToolBarControlIds
@@ -54,8 +54,8 @@ export class SubscriptAndSupscript implements ExsiedPlugin<Exsied> {
 	}
 
 	afterToolbarInit = () => {
-		this.toolbarBtnIdsSub = this.exsied?.toolbar?.genButtonIdStd(this.name, 'sub') || emptyToolBarControlIds
-		this.toolbarBtnIdsSup = this.exsied?.toolbar?.genButtonIdStd(this.name, 'sup') || emptyToolBarControlIds
+		this.toolbarBtnIdsSub = this.exsied.toolbar.genButtonIdStd(this.name, 'sub') || emptyToolBarControlIds
+		this.toolbarBtnIdsSup = this.exsied.toolbar.genButtonIdStd(this.name, 'sup') || emptyToolBarControlIds
 	}
 
 	isHighlightSub = () => {
@@ -114,12 +114,12 @@ export class SubscriptAndSupscript implements ExsiedPlugin<Exsied> {
 	addHandler = () => {}
 	removeHandler = () => {}
 	checkHighlight = (_event: any) => {
-		const btnEleSub = this.exsied?.elements.editor?.querySelector(`#${this.toolbarBtnIdsSub.normal}`)
+		const btnEleSub = this.exsied?.elements.editor.querySelector(`#${this.toolbarBtnIdsSub.normal}`)
 		if (btnEleSub) {
 			this.isHighlightSub() ? btnEleSub.classList.add(CN_ACTIVE) : btnEleSub.classList.remove(CN_ACTIVE)
 		}
 
-		const btnEleSup = this.exsied?.elements.editor?.querySelector(`#${this.toolbarBtnIdsSup.normal}`)
+		const btnEleSup = this.exsied?.elements.editor.querySelector(`#${this.toolbarBtnIdsSup.normal}`)
 		if (btnEleSup) {
 			this.isHighlightSup() ? btnEleSup.classList.add(CN_ACTIVE) : btnEleSup.classList.remove(CN_ACTIVE)
 		}

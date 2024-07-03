@@ -23,7 +23,7 @@ export const PLUGIN_NAME = 'HorizonalRule'
 export const CN_ICON = 'exsied-icon-hr'
 
 export class HorizonalRule implements ExsiedPlugin<Exsied> {
-	private exsied: Exsied | undefined
+	private exsied: Exsied = new Exsied('')
 	private popupId = ''
 	// private toolbarBtnIds: ToolBarControlIds = emptyToolBarControlIds
 
@@ -40,12 +40,12 @@ export class HorizonalRule implements ExsiedPlugin<Exsied> {
 	}
 
 	afterToolbarInit = () => {
-		// this.toolbarBtnIds = this.exsied?.toolbar?.genButtonIdStd(this.name, 'index') || emptyToolBarControlIds
+		// this.toolbarBtnIds = this.exsied.toolbar.genButtonIdStd(this.name, 'index') || emptyToolBarControlIds
 	}
 
 	insertHorizontalRule() {
 		const ele = document.createElement(TN_HR)
-		if (this.exsied?.elements.workplace) SelectionUtils.addElementBySelection(this.exsied.elements.workplace, ele)
+		if (this.exsied?.elements.workplace) this.exsied.selectionUtils.addElementBySelection(this.exsied.elements.workplace, ele)
 	}
 
 	commands: Commands = {}

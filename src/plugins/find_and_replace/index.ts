@@ -32,7 +32,7 @@ export const NAME_FIND = 'find'
 export const NAME_REPLACE = 'replace'
 
 export class FindAndReplace implements ExsiedPlugin<Exsied> {
-	private exsied: Exsied | undefined
+	private exsied: Exsied = new Exsied('')
 	private popupId = ''
 	// private toolbarBtnIds: ToolBarControlIds = emptyToolBarControlIds
 
@@ -54,7 +54,7 @@ export class FindAndReplace implements ExsiedPlugin<Exsied> {
 	}
 
 	afterToolbarInit = () => {
-		// this.toolbarBtnIds = this.exsied?.toolbar?.genButtonIdStd(this.name, 'index') || emptyToolBarControlIds
+		// this.toolbarBtnIds = this.exsied.toolbar.genButtonIdStd(this.name, 'index') || emptyToolBarControlIds
 	}
 
 	commands: Commands = {
