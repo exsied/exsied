@@ -32,6 +32,7 @@ import { Strikethrough } from './plugins/strikethrough'
 import { SubscriptAndSupscript } from './plugins/subscript_and_supcript'
 import { Table } from './plugins/table'
 import { TextAlign } from './plugins/text_align'
+import { Underline } from './plugins/underline'
 import './styles/style.scss'
 
 // // plugin about
@@ -146,6 +147,9 @@ const initExsied = (containerId: string, content: string, locale?: string) => {
 	const textAlign = new TextAlign()
 	textAlign.init(exsied)
 
+	const underline = new Underline()
+	underline.init(exsied)
+
 	exsied.init({
 		plugins: [
 			bold,
@@ -166,6 +170,7 @@ const initExsied = (containerId: string, content: string, locale?: string) => {
 			subscriptAndSupscript,
 			table,
 			textAlign,
+			underline,
 		],
 		enableToolbarBubble: true,
 		locale: locale || 'en',
