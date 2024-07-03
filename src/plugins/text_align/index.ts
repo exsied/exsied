@@ -7,13 +7,12 @@
  *     https://github.com/exsied/exsied/blob/main/LICENSE
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
-import { CN_ACTIVE, TN_BLOCKQUOTE, TN_Q } from '../../contants'
 import { Exsied } from '../../core'
 import { FormatStyle } from '../../core/format/style'
 import { Commands, ExsiedPlugin } from '../../core/plugin'
 import { SelectionUtils } from '../../core/selection_utils'
 import { Style } from '../../types'
-import { ELE_TYPE_BUTTON, ToolBarControlIds, emptyToolBarControlIds } from '../../ui/toolbar'
+import { ELE_TYPE_BUTTON } from '../../ui/toolbar'
 
 export type PluginConf = {
 	addToNormalToolbar: {
@@ -34,7 +33,7 @@ export const CN_ICON_LEFT = 'exsied-icon-left'
 export const CN_ICON_RIGHT = 'exsied-icon-right'
 
 export class PluginTextAlign implements ExsiedPlugin<Exsied> {
-	private exsied: Exsied = new Exsied('')
+	// private exsied: Exsied = new Exsied('')
 	// private popupId = ''
 	// private toolbarBtnIds: ToolBarControlIds = emptyToolBarControlIds
 
@@ -59,7 +58,7 @@ export class PluginTextAlign implements ExsiedPlugin<Exsied> {
 	}
 
 	init = (exsied: Exsied): void => {
-		this.exsied = exsied
+		// this.exsied = exsied
 		// this.popupId = this.exsied.genPopupId(this.name, 'index') || ''
 	}
 
@@ -92,7 +91,7 @@ export class PluginTextAlign implements ExsiedPlugin<Exsied> {
 		formatTextRight: this.formatTextRight,
 	}
 
-	toolBarControl = [
+	getToolBarControl = () => [
 		{
 			name: 'TextAlignLeft',
 			tooltipText: 'Text align left',

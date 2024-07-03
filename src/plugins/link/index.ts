@@ -77,7 +77,7 @@ export class PluginLink implements ExsiedPlugin<Exsied> {
 		insertLink: this.insertLink,
 	}
 
-	toolBarControl = [
+	getToolBarControl = () => [
 		{
 			name: 'index',
 			tooltipText: 'Link',

@@ -50,14 +50,15 @@ export class PluginQuote implements ExsiedPlugin<Exsied> {
 		const ele = document.createElement(TN_Q)
 		ele.innerHTML = selectedEles && selectedEles.innerHTML ? selectedEles.innerHTML : this.conf.defaultInnerHTML
 
-		if (this.exsied.elements.workplace) this.exsied.selectionUtils.addElementBySelection(this.exsied.elements.workplace, ele)
+		if (this.exsied.elements.workplace)
+			this.exsied.selectionUtils.addElementBySelection(this.exsied.elements.workplace, ele)
 	}
 
 	commands: Commands = {
 		insertQuote: this.insertQuote,
 	}
 
-	toolBarControl = [
+	getToolBarControl = () => [
 		{
 			name: 'index',
 			tooltipText: 'Quote',

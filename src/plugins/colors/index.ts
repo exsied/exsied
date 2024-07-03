@@ -100,7 +100,7 @@ export class Colors implements ExsiedPlugin<Exsied> {
 		textColor: this.showColorPickerText,
 	}
 
-	toolBarControl = [
+	getToolBarControl = () => [
 		{
 			name: NAME_BACKGROUND,
 			tooltipText: 'Background color',

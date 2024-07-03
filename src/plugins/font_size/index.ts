@@ -60,7 +60,7 @@ export class PluginFontSize implements ExsiedPlugin<Exsied> {
 		formatFontSize: this.formatFontSize,
 	}
 
-	toolBarControl = [
+	getToolBarControl = () => [
 		{
 			name: 'index',
 			tooltipText: 'Font size',

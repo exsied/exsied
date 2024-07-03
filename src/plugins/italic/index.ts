@@ -59,7 +59,7 @@ export class PluginItalic implements ExsiedPlugin<Exsied> {
 		formatItalic: this.formatItalic,
 	}
 
-	toolBarControl = [
+	getToolBarControl = () => [
 		{
 			name: 'index',
 			tooltipText: 'Italic',

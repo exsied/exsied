@@ -22,7 +22,7 @@ export const CN_ICON = 'exsied-icon-hr'
 
 export class PluginHorizonalRule implements ExsiedPlugin<Exsied> {
 	private exsied: Exsied = new Exsied('')
-	private popupId = ''
+	// private popupId = ''
 	// private toolbarBtnIds: ToolBarControlIds = emptyToolBarControlIds
 
 	name = 'HorizonalRule'
@@ -34,7 +34,7 @@ export class PluginHorizonalRule implements ExsiedPlugin<Exsied> {
 
 	init = (exsied: Exsied): void => {
 		this.exsied = exsied
-		this.popupId = this.exsied.genPopupId(this.name, 'index') || ''
+		// this.popupId = this.exsied.genPopupId(this.name, 'index') || ''
 	}
 
 	afterToolbarInit = () => {
@@ -51,7 +51,7 @@ export class PluginHorizonalRule implements ExsiedPlugin<Exsied> {
 		insertHorizontalRule: this.insertHorizontalRule,
 	}
 
-	toolBarControl = [
+	getToolBarControl = () => [
 		{
 			name: 'index',
 			tooltipText: 'Horizonal rule',

@@ -36,7 +36,7 @@ export const OPTION_HEADING6 = TN_H6
 
 export class PluginHeadings implements ExsiedPlugin<Exsied> {
 	private exsied: Exsied = new Exsied('')
-	private popupId = ''
+	// private popupId = ''
 	private toolbarBtnIds: ToolBarControlIds = emptyToolBarControlIds
 
 	name = 'Headings'
@@ -91,7 +91,7 @@ export class PluginHeadings implements ExsiedPlugin<Exsied> {
 
 	init = (exsied: Exsied): void => {
 		this.exsied = exsied
-		this.popupId = this.exsied.genPopupId(this.name, 'index') || ''
+		// this.popupId = this.exsied.genPopupId(this.name, 'index') || ''
 	}
 
 	afterToolbarInit = () => {
@@ -151,7 +151,7 @@ export class PluginHeadings implements ExsiedPlugin<Exsied> {
 		formatHeading: this.formatHeading,
 	}
 
-	toolBarControl = [
+	getToolBarControl = () => [
 		{
 			name: 'index',
 			tooltipText: 'Headings',

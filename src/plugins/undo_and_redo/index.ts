@@ -9,7 +9,7 @@
  */
 import { Exsied } from '../../core'
 import { Commands, ExsiedPlugin } from '../../core/plugin'
-import { ELE_TYPE_BUTTON, ToolBarControlIds, emptyToolBarControlIds } from '../../ui/toolbar'
+import { ELE_TYPE_BUTTON } from '../../ui/toolbar'
 import { limitRange } from '../../utils/number'
 
 export type PluginConf = {
@@ -112,7 +112,7 @@ export class PluginRedoAndUndo implements ExsiedPlugin<Exsied> {
 		undo: this.undo,
 	}
 
-	toolBarControl = [
+	getToolBarControl = () => [
 		{
 			name: 'Redo',
 			tooltipText: 'Redo',

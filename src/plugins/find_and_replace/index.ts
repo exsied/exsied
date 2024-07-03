@@ -66,7 +66,7 @@ export class PluginFindAndReplace implements ExsiedPlugin<Exsied> {
 		},
 	}
 
-	toolBarControl = [
+	getToolBarControl = () => [
 		{
 			name: NAME_FIND,
 			tooltipText: 'Find',

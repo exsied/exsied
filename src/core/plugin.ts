@@ -32,7 +32,7 @@ export interface ExsiedPlugin<T> {
 	name: string
 	conf: any
 	commands?: Commands
-	toolBarControl?: ToolBarControl[]
+	getToolBarControl?: () => ToolBarControl[]
 	addHandler: () => any
 	removeHandler: () => any
 	checkHighlight: (event: Event) => any

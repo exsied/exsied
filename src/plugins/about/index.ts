@@ -124,7 +124,7 @@ export class PluginAbout implements ExsiedPlugin<Exsied> {
 		DomUtils.limitElementRect(ele)
 	}
 
-	toolBarControl = [
+	getToolBarControl = () => [
 		{
 			name: this.name,
 			tooltipText: 'About',

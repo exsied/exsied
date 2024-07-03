@@ -60,7 +60,7 @@ export class PluginBold implements ExsiedPlugin<Exsied> {
 		formatBold: this.formatTextBold,
 	}
 
-	toolBarControl = [
+	getToolBarControl = () => [
 		{
 			name: 'index',
 			tooltipText: 'Bold',

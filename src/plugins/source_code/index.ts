@@ -11,7 +11,7 @@ import { TN_CODE, TN_DIV, TN_PRE } from '../../contants'
 import { Exsied } from '../../core'
 import { Commands, ExsiedPlugin } from '../../core/plugin'
 import { SelectionUtils } from '../../core/selection_utils'
-import { ELE_TYPE_BUTTON, ID_TOOLBAR_EXT, ToolBarControlIds, emptyToolBarControlIds } from '../../ui/toolbar'
+import { ELE_TYPE_BUTTON, ID_TOOLBAR_EXT } from '../../ui/toolbar'
 import { randomChars } from '../../utils/string'
 import { afterSetHtml, beforeGetHtml, renderElement } from './hooks'
 
@@ -137,7 +137,7 @@ export class PluginSourceCode implements ExsiedPlugin<Exsied> {
 
 	commands: Commands = { toggleSourceView: this.toggleSourceView, insertCodeBlock: this.insertCodeBlock }
 
-	toolBarControl = [
+	getToolBarControl = () => [
 		{
 			name: NAME_SOURCE_CODE_VIEW,
 			tooltipText: 'Source code view',

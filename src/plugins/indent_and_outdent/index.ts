@@ -37,7 +37,7 @@ const NAME_INDENT = 'indent'
 const NAME_OUTDENT = 'outdent'
 
 export class PluginIndentAndOutdent implements ExsiedPlugin<Exsied> {
-	private exsied: Exsied = new Exsied('')
+	// private exsied: Exsied = new Exsied('')
 	// private popupId = ''
 	// private toolbarBtnIdsIndent: ToolBarControlIds = emptyToolBarControlIds
 	// private toolbarBtnIdsOutdent: ToolBarControlIds = emptyToolBarControlIds
@@ -56,7 +56,7 @@ export class PluginIndentAndOutdent implements ExsiedPlugin<Exsied> {
 	}
 
 	init = (exsied: Exsied): void => {
-		this.exsied = exsied
+		// this.exsied = exsied
 		// this.popupId = this.exsied.genPopupId(this.name, 'index') || ''
 	}
 
@@ -91,7 +91,7 @@ export class PluginIndentAndOutdent implements ExsiedPlugin<Exsied> {
 		formatOutdent: this.formatOutdent,
 	}
 
-	toolBarControl = [
+	getToolBarControl = () => [
 		{
 			name: NAME_INDENT,
 			tooltipText: 'Indent',

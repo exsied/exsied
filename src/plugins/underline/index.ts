@@ -53,7 +53,7 @@ export class PluginUnderline implements ExsiedPlugin<Exsied> {
 	}
 	commands: Commands = { formatUnderline: this.formatUnderline }
 
-	toolBarControl = [
+	getToolBarControl = () => [
 		{
 			name: 'index',
 			tooltipText: 'Underline',

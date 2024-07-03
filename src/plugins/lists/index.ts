@@ -11,7 +11,7 @@ import { CN_ACTIVE, TN_BLOCKQUOTE, TN_OL, TN_Q, TN_UL } from '../../contants'
 import { Exsied } from '../../core'
 import { Commands, ExsiedPlugin } from '../../core/plugin'
 import { SelectionUtils } from '../../core/selection_utils'
-import { ELE_TYPE_BUTTON, ToolBarControlIds, Toolbar, emptyToolBarControlIds } from '../../ui/toolbar'
+import { ELE_TYPE_BUTTON, ToolBarControlIds, emptyToolBarControlIds } from '../../ui/toolbar'
 
 export type PluginConf = {
 	addToNormalToolbar: {
@@ -92,7 +92,7 @@ export class PluginLists implements ExsiedPlugin<Exsied> {
 		},
 	}
 
-	toolBarControl = [
+	getToolBarControl = () => [
 		{
 			name: NAME_OL,
 			tooltipText: 'Ordered list',

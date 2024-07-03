@@ -59,7 +59,7 @@ export class PluginStrikethrough implements ExsiedPlugin<Exsied> {
 		formatStrikethough: this.formatStrikethough,
 	}
 
-	toolBarControl = [
+	getToolBarControl = () => [
 		{
 			name: 'index',
 			tooltipText: 'Strikethough',

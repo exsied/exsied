@@ -59,7 +59,7 @@ export class PluginFontFamily implements ExsiedPlugin<Exsied> {
 		formatFontFamily: this.formatFontFamily,
 	}
 
-	toolBarControl = [
+	getToolBarControl = () => [
 		{
 			name: 'index',
 			tooltipText: 'Font family',

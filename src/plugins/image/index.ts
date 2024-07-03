@@ -42,7 +42,7 @@ export type PluginConf = {
 
 export class PluginImage implements ExsiedPlugin<Exsied> {
 	private exsied: Exsied = new Exsied('')
-	private popupId = ''
+	// private popupId = ''
 	private toolbarBtnIds: ToolBarControlIds = emptyToolBarControlIds
 	name = 'Image'
 	conf: PluginConf = {
@@ -55,7 +55,7 @@ export class PluginImage implements ExsiedPlugin<Exsied> {
 
 	init = (exsied: Exsied): void => {
 		this.exsied = exsied
-		this.popupId = this.exsied.genPopupId(this.name, 'index') || ''
+		// this.popupId = this.exsied.genPopupId(this.name, 'index') || ''
 	}
 
 	afterToolbarInit = () => {
@@ -66,14 +66,15 @@ export class PluginImage implements ExsiedPlugin<Exsied> {
 		const ele = document.createElement(TN_IMG)
 		ele.src = this.conf.defaultSrc
 		ele.alt = this.conf.defaultAlt
-		if (this.exsied.elements.workplace) this.exsied.selectionUtils.addElementBySelection(this.exsied.elements.workplace, ele)
+		if (this.exsied.elements.workplace)
+			this.exsied.selectionUtils.addElementBySelection(this.exsied.elements.workplace, ele)
 	}
 
 	commands: Commands = {
 		insertImage: this.insertImage,
 	}
 
-	toolBarControl = [
+	getToolBarControl = () => [
 		{
 			name: 'index',
 			tooltipText: 'Image',

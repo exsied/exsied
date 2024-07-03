@@ -72,7 +72,7 @@ export class PluginTable implements ExsiedPlugin<Exsied> {
 
 	commands: Commands = { insertTable: this.insertTable }
 
-	toolBarControl = [
+	getToolBarControl = () => [
 		{
 			name: 'index',
 			tooltipText: 'Table',

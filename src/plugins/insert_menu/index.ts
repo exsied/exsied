@@ -101,7 +101,7 @@ export class PluginInsertMenu implements ExsiedPlugin<Exsied> {
 		showInsertMenu: this.showInsertMenu,
 	}
 
-	toolBarControl = [
+	getToolBarControl = () => [
 		{
 			name: PLUGIN_NAME,
 			buttonText: 'Insert',

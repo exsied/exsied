@@ -11,7 +11,6 @@ import { CN_ACTIVE, CN_TEMP_ELE, CN_TEMP_ELE_HIGHLIGHT, TN_SPAN } from '../../co
 import { Exsied } from '../../core'
 import { DomUtils } from '../../core/dom_utils'
 import { FormatTaName } from '../../core/format/tag_name'
-import { PopupView } from '../../ui/popup_view'
 import { FindAndReplace } from './find'
 
 const CN_FIND_BOX = 'exsied-find-box'
@@ -28,7 +27,7 @@ const CN_REPLACE_THIS = 'exsied-replace-this'
 const CN_REPLACE_ALL = 'exsied-replace-all'
 const CN_REGEX = 'exsied-btn-regex'
 const CN_FIND = 'find-view'
-const CN_REPLACE = 'replace-view'
+// const CN_REPLACE = 'replace-view'
 
 let findText = ''
 let replaceText = ''

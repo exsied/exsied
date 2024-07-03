@@ -145,9 +145,9 @@ export class Toolbar {
 
 		const ctrlHtmlArr = []
 		for (const plg of this.exsied.plugins) {
-			if (!plg.toolBarControl) continue
+			if (!plg.getToolBarControl) continue
 
-			for (const ctrl of plg.toolBarControl) {
+			for (const ctrl of plg.getToolBarControl()) {
 				const ids = this.genButtonIdStd(plg.name, ctrl.name)
 
 				if (ctrl.eleType === ELE_TYPE_BUTTON) {
@@ -274,9 +274,9 @@ export class Toolbar {
 		for (const plg of this.exsied.plugins) {
 			plg.addHandler()
 
-			if (!plg.toolBarControl) continue
+			if (!plg.getToolBarControl) continue
 
-			for (const ctrl of plg.toolBarControl) {
+			for (const ctrl of plg.getToolBarControl()) {
 				const toolbarBtnIds = this.genButtonIdStd(plg.name, ctrl.name)
 
 				if (ctrl.eleType === ELE_TYPE_BUTTON) {

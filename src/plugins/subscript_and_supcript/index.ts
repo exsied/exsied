@@ -11,7 +11,7 @@ import { CN_ACTIVE, TN_SUB, TN_SUP } from '../../contants'
 import { Exsied } from '../../core'
 import { FormatTaName } from '../../core/format/tag_name'
 import { Commands, ExsiedPlugin } from '../../core/plugin'
-import { ELE_TYPE_BUTTON, ToolBarControlIds, Toolbar, emptyToolBarControlIds } from '../../ui/toolbar'
+import { ELE_TYPE_BUTTON, ToolBarControlIds, emptyToolBarControlIds } from '../../ui/toolbar'
 
 export type PluginConf = {
 	addToNormalToolbar: {
@@ -27,8 +27,6 @@ export type PluginConf = {
 export const PLUGIN_NAME = 'SubscriptAndSuperscript'
 export const CN_ICON_SUB = 'exsied-icon-sub'
 export const CN_ICON_SUP = 'exsied-icon-sup'
-
-
 
 export class PluginSubscriptAndSupscript implements ExsiedPlugin<Exsied> {
 	private exsied: Exsied = new Exsied('')
@@ -88,9 +86,9 @@ export class PluginSubscriptAndSupscript implements ExsiedPlugin<Exsied> {
 		formatTextSup: this.formatTextSup,
 	}
 
-	toolBarControl = [
+	getToolBarControl = () => [
 		{
-			name: "Subscript",
+			name: 'Subscript',
 			tooltipText: 'Subscript',
 			addToNormalToolbar: this.conf.addToNormalToolbar.sub,
 			addToBubbleToolbar: this.conf.addToBubbleToolbar.sub,
@@ -100,7 +98,7 @@ export class PluginSubscriptAndSupscript implements ExsiedPlugin<Exsied> {
 			clickCallBack: this.commands['formatTextSub'],
 		},
 		{
-			name: "Supscript",
+			name: 'Supscript',
 			tooltipText: 'Supscript',
 			addToNormalToolbar: this.conf.addToNormalToolbar.sup,
 			addToBubbleToolbar: this.conf.addToBubbleToolbar.sup,
