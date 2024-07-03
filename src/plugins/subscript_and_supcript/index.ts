@@ -30,7 +30,7 @@ export const CN_ICON_SUP = 'exsied-icon-sup'
 
 
 
-export class SubscriptAndSupscript implements ExsiedPlugin<Exsied> {
+export class PluginSubscriptAndSupscript implements ExsiedPlugin<Exsied> {
 	private exsied: Exsied = new Exsied('')
 	// private popupId = ''
 	private toolbarBtnIdsSub: ToolBarControlIds = emptyToolBarControlIds
@@ -50,7 +50,7 @@ export class SubscriptAndSupscript implements ExsiedPlugin<Exsied> {
 
 	init = (exsied: Exsied): void => {
 		this.exsied = exsied
-		// this.popupId = this.exsied?.genPopupId(this.name, 'index') || ''
+		// this.popupId = this.exsied.genPopupId(this.name, 'index') || ''
 	}
 
 	afterToolbarInit = () => {
@@ -59,12 +59,12 @@ export class SubscriptAndSupscript implements ExsiedPlugin<Exsied> {
 	}
 
 	isHighlightSub = () => {
-		const allTagNamesArr = this.exsied?.cursorAllParentsTagNamesArr || []
+		const allTagNamesArr = this.exsied.cursorAllParentsTagNamesArr || []
 		return allTagNamesArr.includes(TN_SUB)
 	}
 
 	isHighlightSup = () => {
-		const allTagNamesArr = this.exsied?.cursorAllParentsTagNamesArr || []
+		const allTagNamesArr = this.exsied.cursorAllParentsTagNamesArr || []
 		return allTagNamesArr.includes(TN_SUP)
 	}
 
@@ -114,12 +114,12 @@ export class SubscriptAndSupscript implements ExsiedPlugin<Exsied> {
 	addHandler = () => {}
 	removeHandler = () => {}
 	checkHighlight = (_event: any) => {
-		const btnEleSub = this.exsied?.elements.editor.querySelector(`#${this.toolbarBtnIdsSub.normal}`)
+		const btnEleSub = this.exsied.elements.editor.querySelector(`#${this.toolbarBtnIdsSub.normal}`)
 		if (btnEleSub) {
 			this.isHighlightSub() ? btnEleSub.classList.add(CN_ACTIVE) : btnEleSub.classList.remove(CN_ACTIVE)
 		}
 
-		const btnEleSup = this.exsied?.elements.editor.querySelector(`#${this.toolbarBtnIdsSup.normal}`)
+		const btnEleSup = this.exsied.elements.editor.querySelector(`#${this.toolbarBtnIdsSup.normal}`)
 		if (btnEleSup) {
 			this.isHighlightSup() ? btnEleSup.classList.add(CN_ACTIVE) : btnEleSup.classList.remove(CN_ACTIVE)
 		}

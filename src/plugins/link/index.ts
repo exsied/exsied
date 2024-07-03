@@ -13,7 +13,6 @@ import { DomUtils } from '../../core/dom_utils'
 import { EleClickCallback } from '../../core/events'
 import { Commands, ExsiedPlugin } from '../../core/plugin'
 import { SelectionUtils } from '../../core/selection_utils'
-import { PopupView } from '../../ui/popup_view'
 import { ELE_TYPE_BUTTON, ToolBarControlIds, emptyToolBarControlIds } from '../../ui/toolbar'
 import './styles.scss'
 
@@ -40,7 +39,7 @@ export const CN_EDIT_INPUT = 'exsied-link-input'
 export const CN_CANCEL_BTN = 'exsied-link-cancel'
 export const CN_CONFIRM_BTN = 'exsied-link-confirm'
 
-export class Link implements ExsiedPlugin<Exsied> {
+export class PluginLink implements ExsiedPlugin<Exsied> {
 	private exsied: Exsied = new Exsied('')
 	// private popupId = ''
 	private toolbarBtnIds: ToolBarControlIds = emptyToolBarControlIds
@@ -57,7 +56,7 @@ export class Link implements ExsiedPlugin<Exsied> {
 
 	init = (exsied: Exsied): void => {
 		this.exsied = exsied
-		// this.popupId = this.exsied?.genPopupId(this.name, 'index') || ''
+		// this.popupId = this.exsied.genPopupId(this.name, 'index') || ''
 	}
 
 	afterToolbarInit = () => {
@@ -70,7 +69,8 @@ export class Link implements ExsiedPlugin<Exsied> {
 		const ele = document.createElement(TN_A)
 		ele.href = this.conf.defaultHref
 		ele.innerHTML = selectedEles && selectedEles.innerHTML ? selectedEles.innerHTML : this.conf.defaultInnerHTML
-		if (this.exsied?.elements.workplace) this.exsied.selectionUtils.addElementBySelection(this.exsied.elements.workplace, ele)
+		if (this.exsied.elements.workplace)
+			this.exsied.selectionUtils.addElementBySelection(this.exsied.elements.workplace, ele)
 	}
 
 	commands: Commands = {
@@ -79,7 +79,7 @@ export class Link implements ExsiedPlugin<Exsied> {
 
 	toolBarControl = [
 		{
-			name: PLUGIN_NAME,
+			name: 'index',
 			tooltipText: 'Link',
 			addToNormalToolbar: this.conf.addToNormalToolbar,
 			addToNormalToolbarInsertMenu: this.conf.addToNormalToolbarInsertMenu,
@@ -96,15 +96,15 @@ export class Link implements ExsiedPlugin<Exsied> {
 	}
 	removeHandler = () => {}
 	checkHighlight = (_event: any) => {
-		const btnEle = this.exsied?.elements.editor.querySelector(`#${this.toolbarBtnIds.normal}`)
+		const btnEle = this.exsied.elements.editor.querySelector(`#${this.toolbarBtnIds.normal}`)
 
 		if (btnEle) {
-			const allTagNamesArr = this.exsied?.cursorAllParentsTagNamesArr || []
+			const allTagNamesArr = this.exsied.cursorAllParentsTagNamesArr || []
 			allTagNamesArr.includes(TN_A) ? btnEle.classList.add(CN_ACTIVE) : btnEle.classList.remove(CN_ACTIVE)
 		}
 	}
 	removeTempEle = (_event: any) => {
-		const allTagNamesArr = this.exsied?.cursorAllParentsTagNamesArr || []
+		const allTagNamesArr = this.exsied.cursorAllParentsTagNamesArr || []
 		if (!allTagNamesArr.includes(TN_A)) {
 			DomUtils.removeElementById(POPUP_ID)
 		}
@@ -142,19 +142,16 @@ export class Link implements ExsiedPlugin<Exsied> {
 			</div>
 			`
 
-		const ele = PopupView.create({
+		const rect = targetEle.getBoundingClientRect()
+		const ele = this.exsied.showPopup({
 			id: POPUP_ID,
 			classNames: [CN_TEMP_ELE, CN_ROOT],
 			attrs: { TEMP_EDIT_ID: PLUGIN_NAME },
 			contentClassNames: ['exsied-link-view'],
-			contentAttrs: {},
 			contentHtml,
+			top: rect.bottom + 'px',
+			left: rect.left + 'px',
 		})
-
-		const rect = targetEle.getBoundingClientRect()
-		ele.style.position = 'absolute'
-		ele.style.top = rect.bottom + 'px'
-		ele.style.left = rect.left + 'px'
 
 		document.body.appendChild(ele)
 		DomUtils.limitElementRect(ele)

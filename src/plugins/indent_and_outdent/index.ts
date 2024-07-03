@@ -7,14 +7,13 @@
  *     https://github.com/exsied/exsied/blob/main/LICENSE
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
-import { CN_ACTIVE, TN_BLOCKQUOTE, TN_Q } from '../../contants'
 import { Exsied } from '../../core'
 import { DomUtils } from '../../core/dom_utils'
 import { FormatStyle } from '../../core/format/style'
 import { Commands, ExsiedPlugin } from '../../core/plugin'
 import { SelectionUtils } from '../../core/selection_utils'
 import { Style } from '../../types'
-import { ELE_TYPE_BUTTON, ToolBarControlIds, emptyToolBarControlIds } from '../../ui/toolbar'
+import { ELE_TYPE_BUTTON } from '../../ui/toolbar'
 
 export type PluginConf = {
 	addToNormalToolbar: {
@@ -37,12 +36,13 @@ const ONTDENT = 2
 const NAME_INDENT = 'indent'
 const NAME_OUTDENT = 'outdent'
 
-export class IndentAndOutdent implements ExsiedPlugin<Exsied> {
+export class PluginIndentAndOutdent implements ExsiedPlugin<Exsied> {
 	private exsied: Exsied = new Exsied('')
 	// private popupId = ''
-	private toolbarBtnIds: ToolBarControlIds = emptyToolBarControlIds
+	// private toolbarBtnIdsIndent: ToolBarControlIds = emptyToolBarControlIds
+	// private toolbarBtnIdsOutdent: ToolBarControlIds = emptyToolBarControlIds
 
-	name = 'indentAndOutdent'
+	name = 'IndentAndOutdent'
 	conf: PluginConf = {
 		addToNormalToolbar: {
 			indent: true,
@@ -57,11 +57,12 @@ export class IndentAndOutdent implements ExsiedPlugin<Exsied> {
 
 	init = (exsied: Exsied): void => {
 		this.exsied = exsied
-		// this.popupId = this.exsied?.genPopupId(this.name, 'index') || ''
+		// this.popupId = this.exsied.genPopupId(this.name, 'index') || ''
 	}
 
 	afterToolbarInit = () => {
-		this.toolbarBtnIds = this.exsied.toolbar.genButtonIdStd(this.name, 'index') || emptyToolBarControlIds
+		// this.toolbarBtnIdsIndent = this.exsied.toolbar.genButtonIdStd(this.name, NAME_INDENT) || emptyToolBarControlIds
+		// this.toolbarBtnIdsOutdent = this.exsied.toolbar.genButtonIdStd(this.name, NAME_OUTDENT) || emptyToolBarControlIds
 	}
 
 	indent = (direction: typeof INDENT | typeof ONTDENT) => {
@@ -115,15 +116,6 @@ export class IndentAndOutdent implements ExsiedPlugin<Exsied> {
 
 	addHandler = () => {}
 	removeHandler = () => {}
-	checkHighlight = (_event: any) => {
-		const btnEle = this.exsied?.elements.editor.querySelector(`#${this.toolbarBtnIds.normal}`)
-
-		if (btnEle) {
-			const allTagNamesArr = this.exsied?.cursorAllParentsTagNamesArr || []
-			allTagNamesArr.includes(TN_Q) || allTagNamesArr.includes(TN_BLOCKQUOTE)
-				? btnEle.classList.add(CN_ACTIVE)
-				: btnEle.classList.remove(CN_ACTIVE)
-		}
-	}
+	checkHighlight = (_event: any) => {}
 	removeTempEle = (_event: any) => {}
 }

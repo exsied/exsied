@@ -12,8 +12,6 @@ import { Exsied } from '../../core'
 import { DomUtils } from '../../core/dom_utils'
 import { t } from '../../core/i18n'
 import { ClickEventHandler, Commands, ExsiedPlugin } from '../../core/plugin'
-import { SelectionUtils } from '../../core/selection_utils'
-import { PopupView } from '../../ui/popup_view'
 import { ELE_TYPE_BUTTON, ToolBarControlIds, emptyToolBarControlIds } from '../../ui/toolbar'
 import './styles.scss'
 
@@ -30,7 +28,7 @@ export const CN_ROOT = 'exsied-insert-menu-view'
 export const CN_INSERT_MENU_ITEM = 'exsied-toolbar-insert-menu-item'
 export const dataName = 'data-name'
 
-export class InsertMenu implements ExsiedPlugin<Exsied> {
+export class PluginInsertMenu implements ExsiedPlugin<Exsied> {
 	private exsied: Exsied = new Exsied('')
 	// private popupId = ''
 	private toolbarBtnIds: ToolBarControlIds = emptyToolBarControlIds
@@ -43,7 +41,7 @@ export class InsertMenu implements ExsiedPlugin<Exsied> {
 
 	init = (exsied: Exsied): void => {
 		this.exsied = exsied
-		// this.popupId = this.exsied?.genPopupId(this.name, 'index') || ''
+		// this.popupId = this.exsied.genPopupId(this.name, 'index') || ''
 	}
 
 	afterToolbarInit = () => {
@@ -73,19 +71,16 @@ export class InsertMenu implements ExsiedPlugin<Exsied> {
 				`
 		}
 
-		const ele = PopupView.create({
+		const rect = targetEle.getBoundingClientRect()
+		const ele = this.exsied.showPopup({
 			id: POPUP_ID,
 			classNames: [CN_TEMP_ELE, CN_ROOT, 'exsied'],
 			attrs: { TEMP_EDIT_ID: PLUGIN_NAME },
 			contentClassNames: ['exsied-toolbar'],
-			contentAttrs: {},
 			contentHtml,
+			top: rect.bottom + 'px',
+			left: rect.left + 'px',
 		})
-
-		const rect = targetEle.getBoundingClientRect()
-		ele.style.position = 'absolute'
-		ele.style.top = rect.bottom + 'px'
-		ele.style.left = rect.left + 'px'
 
 		const items = ele.querySelectorAll(`.${CN_INSERT_MENU_ITEM}`)
 		for (const item of items) {

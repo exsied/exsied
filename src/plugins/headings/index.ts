@@ -34,12 +34,12 @@ export const OPTION_HEADING4 = TN_H4
 export const OPTION_HEADING5 = TN_H5
 export const OPTION_HEADING6 = TN_H6
 
-export class Headings implements ExsiedPlugin<Exsied> {
+export class PluginHeadings implements ExsiedPlugin<Exsied> {
 	private exsied: Exsied = new Exsied('')
 	private popupId = ''
 	private toolbarBtnIds: ToolBarControlIds = emptyToolBarControlIds
 
-	name = 'headings'
+	name = 'Headings'
 	conf: PluginConf = {
 		addToNormalToolbar: true,
 		addToBubbleToolbar: true,
@@ -91,7 +91,7 @@ export class Headings implements ExsiedPlugin<Exsied> {
 
 	init = (exsied: Exsied): void => {
 		this.exsied = exsied
-		this.popupId = this.exsied?.genPopupId(this.name, 'index') || ''
+		this.popupId = this.exsied.genPopupId(this.name, 'index') || ''
 	}
 
 	afterToolbarInit = () => {
@@ -153,7 +153,7 @@ export class Headings implements ExsiedPlugin<Exsied> {
 
 	toolBarControl = [
 		{
-			name: this.name,
+			name: 'index',
 			tooltipText: 'Headings',
 			addToNormalToolbar: this.conf.addToNormalToolbar,
 			addToBubbleToolbar: this.conf.addToBubbleToolbar,
@@ -168,10 +168,10 @@ export class Headings implements ExsiedPlugin<Exsied> {
 	addHandler = () => {}
 	removeHandler = () => {}
 	checkHighlight = (_event: any) => {
-		const dropDownId = this.exsied?.dropdownMenu?.genDropdownId(this.toolbarBtnIds.normal) || ''
-		const triggerClassName = this.exsied?.dropdownMenu?.genTriggerClassName() || ''
+		const dropDownId = this.exsied.dropdownMenu.genDropdownId(this.toolbarBtnIds.normal) || ''
+		const triggerClassName = this.exsied.dropdownMenu.genTriggerClassName(this.toolbarBtnIds.normal) || ''
 
-		const dropDownEle = this.exsied?.elements.toolbarMain?.querySelector(`#${dropDownId}`)
+		const dropDownEle = this.exsied.elements.toolbarMain.querySelector(`#${dropDownId}`)
 
 		console.log('>>> dropDownId:: ', dropDownId)
 		console.log('>>> dropDownEle:: ', dropDownEle)
@@ -188,7 +188,7 @@ export class Headings implements ExsiedPlugin<Exsied> {
 			}
 		}
 
-		const allTagNamesArr = this.exsied?.cursorAllParentsTagNamesArr || []
+		const allTagNamesArr = this.exsied.cursorAllParentsTagNamesArr || []
 		console.log('>>> allTagNamesArr::', allTagNamesArr)
 
 		if (allTagNamesArr.includes(TN_H1)) setDropDownTriggerText(NAME_HEADING_1)
@@ -203,7 +203,7 @@ export class Headings implements ExsiedPlugin<Exsied> {
 		}
 	}
 	removeTempEle = (_event: any) => {
-		const dropDownId = this.exsied?.dropdownMenu?.genDropdownId(this.toolbarBtnIds.normal) || ''
+		const dropDownId = this.exsied.dropdownMenu.genDropdownId(this.toolbarBtnIds.normal) || ''
 		this.exsied.toolbar.hideDropdowntList(dropDownId)
 	}
 }

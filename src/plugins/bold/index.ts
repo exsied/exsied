@@ -22,7 +22,7 @@ export type PluginConf = {
 	addToNormalToolbarInsertMenu: boolean
 }
 
-export class Bold implements ExsiedPlugin<Exsied> {
+export class PluginBold implements ExsiedPlugin<Exsied> {
 	private exsied: Exsied = new Exsied('')
 	private toolbarBtnIds: ToolBarControlIds = emptyToolBarControlIds
 
@@ -42,7 +42,7 @@ export class Bold implements ExsiedPlugin<Exsied> {
 	}
 
 	isHighlight = () => {
-		const allTagNamesArr = this.exsied?.cursorAllParentsTagNamesArr || []
+		const allTagNamesArr = this.exsied.cursorAllParentsTagNamesArr || []
 
 		return allTagNamesArr.includes(TN_B) || allTagNamesArr.includes(TN_STRONG)
 	}
@@ -62,7 +62,7 @@ export class Bold implements ExsiedPlugin<Exsied> {
 
 	toolBarControl = [
 		{
-			name: this.name,
+			name: 'index',
 			tooltipText: 'Bold',
 			addToNormalToolbar: this.conf.addToNormalToolbar,
 			addToNormalToolbarInsertMenu: this.conf.addToNormalToolbarInsertMenu,
@@ -77,7 +77,7 @@ export class Bold implements ExsiedPlugin<Exsied> {
 	addHandler = () => {}
 	removeHandler = () => {}
 	checkHighlight = (_event: any) => {
-		const btnEle = this.exsied?.elements.editor.querySelector(`#${this.toolbarBtnIds?.normal}`)
+		const btnEle = this.exsied.elements.editor.querySelector(`#${this.toolbarBtnIds?.normal}`)
 
 		if (btnEle) {
 			this.isHighlight() ? btnEle.classList.add(CN_ACTIVE) : btnEle.classList.remove(CN_ACTIVE)

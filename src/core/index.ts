@@ -16,10 +16,12 @@ import {
 	CN_WORKPLACE_ELE,
 	ZERO_WIDTH_SPACE,
 } from '../contants'
-import { About } from '../plugins/about'
+import { PluginAbout } from '../plugins/about'
 import { KvStringString } from '../types'
 import { DropdownMenu } from '../ui/dropdown'
+import { PopupView, actionButton } from '../ui/popup_view'
 import { Toolbar } from '../ui/toolbar'
+import { DataRender } from './data_render'
 import { DomUtils } from './dom_utils'
 import { bindEventClassName } from './events'
 import { HotkeyUtils, ModifierKeys } from './hotkey_utils'
@@ -62,6 +64,26 @@ export type ExsiedElementsI18n = {
 
 const emptyEle = document.createElement('empty-element')
 
+export type showPopupParam = {
+	id: string
+	classNames?: string[]
+	attrs?: KvStringString
+	contentClassNames?: string[]
+	contentAttrs?: KvStringString
+	contentHtml: string
+	titlebarText?: string
+	actionsButtons?: actionButton[]
+
+	//
+
+	top?: string
+	bottom?: string
+	left?: string
+	right?: string
+	height?: string
+	width?: string
+}
+
 export class Exsied {
 	containerId = ''
 	enableToolbarBubble = false
@@ -75,6 +97,7 @@ export class Exsied {
 	toolbar: Toolbar = new Toolbar(this)
 	dropdownMenu = new DropdownMenu(this)
 	selectionUtils = new SelectionUtilsInExsied(this)
+	dataRender = new DataRender(this)
 
 	constructor(containerId: string) {
 		this.containerId = containerId
@@ -82,7 +105,7 @@ export class Exsied {
 
 	init(conf: ExsiedInitConf) {
 		if (!conf.iAbideByExsiedLicenseAndDisableTheAboutPlugin) {
-			const plgAboud = new About()
+			const plgAboud = new PluginAbout()
 			plgAboud.init(this)
 			conf.plugins.push(plgAboud)
 		}
@@ -224,6 +247,7 @@ export class Exsied {
 		DomUtils.mergeAdjacentTextNodes(workplaceEle)
 		// DomUtils.mergeConsecutiveSameTags(workplace_ele, ['B', 'I', 'S', 'U', 'SUB', 'SUP'])
 	}
+
 	getHtml() {
 		this.cleanWorkplaceEle()
 		let html = this.execPluginHook(HOOK_BEFORE_GET_HTML)
@@ -236,6 +260,7 @@ export class Exsied {
 		}
 		return ''
 	}
+
 	setHtml(content: string) {
 		if (this.hooks && this.hooks.beforeSetHtml) {
 			content = this.hooks.beforeSetHtml(this, content)
@@ -251,6 +276,7 @@ export class Exsied {
 		const inputEvent = new Event('input', { bubbles: true })
 		workplaceEle.dispatchEvent(inputEvent)
 	}
+
 	destroy() {
 		this.unbindAllEvent() // TODO: delete
 
@@ -273,5 +299,37 @@ export class Exsied {
 
 	genPopupId = (pluginName: string, ctrlName: string) => {
 		return `exsied-popup___${pluginName}---${ctrlName}___${this.containerId}`
+	}
+
+	showPopup = (param: showPopupParam) => {
+		const ele = PopupView.create({
+			id: param.id,
+			classNames: param.classNames || [],
+			attrs: param.attrs || {},
+			contentClassNames: param.contentClassNames || [],
+			contentAttrs: param.contentAttrs || {},
+			contentHtml: param.contentHtml,
+			titlebarText: param.titlebarText,
+		})
+
+		ele.style.position = 'absolute'
+
+		if (param.top) ele.style.top = param.top
+		if (param.bottom) ele.style.bottom = param.bottom
+		if (!param.top && param.bottom) {
+			ele.style.top = '0'
+		}
+
+		if (param.left) ele.style.left = param.left
+		if (param.right) ele.style.right = param.right
+
+		if (!param.left && param.right) {
+			ele.style.left = '0'
+		}
+
+		if (param.height) ele.style.height = param.height
+		if (param.width) ele.style.width = param.width
+
+		return ele
 	}
 }

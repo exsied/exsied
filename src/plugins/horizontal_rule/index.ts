@@ -10,7 +10,6 @@
 import { TN_HR } from '../../contants'
 import { Exsied } from '../../core'
 import { Commands, ExsiedPlugin } from '../../core/plugin'
-import { SelectionUtils } from '../../core/selection_utils'
 import { ELE_TYPE_BUTTON } from '../../ui/toolbar'
 
 export type PluginConf = {
@@ -19,10 +18,9 @@ export type PluginConf = {
 	addToBubbleToolbar: boolean
 }
 
-export const PLUGIN_NAME = 'HorizonalRule'
 export const CN_ICON = 'exsied-icon-hr'
 
-export class HorizonalRule implements ExsiedPlugin<Exsied> {
+export class PluginHorizonalRule implements ExsiedPlugin<Exsied> {
 	private exsied: Exsied = new Exsied('')
 	private popupId = ''
 	// private toolbarBtnIds: ToolBarControlIds = emptyToolBarControlIds
@@ -36,7 +34,7 @@ export class HorizonalRule implements ExsiedPlugin<Exsied> {
 
 	init = (exsied: Exsied): void => {
 		this.exsied = exsied
-		this.popupId = this.exsied?.genPopupId(this.name, 'index') || ''
+		this.popupId = this.exsied.genPopupId(this.name, 'index') || ''
 	}
 
 	afterToolbarInit = () => {
@@ -45,14 +43,17 @@ export class HorizonalRule implements ExsiedPlugin<Exsied> {
 
 	insertHorizontalRule() {
 		const ele = document.createElement(TN_HR)
-		if (this.exsied?.elements.workplace) this.exsied.selectionUtils.addElementBySelection(this.exsied.elements.workplace, ele)
+		if (this.exsied.elements.workplace)
+			this.exsied.selectionUtils.addElementBySelection(this.exsied.elements.workplace, ele)
 	}
 
-	commands: Commands = {}
+	commands: Commands = {
+		insertHorizontalRule: this.insertHorizontalRule,
+	}
 
 	toolBarControl = [
 		{
-			name: PLUGIN_NAME,
+			name: 'index',
 			tooltipText: 'Horizonal rule',
 			addToNormalToolbar: this.conf.addToNormalToolbar,
 			addToNormalToolbarInsertMenu: this.conf.addToNormalToolbarInsertMenu,
@@ -60,7 +61,7 @@ export class HorizonalRule implements ExsiedPlugin<Exsied> {
 
 			eleType: ELE_TYPE_BUTTON,
 			iconClassName: CN_ICON,
-			clickCallBack: this.commands[PLUGIN_NAME],
+			clickCallBack: this.commands['insertHorizontalRule'],
 		},
 	]
 

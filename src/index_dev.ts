@@ -7,33 +7,29 @@
  *     https://github.com/exsied/exsied/blob/main/LICENSE
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
-// import { KEY_CTRL, plugins } from './'
+import { KEY_CTRL } from './'
 import { Exsied } from './core'
 import { DEMO_CONTENT } from './demo_content'
-// import { PluginConf as AboutPluginConf } from './plugins/about/base'
-// import { PluginConf as FontFamilyPluginConf } from './plugins/font_family/base'
-// import { PluginConf as FontSizePluginConf } from './plugins/font_size/base'
-// import { PluginConf as LinkConf } from './plugins/link/base'
-import { Bold } from './plugins/bold'
+import { PluginBold } from './plugins/bold'
 import { Colors } from './plugins/colors'
-import { FindAndReplace } from './plugins/find_and_replace'
-import { FontFamily } from './plugins/font_family'
-import { FontSize } from './plugins/font_size'
-import { Headings } from './plugins/headings'
-import { HorizonalRule } from './plugins/horizontal_rule'
-import { Image } from './plugins/image'
-import { IndentAndOutdent } from './plugins/indent_and_outdent'
-import { InsertMenu } from './plugins/insert_menu'
-import { Italic } from './plugins/italic'
-import { Link } from './plugins/link'
-import { Lists } from './plugins/lists'
-import { Quote } from './plugins/quote'
-import { Strikethrough } from './plugins/strikethrough'
-import { SubscriptAndSupscript } from './plugins/subscript_and_supcript'
-import { Table } from './plugins/table'
-import { TextAlign } from './plugins/text_align'
-import { Underline } from './plugins/underline'
-import { RedoAndUndo } from './plugins/undo_and_redo'
+import { PluginFindAndReplace } from './plugins/find_and_replace'
+import { PluginFontFamily } from './plugins/font_family'
+import { PluginFontSize } from './plugins/font_size'
+import { PluginHeadings } from './plugins/headings'
+import { PluginHorizonalRule } from './plugins/horizontal_rule'
+import { PluginImage } from './plugins/image'
+import { PluginIndentAndOutdent } from './plugins/indent_and_outdent'
+import { PluginInsertMenu } from './plugins/insert_menu'
+import { PluginItalic } from './plugins/italic'
+import { PluginLink } from './plugins/link'
+import { PluginLists } from './plugins/lists'
+import { PluginQuote } from './plugins/quote'
+import { PluginStrikethrough } from './plugins/strikethrough'
+import { PluginSubscriptAndSupscript } from './plugins/subscript_and_supcript'
+import { PluginTable } from './plugins/table'
+import { PluginTextAlign } from './plugins/text_align'
+import { PluginUnderline } from './plugins/underline'
+import { PluginRedoAndUndo } from './plugins/undo_and_redo'
 import './styles/style.scss'
 
 // // plugin about
@@ -55,22 +51,14 @@ import './styles/style.scss'
 // 	},
 // )
 
-// // plugin link
-// const linkConf = plugins.link.conf as LinkConf
-// linkConf.clickLinkCb = (event) => {
-// 	event.preventDefault()
-// 	alert('clicked link, the event detail in console')
-// 	console.info('plugin link clickLinkCb event: ', event)
-// }
-
 const initExsied = (containerId: string, content: string, locale?: string) => {
 	const exsied = new Exsied(containerId)
 
-	const bold = new Bold()
-	const findAndReplace = new FindAndReplace()
+	const bold = new PluginBold()
+	const findAndReplace = new PluginFindAndReplace()
 	const colors = new Colors()
 
-	const fontFamily = new FontFamily()
+	const fontFamily = new PluginFontFamily()
 	fontFamily.conf.fontFamilyOptions = [
 		{
 			name: 'fontFamily_1',
@@ -86,7 +74,7 @@ const initExsied = (containerId: string, content: string, locale?: string) => {
 		},
 	]
 
-	const fontSize = new FontSize()
+	const fontSize = new PluginFontSize()
 	fontSize.conf.fontSizeOptions = [
 		{
 			name: '18px',
@@ -102,21 +90,28 @@ const initExsied = (containerId: string, content: string, locale?: string) => {
 		},
 	]
 
-	const headings = new Headings()
-	const horizonalRule = new HorizonalRule()
-	const image = new Image()
-	const indentAndOutdent = new IndentAndOutdent()
-	const insertMenu = new InsertMenu()
-	const italic = new Italic()
-	const link = new Link()
-	const lists = new Lists()
-	const quote = new Quote()
-	const strikethrough = new Strikethrough()
-	const subscriptAndSupscript = new SubscriptAndSupscript()
-	const table = new Table()
-	const textAlign = new TextAlign()
-	const underline = new Underline()
-	const redoAndUndo = new RedoAndUndo()
+	const headings = new PluginHeadings()
+	const horizonalRule = new PluginHorizonalRule()
+	const image = new PluginImage()
+	const indentAndOutdent = new PluginIndentAndOutdent()
+	const insertMenu = new PluginInsertMenu()
+	const italic = new PluginItalic()
+
+	const link = new PluginLink()
+	link.conf.clickLinkCb = (event) => {
+		event.preventDefault()
+		alert('clicked link, the event detail in console')
+		console.info('plugin link clickLinkCb event: ', event)
+	}
+
+	const lists = new PluginLists()
+	const quote = new PluginQuote()
+	const strikethrough = new PluginStrikethrough()
+	const subscriptAndSupscript = new PluginSubscriptAndSupscript()
+	const table = new PluginTable()
+	const textAlign = new PluginTextAlign()
+	const underline = new PluginUnderline()
+	const redoAndUndo = new PluginRedoAndUndo()
 
 	exsied.init({
 		plugins: [
@@ -143,16 +138,16 @@ const initExsied = (containerId: string, content: string, locale?: string) => {
 		],
 		enableToolbarBubble: true,
 		locale: locale || 'en',
-		// hotkeys: [
-		// 	{ keyStr: 'b', func: plugins.bold.commands[plugins.bold.name], modifierKeys: [KEY_CTRL] },
-		// 	{ keyStr: 'i', func: plugins.italic.commands[plugins.italic.name], modifierKeys: [KEY_CTRL] },
-		// 	{ keyStr: 'u', func: plugins.underline.commands[plugins.underline.name], modifierKeys: [KEY_CTRL] },
-		// ],
+		hotkeys: [
+			{ keyStr: 'b', func: bold.commands[bold.name], modifierKeys: [KEY_CTRL] },
+			{ keyStr: 'i', func: italic.commands[italic.name], modifierKeys: [KEY_CTRL] },
+			{ keyStr: 'u', func: underline.commands[underline.name], modifierKeys: [KEY_CTRL] },
+		],
 		hooks: {
-			// onInput: (event) => {
-			// 	const ele = event.target as HTMLElement
-			// 	console.log('>>> hooks.onInput :', ele.innerHTML)
-			// },
+			onInput: (exsied, event) => {
+				const ele = event.target as HTMLElement
+				console.log('>>> hooks.onInput :', ele.innerHTML)
+			},
 		},
 	})
 

@@ -19,12 +19,12 @@ export type PluginConf = {
 	fontFamilyOptions: ToolBarSelectOption[]
 }
 
-export class FontFamily implements ExsiedPlugin<Exsied> {
+export class PluginFontFamily implements ExsiedPlugin<Exsied> {
 	private exsied: Exsied = new Exsied('')
 	// private popupId = ''
 	private toolbarBtnIds: ToolBarControlIds = emptyToolBarControlIds
 
-	name = 'fontFamily'
+	name = 'FontFamily'
 	conf: PluginConf = {
 		addToNormalToolbar: true,
 		addToBubbleToolbar: false,
@@ -40,7 +40,7 @@ export class FontFamily implements ExsiedPlugin<Exsied> {
 
 	init = (exsied: Exsied): void => {
 		this.exsied = exsied
-		// this.popupId = this.exsied?.genPopupId(this.name, 'index') || ''
+		// this.popupId = this.exsied.genPopupId(this.name, 'index') || ''
 	}
 
 	afterToolbarInit = () => {
@@ -61,7 +61,7 @@ export class FontFamily implements ExsiedPlugin<Exsied> {
 
 	toolBarControl = [
 		{
-			name: this.name,
+			name: 'index',
 			tooltipText: 'Font family',
 			addToNormalToolbar: this.conf.addToNormalToolbar,
 			addToBubbleToolbar: this.conf.addToBubbleToolbar,
@@ -79,7 +79,7 @@ export class FontFamily implements ExsiedPlugin<Exsied> {
 		// TODO:
 	}
 	removeTempEle = (_event: any) => {
-		const dropDownId = this.exsied?.dropdownMenu?.genDropdownId(this.toolbarBtnIds.normal) || ''
+		const dropDownId = this.exsied.dropdownMenu.genDropdownId(this.toolbarBtnIds.normal) || ''
 		this.exsied.toolbar.hideDropdowntList(dropDownId)
 	}
 }

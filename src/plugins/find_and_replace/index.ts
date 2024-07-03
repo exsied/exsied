@@ -31,7 +31,7 @@ export const CN_ICON_REPLACE = 'exsied-icon-replace'
 export const NAME_FIND = 'find'
 export const NAME_REPLACE = 'replace'
 
-export class FindAndReplace implements ExsiedPlugin<Exsied> {
+export class PluginFindAndReplace implements ExsiedPlugin<Exsied> {
 	private exsied: Exsied = new Exsied('')
 	private popupId = ''
 	// private toolbarBtnIds: ToolBarControlIds = emptyToolBarControlIds
@@ -50,7 +50,7 @@ export class FindAndReplace implements ExsiedPlugin<Exsied> {
 
 	init = (exsied: Exsied): void => {
 		this.exsied = exsied
-		this.popupId = this.exsied?.genPopupId(this.name, 'index') || ''
+		this.popupId = this.exsied.genPopupId(this.name, 'index') || ''
 	}
 
 	afterToolbarInit = () => {
@@ -97,7 +97,7 @@ export class FindAndReplace implements ExsiedPlugin<Exsied> {
 		resetValue()
 		clearHighLight()
 
-		if (this.exsied?.elements.workplace) {
+		if (this.exsied.elements.workplace) {
 			const workplace_ele = this.exsied.elements.workplace
 			DomUtils.mergeAdjacentTextNodes(workplace_ele)
 		}

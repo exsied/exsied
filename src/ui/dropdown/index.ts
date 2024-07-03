@@ -10,7 +10,6 @@
 import { CN_TEMP_ELE, DATA_ATTR_CN_ICON, TN_DIV } from '../../contants'
 import { Exsied } from '../../core'
 import { t } from '../../core/i18n'
-import { SelectionUtils } from '../../core/selection_utils'
 import { tagNameLc } from '../../utils'
 import './styles.scss'
 
@@ -40,11 +39,11 @@ export class DropdownMenu {
 	}
 
 	genDropdownId(id: string) {
-		return `${id}___dropdown___${this.exsied.containerId}`
+		return `${id}___dropdown`
 	}
 
-	genTriggerClassName() {
-		return `${CN_DDROPDOWN_TRIGGER}_text___${this.exsied.containerId}`
+	genTriggerClassName(id: string) {
+		return `${id}___dropdown_trigger`
 	}
 
 	private init() {
@@ -69,7 +68,7 @@ export class DropdownMenu {
 		triggerEle.classList.add('exsied-ctrl')
 
 		const defaultText = ele.getAttribute('data-default-text') || this.triggerDefaultText
-		triggerEle.innerHTML = `<span class="${this.genTriggerClassName()}">${t(defaultText)}</span>`
+		triggerEle.innerHTML = `<span class="${this.genTriggerClassName(this.selectId)}">${t(defaultText)}</span>`
 
 		triggerEle.addEventListener('click', (event: Event) => {
 			const target = event.target

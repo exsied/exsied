@@ -91,18 +91,15 @@ export function showFindBox(
 			`
 	}
 
-	const ele = PopupView.create({
+	const ele = exsied.showPopup({
 		id: popupId,
 		classNames: [CN_TEMP_ELE, CN_FIND_BOX],
 		attrs: { TEMP_EDIT_ID: pluginName },
 		contentClassNames: [CN_FIND],
-		contentAttrs: {},
 		contentHtml,
+		top: top + 'px',
+		left: left + 'px',
 	})
-
-	ele.style.position = 'absolute'
-	ele.style.top = top + 'px'
-	ele.style.left = left + 'px'
 
 	document.body.appendChild(ele)
 	DomUtils.limitElementRect(ele)

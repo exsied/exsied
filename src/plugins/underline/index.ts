@@ -20,7 +20,7 @@ export type PluginConf = {
 
 export const CN_ICON = 'exsied-icon-underline'
 
-export class Underline implements ExsiedPlugin<Exsied> {
+export class PluginUnderline implements ExsiedPlugin<Exsied> {
 	private exsied: Exsied = new Exsied('')
 	// private popupId = ''
 	private toolbarBtnIds: ToolBarControlIds = emptyToolBarControlIds
@@ -33,7 +33,7 @@ export class Underline implements ExsiedPlugin<Exsied> {
 
 	init = (exsied: Exsied): void => {
 		this.exsied = exsied
-		// this.popupId = this.exsied?.genPopupId(this.name, 'index') || ''
+		// this.popupId = this.exsied.genPopupId(this.name, 'index') || ''
 	}
 
 	afterToolbarInit = () => {
@@ -41,7 +41,7 @@ export class Underline implements ExsiedPlugin<Exsied> {
 	}
 
 	isHighlight = () => {
-		const allTagNamesArr = this.exsied?.cursorAllParentsTagNamesArr || []
+		const allTagNamesArr = this.exsied.cursorAllParentsTagNamesArr || []
 		return allTagNamesArr.includes(TN_U)
 	}
 	formatUnderline = () => {
@@ -55,7 +55,7 @@ export class Underline implements ExsiedPlugin<Exsied> {
 
 	toolBarControl = [
 		{
-			name: this.name,
+			name: 'index',
 			tooltipText: 'Underline',
 			addToNormalToolbar: this.conf.addToNormalToolbar,
 			addToBubbleToolbar: this.conf.addToBubbleToolbar,
@@ -69,9 +69,9 @@ export class Underline implements ExsiedPlugin<Exsied> {
 	addHandler = () => {}
 	removeHandler = () => {}
 	checkHighlight = (_event: any) => {
-		const btnEle = this.exsied?.elements.editor.querySelector(`#${this.toolbarBtnIds.normal}`)
+		const btnEle = this.exsied.elements.editor.querySelector(`#${this.toolbarBtnIds.normal}`)
 		if (btnEle) {
-			const allTagNamesArr = this.exsied?.cursorAllParentsTagNamesArr || []
+			const allTagNamesArr = this.exsied.cursorAllParentsTagNamesArr || []
 			allTagNamesArr.includes(TN_U) ? btnEle.classList.add(CN_ACTIVE) : btnEle.classList.remove(CN_ACTIVE)
 		}
 	}

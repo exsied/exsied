@@ -48,10 +48,10 @@ export const CN_ICON_UNDO = 'exsied-icon-undo'
 export const NAME_REDO = 'Redo'
 export const NAME_UNDO = 'Undo'
 
-export class RedoAndUndo implements ExsiedPlugin<Exsied> {
+export class PluginRedoAndUndo implements ExsiedPlugin<Exsied> {
 	private exsied: Exsied = new Exsied('')
 	// private popupId = ''
-	private toolbarBtnIds: ToolBarControlIds = emptyToolBarControlIds
+	// private toolbarBtnIds: ToolBarControlIds = emptyToolBarControlIds
 
 	name = 'RedoAndUndo'
 	conf: PluginConf = {
@@ -67,15 +67,15 @@ export class RedoAndUndo implements ExsiedPlugin<Exsied> {
 
 	init = (exsied: Exsied): void => {
 		this.exsied = exsied
-		// this.popupId = this.exsied?.genPopupId(this.name, 'index') || ''
+		// this.popupId = this.exsied.genPopupId(this.name, 'index') || ''
 	}
 
 	afterToolbarInit = () => {
-		this.toolbarBtnIds = this.exsied.toolbar.genButtonIdStd(this.name, 'index') || emptyToolBarControlIds
+		// this.toolbarBtnIds = this.exsied.toolbar.genButtonIdStd(this.name, 'index') || emptyToolBarControlIds
 	}
 
 	update = () => {
-		const html = this.exsied?.elements.workplace?.innerHTML || ''
+		const html = this.exsied.elements.workplace.innerHTML || ''
 		data.histories.push({
 			value: this.conf.compressCb ? this.conf.compressCb(html) : html,
 			compressed: this.conf.compressCb ? true : false,
@@ -94,7 +94,7 @@ export class RedoAndUndo implements ExsiedPlugin<Exsied> {
 			? this.conf.uncompressCb(data.histories[max - currentOffset])
 			: data.histories[max - currentOffset].value
 
-		const workplace = this.exsied?.elements.workplace
+		const workplace = this.exsied.elements.workplace
 		if (workplace) workplace.innerHTML = html
 		data.offset = currentOffset
 	}
@@ -136,7 +136,7 @@ export class RedoAndUndo implements ExsiedPlugin<Exsied> {
 	]
 
 	addHandler = () => {
-		this.exsied?.elements.workplace?.addEventListener('input', this.update)
+		this.exsied.elements.workplace.addEventListener('input', this.update)
 	}
 	removeHandler = () => {}
 	checkHighlight = (_event: any) => {}

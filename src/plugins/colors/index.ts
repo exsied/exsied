@@ -11,7 +11,6 @@ import { Exsied } from '../../core'
 import { DomUtils } from '../../core/dom_utils'
 import { FormatStyle } from '../../core/format/style'
 import { Commands, ExsiedPlugin } from '../../core/plugin'
-import { SelectionUtils } from '../../core/selection_utils'
 import { Style } from '../../types'
 import { ColorPicker } from '../../ui/color_picker'
 import { ELE_TYPE_BUTTON, ToolBarControlIds, emptyToolBarControlIds } from '../../ui/toolbar'
@@ -55,8 +54,8 @@ export class Colors implements ExsiedPlugin<Exsied> {
 
 	init = (exsied: Exsied): void => {
 		this.exsied = exsied
-		this.popupIdBkg = this.exsied?.genPopupId(this.name, NAME_BACKGROUND) || ''
-		this.popupIdText = this.exsied?.genPopupId(this.name, NAME_TEXT) || ''
+		this.popupIdBkg = this.exsied.genPopupId(this.name, NAME_BACKGROUND) || ''
+		this.popupIdText = this.exsied.genPopupId(this.name, NAME_TEXT) || ''
 	}
 
 	afterToolbarInit = () => {
@@ -65,7 +64,7 @@ export class Colors implements ExsiedPlugin<Exsied> {
 	}
 
 	showColorPickerBkg = (event: Event) => {
-		const picker = new ColorPicker(this.popupIdBkg, this.name, this.conf.presetColors, (color: string) => {
+		const picker = new ColorPicker(this.exsied, this.popupIdBkg, this.name, this.conf.presetColors, (color: string) => {
 			this.exsied.selectionUtils.restoreSelection()
 			if (color) {
 				const style: Style = {}
@@ -78,14 +77,20 @@ export class Colors implements ExsiedPlugin<Exsied> {
 	}
 
 	showColorPickerText = (event: Event) => {
-		const picker = new ColorPicker(this.popupIdText, this.name, this.conf.presetColors, (color: string) => {
-			this.exsied.selectionUtils.restoreSelection()
-			if (color) {
-				const style: Style = {}
-				style.color = color
-				FormatStyle.formatSelected(style as CSSStyleDeclaration)
-			}
-		})
+		const picker = new ColorPicker(
+			this.exsied,
+			this.popupIdText,
+			this.name,
+			this.conf.presetColors,
+			(color: string) => {
+				this.exsied.selectionUtils.restoreSelection()
+				if (color) {
+					const style: Style = {}
+					style.color = color
+					FormatStyle.formatSelected(style as CSSStyleDeclaration)
+				}
+			},
+		)
 
 		picker.showPopup(event)
 	}
@@ -134,7 +139,7 @@ export class Colors implements ExsiedPlugin<Exsied> {
 	}
 	removeHandler = () => {}
 	checkHighlight = (event: any) => {
-		const btnEleBkg = this.exsied?.elements.editor.querySelector(`#${this.toolbarBtnIdsBkg.normal}`) as HTMLElement
+		const btnEleBkg = this.exsied.elements.editor.querySelector(`#${this.toolbarBtnIdsBkg.normal}`) as HTMLElement
 		if (btnEleBkg) {
 			const targetEle = event.target as HTMLElement
 			const backgroundColor = DomUtils.getParentsStyleByKey(targetEle, 'background-color')
@@ -144,7 +149,7 @@ export class Colors implements ExsiedPlugin<Exsied> {
 			} as unknown as CSSStyleDeclaration)
 		}
 
-		const btnEleText = this.exsied?.elements.editor.querySelector(`#${this.toolbarBtnIdsText.normal}`) as HTMLElement
+		const btnEleText = this.exsied.elements.editor.querySelector(`#${this.toolbarBtnIdsText.normal}`) as HTMLElement
 		if (btnEleText) {
 			const targetEle = event.target as HTMLElement
 			const color = DomUtils.getParentsStyleByKey(targetEle, 'color')

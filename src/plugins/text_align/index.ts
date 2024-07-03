@@ -33,10 +33,10 @@ export const CN_ICON_CENTER = 'exsied-icon-center'
 export const CN_ICON_LEFT = 'exsied-icon-left'
 export const CN_ICON_RIGHT = 'exsied-icon-right'
 
-export class TextAlign implements ExsiedPlugin<Exsied> {
+export class PluginTextAlign implements ExsiedPlugin<Exsied> {
 	private exsied: Exsied = new Exsied('')
 	// private popupId = ''
-	private toolbarBtnIds: ToolBarControlIds = emptyToolBarControlIds
+	// private toolbarBtnIds: ToolBarControlIds = emptyToolBarControlIds
 
 	name = 'TextAlign'
 
@@ -60,11 +60,11 @@ export class TextAlign implements ExsiedPlugin<Exsied> {
 
 	init = (exsied: Exsied): void => {
 		this.exsied = exsied
-		// this.popupId = this.exsied?.genPopupId(this.name, 'index') || ''
+		// this.popupId = this.exsied.genPopupId(this.name, 'index') || ''
 	}
 
 	afterToolbarInit = () => {
-		this.toolbarBtnIds = this.exsied.toolbar.genButtonIdStd(this.name, 'index') || emptyToolBarControlIds
+		// this.toolbarBtnIds = this.exsied.toolbar.genButtonIdStd(this.name, 'index') || emptyToolBarControlIds
 	}
 
 	format = (value: string) => {
@@ -94,8 +94,8 @@ export class TextAlign implements ExsiedPlugin<Exsied> {
 
 	toolBarControl = [
 		{
-			name: 'Text left',
-			tooltipText: 'Text left',
+			name: 'TextAlignLeft',
+			tooltipText: 'Text align left',
 			addToNormalToolbar: this.conf.addToNormalToolbar.left,
 			addToBubbleToolbar: this.conf.addToBubbleToolbar.left,
 
@@ -104,8 +104,8 @@ export class TextAlign implements ExsiedPlugin<Exsied> {
 			clickCallBack: this.commands['formatTextLeft'],
 		},
 		{
-			name: 'Text center',
-			tooltipText: 'Text center',
+			name: 'TextAlignCenter',
+			tooltipText: 'Text align center',
 			addToNormalToolbar: this.conf.addToNormalToolbar.center,
 			addToBubbleToolbar: this.conf.addToBubbleToolbar.center,
 
@@ -114,8 +114,8 @@ export class TextAlign implements ExsiedPlugin<Exsied> {
 			clickCallBack: this.commands['formatTextCenter'],
 		},
 		{
-			name: 'Text right',
-			tooltipText: 'Text right',
+			name: 'TextAlignRight',
+			tooltipText: 'Text align right',
 			addToNormalToolbar: this.conf.addToNormalToolbar.right,
 			addToBubbleToolbar: this.conf.addToBubbleToolbar.right,
 
@@ -128,14 +128,13 @@ export class TextAlign implements ExsiedPlugin<Exsied> {
 	addHandler = () => {}
 	removeHandler = () => {}
 	checkHighlight = (_event: any) => {
-		const btnEle = this.exsied?.elements.editor.querySelector(`#${this.toolbarBtnIds.normal}`)
-
-		if (btnEle) {
-			const allTagNamesArr = this.exsied?.cursorAllParentsTagNamesArr || []
-			allTagNamesArr.includes(TN_Q) || allTagNamesArr.includes(TN_BLOCKQUOTE)
-				? btnEle.classList.add(CN_ACTIVE)
-				: btnEle.classList.remove(CN_ACTIVE)
-		}
+		// const btnEle = this.exsied.elements.editor.querySelector(`#${this.toolbarBtnIds.normal}`)
+		// if (btnEle) {
+		// 	const allTagNamesArr = this.exsied.cursorAllParentsTagNamesArr || []
+		// 	allTagNamesArr.includes(TN_Q) || allTagNamesArr.includes(TN_BLOCKQUOTE)
+		// 		? btnEle.classList.add(CN_ACTIVE)
+		// 		: btnEle.classList.remove(CN_ACTIVE)
+		// }
 	}
 	removeTempEle = (_event: any) => {}
 }

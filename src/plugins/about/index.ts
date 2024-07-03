@@ -13,7 +13,6 @@ import { Exsied } from '../../core'
 import { DomUtils } from '../../core/dom_utils'
 import { t } from '../../core/i18n'
 import { ExsiedPlugin } from '../../core/plugin'
-import { PopupView } from '../../ui/popup_view'
 import { ELE_TYPE_BUTTON } from '../../ui/toolbar'
 import './styles.scss'
 
@@ -31,11 +30,10 @@ export type PluginConf = {
 	deveploers: Deveploer[]
 }
 
-// export const PLUGIN_NAME = 'About'
 export const CN_ICON = 'exsied-icon-about'
 export const CN_ROOT = 'exsied-about-view'
 
-export class About implements ExsiedPlugin<Exsied> {
+export class PluginAbout implements ExsiedPlugin<Exsied> {
 	private exsied: Exsied = new Exsied('')
 	private popupId = ''
 
@@ -64,7 +62,7 @@ export class About implements ExsiedPlugin<Exsied> {
 
 	init = (exsied: Exsied): void => {
 		this.exsied = exsied
-		this.popupId = this.exsied?.genPopupId(this.name, 'index') || ''
+		this.popupId = this.exsied.genPopupId(this.name, 'index') || ''
 	}
 
 	afterToolbarInit = () => {}
@@ -111,20 +109,16 @@ export class About implements ExsiedPlugin<Exsied> {
 				</div>
 				`
 
-		const ele = PopupView.create({
+		const rect = targetEle.getBoundingClientRect()
+		const ele = this.exsied.showPopup({
 			id: this.popupId,
 			classNames: [CN_TEMP_ELE, CN_ROOT],
 			attrs: { TEMP_EDIT_ID: this.name },
-			contentClassNames: [''],
-			contentAttrs: {},
 			contentHtml,
 			titlebarText: t('About'),
+			top: rect.bottom + 'px',
+			left: rect.left + 'px',
 		})
-
-		const rect = targetEle.getBoundingClientRect()
-		ele.style.position = 'absolute'
-		ele.style.top = rect.bottom + 'px'
-		ele.style.left = rect.left + 'px'
 
 		document.body.appendChild(ele)
 		DomUtils.limitElementRect(ele)

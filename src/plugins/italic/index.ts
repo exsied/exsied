@@ -21,7 +21,7 @@ export type PluginConf = {
 export const PLUGIN_NAME = 'Italic'
 export const CN_ICON = 'exsied-icon-italic'
 
-export class Italic implements ExsiedPlugin<Exsied> {
+export class PluginItalic implements ExsiedPlugin<Exsied> {
 	private exsied: Exsied = new Exsied('')
 	// private popupId = ''
 	private toolbarBtnIds: ToolBarControlIds = emptyToolBarControlIds
@@ -34,7 +34,7 @@ export class Italic implements ExsiedPlugin<Exsied> {
 
 	init = (exsied: Exsied): void => {
 		this.exsied = exsied
-		// this.popupId = this.exsied?.genPopupId(this.name, 'index') || ''
+		// this.popupId = this.exsied.genPopupId(this.name, 'index') || ''
 	}
 
 	afterToolbarInit = () => {
@@ -42,7 +42,7 @@ export class Italic implements ExsiedPlugin<Exsied> {
 	}
 
 	isHighlight = () => {
-		const allTagNamesArr = this.exsied?.cursorAllParentsTagNamesArr || []
+		const allTagNamesArr = this.exsied.cursorAllParentsTagNamesArr || []
 		return allTagNamesArr.includes(TN_I) || allTagNamesArr.includes(TN_EM)
 	}
 
@@ -61,7 +61,7 @@ export class Italic implements ExsiedPlugin<Exsied> {
 
 	toolBarControl = [
 		{
-			name: PLUGIN_NAME,
+			name: 'index',
 			tooltipText: 'Italic',
 			addToNormalToolbar: this.conf.addToNormalToolbar,
 			addToBubbleToolbar: this.conf.addToBubbleToolbar,
@@ -75,9 +75,9 @@ export class Italic implements ExsiedPlugin<Exsied> {
 	addHandler = () => {}
 	removeHandler = () => {}
 	checkHighlight = (_event: any) => {
-		const btnEle = this.exsied?.elements.editor.querySelector(`#${this.toolbarBtnIds.normal}`)
+		const btnEle = this.exsied.elements.editor.querySelector(`#${this.toolbarBtnIds.normal}`)
 		if (btnEle) {
-			const allTagNamesArr = this.exsied?.cursorAllParentsTagNamesArr || []
+			const allTagNamesArr = this.exsied.cursorAllParentsTagNamesArr || []
 			allTagNamesArr.includes(TN_EM) || allTagNamesArr.includes(TN_I)
 				? btnEle.classList.add(CN_ACTIVE)
 				: btnEle.classList.remove(CN_ACTIVE)

@@ -12,7 +12,6 @@ import { Exsied } from '../../core'
 import { DomUtils } from '../../core/dom_utils'
 import { EleClickCallback } from '../../core/events'
 import { Commands, ExsiedPlugin } from '../../core/plugin'
-import { SelectionUtils } from '../../core/selection_utils'
 import { ELE_TYPE_BUTTON, ToolBarControlIds, emptyToolBarControlIds } from '../../ui/toolbar'
 import {
 	CN_BTN_BC,
@@ -41,7 +40,7 @@ export type PluginConf = {
 	defaultSrc: string
 }
 
-export class Image implements ExsiedPlugin<Exsied> {
+export class PluginImage implements ExsiedPlugin<Exsied> {
 	private exsied: Exsied = new Exsied('')
 	private popupId = ''
 	private toolbarBtnIds: ToolBarControlIds = emptyToolBarControlIds
@@ -56,7 +55,7 @@ export class Image implements ExsiedPlugin<Exsied> {
 
 	init = (exsied: Exsied): void => {
 		this.exsied = exsied
-		this.popupId = this.exsied?.genPopupId(this.name, 'index') || ''
+		this.popupId = this.exsied.genPopupId(this.name, 'index') || ''
 	}
 
 	afterToolbarInit = () => {
@@ -67,7 +66,7 @@ export class Image implements ExsiedPlugin<Exsied> {
 		const ele = document.createElement(TN_IMG)
 		ele.src = this.conf.defaultSrc
 		ele.alt = this.conf.defaultAlt
-		if (this.exsied?.elements.workplace) this.exsied.selectionUtils.addElementBySelection(this.exsied?.elements.workplace, ele)
+		if (this.exsied.elements.workplace) this.exsied.selectionUtils.addElementBySelection(this.exsied.elements.workplace, ele)
 	}
 
 	commands: Commands = {
@@ -76,7 +75,7 @@ export class Image implements ExsiedPlugin<Exsied> {
 
 	toolBarControl = [
 		{
-			name: this.name,
+			name: 'index',
 			tooltipText: 'Image',
 			addToNormalToolbar: this.conf.addToNormalToolbar,
 			addToNormalToolbarInsertMenu: this.conf.addToNormalToolbarInsertMenu,
@@ -94,15 +93,15 @@ export class Image implements ExsiedPlugin<Exsied> {
 	}
 	removeHandler = () => {}
 	checkHighlight = (_event: any) => {
-		const btnEle = this.exsied?.elements.editor.querySelector(`#${this.toolbarBtnIds.normal}`)
+		const btnEle = this.exsied.elements.editor.querySelector(`#${this.toolbarBtnIds.normal}`)
 
 		if (btnEle) {
-			const allTagNamesArr = this.exsied?.cursorAllParentsTagNamesArr || []
+			const allTagNamesArr = this.exsied.cursorAllParentsTagNamesArr || []
 			allTagNamesArr.includes(TN_IMG) ? btnEle.classList.add(CN_ACTIVE) : btnEle.classList.remove(CN_ACTIVE)
 		}
 	}
 	removeTempEle = (_event: any) => {
-		const allTagNamesArr = this.exsied?.cursorAllParentsTagNamesArr || []
+		const allTagNamesArr = this.exsied.cursorAllParentsTagNamesArr || []
 		if (!allTagNamesArr.includes(TN_IMG)) {
 			DomUtils.removeElementById(RESIZER_ID)
 		}
@@ -167,7 +166,7 @@ export class Image implements ExsiedPlugin<Exsied> {
 	}
 
 	setBaseData = () => {
-		const workplace = this.exsied?.elements.workplace
+		const workplace = this.exsied.elements.workplace
 		if (!workplace) return
 
 		resizerConf.editorEle = workplace

@@ -36,10 +36,11 @@ export const CN_ICON_UL = 'exsied-icon-ul'
 const NAME_OL = 'OrderedList'
 const NAME_UL = 'UnorderedList'
 
-export class Lists implements ExsiedPlugin<Exsied> {
+export class PluginLists implements ExsiedPlugin<Exsied> {
 	private exsied: Exsied = new Exsied('')
 	// private popupId = ''
-	private toolbarBtnIds: ToolBarControlIds = emptyToolBarControlIds
+	private toolbarBtnIdsOl: ToolBarControlIds = emptyToolBarControlIds
+	private toolbarBtnIdsUl: ToolBarControlIds = emptyToolBarControlIds
 
 	name = 'Lists'
 	conf: PluginConf = {
@@ -64,11 +65,12 @@ export class Lists implements ExsiedPlugin<Exsied> {
 
 	init = (exsied: Exsied): void => {
 		this.exsied = exsied
-		// this.popupId = this.exsied?.genPopupId(this.name, 'index') || ''
+		// this.popupId = this.exsied.genPopupId(this.name, 'index') || ''
 	}
 
 	afterToolbarInit = () => {
-		this.toolbarBtnIds = this.exsied.toolbar.genButtonIdStd(this.name, 'index') || emptyToolBarControlIds
+		this.toolbarBtnIdsOl = this.exsied.toolbar.genButtonIdStd(this.name, NAME_OL) || emptyToolBarControlIds
+		this.toolbarBtnIdsUl = this.exsied.toolbar.genButtonIdStd(this.name, NAME_UL) || emptyToolBarControlIds
 	}
 
 	insert = (tagName: typeof TN_OL | typeof TN_UL) => {
@@ -77,7 +79,8 @@ export class Lists implements ExsiedPlugin<Exsied> {
 		const ele = document.createElement(tagName)
 		ele.innerHTML = selectedEles && selectedEles.innerHTML ? selectedEles.innerHTML : this.conf.defaultInnerHTML
 
-		if (this.exsied?.elements.workplace) this.exsied.selectionUtils.addElementBySelection(this.exsied.elements.workplace, ele)
+		if (this.exsied.elements.workplace)
+			this.exsied.selectionUtils.addElementBySelection(this.exsied.elements.workplace, ele)
 	}
 
 	commands: Commands = {
@@ -117,13 +120,20 @@ export class Lists implements ExsiedPlugin<Exsied> {
 	addHandler = () => {}
 	removeHandler = () => {}
 	checkHighlight = (_event: any) => {
-		const btnEle = this.exsied?.elements.editor.querySelector(`#${this.toolbarBtnIds.normal}`)
-
-		if (btnEle) {
-			const allTagNamesArr = this.exsied?.cursorAllParentsTagNamesArr || []
+		const btnEleOl = this.exsied.elements.editor.querySelector(`#${this.toolbarBtnIdsOl.normal}`)
+		if (btnEleOl) {
+			const allTagNamesArr = this.exsied.cursorAllParentsTagNamesArr || []
 			allTagNamesArr.includes(TN_Q) || allTagNamesArr.includes(TN_BLOCKQUOTE)
-				? btnEle.classList.add(CN_ACTIVE)
-				: btnEle.classList.remove(CN_ACTIVE)
+				? btnEleOl.classList.add(CN_ACTIVE)
+				: btnEleOl.classList.remove(CN_ACTIVE)
+		}
+
+		const btnEleUl = this.exsied.elements.editor.querySelector(`#${this.toolbarBtnIdsUl.normal}`)
+		if (btnEleUl) {
+			const allTagNamesArr = this.exsied.cursorAllParentsTagNamesArr || []
+			allTagNamesArr.includes(TN_Q) || allTagNamesArr.includes(TN_BLOCKQUOTE)
+				? btnEleUl.classList.add(CN_ACTIVE)
+				: btnEleUl.classList.remove(CN_ACTIVE)
 		}
 	}
 	removeTempEle = (_event: any) => {}

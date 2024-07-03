@@ -12,8 +12,6 @@ import { Exsied } from '../../core'
 import { DomUtils } from '../../core/dom_utils'
 import { t } from '../../core/i18n'
 import { Commands, ExsiedPlugin } from '../../core/plugin'
-import { SelectionUtils } from '../../core/selection_utils'
-import { PopupView } from '../../ui/popup_view'
 import { ELE_TYPE_BUTTON, ToolBarControlIds, emptyToolBarControlIds } from '../../ui/toolbar'
 import { tagNameLc } from '../../utils'
 import './styles.scss'
@@ -31,7 +29,7 @@ export const CN_TABLE_CELL_ACTION_BUTTON = 'exsied-icon-table-cell-action'
 export const DATA_ROW_INDEX = 'data-row-index'
 export const DATA_COLUNM_INDEX = 'data-column-index'
 
-export class Table implements ExsiedPlugin<Exsied> {
+export class PluginTable implements ExsiedPlugin<Exsied> {
 	private exsied: Exsied = new Exsied('')
 	// private popupId = ''
 	private toolbarBtnIds: ToolBarControlIds = emptyToolBarControlIds
@@ -46,7 +44,7 @@ export class Table implements ExsiedPlugin<Exsied> {
 
 	init = (exsied: Exsied): void => {
 		this.exsied = exsied
-		// this.popupId = this.exsied?.genPopupId(this.name, 'index') || ''
+		// this.popupId = this.exsied.genPopupId(this.name, 'index') || ''
 	}
 
 	afterToolbarInit = () => {
@@ -68,14 +66,15 @@ export class Table implements ExsiedPlugin<Exsied> {
 			</tbody>
 			`
 
-		if (this.exsied?.elements.workplace) this.exsied.selectionUtils.addElementBySelection(this.exsied.elements.workplace, ele)
+		if (this.exsied.elements.workplace)
+			this.exsied.selectionUtils.addElementBySelection(this.exsied.elements.workplace, ele)
 	}
 
 	commands: Commands = { insertTable: this.insertTable }
 
 	toolBarControl = [
 		{
-			name: this.name,
+			name: 'index',
 			tooltipText: 'Table',
 			addToNormalToolbar: this.conf.addToNormalToolbar,
 			addToNormalToolbarInsertMenu: this.conf.addToNormalToolbarInsertMenu,
@@ -92,15 +91,15 @@ export class Table implements ExsiedPlugin<Exsied> {
 	}
 	removeHandler = () => {}
 	checkHighlight = (_event: any) => {
-		const btnEle = this.exsied?.elements.editor.querySelector(`#${this.toolbarBtnIds.normal}`)
+		const btnEle = this.exsied.elements.editor.querySelector(`#${this.toolbarBtnIds.normal}`)
 
 		if (btnEle) {
-			const allTagNamesArr = this.exsied?.cursorAllParentsTagNamesArr || []
+			const allTagNamesArr = this.exsied.cursorAllParentsTagNamesArr || []
 			allTagNamesArr.includes(TN_TABLE) ? btnEle.classList.add(CN_ACTIVE) : btnEle.classList.remove(CN_ACTIVE)
 		}
 	}
 	removeTempEle = (_event: any) => {
-		const allTagNamesArr = this.exsied?.cursorAllParentsTagNamesArr || []
+		const allTagNamesArr = this.exsied.cursorAllParentsTagNamesArr || []
 		if (!allTagNamesArr.includes(TN_TABLE)) {
 			DomUtils.removeElementById(POPUP_ID)
 		}
@@ -204,25 +203,20 @@ export class Table implements ExsiedPlugin<Exsied> {
 		</div>
 		`
 
-		const ele = PopupView.create({
-			id: POPUP_ID,
-			classNames: [CN_TEMP_ELE],
-			attrs: { TEMP_EDIT_ID: PLUGIN_NAME },
-			contentClassNames: [],
-			contentAttrs: {},
-			contentHtml,
-			titlebarText: t('Table actions'),
-			actionsButtons: [],
-		})
-
 		const targetEle = event.target as HTMLElement
 		const rect = targetEle.getBoundingClientRect()
 		const scrollTop = window.pageYOffset || window.scrollY
 		const scrollLeft = window.pageXOffset || window.scrollX
 
-		ele.style.position = 'absolute'
-		ele.style.top = rect.top + scrollTop + 'px'
-		ele.style.right = window.innerWidth - rect.right + scrollLeft + 'px'
+		const ele = this.exsied.showPopup({
+			id: POPUP_ID,
+			classNames: [CN_TEMP_ELE],
+			attrs: { TEMP_EDIT_ID: PLUGIN_NAME },
+			contentHtml,
+			titlebarText: t('Table actions'),
+			top: rect.top + scrollTop + 'px',
+			right: window.innerWidth - rect.right + scrollLeft + 'px',
+		})
 
 		document.body.appendChild(ele)
 

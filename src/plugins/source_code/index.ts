@@ -26,6 +26,7 @@ export type PluginConf = {
 	toggleSourceViewAferInitCb?: (sourceCodeWorkplaceEle: HTMLElement) => void
 	randomCharsCb(): string
 }
+
 export const PLUGIN_NAME = 'SourceCode'
 export const CN_ICON_BRACES = 'exsied-icon-braces'
 export const CN_ICON_XML = 'exsied-icon-xml'
@@ -35,12 +36,12 @@ export const ID_SOURCE_CODE_EDIT_VIEW = 'sourceCodeEditView'
 export const NAME_SOURCE_CODE_VIEW = 'sourceCodeView'
 export const NAME_INSERT_SOURCE_CODE_BOCK = 'insertSourceCodeBock'
 
-export class SourceCode implements ExsiedPlugin<Exsied> {
+export class PluginSourceCode implements ExsiedPlugin<Exsied> {
 	private exsied: Exsied = new Exsied('')
 	// private popupId = ''
-	private toolbarBtnIds: ToolBarControlIds = emptyToolBarControlIds
+	// private toolbarBtnIds: ToolBarControlIds = emptyToolBarControlIds
 
-	name = 'SourceCode'
+	name = PLUGIN_NAME
 	conf: PluginConf = {
 		addToNormalToolbar: false,
 		addToNormalToolbarInsertMenu: true,
@@ -65,11 +66,11 @@ export class SourceCode implements ExsiedPlugin<Exsied> {
 
 	init = (exsied: Exsied): void => {
 		this.exsied = exsied
-		// this.popupId = this.exsied?.genPopupId(this.name, 'index') || ''
+		// this.popupId = this.exsied.genPopupId(this.name, 'index') || ''
 	}
 
 	afterToolbarInit = () => {
-		this.toolbarBtnIds = this.exsied.toolbar.genButtonIdStd(this.name, 'index') || emptyToolBarControlIds
+		// this.toolbarBtnIds = this.exsied.toolbar.genButtonIdStd(this.name, 'index') || emptyToolBarControlIds
 	}
 
 	toggleSourceView = () => {
@@ -83,7 +84,7 @@ export class SourceCode implements ExsiedPlugin<Exsied> {
 		sourceCodeWorkplaceEle.id = ID_SOURCE_CODE_EDIT_VIEW
 		sourceCodeWorkplaceEle.contentEditable = 'true'
 
-		const workplaceEle = this.exsied?.elements.workplace
+		const workplaceEle = this.exsied.elements.workplace
 		if (!workplaceEle) return
 
 		workplaceEle.after(sourceCodeWorkplaceEle)
@@ -100,7 +101,7 @@ export class SourceCode implements ExsiedPlugin<Exsied> {
 				eleType: ELE_TYPE_BUTTON,
 				iconClassName: CN_ICON_BACK,
 				clickCallBack: () => {
-					const extToolbar = this.exsied?.elements.toolbarMain?.querySelector(`#${ID_TOOLBAR_EXT}`)
+					const extToolbar = this.exsied.elements.toolbarMain.querySelector(`#${ID_TOOLBAR_EXT}`)
 					if (extToolbar) extToolbar.remove()
 
 					workplaceEle.style.display = ''
@@ -128,7 +129,8 @@ export class SourceCode implements ExsiedPlugin<Exsied> {
 		const text = SelectionUtils.getSelectedText()
 		codeEle.textContent = text ? text : this.conf.defaultText
 		ele.appendChild(codeEle)
-		if (this.exsied?.elements.workplace) this.exsied.selectionUtils.addElementBySelection(this.exsied?.elements.workplace, ele)
+		if (this.exsied.elements.workplace)
+			this.exsied.selectionUtils.addElementBySelection(this.exsied.elements.workplace, ele)
 
 		renderElement(this.exsied, codeEle)
 	}

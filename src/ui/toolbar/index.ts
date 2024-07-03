@@ -103,7 +103,7 @@ export class Toolbar {
 	}
 
 	genButtonId = (typ: string, pluginName: string, ctrlName: string) => {
-		return `exsied-toolbar-btn___${typ}___${pluginName}---${ctrlName}---${this.exsied.containerId}`
+		return `exsied-toolbar-btn___${typ}___${pluginName}---${ctrlName}___${this.exsied.containerId}`
 	}
 
 	genButtonIdStd = (pluginName: string, ctrlName: string): ToolBarControlIds => {
@@ -242,7 +242,7 @@ export class Toolbar {
 	}
 
 	addAfterNormalToolbar = (ele: HTMLElement) => {
-		const normalToolbar = this.exsied.elements.toolbarMain?.querySelector(`.${CN_TOOLBAR_NORMAL_ELE}`)
+		const normalToolbar = this.exsied.elements.toolbarMain.querySelector(`.${CN_TOOLBAR_NORMAL_ELE}`)
 		if (!normalToolbar) return
 
 		const normalToolbarEle = normalToolbar as HTMLElement
@@ -250,7 +250,7 @@ export class Toolbar {
 	}
 
 	hideNormalToolbar = (hide: boolean) => {
-		const normalToolbar = this.exsied.elements.toolbarMain?.querySelector(`.${CN_TOOLBAR_NORMAL_ELE}`)
+		const normalToolbar = this.exsied.elements.toolbarMain.querySelector(`.${CN_TOOLBAR_NORMAL_ELE}`)
 		if (!normalToolbar) return
 
 		const normalToolbarEle = normalToolbar as HTMLElement
@@ -324,12 +324,12 @@ export class Toolbar {
 	initDropdownElements = () => {
 		this.pluginsSelectId.map((id) => {
 			const dropdownMenu = this.exsied.dropdownMenu
-			if (!DomUtils.existElementById(dropdownMenu?.genDropdownId(id) || '')) dropdownMenu?.initSelect(id)
+			if (!DomUtils.existElementById(dropdownMenu.genDropdownId(id) || '')) dropdownMenu.initSelect(id)
 		})
 	}
 
 	hideDropdowntList = (dropDownId: string) => {
-		const dropDownListEle = this.exsied.elements.toolbarMain?.querySelector(`#${dropDownId} .${CN_DDROPDOWN_LIST_SHOW}`)
+		const dropDownListEle = this.exsied.elements.toolbarMain.querySelector(`#${dropDownId} .${CN_DDROPDOWN_LIST_SHOW}`)
 		if (!dropDownListEle) return
 
 		dropDownListEle.classList.remove(CN_DDROPDOWN_LIST_SHOW)
