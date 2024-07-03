@@ -30,6 +30,7 @@ import { Lists } from './plugins/lists'
 import { Quote } from './plugins/quote'
 import { Strikethrough } from './plugins/strikethrough'
 import { SubscriptAndSupscript } from './plugins/subscript_and_supcript'
+import { Table } from './plugins/table'
 import './styles/style.scss'
 
 // // plugin about
@@ -138,6 +139,9 @@ const initExsied = (containerId: string, content: string, locale?: string) => {
 	const subscriptAndSupscript = new SubscriptAndSupscript()
 	subscriptAndSupscript.init(exsied)
 
+	const table = new Table()
+	table.init(exsied)
+
 	exsied.init({
 		plugins: [
 			bold,
@@ -156,6 +160,7 @@ const initExsied = (containerId: string, content: string, locale?: string) => {
 			quote,
 			strikethrough,
 			subscriptAndSupscript,
+			table
 		],
 		enableToolbarBubble: true,
 		locale: locale || 'en',
