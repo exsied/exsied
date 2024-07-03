@@ -27,9 +27,9 @@ import { I18N } from './i18n'
 import { CommandFunc, ExsiedPlugin, HOOK_AFTER_INIT, HOOK_AFTER_SET_HTML, HOOK_BEFORE_GET_HTML } from './plugin'
 
 export type Hooks = {
-	onInput?: (event: Event) => void
-	beforeGetHtml?: (html: string) => string
-	beforeSetHtml?: (html: string) => string
+	onInput?: (exsied: Exsied, event: Event) => void
+	beforeGetHtml?: (exsied: Exsied, html: string) => string
+	beforeSetHtml?: (exsied: Exsied, html: string) => string
 }
 
 export type HookType = typeof HOOK_AFTER_INIT | typeof HOOK_AFTER_SET_HTML | typeof HOOK_BEFORE_GET_HTML
@@ -123,7 +123,7 @@ export class Exsied {
 			if (conf.hooks.onInput) {
 				const hooksOnInput = conf.hooks.onInput
 				this.elements.workplace?.addEventListener('input', (event) => {
-					hooksOnInput(event)
+					hooksOnInput(this, event)
 				})
 			}
 		}
@@ -176,9 +176,9 @@ export class Exsied {
 		for (const item of this.plugins) {
 			if (!item.hooks) continue
 
-			if (hook === HOOK_AFTER_INIT && item.hooks.afterInit) return item.hooks.afterInit()
-			if (hook === HOOK_AFTER_SET_HTML && item.hooks.afterSetHtml) return item.hooks.afterSetHtml()
-			if (hook === HOOK_BEFORE_GET_HTML && item.hooks.beforeGetHtml) return item.hooks.beforeGetHtml()
+			if (hook === HOOK_AFTER_INIT && item.hooks.afterInit) return item.hooks.afterInit(this)
+			if (hook === HOOK_AFTER_SET_HTML && item.hooks.afterSetHtml) return item.hooks.afterSetHtml(this)
+			if (hook === HOOK_BEFORE_GET_HTML && item.hooks.beforeGetHtml) return item.hooks.beforeGetHtml(this)
 		}
 	}
 
@@ -228,7 +228,7 @@ export class Exsied {
 		if (html) {
 			html = html.replaceAll(ZERO_WIDTH_SPACE, '')
 			if (this.hooks && this.hooks.beforeGetHtml) {
-				html = this.hooks.beforeGetHtml(html)
+				html = this.hooks.beforeGetHtml(this, html)
 			}
 			return html
 		}
@@ -236,7 +236,7 @@ export class Exsied {
 	}
 	setHtml(content: string) {
 		if (this.hooks && this.hooks.beforeSetHtml) {
-			content = this.hooks.beforeSetHtml(content)
+			content = this.hooks.beforeSetHtml(this, content)
 		}
 		const workplaceEle = this.elements.workplace
 		if (!workplaceEle) return

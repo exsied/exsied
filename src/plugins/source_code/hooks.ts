@@ -8,17 +8,18 @@
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
 import { TN_BUTTON, TN_DIV } from '../../contants'
-
+import { Exsied } from '../../core'
 import { CN_PREVIEW_BLOCK, DataRender, dataAttr } from '../../core/data_render'
 import { t } from '../../core/i18n'
 import { EventWithElement, getEventWithElementEle } from '../../core/plugin'
 import { tagNameLc } from '../../utils'
-import { PLUGIN_CONF } from './base'
 
 const renderer = new DataRender()
 const SELECTOR = `pre code`
 
-export function renderElement(item: Element) {
+export function renderElement(exsied: Exsied, item: Element) {
+	// FIXME: get PLUGIN_CONF
+
 	const eleSign = PLUGIN_CONF.randomCharsCb()
 
 	const ele = item as HTMLElement
@@ -69,21 +70,21 @@ export function renderElement(item: Element) {
 	renderer.addCtrlElements([editBtn, copyBtn, deleteBtn])
 }
 
-export function renderCodeEle(event: Event | EventWithElement) {
-	const ele = getEventWithElementEle(event)
-	if (ele) renderElement(ele)
-}
+// export function renderCodeEle(event: Event | EventWithElement) {
+// 	const ele = getEventWithElementEle(event)
+// 	if (ele) renderElement(exsied, ele)
+// }
 
-export function afterSetHtml() {
-	const codeEles = exsied.elements.workplace.querySelectorAll(SELECTOR)
+export function afterSetHtml(exsied: Exsied) {
+	const codeEles = exsied.elements.workplace?.querySelectorAll(SELECTOR) || []
 	for (const item of codeEles) {
-		renderElement(item)
+		renderElement(exsied, item)
 	}
 }
 
-export function beforeGetHtml() {
+export function beforeGetHtml(exsied: Exsied) {
 	const tempEle = document.createElement(TN_DIV)
-	tempEle.innerHTML = exsied.elements.workplace.innerHTML
+	tempEle.innerHTML = exsied.elements.workplace?.innerHTML || ''
 	const codeEles = tempEle.querySelectorAll(SELECTOR)
 
 	for (const item of codeEles) {

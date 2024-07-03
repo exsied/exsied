@@ -7,6 +7,7 @@
  *     https://github.com/exsied/exsied/blob/main/LICENSE
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
+import { Exsied } from '.'
 import { ToolBarControl } from '../ui/toolbar'
 
 export type ClickEventHandler = (event: MouseEvent) => any
@@ -37,9 +38,9 @@ export interface ExsiedPlugin<T> {
 	checkHighlight: (event: Event) => any
 	removeTempEle: (event: Event) => any
 	hooks?: {
-		afterInit?: () => void
-		afterSetHtml?: () => void
-		beforeGetHtml?: () => string
+		afterInit?: (exsied: Exsied) => void
+		afterSetHtml?: (exsied: Exsied) => void
+		beforeGetHtml?: (exsied: Exsied) => string
 	}
 	afterExsiedInit?: () => void
 }
