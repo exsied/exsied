@@ -28,6 +28,7 @@ import { Italic } from './plugins/italic'
 import { Link } from './plugins/link'
 import { Lists } from './plugins/lists'
 import { Quote } from './plugins/quote'
+import { Strikethrough } from './plugins/strikethrough'
 import './styles/style.scss'
 
 // // plugin about
@@ -130,29 +131,11 @@ const initExsied = (containerId: string, content: string, locale?: string) => {
 	const quote = new Quote()
 	quote.init(exsied)
 
+	const strikethrough = new Strikethrough()
+	quote.init(exsied)
+
 	exsied.init({
 		plugins: [
-			// 			plugins.redoAndUndo,
-			// 			plugins.insertMenu,
-			// 			plugins.bold,
-			// 			plugins.italic,
-			// 			plugins.underline,
-			// 			plugins.strikethrough,
-			// 			plugins.headings,
-			// 			plugins.link,
-			// 			plugins.image,
-			// 			plugins.table,
-			// 			plugins.horizonalRule,
-			// 			plugins.quote,
-			// 			plugins.lists,
-			// 			plugins.fontSize,
-			// 			plugins.fontFamily,
-			// 			plugins.textAlign,
-			// 			plugins.indentAndOutdent,
-			// 			plugins.subscriptAndSupscript,
-			// 			plugins.colors,
-			// 			plugins.findAndReplace,
-			// 			plugins.sourceCode,
 			bold,
 			colors,
 			findAndReplace,
@@ -167,6 +150,7 @@ const initExsied = (containerId: string, content: string, locale?: string) => {
 			link,
 			lists,
 			quote,
+			strikethrough,
 		],
 		enableToolbarBubble: true,
 		locale: locale || 'en',
