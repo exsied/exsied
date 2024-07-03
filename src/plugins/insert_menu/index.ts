@@ -14,7 +14,7 @@ import { t } from '../../core/i18n'
 import { ClickEventHandler, Commands, ExsiedPlugin } from '../../core/plugin'
 import { SelectionUtils } from '../../core/selection_utils'
 import { PopupView } from '../../ui/popup_view'
-import { ELE_TYPE_BUTTON, ToolBarControlIds, Toolbar, emptyToolBarControlIds } from '../../ui/toolbar'
+import { ELE_TYPE_BUTTON, ToolBarControlIds, emptyToolBarControlIds } from '../../ui/toolbar'
 import './styles.scss'
 
 export type PluginConf = {
