@@ -9,7 +9,7 @@
  */
 import { TN_CODE, TN_DIV, TN_PRE } from '../../contants'
 import { Exsied } from '../../core'
-import { ExsiedPlugin } from '../../core/plugin'
+import { EventWithElement, ExsiedPlugin, getEventWithElementEle } from '../../core/plugin'
 import { SelectionUtils } from '../../core/selection_utils'
 import { ELE_TYPE_BUTTON, ID_TOOLBAR_EXT } from '../../ui/toolbar'
 import { randomChars } from '../../utils/string'
@@ -128,7 +128,16 @@ export class PluginSourceCode implements ExsiedPlugin<Exsied> {
 		renderElement(this.exsied, codeEle)
 	}
 
-	commands = { toggleSourceView: this.toggleSourceView, insertCodeBlock: this.insertCodeBlock }
+	renderCodeEle = (event: Event | EventWithElement) => {
+		const ele = getEventWithElementEle(event)
+		if (ele) renderElement(this.exsied, ele)
+	}
+
+	commands = {
+		toggleSourceView: this.toggleSourceView,
+		insertCodeBlock: this.insertCodeBlock,
+		renderCodeEle: this.renderCodeEle,
+	}
 
 	getToolBarControl = () => [
 		{

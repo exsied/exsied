@@ -7,7 +7,7 @@
  *     https://github.com/exsied/exsied/blob/main/LICENSE
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
-import { KEY_CTRL } from './'
+import { KEY_CTRL, PluginSourceCode } from './'
 import { Exsied } from './core'
 import { DEMO_CONTENT } from './demo_content'
 import { PluginAbout } from './plugins/about'
@@ -118,6 +118,7 @@ const initExsied = (containerId: string, content: string, locale?: string) => {
 			new PluginLists(),
 			new PluginQuote(),
 			new PluginStrikethrough(),
+			new PluginSourceCode(),
 			new PluginSubscriptAndSupscript(),
 			new PluginTable(),
 			new PluginTextAlign(),

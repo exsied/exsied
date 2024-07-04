@@ -75,11 +75,6 @@ export function renderElement(exsied: Exsied, item: Element) {
 	exsied.dataRender.addCtrlElements([editBtn, copyBtn, deleteBtn])
 }
 
-// export function renderCodeEle(event: Event | EventWithElement) {
-// 	const ele = getEventWithElementEle(event)
-// 	if (ele) renderElement(exsied, ele)
-// }
-
 export function afterSetHtml(exsied: Exsied) {
 	const codeEles = exsied.elements.workplace.querySelectorAll(SELECTOR)
 	for (const item of codeEles) {
