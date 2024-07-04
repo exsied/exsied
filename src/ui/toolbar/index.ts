@@ -264,15 +264,15 @@ export class Toolbar {
 		}
 
 		this.exsied.plugins.map((item, _index) => {
-			item.checkHighlight(event)
+			if (item.checkHighlight) item.checkHighlight(event)
 			// TODO: Should bind to body
-			item.removeTempEle(event)
+			if (item.removeTempEle) item.removeTempEle(event)
 		})
 	}
 
 	bindBtnEvents = () => {
 		for (const plg of this.exsied.plugins) {
-			plg.addHandler()
+			if (plg.addHandler) plg.addHandler()
 
 			if (!plg.getToolBarControl) continue
 
@@ -314,7 +314,7 @@ export class Toolbar {
 
 	unBindBtnEvents = () => {
 		for (const plg of this.exsied.plugins) {
-			plg.removeHandler()
+			if (plg.removeHandler) plg.removeHandler()
 		}
 
 		const editorEle = this.exsied.elements.editor

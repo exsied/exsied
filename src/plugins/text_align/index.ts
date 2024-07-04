@@ -33,10 +33,6 @@ export const CN_ICON_LEFT = 'exsied-icon-left'
 export const CN_ICON_RIGHT = 'exsied-icon-right'
 
 export class PluginTextAlign implements ExsiedPlugin<Exsied> {
-	// private exsied: Exsied = new Exsied('')
-	// private popupId = ''
-	// private toolbarBtnIds: ToolBarControlIds = emptyToolBarControlIds
-
 	name = 'TextAlign'
 
 	conf: PluginConf = {
@@ -57,14 +53,7 @@ export class PluginTextAlign implements ExsiedPlugin<Exsied> {
 			`,
 	}
 
-	init = (exsied: Exsied): void => {
-		// this.exsied = exsied
-		// this.popupId = this.exsied.genPopupId(this.name, 'index') || ''
-	}
-
-	afterToolbarInit = () => {
-		// this.toolbarBtnIds = this.exsied.toolbar.genButtonIdStd(this.name, 'index') || emptyToolBarControlIds
-	}
+	init = (exsied: Exsied): void => {}
 
 	format = (value: string) => {
 		const style: Style = {}
@@ -124,8 +113,6 @@ export class PluginTextAlign implements ExsiedPlugin<Exsied> {
 		},
 	]
 
-	addHandler = () => {}
-	removeHandler = () => {}
 	checkHighlight = (event: Event) => {
 		// const btnEle = this.exsied.elements.editor.querySelector(`#${this.toolbarBtnIds.normal}`)
 		// if (btnEle) {

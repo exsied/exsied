@@ -98,7 +98,7 @@ export class SelectionUtils {
 		return ''
 	}
 
-	static getCursorNode = () => {
+	static getCursorNode = (rootEle?: HTMLElement) => {
 		const selection = window.getSelection()
 		if (!selection) return
 		if (selection.rangeCount > 0) {
@@ -106,7 +106,11 @@ export class SelectionUtils {
 			const startNode = range.startContainer
 
 			if (startNode.nodeType === Node.TEXT_NODE) {
-				return startNode.parentNode
+				if (rootEle && startNode.parentNode && startNode.parentNode.isSameNode(rootEle)) {
+					return startNode
+				} else {
+					return startNode.parentNode
+				}
 			} else if (range.collapsed) {
 				return startNode
 			}
@@ -236,5 +240,22 @@ export class SelectionUtils {
 		}
 
 		return false
+	}
+
+	static moveCursorToEle = (targetDiv: HTMLElement) => {
+		if (!targetDiv) return
+
+		targetDiv.focus()
+
+		const selection = window.getSelection()
+		const range = document.createRange()
+
+		range.setStart(targetDiv, 0)
+		range.setEnd(targetDiv, 0)
+
+		if (selection) {
+			selection.removeAllRanges()
+			selection.addRange(range)
+		}
 	}
 }

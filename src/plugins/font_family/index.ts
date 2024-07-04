@@ -22,7 +22,7 @@ export type PluginConf = {
 
 export class PluginFontFamily implements ExsiedPlugin<Exsied> {
 	private exsied: Exsied = new Exsied('')
-	// private popupId = ''
+
 	private toolbarBtnIds: ToolBarControlIds = emptyToolBarControlIds
 
 	name = 'FontFamily'
@@ -41,7 +41,6 @@ export class PluginFontFamily implements ExsiedPlugin<Exsied> {
 
 	init = (exsied: Exsied): void => {
 		this.exsied = exsied
-		// this.popupId = this.exsied.genPopupId(this.name, 'index') || ''
 	}
 
 	afterToolbarInit = () => {
@@ -74,8 +73,6 @@ export class PluginFontFamily implements ExsiedPlugin<Exsied> {
 		},
 	]
 
-	addHandler = () => {}
-	removeHandler = () => {}
 	checkHighlight = (event: Event) => {
 		// TODO:
 	}

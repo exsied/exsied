@@ -10,7 +10,7 @@
 import { CN_ACTIVE, TN_EM, TN_I } from '../../contants'
 import { Exsied } from '../../core'
 import { FormatTaName } from '../../core/format/tag_name'
-import {  ExsiedPlugin } from '../../core/plugin'
+import { ExsiedPlugin } from '../../core/plugin'
 import { ELE_TYPE_BUTTON, ToolBarControlIds, emptyToolBarControlIds } from '../../ui/toolbar'
 
 export type PluginConf = {
@@ -23,7 +23,7 @@ export const CN_ICON = 'exsied-icon-italic'
 
 export class PluginItalic implements ExsiedPlugin<Exsied> {
 	private exsied: Exsied = new Exsied('')
-	// private popupId = ''
+
 	private toolbarBtnIds: ToolBarControlIds = emptyToolBarControlIds
 
 	name = 'Italic'
@@ -34,7 +34,6 @@ export class PluginItalic implements ExsiedPlugin<Exsied> {
 
 	init = (exsied: Exsied): void => {
 		this.exsied = exsied
-		// this.popupId = this.exsied.genPopupId(this.name, 'index') || ''
 	}
 
 	afterToolbarInit = () => {
@@ -72,8 +71,6 @@ export class PluginItalic implements ExsiedPlugin<Exsied> {
 		},
 	]
 
-	addHandler = () => {}
-	removeHandler = () => {}
 	checkHighlight = (event: Event) => {
 		const btnEle = this.exsied.elements.editor.querySelector(`#${this.toolbarBtnIds.normal}`)
 		if (btnEle) {

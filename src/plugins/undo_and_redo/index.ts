@@ -50,8 +50,6 @@ export const NAME_UNDO = 'Undo'
 
 export class PluginRedoAndUndo implements ExsiedPlugin<Exsied> {
 	private exsied: Exsied = new Exsied('')
-	// private popupId = ''
-	// private toolbarBtnIds: ToolBarControlIds = emptyToolBarControlIds
 
 	name = 'RedoAndUndo'
 	conf: PluginConf = {
@@ -67,11 +65,6 @@ export class PluginRedoAndUndo implements ExsiedPlugin<Exsied> {
 
 	init = (exsied: Exsied): void => {
 		this.exsied = exsied
-		// this.popupId = this.exsied.genPopupId(this.name, 'index') || ''
-	}
-
-	afterToolbarInit = () => {
-		// this.toolbarBtnIds = this.exsied.toolbar.genButtonIdStd(this.name, 'index') || emptyToolBarControlIds
 	}
 
 	update = () => {
@@ -138,7 +131,6 @@ export class PluginRedoAndUndo implements ExsiedPlugin<Exsied> {
 	addHandler = () => {
 		this.exsied.elements.workplace.addEventListener('input', this.update)
 	}
-	removeHandler = () => {}
-	checkHighlight = (event: Event) => {}
+
 	removeTempEle = (event: Event) => {}
 }

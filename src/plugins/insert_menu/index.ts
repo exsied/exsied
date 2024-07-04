@@ -30,8 +30,6 @@ export const dataName = 'data-name'
 
 export class PluginInsertMenu implements ExsiedPlugin<Exsied> {
 	private exsied: Exsied = new Exsied('')
-	// private popupId = ''
-	private toolbarBtnIds: ToolBarControlIds = emptyToolBarControlIds
 
 	name = 'InsertMenu'
 	conf: PluginConf = {
@@ -41,11 +39,6 @@ export class PluginInsertMenu implements ExsiedPlugin<Exsied> {
 
 	init = (exsied: Exsied): void => {
 		this.exsied = exsied
-		// this.popupId = this.exsied.genPopupId(this.name, 'index') || ''
-	}
-
-	afterToolbarInit = () => {
-		this.toolbarBtnIds = this.exsied.toolbar.genButtonIdStd(this.name, 'index') || emptyToolBarControlIds
 	}
 
 	showInsertMenu = (event: Event) => {
@@ -119,8 +112,7 @@ export class PluginInsertMenu implements ExsiedPlugin<Exsied> {
 			this.exsied.selectionUtils.backupSelection()
 		})
 	}
-	removeHandler = () => {}
-	checkHighlight = (event: Event) => {}
+
 	removeTempEle = (event: Event) => {
 		DomUtils.removeElementById(POPUP_ID)
 	}

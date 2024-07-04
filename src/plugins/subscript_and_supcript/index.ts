@@ -30,7 +30,7 @@ export const CN_ICON_SUP = 'exsied-icon-sup'
 
 export class PluginSubscriptAndSupscript implements ExsiedPlugin<Exsied> {
 	private exsied: Exsied = new Exsied('')
-	// private popupId = ''
+
 	private toolbarBtnIdsSub: ToolBarControlIds = emptyToolBarControlIds
 	private toolbarBtnIdsSup: ToolBarControlIds = emptyToolBarControlIds
 
@@ -48,7 +48,6 @@ export class PluginSubscriptAndSupscript implements ExsiedPlugin<Exsied> {
 
 	init = (exsied: Exsied): void => {
 		this.exsied = exsied
-		// this.popupId = this.exsied.genPopupId(this.name, 'index') || ''
 	}
 
 	afterToolbarInit = () => {
@@ -109,8 +108,6 @@ export class PluginSubscriptAndSupscript implements ExsiedPlugin<Exsied> {
 		},
 	]
 
-	addHandler = () => {}
-	removeHandler = () => {}
 	checkHighlight = (event: Event) => {
 		const btnEleSub = this.exsied.elements.editor.querySelector(`#${this.toolbarBtnIdsSub.normal}`)
 		if (btnEleSub) {

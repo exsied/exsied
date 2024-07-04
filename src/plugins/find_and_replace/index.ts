@@ -34,7 +34,6 @@ export const NAME_REPLACE = 'replace'
 export class PluginFindAndReplace implements ExsiedPlugin<Exsied> {
 	private exsied: Exsied = new Exsied('')
 	private popupId = ''
-	// private toolbarBtnIds: ToolBarControlIds = emptyToolBarControlIds
 
 	name = 'FindAndReplace'
 	conf: PluginConf = {
@@ -51,10 +50,6 @@ export class PluginFindAndReplace implements ExsiedPlugin<Exsied> {
 	init = (exsied: Exsied): void => {
 		this.exsied = exsied
 		this.popupId = this.exsied.genPopupId(this.name, 'index') || ''
-	}
-
-	afterToolbarInit = () => {
-		// this.toolbarBtnIds = this.exsied.toolbar.genButtonIdStd(this.name, 'index') || emptyToolBarControlIds
 	}
 
 	commands = {
@@ -89,9 +84,6 @@ export class PluginFindAndReplace implements ExsiedPlugin<Exsied> {
 		},
 	]
 
-	addHandler = () => {}
-	removeHandler = () => {}
-	checkHighlight = (event: Event) => {}
 	removeTempEle = (event: Event) => {
 		DomUtils.removeElementById(this.popupId)
 		resetValue()

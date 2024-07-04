@@ -128,7 +128,7 @@ export class Colors implements ExsiedPlugin<Exsied> {
 			this.exsied.selectionUtils.backupSelection()
 		})
 	}
-	removeHandler = () => {}
+
 	checkHighlight = (event: any) => {
 		const btnEleBkg = this.exsied.elements.editor.querySelector(`#${this.toolbarBtnIdsBkg.normal}`) as HTMLElement
 		if (btnEleBkg) {

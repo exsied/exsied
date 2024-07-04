@@ -31,7 +31,7 @@ export const DATA_COLUNM_INDEX = 'data-column-index'
 
 export class PluginTable implements ExsiedPlugin<Exsied> {
 	private exsied: Exsied = new Exsied('')
-	// private popupId = ''
+
 	private toolbarBtnIds: ToolBarControlIds = emptyToolBarControlIds
 
 	name = 'Table'
@@ -44,7 +44,6 @@ export class PluginTable implements ExsiedPlugin<Exsied> {
 
 	init = (exsied: Exsied): void => {
 		this.exsied = exsied
-		// this.popupId = this.exsied.genPopupId(this.name, 'index') || ''
 	}
 
 	afterToolbarInit = () => {
@@ -89,7 +88,7 @@ export class PluginTable implements ExsiedPlugin<Exsied> {
 	addHandler = () => {
 		document.body.addEventListener('click', this.showTableActionButtons)
 	}
-	removeHandler = () => {}
+
 	checkHighlight = (event: Event) => {
 		const btnEle = this.exsied.elements.editor.querySelector(`#${this.toolbarBtnIds.normal}`)
 

@@ -65,8 +65,6 @@ export class PluginAbout implements ExsiedPlugin<Exsied> {
 		this.popupId = this.exsied.genPopupId(this.name, 'index') || ''
 	}
 
-	afterToolbarInit = () => {}
-
 	showAbout = (event: Event) => {
 		const targetEle = event.target as HTMLAnchorElement
 		targetEle.setAttribute(DATA_ATTR_TEMP_EDIT, this.name)
@@ -137,9 +135,6 @@ export class PluginAbout implements ExsiedPlugin<Exsied> {
 		},
 	]
 
-	addHandler = () => {}
-	removeHandler = () => {}
-	checkHighlight = (event: Event) => {}
 	removeTempEle = (event: Event) => {
 		DomUtils.removeElementById(this.popupId)
 	}

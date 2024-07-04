@@ -42,7 +42,7 @@ export type PluginConf = {
 
 export class PluginImage implements ExsiedPlugin<Exsied> {
 	private exsied: Exsied = new Exsied('')
-	// private popupId = ''
+
 	private toolbarBtnIds: ToolBarControlIds = emptyToolBarControlIds
 	name = 'Image'
 	conf: PluginConf = {
@@ -55,14 +55,13 @@ export class PluginImage implements ExsiedPlugin<Exsied> {
 
 	init = (exsied: Exsied): void => {
 		this.exsied = exsied
-		// this.popupId = this.exsied.genPopupId(this.name, 'index') || ''
 	}
 
 	afterToolbarInit = () => {
 		this.toolbarBtnIds = this.exsied.toolbar.genButtonIdStd(this.name, 'index') || emptyToolBarControlIds
 	}
 
-	insertImage=() =>{
+	insertImage = () => {
 		const ele = document.createElement(TN_IMG)
 		ele.src = this.conf.defaultSrc
 		ele.alt = this.conf.defaultAlt
@@ -92,7 +91,7 @@ export class PluginImage implements ExsiedPlugin<Exsied> {
 		EleClickCallback.addByTag(TN_IMG, this.onClickImage)
 		EleClickCallback.addByClass(CN_BTN_SETTING, onClickImageSettingButton)
 	}
-	removeHandler = () => {}
+
 	checkHighlight = (event: Event) => {
 		const btnEle = this.exsied.elements.editor.querySelector(`#${this.toolbarBtnIds.normal}`)
 

@@ -38,7 +38,7 @@ const NAME_UL = 'UnorderedList'
 
 export class PluginLists implements ExsiedPlugin<Exsied> {
 	private exsied: Exsied = new Exsied('')
-	// private popupId = ''
+
 	private toolbarBtnIdsOl: ToolBarControlIds = emptyToolBarControlIds
 	private toolbarBtnIdsUl: ToolBarControlIds = emptyToolBarControlIds
 
@@ -65,7 +65,6 @@ export class PluginLists implements ExsiedPlugin<Exsied> {
 
 	init = (exsied: Exsied): void => {
 		this.exsied = exsied
-		// this.popupId = this.exsied.genPopupId(this.name, 'index') || ''
 	}
 
 	afterToolbarInit = () => {
@@ -117,8 +116,6 @@ export class PluginLists implements ExsiedPlugin<Exsied> {
 		},
 	]
 
-	addHandler = () => {}
-	removeHandler = () => {}
 	checkHighlight = (event: Event) => {
 		const btnEleOl = this.exsied.elements.editor.querySelector(`#${this.toolbarBtnIdsOl.normal}`)
 		if (btnEleOl) {

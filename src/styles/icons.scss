@@ -249,3 +249,8 @@ i.exsied-icon-undo {
 	@include bkgSvgIcon;
 	background-image: url(../icons/arrow-counterclockwise.svg);
 }
+
+i.exsied-icon-square {
+	@include bkgSvgIcon;
+	background-image: url(../icons/square.svg);
+}

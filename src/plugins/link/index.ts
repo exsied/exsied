@@ -41,7 +41,7 @@ export const CN_CONFIRM_BTN = 'exsied-link-confirm'
 
 export class PluginLink implements ExsiedPlugin<Exsied> {
 	private exsied: Exsied = new Exsied('')
-	// private popupId = ''
+
 	private toolbarBtnIds: ToolBarControlIds = emptyToolBarControlIds
 	name = 'Link'
 	conf: PluginConf = {
@@ -56,7 +56,6 @@ export class PluginLink implements ExsiedPlugin<Exsied> {
 
 	init = (exsied: Exsied): void => {
 		this.exsied = exsied
-		// this.popupId = this.exsied.genPopupId(this.name, 'index') || ''
 	}
 
 	afterToolbarInit = () => {
@@ -94,7 +93,7 @@ export class PluginLink implements ExsiedPlugin<Exsied> {
 	addHandler = () => {
 		EleClickCallback.addByTag(TN_A, this.onClickLink)
 	}
-	removeHandler = () => {}
+
 	checkHighlight = (event: Event) => {
 		const btnEle = this.exsied.elements.editor.querySelector(`#${this.toolbarBtnIds.normal}`)
 

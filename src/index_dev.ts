@@ -23,6 +23,7 @@ import { PluginInsertMenu } from './plugins/insert_menu'
 import { PluginItalic } from './plugins/italic'
 import { PluginLink } from './plugins/link'
 import { PluginLists } from './plugins/lists'
+import { PluginNewBlock } from './plugins/new_block'
 import { PluginQuote } from './plugins/quote'
 import { PluginStrikethrough } from './plugins/strikethrough'
 import { PluginSubscriptAndSupscript } from './plugins/subscript_and_supcript'
@@ -112,6 +113,7 @@ const initExsied = (containerId: string, content: string, locale?: string) => {
 	const textAlign = new PluginTextAlign()
 	const underline = new PluginUnderline()
 	const redoAndUndo = new PluginRedoAndUndo()
+	const pluginNewBlock = new PluginNewBlock()
 
 	exsied.init({
 		plugins: [
@@ -135,6 +137,7 @@ const initExsied = (containerId: string, content: string, locale?: string) => {
 			textAlign,
 			underline,
 			redoAndUndo,
+			pluginNewBlock,
 		],
 		enableToolbarBubble: true,
 		locale: locale || 'en',

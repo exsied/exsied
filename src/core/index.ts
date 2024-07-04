@@ -93,7 +93,7 @@ export class Exsied {
 		workplace: emptyEle,
 	}
 	plugins: ExsiedPlugin<Exsied>[] = []
-	toolbar: Toolbar = new Toolbar(this)	
+	toolbar: Toolbar = new Toolbar(this)
 	selectionUtils = new SelectionUtilsInExsied(this)
 	dataRender = new DataRender(this)
 
@@ -192,8 +192,6 @@ export class Exsied {
 
 		return this
 	}
-
-	afterToolbarInit = () => {}
 
 	execPluginHook = (hook: HookType) => {
 		for (const item of this.plugins) {

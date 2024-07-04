@@ -38,8 +38,6 @@ export const NAME_INSERT_SOURCE_CODE_BOCK = 'insertSourceCodeBock'
 
 export class PluginSourceCode implements ExsiedPlugin<Exsied> {
 	private exsied: Exsied = new Exsied('')
-	// private popupId = ''
-	// private toolbarBtnIds: ToolBarControlIds = emptyToolBarControlIds
 
 	name = PLUGIN_NAME
 	conf: PluginConf = {
@@ -66,11 +64,6 @@ export class PluginSourceCode implements ExsiedPlugin<Exsied> {
 
 	init = (exsied: Exsied): void => {
 		this.exsied = exsied
-		// this.popupId = this.exsied.genPopupId(this.name, 'index') || ''
-	}
-
-	afterToolbarInit = () => {
-		// this.toolbarBtnIds = this.exsied.toolbar.genButtonIdStd(this.name, 'index') || emptyToolBarControlIds
 	}
 
 	toggleSourceView = () => {
@@ -162,9 +155,6 @@ export class PluginSourceCode implements ExsiedPlugin<Exsied> {
 		},
 	]
 
-	addHandler = () => {}
-	removeHandler = () => {}
-	checkHighlight = (event: Event) => {}
 	removeTempEle = (event: Event) => {}
 	hooks = {
 		afterSetHtml,

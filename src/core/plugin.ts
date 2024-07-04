@@ -30,10 +30,10 @@ export interface ExsiedPlugin<T> {
 	conf: any
 	commands?: object
 	getToolBarControl?: () => ToolBarControl[]
-	addHandler: () => any
-	removeHandler: () => any
-	checkHighlight: (event: Event) => any
-	removeTempEle: (event: Event) => any
+	addHandler?: () => any
+	removeHandler?: () => any
+	checkHighlight?: (event: Event) => any
+	removeTempEle?: (event: Event) => any
 	hooks?: {
 		afterInit?: (exsied: Exsied) => void
 		afterSetHtml?: (exsied: Exsied) => void

@@ -37,11 +37,6 @@ const NAME_INDENT = 'indent'
 const NAME_OUTDENT = 'outdent'
 
 export class PluginIndentAndOutdent implements ExsiedPlugin<Exsied> {
-	// private exsied: Exsied = new Exsied('')
-	// private popupId = ''
-	// private toolbarBtnIdsIndent: ToolBarControlIds = emptyToolBarControlIds
-	// private toolbarBtnIdsOutdent: ToolBarControlIds = emptyToolBarControlIds
-
 	name = 'IndentAndOutdent'
 	conf: PluginConf = {
 		addToNormalToolbar: {
@@ -57,12 +52,6 @@ export class PluginIndentAndOutdent implements ExsiedPlugin<Exsied> {
 
 	init = (exsied: Exsied): void => {
 		// this.exsied = exsied
-		// this.popupId = this.exsied.genPopupId(this.name, 'index') || ''
-	}
-
-	afterToolbarInit = () => {
-		// this.toolbarBtnIdsIndent = this.exsied.toolbar.genButtonIdStd(this.name, NAME_INDENT) || emptyToolBarControlIds
-		// this.toolbarBtnIdsOutdent = this.exsied.toolbar.genButtonIdStd(this.name, NAME_OUTDENT) || emptyToolBarControlIds
 	}
 
 	indent = (direction: typeof INDENT | typeof ONTDENT) => {
@@ -114,8 +103,5 @@ export class PluginIndentAndOutdent implements ExsiedPlugin<Exsied> {
 		},
 	]
 
-	addHandler = () => {}
-	removeHandler = () => {}
-	checkHighlight = (event: Event) => {}
 	removeTempEle = (event: Event) => {}
 }
