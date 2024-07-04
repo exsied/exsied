@@ -16,7 +16,6 @@ import {
 	CN_WORKPLACE_ELE,
 	ZERO_WIDTH_SPACE,
 } from '../contants'
-import { PluginAbout } from '../plugins/about'
 import { KvStringString } from '../types'
 import { PopupView, actionButton } from '../ui/popup_view'
 import { Toolbar } from '../ui/toolbar'
@@ -43,7 +42,6 @@ export type ExsiedInitConf = {
 	hotkeys?: { keyStr: string; func: HotkeyFunc; modifierKeys: ModifierKeys[] }[]
 	dataAttrs?: { sign: string; signOriginal: string }
 	hooks?: Hooks
-	iAbideByExsiedLicenseAndDisableTheAboutPlugin?: boolean
 }
 
 export type ExsiedElements = {
@@ -102,12 +100,6 @@ export class Exsied {
 	}
 
 	init(conf: ExsiedInitConf) {
-		if (!conf.iAbideByExsiedLicenseAndDisableTheAboutPlugin) {
-			const plgAboud = new PluginAbout()
-			plgAboud.init(this)
-			conf.plugins.push(plgAboud)
-		}
-
 		const pluginNames: string[] = []
 		this.plugins.map((plg) => {
 			try {

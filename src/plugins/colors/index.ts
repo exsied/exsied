@@ -32,7 +32,7 @@ export const NAME_TEXT = 'textColor'
 export const CN_ICON_BKG = 'exsied-icon-background-color'
 export const CN_ICON_TEXT = 'exsied-icon-text-color'
 
-export class Colors implements ExsiedPlugin<Exsied> {
+export class PluginColors implements ExsiedPlugin<Exsied> {
 	private exsied: Exsied = new Exsied('')
 	private toolbarBtnIdsBkg: ToolBarControlIds = emptyToolBarControlIds
 	private toolbarBtnIdsText: ToolBarControlIds = emptyToolBarControlIds

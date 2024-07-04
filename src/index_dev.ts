@@ -10,8 +10,9 @@
 import { KEY_CTRL } from './'
 import { Exsied } from './core'
 import { DEMO_CONTENT } from './demo_content'
+import { PluginAbout } from './plugins/about'
 import { PluginBold } from './plugins/bold'
-import { Colors } from './plugins/colors'
+import { PluginColors } from './plugins/colors'
 import { PluginFindAndReplace } from './plugins/find_and_replace'
 import { PluginFontFamily } from './plugins/font_family'
 import { PluginFontSize } from './plugins/font_size'
@@ -33,31 +34,28 @@ import { PluginUnderline } from './plugins/underline'
 import { PluginRedoAndUndo } from './plugins/undo_and_redo'
 import './styles/style.scss'
 
-// // plugin about
-// const aboutConf = plugins.about.conf as AboutPluginConf
-// aboutConf.deveploers.push(
-// 	{
-// 		name: 'fivim',
-// 		repoLink: 'https://github.com/fivim/fivim',
-// 		webSiteLink: 'https://xxx.com/xxx',
-// 		email: 'xxx@xxx.xxx',
-// 		extContent: `Fivim's github repo`,
-// 	},
-// 	{
-// 		name: 'exsied',
-// 		repoLink: 'https://gitee.com/exsied/exsied',
-// 		webSiteLink: 'https://xxx.com/xxx',
-// 		email: 'xxx@xxx.xxx',
-// 		extContent: `Exsied's gitee repo`,
-// 	},
-// )
-
 const initExsied = (containerId: string, content: string, locale?: string) => {
 	const exsied = new Exsied(containerId)
 
+	const about = new PluginAbout()
+	about.conf.deveploers.push(
+		{
+			name: 'fivim',
+			repoLink: 'https://github.com/fivim/fivim',
+			webSiteLink: 'https://xxx.com/xxx',
+			email: 'xxx@xxx.xxx',
+			extContent: `Fivim's github repo`,
+		},
+		{
+			name: 'exsied',
+			repoLink: 'https://gitee.com/exsied/exsied',
+			webSiteLink: 'https://xxx.com/xxx',
+			email: 'xxx@xxx.xxx',
+			extContent: `Exsied's gitee repo`,
+		},
+	)
+
 	const bold = new PluginBold()
-	const findAndReplace = new PluginFindAndReplace()
-	const colors = new Colors()
 
 	const fontFamily = new PluginFontFamily()
 	fontFamily.conf.fontFamilyOptions = [
@@ -91,11 +89,6 @@ const initExsied = (containerId: string, content: string, locale?: string) => {
 		},
 	]
 
-	const headings = new PluginHeadings()
-	const horizonalRule = new PluginHorizonalRule()
-	const image = new PluginImage()
-	const indentAndOutdent = new PluginIndentAndOutdent()
-	const insertMenu = new PluginInsertMenu()
 	const italic = new PluginItalic()
 
 	const link = new PluginLink()
@@ -105,39 +98,32 @@ const initExsied = (containerId: string, content: string, locale?: string) => {
 		console.info('plugin link clickLinkCb event: ', event)
 	}
 
-	const lists = new PluginLists()
-	const quote = new PluginQuote()
-	const strikethrough = new PluginStrikethrough()
-	const subscriptAndSupscript = new PluginSubscriptAndSupscript()
-	const table = new PluginTable()
-	const textAlign = new PluginTextAlign()
 	const underline = new PluginUnderline()
-	const redoAndUndo = new PluginRedoAndUndo()
-	const pluginNewBlock = new PluginNewBlock()
 
 	exsied.init({
 		plugins: [
+			about,
 			bold,
-			colors,
-			findAndReplace,
+			new PluginFindAndReplace(),
+			new PluginColors(),
 			fontFamily,
 			fontSize,
-			headings,
-			horizonalRule,
-			image,
-			indentAndOutdent,
-			insertMenu,
+			new PluginHeadings(),
+			new PluginHorizonalRule(),
+			new PluginImage(),
+			new PluginIndentAndOutdent(),
+			new PluginInsertMenu(),
 			italic,
 			link,
-			lists,
-			quote,
-			strikethrough,
-			subscriptAndSupscript,
-			table,
-			textAlign,
+			new PluginLists(),
+			new PluginQuote(),
+			new PluginStrikethrough(),
+			new PluginSubscriptAndSupscript(),
+			new PluginTable(),
+			new PluginTextAlign(),
 			underline,
-			redoAndUndo,
-			pluginNewBlock,
+			new PluginRedoAndUndo(),
+			new PluginNewBlock(),
 		],
 		enableToolbarBubble: true,
 		locale: locale || 'en',

@@ -2,14 +2,17 @@ Exsied follows a dual-licensing model
 
 1. By complying with the terms, you may use exsied under the MIT License
 
-● Use exsied as an editor.
-
-● Do not modify the source code of the about plugin.
-
-● Do not disable or hide the about plugin.
+● If you fork or copy exsied to your repositoriy, you should keep the
+links of the offical repositories(including: 
+https://github.com/exsied/exsied and https://gitee.com/exsied/exsied).
 
 ● If you add, modify, or overwrite anything of exsied, you should add your
-own information to the about plugin's conf.deveploers.
+own information to the about plugin's conf.deveploers, and enable the about
+plugin.
+
+● Do not modify the about plugin.
+
+● Use exsied as an editor.
 
 2. Other uses require authorization
 
