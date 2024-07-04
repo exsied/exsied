@@ -10,7 +10,7 @@
 import { CN_ACTIVE, TN_DEL, TN_S } from '../../contants'
 import { Exsied } from '../../core'
 import { FormatTaName } from '../../core/format/tag_name'
-import { Commands, ExsiedPlugin } from '../../core/plugin'
+import { ExsiedPlugin } from '../../core/plugin'
 import { ELE_TYPE_BUTTON, ToolBarControlIds, emptyToolBarControlIds } from '../../ui/toolbar'
 
 export type PluginConf = {
@@ -42,20 +42,20 @@ export class PluginStrikethrough implements ExsiedPlugin<Exsied> {
 	}
 
 	isHighlight = () => {
-		const allTagNamesArr = this.exsied.cursorAllParentsTagNamesArr || []
+		const allTagNamesArr = this.exsied.cursorAllParentsTagNamesArr
 		return allTagNamesArr.includes(TN_S) || allTagNamesArr.includes(TN_DEL)
 	}
 
 	formatStrikethough = () => {
 		if (this.isHighlight()) {
-			FormatTaName.unformatSelected(TN_S)
-			FormatTaName.unformatSelected(TN_DEL)
+			FormatTaName.unformatSelected(this.exsied, TN_S)
+			FormatTaName.unformatSelected(this.exsied, TN_DEL)
 		} else {
-			FormatTaName.formatSelected(TN_S)
+			FormatTaName.formatSelected(this.exsied, TN_S)
 		}
 	}
 
-	commands: Commands = {
+	commands = {
 		formatStrikethough: this.formatStrikethough,
 	}
 
@@ -68,20 +68,20 @@ export class PluginStrikethrough implements ExsiedPlugin<Exsied> {
 
 			eleType: ELE_TYPE_BUTTON,
 			iconClassName: CN_ICON,
-			clickCallBack: this.commands['formatStrikethough'],
+			clickCallBack: this.commands.formatStrikethough,
 		},
 	]
 
 	addHandler = () => {}
 	removeHandler = () => {}
-	checkHighlight = (_event: any) => {
+	checkHighlight = (event: Event) => {
 		const btnEle = this.exsied.elements.editor.querySelector(`#${this.toolbarBtnIds.normal}`)
 		if (btnEle) {
-			const allTagNamesArr = this.exsied.cursorAllParentsTagNamesArr || []
+			const allTagNamesArr = this.exsied.cursorAllParentsTagNamesArr
 			allTagNamesArr.includes(TN_DEL) || allTagNamesArr.includes(TN_S)
 				? btnEle.classList.add(CN_ACTIVE)
 				: btnEle.classList.remove(CN_ACTIVE)
 		}
 	}
-	removeTempEle = (_event: any) => {}
+	removeTempEle = (event: Event) => {}
 }

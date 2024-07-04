@@ -11,7 +11,7 @@ import { CN_ACTIVE, CN_TEMP_ELE, DATA_ATTR_TEMP_EDIT, LIB_NAME, LIB_REPO_GITHUB,
 import { Exsied } from '../../core'
 import { DomUtils } from '../../core/dom_utils'
 import { EleClickCallback } from '../../core/events'
-import { Commands, ExsiedPlugin } from '../../core/plugin'
+import { ExsiedPlugin } from '../../core/plugin'
 import { SelectionUtils } from '../../core/selection_utils'
 import { ELE_TYPE_BUTTON, ToolBarControlIds, emptyToolBarControlIds } from '../../ui/toolbar'
 import './styles.scss'
@@ -73,7 +73,7 @@ export class PluginLink implements ExsiedPlugin<Exsied> {
 			this.exsied.selectionUtils.addElementBySelection(this.exsied.elements.workplace, ele)
 	}
 
-	commands: Commands = {
+	commands = {
 		insertLink: this.insertLink,
 	}
 
@@ -87,7 +87,7 @@ export class PluginLink implements ExsiedPlugin<Exsied> {
 
 			eleType: ELE_TYPE_BUTTON,
 			iconClassName: CN_ICON,
-			clickCallBack: this.commands['insertLink'],
+			clickCallBack: this.commands.insertLink,
 		},
 	]
 
@@ -95,16 +95,16 @@ export class PluginLink implements ExsiedPlugin<Exsied> {
 		EleClickCallback.addByTag(TN_A, this.onClickLink)
 	}
 	removeHandler = () => {}
-	checkHighlight = (_event: any) => {
+	checkHighlight = (event: Event) => {
 		const btnEle = this.exsied.elements.editor.querySelector(`#${this.toolbarBtnIds.normal}`)
 
 		if (btnEle) {
-			const allTagNamesArr = this.exsied.cursorAllParentsTagNamesArr || []
+			const allTagNamesArr = this.exsied.cursorAllParentsTagNamesArr
 			allTagNamesArr.includes(TN_A) ? btnEle.classList.add(CN_ACTIVE) : btnEle.classList.remove(CN_ACTIVE)
 		}
 	}
-	removeTempEle = (_event: any) => {
-		const allTagNamesArr = this.exsied.cursorAllParentsTagNamesArr || []
+	removeTempEle = (event: Event) => {
+		const allTagNamesArr = this.exsied.cursorAllParentsTagNamesArr
 		if (!allTagNamesArr.includes(TN_A)) {
 			DomUtils.removeElementById(POPUP_ID)
 		}
@@ -199,7 +199,7 @@ export class PluginLink implements ExsiedPlugin<Exsied> {
 		editView.style.display = 'flex'
 	}
 
-	onClickTrashBtn = (_event: Event) => {
+	onClickTrashBtn = (event: Event) => {
 		const ele = document.querySelector(`[${DATA_ATTR_TEMP_EDIT}="${PLUGIN_NAME}"]`) as HTMLAnchorElement
 		const textContent = ele.textContent || ele.innerText
 		ele.parentNode?.replaceChild(document.createTextNode(textContent), ele)
@@ -208,7 +208,7 @@ export class PluginLink implements ExsiedPlugin<Exsied> {
 		DomUtils.removeElementById(POPUP_ID)
 	}
 
-	onClickCancelBtn = (_event: Event) => {
+	onClickCancelBtn = (event: Event) => {
 		const ele = document.querySelector(`[${DATA_ATTR_TEMP_EDIT}="${PLUGIN_NAME}"]`) as HTMLAnchorElement
 		ele.removeAttribute(DATA_ATTR_TEMP_EDIT)
 

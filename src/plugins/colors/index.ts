@@ -10,7 +10,7 @@
 import { Exsied } from '../../core'
 import { DomUtils } from '../../core/dom_utils'
 import { FormatStyle } from '../../core/format/style'
-import { Commands, ExsiedPlugin } from '../../core/plugin'
+import { ExsiedPlugin } from '../../core/plugin'
 import { Style } from '../../types'
 import { ColorPicker } from '../../ui/color_picker'
 import { ELE_TYPE_BUTTON, ToolBarControlIds, emptyToolBarControlIds } from '../../ui/toolbar'
@@ -95,7 +95,7 @@ export class Colors implements ExsiedPlugin<Exsied> {
 		picker.showPopup(event)
 	}
 
-	commands: Commands = {
+	commands = {
 		backgroundColor: this.showColorPickerBkg,
 		textColor: this.showColorPickerText,
 	}
@@ -109,7 +109,7 @@ export class Colors implements ExsiedPlugin<Exsied> {
 
 			eleType: ELE_TYPE_BUTTON,
 			iconClassName: CN_ICON_BKG,
-			clickCallBack: this.commands[NAME_BACKGROUND],
+			clickCallBack: this.commands.backgroundColor,
 		},
 		{
 			name: NAME_TEXT,
@@ -119,23 +119,14 @@ export class Colors implements ExsiedPlugin<Exsied> {
 
 			eleType: ELE_TYPE_BUTTON,
 			iconClassName: CN_ICON_TEXT,
-			clickCallBack: this.commands[NAME_TEXT],
+			clickCallBack: this.commands.textColor,
 		},
 	]
 
 	addHandler = () => {
-		const btnEleBkg = document.getElementById(this.toolbarBtnIdsBkg?.normal)
-		if (btnEleBkg) {
-			btnEleBkg.addEventListener('mouseover', () => {
-				this.exsied.selectionUtils.backupSelection()
-			})
-		}
-		const btnEleText = document.getElementById(this.toolbarBtnIdsText.normal)
-		if (btnEleText) {
-			btnEleText.addEventListener('mouseover', () => {
-				this.exsied.selectionUtils.backupSelection()
-			})
-		}
+		this.exsied.elements.toolbarMain.addEventListener('mouseover', () => {
+			this.exsied.selectionUtils.backupSelection()
+		})
 	}
 	removeHandler = () => {}
 	checkHighlight = (event: any) => {

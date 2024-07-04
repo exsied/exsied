@@ -8,7 +8,7 @@
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
 import { Exsied } from '../../core'
-import { Commands, ExsiedPlugin } from '../../core/plugin'
+import { ExsiedPlugin } from '../../core/plugin'
 import { ELE_TYPE_BUTTON } from '../../ui/toolbar'
 import { limitRange } from '../../utils/number'
 
@@ -107,7 +107,7 @@ export class PluginRedoAndUndo implements ExsiedPlugin<Exsied> {
 		this._do(UNDO)
 	}
 
-	commands: Commands = {
+	commands = {
 		redo: this.redo,
 		undo: this.undo,
 	}
@@ -121,7 +121,7 @@ export class PluginRedoAndUndo implements ExsiedPlugin<Exsied> {
 
 			eleType: ELE_TYPE_BUTTON,
 			iconClassName: CN_ICON_REDO,
-			clickCallBack: this.commands['redo'],
+			clickCallBack: this.commands.redo,
 		},
 		{
 			name: 'Undo',
@@ -131,7 +131,7 @@ export class PluginRedoAndUndo implements ExsiedPlugin<Exsied> {
 
 			eleType: ELE_TYPE_BUTTON,
 			iconClassName: CN_ICON_UNDO,
-			clickCallBack: this.commands['undo'],
+			clickCallBack: this.commands.undo,
 		},
 	]
 
@@ -139,6 +139,6 @@ export class PluginRedoAndUndo implements ExsiedPlugin<Exsied> {
 		this.exsied.elements.workplace.addEventListener('input', this.update)
 	}
 	removeHandler = () => {}
-	checkHighlight = (_event: any) => {}
-	removeTempEle = (_event: any) => {}
+	checkHighlight = (event: Event) => {}
+	removeTempEle = (event: Event) => {}
 }

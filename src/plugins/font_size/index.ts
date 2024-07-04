@@ -9,8 +9,9 @@
  */
 import { Exsied } from '../../core'
 import { FormatStyle } from '../../core/format/style'
-import { Commands, ExsiedPlugin } from '../../core/plugin'
+import { ExsiedPlugin } from '../../core/plugin'
 import { Style } from '../../types'
+import { DropdownMenu } from '../../ui/dropdown'
 import { ELE_TYPE_SELECT, ToolBarControlIds, ToolBarSelectOption, emptyToolBarControlIds } from '../../ui/toolbar'
 
 export type PluginConf = {
@@ -48,7 +49,7 @@ export class PluginFontSize implements ExsiedPlugin<Exsied> {
 		this.toolbarBtnIds = this.exsied.toolbar.genButtonIdStd(this.name, 'index') || emptyToolBarControlIds
 	}
 
-	formatFontSize(event: Event) {
+	formatFontSize = (event: Event) => {
 		const selectEle = event.target as HTMLSelectElement
 
 		const style: Style = {}
@@ -56,7 +57,7 @@ export class PluginFontSize implements ExsiedPlugin<Exsied> {
 		FormatStyle.formatSelected(style as CSSStyleDeclaration)
 	}
 
-	commands: Commands = {
+	commands = {
 		formatFontSize: this.formatFontSize,
 	}
 
@@ -68,7 +69,7 @@ export class PluginFontSize implements ExsiedPlugin<Exsied> {
 			addToBubbleToolbar: this.conf.addToBubbleToolbar,
 
 			eleType: ELE_TYPE_SELECT,
-			changeCallBack: this.commands[this.name],
+			changeCallBack: this.commands.formatFontSize,
 			defaultText: 'Font size',
 			options: this.conf.fontSizeOptions,
 		},
@@ -76,11 +77,12 @@ export class PluginFontSize implements ExsiedPlugin<Exsied> {
 
 	addHandler = () => {}
 	removeHandler = () => {}
-	checkHighlight = (_event: any) => {
+	checkHighlight = (event: Event) => {
 		// TODO:
 	}
-	removeTempEle = (_event: any) => {
-		const dropDownId = this.exsied.dropdownMenu.genDropdownId(this.toolbarBtnIds.normal) || ''
+	removeTempEle = (event: Event) => {
+		const dropdownMenu = new DropdownMenu(this.exsied)
+		const dropDownId = dropdownMenu.genDropdownId(this.toolbarBtnIds.normal) || ''
 		this.exsied.toolbar.hideDropdowntList(dropDownId)
 	}
 }

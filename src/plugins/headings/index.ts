@@ -11,7 +11,8 @@ import { TN_DIV, TN_H1, TN_H2, TN_H3, TN_H4, TN_H5, TN_H6 } from '../../contants
 import { Exsied } from '../../core'
 import { FormatTaName } from '../../core/format/tag_name'
 import { t } from '../../core/i18n'
-import { Commands, ExsiedPlugin } from '../../core/plugin'
+import { ExsiedPlugin } from '../../core/plugin'
+import { DropdownMenu } from '../../ui/dropdown'
 import { ELE_TYPE_SELECT, ToolBarControlIds, ToolBarSelectOption, emptyToolBarControlIds } from '../../ui/toolbar'
 
 export type PluginConf = {
@@ -98,35 +99,35 @@ export class PluginHeadings implements ExsiedPlugin<Exsied> {
 		this.toolbarBtnIds = this.exsied.toolbar.genButtonIdStd(this.name, 'index') || emptyToolBarControlIds
 	}
 
-	formatParagraph = (_event: Event) => {
-		FormatTaName.formatSelected(TN_DIV)
+	formatParagraph = (event: Event) => {
+		FormatTaName.formatSelected(this.exsied, TN_DIV)
 	}
 
-	formatH1 = (_event: Event) => {
-		FormatTaName.formatSelected(TN_H1)
+	formatH1 = (event: Event) => {
+		FormatTaName.formatSelected(this.exsied, TN_H1)
 	}
 
-	formatH2 = (_event: Event) => {
-		FormatTaName.formatSelected(TN_H2)
+	formatH2 = (event: Event) => {
+		FormatTaName.formatSelected(this.exsied, TN_H2)
 	}
 
-	formatH3 = (_event: Event) => {
-		FormatTaName.formatSelected(TN_H3)
+	formatH3 = (event: Event) => {
+		FormatTaName.formatSelected(this.exsied, TN_H3)
 	}
 
-	formatH4 = (_event: Event) => {
-		FormatTaName.formatSelected(TN_H4)
+	formatH4 = (event: Event) => {
+		FormatTaName.formatSelected(this.exsied, TN_H4)
 	}
 
-	formatH5 = (_event: Event) => {
-		FormatTaName.formatSelected(TN_H5)
+	formatH5 = (event: Event) => {
+		FormatTaName.formatSelected(this.exsied, TN_H5)
 	}
 
-	formatH6 = (_event: Event) => {
-		FormatTaName.formatSelected(TN_H6)
+	formatH6 = (event: Event) => {
+		FormatTaName.formatSelected(this.exsied, TN_H6)
 	}
 
-	formatHeading(event: Event) {
+	formatHeading = (event: Event) => {
 		if (event.target instanceof HTMLSelectElement) {
 			const value = event.target.value
 
@@ -140,7 +141,7 @@ export class PluginHeadings implements ExsiedPlugin<Exsied> {
 		}
 	}
 
-	commands: Commands = {
+	commands = {
 		formatParagraph: this.formatParagraph,
 		formatH1: this.formatH1,
 		formatH2: this.formatH2,
@@ -159,7 +160,7 @@ export class PluginHeadings implements ExsiedPlugin<Exsied> {
 			addToBubbleToolbar: this.conf.addToBubbleToolbar,
 
 			eleType: ELE_TYPE_SELECT,
-			changeCallBack: this.commands['formatHeading'],
+			changeCallBack: this.commands.formatHeading,
 			defaultText: 'Headings',
 			options: this.conf.headingsOptions,
 		},
@@ -167,15 +168,12 @@ export class PluginHeadings implements ExsiedPlugin<Exsied> {
 
 	addHandler = () => {}
 	removeHandler = () => {}
-	checkHighlight = (_event: any) => {
-		const dropDownId = this.exsied.dropdownMenu.genDropdownId(this.toolbarBtnIds.normal) || ''
-		const triggerClassName = this.exsied.dropdownMenu.genTriggerClassName(this.toolbarBtnIds.normal) || ''
+	checkHighlight = (event: Event) => {
+		const dropdownMenu = new DropdownMenu(this.exsied)
+		const dropDownId = dropdownMenu.genDropdownId(this.toolbarBtnIds.normal) || ''
+		const triggerClassName = dropdownMenu.genTriggerClassName(this.toolbarBtnIds.normal) || ''
 
 		const dropDownEle = this.exsied.elements.toolbarMain.querySelector(`#${dropDownId}`)
-
-		console.log('>>> dropDownId:: ', dropDownId)
-		console.log('>>> dropDownEle:: ', dropDownEle)
-
 		if (!dropDownEle) return
 
 		let updated = false
@@ -188,8 +186,7 @@ export class PluginHeadings implements ExsiedPlugin<Exsied> {
 			}
 		}
 
-		const allTagNamesArr = this.exsied.cursorAllParentsTagNamesArr || []
-		console.log('>>> allTagNamesArr::', allTagNamesArr)
+		const allTagNamesArr = this.exsied.cursorAllParentsTagNamesArr
 
 		if (allTagNamesArr.includes(TN_H1)) setDropDownTriggerText(NAME_HEADING_1)
 		if (allTagNamesArr.includes(TN_H2)) setDropDownTriggerText(NAME_HEADING_2)
@@ -202,8 +199,9 @@ export class PluginHeadings implements ExsiedPlugin<Exsied> {
 			setDropDownTriggerText(this.name)
 		}
 	}
-	removeTempEle = (_event: any) => {
-		const dropDownId = this.exsied.dropdownMenu.genDropdownId(this.toolbarBtnIds.normal) || ''
+	removeTempEle = (event: Event) => {
+		const dropdownMenu = new DropdownMenu(this.exsied)
+		const dropDownId = dropdownMenu.genDropdownId(this.toolbarBtnIds.normal) || ''
 		this.exsied.toolbar.hideDropdowntList(dropDownId)
 	}
 }

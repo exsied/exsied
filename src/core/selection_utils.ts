@@ -18,6 +18,7 @@ export type SplitElementRes = {
 	firstPart: HTMLElement
 	middlePart: HTMLElement
 	lastPart: HTMLElement
+	range: Range
 }
 
 export class SelectionUtilsInExsied {
@@ -26,15 +27,6 @@ export class SelectionUtilsInExsied {
 	constructor(exsied: Exsied) {
 		this.exsied = exsied
 	}
-
-	// getRange = () => {
-	// 	if (this.exsied) return this.exsied.range
-	// 	return null
-	// }
-
-	// setRange = (r: Range) => {
-	// 	if (this.exsied) this.exsied.range = r
-	// }
 
 	backupSelection = () => {
 		const selection = window.getSelection()
@@ -86,17 +78,17 @@ export class SelectionUtils {
 		const selection = window.getSelection()
 		if (!selection || selection.rangeCount === 0) return
 
-		const middlePart = document.createElement(TN_SPAN)
+		const ele = document.createElement(TN_SPAN)
 		const range = selection.getRangeAt(0)
 		const middleFragment = range.cloneContents()
 		if (middleFragment.childNodes.length > 0) {
 			while (middleFragment.firstChild) {
-				middlePart.appendChild(middleFragment.firstChild.cloneNode(true))
+				ele.appendChild(middleFragment.firstChild.cloneNode(true))
 				middleFragment.firstChild.remove()
 			}
 		}
 
-		return middlePart
+		return ele
 	}
 
 	static getSelectedText = () => {
@@ -139,11 +131,13 @@ export class SelectionUtils {
 		lastTagName: HTMLTagNames | null,
 		ancestorNodeByTagName: boolean,
 		ancestorTagName: HTMLTagNames | null,
+		exsied: Exsied,
 		rangeIpt?: Range,
 	) => {
 		let range = rangeIpt
 		if (!range) {
 			const selection = window.getSelection()
+
 			if (!selection) return
 			range = selection.getRangeAt(0)
 		}
@@ -176,6 +170,7 @@ export class SelectionUtils {
 					firstPart,
 					middlePart: secondNode as HTMLElement,
 					lastPart,
+					range,
 				} as SplitElementRes
 			} else {
 				if (ancestorTagName)
@@ -215,6 +210,7 @@ export class SelectionUtils {
 			firstPart,
 			middlePart,
 			lastPart,
+			range,
 		} as SplitElementRes
 	}
 

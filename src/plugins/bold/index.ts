@@ -11,7 +11,7 @@ import { CN_ACTIVE } from '../../contants'
 import { TN_B, TN_STRONG } from '../../contants'
 import { Exsied } from '../../core'
 import { FormatTaName } from '../../core/format/tag_name'
-import { Commands, ExsiedPlugin } from '../../core/plugin'
+import { ExsiedPlugin } from '../../core/plugin'
 import { ELE_TYPE_BUTTON, ToolBarControlIds, emptyToolBarControlIds } from '../../ui/toolbar'
 
 export const CN_ICON = 'exsied-icon-blod'
@@ -42,21 +42,20 @@ export class PluginBold implements ExsiedPlugin<Exsied> {
 	}
 
 	isHighlight = () => {
-		const allTagNamesArr = this.exsied.cursorAllParentsTagNamesArr || []
-
+		const allTagNamesArr = this.exsied.cursorAllParentsTagNamesArr
 		return allTagNamesArr.includes(TN_B) || allTagNamesArr.includes(TN_STRONG)
 	}
 
 	formatTextBold = () => {
 		if (this.isHighlight()) {
-			FormatTaName.unformatSelected(TN_B)
-			FormatTaName.unformatSelected(TN_STRONG)
+			FormatTaName.unformatSelected(this.exsied, TN_B)
+			FormatTaName.unformatSelected(this.exsied, TN_STRONG)
 		} else {
-			FormatTaName.formatSelected(TN_B)
+			FormatTaName.formatSelected(this.exsied, TN_B)
 		}
 	}
 
-	commands: Commands = {
+	commands = {
 		formatBold: this.formatTextBold,
 	}
 
@@ -70,18 +69,18 @@ export class PluginBold implements ExsiedPlugin<Exsied> {
 
 			eleType: ELE_TYPE_BUTTON,
 			iconClassName: CN_ICON,
-			clickCallBack: this.commands['formatBold'],
+			clickCallBack: this.commands.formatBold,
 		},
 	]
 
 	addHandler = () => {}
 	removeHandler = () => {}
-	checkHighlight = (_event: any) => {
+	checkHighlight = (event: Event) => {
 		const btnEle = this.exsied.elements.editor.querySelector(`#${this.toolbarBtnIds?.normal}`)
 
 		if (btnEle) {
 			this.isHighlight() ? btnEle.classList.add(CN_ACTIVE) : btnEle.classList.remove(CN_ACTIVE)
 		}
 	}
-	removeTempEle = (_event: any) => {}
+	removeTempEle = (event: Event) => {}
 }

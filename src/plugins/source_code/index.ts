@@ -9,7 +9,7 @@
  */
 import { TN_CODE, TN_DIV, TN_PRE } from '../../contants'
 import { Exsied } from '../../core'
-import { Commands, ExsiedPlugin } from '../../core/plugin'
+import { ExsiedPlugin } from '../../core/plugin'
 import { SelectionUtils } from '../../core/selection_utils'
 import { ELE_TYPE_BUTTON, ID_TOOLBAR_EXT } from '../../ui/toolbar'
 import { randomChars } from '../../utils/string'
@@ -135,37 +135,37 @@ export class PluginSourceCode implements ExsiedPlugin<Exsied> {
 		renderElement(this.exsied, codeEle)
 	}
 
-	commands: Commands = { toggleSourceView: this.toggleSourceView, insertCodeBlock: this.insertCodeBlock }
+	commands = { toggleSourceView: this.toggleSourceView, insertCodeBlock: this.insertCodeBlock }
 
 	getToolBarControl = () => [
 		{
 			name: NAME_SOURCE_CODE_VIEW,
-			tooltipText: 'Source code view',
+			tooltipText: 'Toggle source code view',
 			addToNormalToolbar: true, // TODO
 			addToNormalToolbarInsertMenu: false, // TODO
 			addToBubbleToolbar: this.conf.addToBubbleToolbar,
 
 			eleType: ELE_TYPE_BUTTON,
 			iconClassName: CN_ICON_XML,
-			clickCallBack: this.commands[NAME_SOURCE_CODE_VIEW],
+			clickCallBack: this.commands.toggleSourceView,
 		},
 		{
 			name: NAME_INSERT_SOURCE_CODE_BOCK,
-			tooltipText: 'Source code bock',
+			tooltipText: 'Insert source code bock',
 			addToNormalToolbar: this.conf.addToNormalToolbar,
 			addToNormalToolbarInsertMenu: this.conf.addToNormalToolbarInsertMenu,
 			addToBubbleToolbar: this.conf.addToBubbleToolbar,
 
 			eleType: ELE_TYPE_BUTTON,
 			iconClassName: CN_ICON_BRACES,
-			clickCallBack: this.commands[NAME_INSERT_SOURCE_CODE_BOCK],
+			clickCallBack: this.commands.insertCodeBlock,
 		},
 	]
 
 	addHandler = () => {}
 	removeHandler = () => {}
-	checkHighlight = (_event: any) => {}
-	removeTempEle = (_event: any) => {}
+	checkHighlight = (event: Event) => {}
+	removeTempEle = (event: Event) => {}
 	hooks = {
 		afterSetHtml,
 		beforeGetHtml,

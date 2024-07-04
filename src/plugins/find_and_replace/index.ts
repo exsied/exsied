@@ -9,7 +9,7 @@
  */
 import { Exsied } from '../../core'
 import { DomUtils } from '../../core/dom_utils'
-import { Commands, ExsiedPlugin } from '../../core/plugin'
+import { ExsiedPlugin } from '../../core/plugin'
 import { ELE_TYPE_BUTTON } from '../../ui/toolbar'
 import { clearHighLight, onClick, resetValue } from './event_handlers'
 import './styles.scss'
@@ -57,7 +57,7 @@ export class PluginFindAndReplace implements ExsiedPlugin<Exsied> {
 		// this.toolbarBtnIds = this.exsied.toolbar.genButtonIdStd(this.name, 'index') || emptyToolBarControlIds
 	}
 
-	commands: Commands = {
+	commands = {
 		find: (event: Event) => {
 			onClick(event, false, this.exsied as Exsied, this.popupId, this.name)
 		},
@@ -75,7 +75,7 @@ export class PluginFindAndReplace implements ExsiedPlugin<Exsied> {
 
 			eleType: ELE_TYPE_BUTTON,
 			iconClassName: CN_ICON_FIND,
-			clickCallBack: this.commands[NAME_FIND],
+			clickCallBack: this.commands.find,
 		},
 		{
 			name: NAME_REPLACE,
@@ -85,14 +85,14 @@ export class PluginFindAndReplace implements ExsiedPlugin<Exsied> {
 
 			eleType: ELE_TYPE_BUTTON,
 			iconClassName: CN_ICON_REPLACE,
-			clickCallBack: this.commands[NAME_REPLACE],
+			clickCallBack: this.commands.replace,
 		},
 	]
 
 	addHandler = () => {}
 	removeHandler = () => {}
-	checkHighlight = (_event: any) => {}
-	removeTempEle = (_event: any) => {
+	checkHighlight = (event: Event) => {}
+	removeTempEle = (event: Event) => {
 		DomUtils.removeElementById(this.popupId)
 		resetValue()
 		clearHighLight()

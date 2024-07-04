@@ -138,7 +138,8 @@ export function showFindBox(
 				if (eleTotal) eleTotal.innerHTML = `${totalCount}`
 
 				const range = ranges[currentPosition]
-				FormatTaName.formatSelected(TN_SPAN, range, `${CN_TEMP_ELE_HIGHLIGHT}`)
+				// FIXME:
+				FormatTaName.formatSelected(this.exsied, TN_SPAN, range, `${CN_TEMP_ELE_HIGHLIGHT}`)
 			} else {
 				resetValue()
 
@@ -163,7 +164,7 @@ export function showFindBox(
 			const range = ranges[currentPosition]
 
 			if (eleCurrentPosition) eleCurrentPosition.innerHTML = `${currentPosition + 1}`
-			FormatTaName.formatSelected(TN_SPAN, range, CN_TEMP_ELE_HIGHLIGHT)
+			FormatTaName.formatSelected(this.exsied, TN_SPAN, range, CN_TEMP_ELE_HIGHLIGHT)
 		})
 	}
 
@@ -183,7 +184,7 @@ export function showFindBox(
 
 			if (eleCurrentPosition && ranges.length > 0) eleCurrentPosition.innerHTML = `${currentPosition + 1}`
 
-			FormatTaName.formatSelected(TN_SPAN, range, `${CN_TEMP_ELE_HIGHLIGHT}`)
+			FormatTaName.formatSelected(this.exsied, TN_SPAN, range, `${CN_TEMP_ELE_HIGHLIGHT}`)
 		})
 	}
 
@@ -196,13 +197,13 @@ export function showFindBox(
 			const ranges = FindAndReplace.findRanges(exsied.elements.workplace as HTMLElement, findText, isReMode)
 			if (!ranges) return
 
-			FormatTaName.formatSelected(TN_SPAN, ranges[0], `${CN_TEMP_ELE_HIGHLIGHT}`)
+			FormatTaName.formatSelected(this.exsied, TN_SPAN, ranges[0], `${CN_TEMP_ELE_HIGHLIGHT}`)
 
 			const highlightByIndex = (index: number) => {
 				const ranges = FindAndReplace.findRanges(exsied.elements.workplace as HTMLElement, findText, isReMode)
 				if (!ranges) return
 
-				FormatTaName.formatSelected(TN_SPAN, ranges[index], `${CN_TEMP_ELE_HIGHLIGHT}`)
+				FormatTaName.formatSelected(this.exsied, TN_SPAN, ranges[index], `${CN_TEMP_ELE_HIGHLIGHT}`)
 			}
 
 			let index = 0

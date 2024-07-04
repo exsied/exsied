@@ -18,15 +18,14 @@ import {
 } from '../contants'
 import { PluginAbout } from '../plugins/about'
 import { KvStringString } from '../types'
-import { DropdownMenu } from '../ui/dropdown'
 import { PopupView, actionButton } from '../ui/popup_view'
 import { Toolbar } from '../ui/toolbar'
 import { DataRender } from './data_render'
 import { DomUtils } from './dom_utils'
 import { bindEventClassName } from './events'
-import { HotkeyUtils, ModifierKeys } from './hotkey_utils'
+import { HotkeyFunc, HotkeyUtils, ModifierKeys } from './hotkey_utils'
 import { I18N } from './i18n'
-import { CommandFunc, ExsiedPlugin, HOOK_AFTER_INIT, HOOK_AFTER_SET_HTML, HOOK_BEFORE_GET_HTML } from './plugin'
+import { ExsiedPlugin, HOOK_AFTER_INIT, HOOK_AFTER_SET_HTML, HOOK_BEFORE_GET_HTML } from './plugin'
 import { SelectionUtilsInExsied } from './selection_utils'
 
 export type Hooks = {
@@ -41,7 +40,7 @@ export type ExsiedInitConf = {
 	plugins: ExsiedPlugin<Exsied>[]
 	enableToolbarBubble: boolean
 	locale?: string
-	hotkeys?: { keyStr: string; func: CommandFunc; modifierKeys: ModifierKeys[] }[]
+	hotkeys?: { keyStr: string; func: HotkeyFunc; modifierKeys: ModifierKeys[] }[]
 	dataAttrs?: { sign: string; signOriginal: string }
 	hooks?: Hooks
 	iAbideByExsiedLicenseAndDisableTheAboutPlugin?: boolean
@@ -94,8 +93,7 @@ export class Exsied {
 		workplace: emptyEle,
 	}
 	plugins: ExsiedPlugin<Exsied>[] = []
-	toolbar: Toolbar = new Toolbar(this)
-	dropdownMenu = new DropdownMenu(this)
+	toolbar: Toolbar = new Toolbar(this)	
 	selectionUtils = new SelectionUtilsInExsied(this)
 	dataRender = new DataRender(this)
 

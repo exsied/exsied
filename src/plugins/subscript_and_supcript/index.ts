@@ -10,7 +10,7 @@
 import { CN_ACTIVE, TN_SUB, TN_SUP } from '../../contants'
 import { Exsied } from '../../core'
 import { FormatTaName } from '../../core/format/tag_name'
-import { Commands, ExsiedPlugin } from '../../core/plugin'
+import { ExsiedPlugin } from '../../core/plugin'
 import { ELE_TYPE_BUTTON, ToolBarControlIds, emptyToolBarControlIds } from '../../ui/toolbar'
 
 export type PluginConf = {
@@ -57,31 +57,31 @@ export class PluginSubscriptAndSupscript implements ExsiedPlugin<Exsied> {
 	}
 
 	isHighlightSub = () => {
-		const allTagNamesArr = this.exsied.cursorAllParentsTagNamesArr || []
+		const allTagNamesArr = this.exsied.cursorAllParentsTagNamesArr
 		return allTagNamesArr.includes(TN_SUB)
 	}
 
 	isHighlightSup = () => {
-		const allTagNamesArr = this.exsied.cursorAllParentsTagNamesArr || []
+		const allTagNamesArr = this.exsied.cursorAllParentsTagNamesArr
 		return allTagNamesArr.includes(TN_SUP)
 	}
 
 	formatTextSub = () => {
 		if (this.isHighlightSub()) {
-			FormatTaName.unformatSelected(TN_SUB)
+			FormatTaName.unformatSelected(this.exsied, TN_SUB)
 		} else {
-			FormatTaName.formatSelected(TN_SUB)
+			FormatTaName.formatSelected(this.exsied, TN_SUB)
 		}
 	}
 
 	formatTextSup = () => {
 		if (this.isHighlightSup()) {
-			FormatTaName.unformatSelected(TN_SUP)
+			FormatTaName.unformatSelected(this.exsied, TN_SUP)
 		} else {
-			FormatTaName.formatSelected(TN_SUP)
+			FormatTaName.formatSelected(this.exsied, TN_SUP)
 		}
 	}
-	commands: Commands = {
+	commands = {
 		formatTextSub: this.formatTextSub,
 		formatTextSup: this.formatTextSup,
 	}
@@ -95,7 +95,7 @@ export class PluginSubscriptAndSupscript implements ExsiedPlugin<Exsied> {
 
 			eleType: ELE_TYPE_BUTTON,
 			iconClassName: CN_ICON_SUB,
-			clickCallBack: this.commands['formatTextSub'],
+			clickCallBack: this.commands.formatTextSub,
 		},
 		{
 			name: 'Supscript',
@@ -105,13 +105,13 @@ export class PluginSubscriptAndSupscript implements ExsiedPlugin<Exsied> {
 
 			eleType: ELE_TYPE_BUTTON,
 			iconClassName: CN_ICON_SUP,
-			clickCallBack: this.commands['formatTextSup'],
+			clickCallBack: this.commands.formatTextSup,
 		},
 	]
 
 	addHandler = () => {}
 	removeHandler = () => {}
-	checkHighlight = (_event: any) => {
+	checkHighlight = (event: Event) => {
 		const btnEleSub = this.exsied.elements.editor.querySelector(`#${this.toolbarBtnIdsSub.normal}`)
 		if (btnEleSub) {
 			this.isHighlightSub() ? btnEleSub.classList.add(CN_ACTIVE) : btnEleSub.classList.remove(CN_ACTIVE)
@@ -122,5 +122,5 @@ export class PluginSubscriptAndSupscript implements ExsiedPlugin<Exsied> {
 			this.isHighlightSup() ? btnEleSup.classList.add(CN_ACTIVE) : btnEleSup.classList.remove(CN_ACTIVE)
 		}
 	}
-	removeTempEle = (_event: any) => {}
+	removeTempEle = (event: Event) => {}
 }

@@ -23,15 +23,12 @@ export function getEventWithElementEle(event: Event | EventWithElement) {
 	return null
 }
 
-export type CommandFunc = (event: Event | EventWithElement) => any
-export type Commands = { [key: string]: CommandFunc }
-
 export interface ExsiedPlugin<T> {
 	init(host: T): void
 
 	name: string
 	conf: any
-	commands?: Commands
+	commands?: object
 	getToolBarControl?: () => ToolBarControl[]
 	addHandler: () => any
 	removeHandler: () => any

@@ -11,7 +11,7 @@ import { CN_ACTIVE, CN_TEMP_ELE, DATA_ATTR_TEMP_EDIT, TN_DIV, TN_TABLE, TN_TD, T
 import { Exsied } from '../../core'
 import { DomUtils } from '../../core/dom_utils'
 import { t } from '../../core/i18n'
-import { Commands, ExsiedPlugin } from '../../core/plugin'
+import { ExsiedPlugin } from '../../core/plugin'
 import { ELE_TYPE_BUTTON, ToolBarControlIds, emptyToolBarControlIds } from '../../ui/toolbar'
 import { tagNameLc } from '../../utils'
 import './styles.scss'
@@ -70,7 +70,7 @@ export class PluginTable implements ExsiedPlugin<Exsied> {
 			this.exsied.selectionUtils.addElementBySelection(this.exsied.elements.workplace, ele)
 	}
 
-	commands: Commands = { insertTable: this.insertTable }
+	commands = { insertTable: this.insertTable }
 
 	getToolBarControl = () => [
 		{
@@ -82,7 +82,7 @@ export class PluginTable implements ExsiedPlugin<Exsied> {
 
 			eleType: ELE_TYPE_BUTTON,
 			iconClassName: CN_ICON,
-			clickCallBack: this.commands[PLUGIN_NAME],
+			clickCallBack: this.commands.insertTable,
 		},
 	]
 
@@ -90,16 +90,16 @@ export class PluginTable implements ExsiedPlugin<Exsied> {
 		document.body.addEventListener('click', this.showTableActionButtons)
 	}
 	removeHandler = () => {}
-	checkHighlight = (_event: any) => {
+	checkHighlight = (event: Event) => {
 		const btnEle = this.exsied.elements.editor.querySelector(`#${this.toolbarBtnIds.normal}`)
 
 		if (btnEle) {
-			const allTagNamesArr = this.exsied.cursorAllParentsTagNamesArr || []
+			const allTagNamesArr = this.exsied.cursorAllParentsTagNamesArr
 			allTagNamesArr.includes(TN_TABLE) ? btnEle.classList.add(CN_ACTIVE) : btnEle.classList.remove(CN_ACTIVE)
 		}
 	}
-	removeTempEle = (_event: any) => {
-		const allTagNamesArr = this.exsied.cursorAllParentsTagNamesArr || []
+	removeTempEle = (event: Event) => {
+		const allTagNamesArr = this.exsied.cursorAllParentsTagNamesArr
 		if (!allTagNamesArr.includes(TN_TABLE)) {
 			DomUtils.removeElementById(POPUP_ID)
 		}
@@ -216,6 +216,7 @@ export class PluginTable implements ExsiedPlugin<Exsied> {
 			titlebarText: t('Table actions'),
 			top: rect.top + scrollTop + 'px',
 			right: window.innerWidth - rect.right + scrollLeft + 'px',
+			left: 'auto',
 		})
 
 		document.body.appendChild(ele)
@@ -242,28 +243,28 @@ export class PluginTable implements ExsiedPlugin<Exsied> {
 		if (btnDeleteTable) btnDeleteTable.addEventListener('click', this.clickDeleteTable)
 	}
 
-	clickBtnAddToTop = (_event: Event) => {
+	clickBtnAddToTop = (event: Event) => {
 		const table = this.getCurrentTable()
 		const index = this.getRowColumnIndex()
 		DomUtils.tableAddRow(table, index.rowIndex)
 		this.removeActionBtn()
 	}
 
-	clickBtnAddToBottom = (_event: Event) => {
+	clickBtnAddToBottom = (event: Event) => {
 		const table = this.getCurrentTable()
 		const index = this.getRowColumnIndex()
 		DomUtils.tableAddRow(table, index.rowIndex + 1)
 		this.removeActionBtn()
 	}
 
-	clickBtnAddToLeft = (_event: Event) => {
+	clickBtnAddToLeft = (event: Event) => {
 		const table = this.getCurrentTable()
 		const index = this.getRowColumnIndex()
 		DomUtils.tableAddColumn(table, index.columnIndex)
 		this.removeActionBtn()
 	}
 
-	clickBtnAddToRight = (_event: Event) => {
+	clickBtnAddToRight = (event: Event) => {
 		const table = this.getCurrentTable()
 		const index = this.getRowColumnIndex()
 		DomUtils.tableAddColumn(table, index.columnIndex + 1)
@@ -288,7 +289,7 @@ export class PluginTable implements ExsiedPlugin<Exsied> {
 		this.removeActionBtn()
 	}
 
-	clickDeleteTable = (_event: Event) => {
+	clickDeleteTable = (event: Event) => {
 		const table = this.getCurrentTable()
 		table.remove()
 		this.removeActionBtn()

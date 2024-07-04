@@ -11,7 +11,7 @@ import { CN_ACTIVE, CN_BIND_EVENT, CN_TEMP_ELE, DATA_ATTR_TEMP_EDIT, TN_DIV, TN_
 import { Exsied } from '../../core'
 import { DomUtils } from '../../core/dom_utils'
 import { EleClickCallback } from '../../core/events'
-import { Commands, ExsiedPlugin } from '../../core/plugin'
+import { ExsiedPlugin } from '../../core/plugin'
 import { ELE_TYPE_BUTTON, ToolBarControlIds, emptyToolBarControlIds } from '../../ui/toolbar'
 import {
 	CN_BTN_BC,
@@ -62,7 +62,7 @@ export class PluginImage implements ExsiedPlugin<Exsied> {
 		this.toolbarBtnIds = this.exsied.toolbar.genButtonIdStd(this.name, 'index') || emptyToolBarControlIds
 	}
 
-	insertImage() {
+	insertImage=() =>{
 		const ele = document.createElement(TN_IMG)
 		ele.src = this.conf.defaultSrc
 		ele.alt = this.conf.defaultAlt
@@ -70,7 +70,7 @@ export class PluginImage implements ExsiedPlugin<Exsied> {
 			this.exsied.selectionUtils.addElementBySelection(this.exsied.elements.workplace, ele)
 	}
 
-	commands: Commands = {
+	commands = {
 		insertImage: this.insertImage,
 	}
 
@@ -84,7 +84,7 @@ export class PluginImage implements ExsiedPlugin<Exsied> {
 
 			eleType: ELE_TYPE_BUTTON,
 			iconClassName: CN_ICON,
-			clickCallBack: this.commands['insertImage'],
+			clickCallBack: this.commands.insertImage,
 		},
 	]
 
@@ -93,16 +93,16 @@ export class PluginImage implements ExsiedPlugin<Exsied> {
 		EleClickCallback.addByClass(CN_BTN_SETTING, onClickImageSettingButton)
 	}
 	removeHandler = () => {}
-	checkHighlight = (_event: any) => {
+	checkHighlight = (event: Event) => {
 		const btnEle = this.exsied.elements.editor.querySelector(`#${this.toolbarBtnIds.normal}`)
 
 		if (btnEle) {
-			const allTagNamesArr = this.exsied.cursorAllParentsTagNamesArr || []
+			const allTagNamesArr = this.exsied.cursorAllParentsTagNamesArr
 			allTagNamesArr.includes(TN_IMG) ? btnEle.classList.add(CN_ACTIVE) : btnEle.classList.remove(CN_ACTIVE)
 		}
 	}
-	removeTempEle = (_event: any) => {
-		const allTagNamesArr = this.exsied.cursorAllParentsTagNamesArr || []
+	removeTempEle = (event: Event) => {
+		const allTagNamesArr = this.exsied.cursorAllParentsTagNamesArr
 		if (!allTagNamesArr.includes(TN_IMG)) {
 			DomUtils.removeElementById(RESIZER_ID)
 		}

@@ -9,7 +9,7 @@
  */
 import { Exsied } from '../../core'
 import { FormatStyle } from '../../core/format/style'
-import { Commands, ExsiedPlugin } from '../../core/plugin'
+import { ExsiedPlugin } from '../../core/plugin'
 import { SelectionUtils } from '../../core/selection_utils'
 import { Style } from '../../types'
 import { ELE_TYPE_BUTTON } from '../../ui/toolbar'
@@ -73,19 +73,19 @@ export class PluginTextAlign implements ExsiedPlugin<Exsied> {
 		if (cursorEle) FormatStyle.formatBlockEle(cursorEle as HTMLElement, style as CSSStyleDeclaration)
 	}
 
-	formatTextCenter = (_event: Event) => {
+	formatTextCenter = (event: Event) => {
 		this.format('center')
 	}
 
-	formatTextLeft = (_event: Event) => {
+	formatTextLeft = (event: Event) => {
 		this.format('left')
 	}
 
-	formatTextRight = (_event: Event) => {
+	formatTextRight = (event: Event) => {
 		this.format('right')
 	}
 
-	commands: Commands = {
+	commands = {
 		formatTextCenter: this.formatTextCenter,
 		formatTextLeft: this.formatTextLeft,
 		formatTextRight: this.formatTextRight,
@@ -100,7 +100,7 @@ export class PluginTextAlign implements ExsiedPlugin<Exsied> {
 
 			eleType: ELE_TYPE_BUTTON,
 			iconClassName: CN_ICON_LEFT,
-			clickCallBack: this.commands['formatTextLeft'],
+			clickCallBack: this.commands.formatTextLeft,
 		},
 		{
 			name: 'TextAlignCenter',
@@ -110,7 +110,7 @@ export class PluginTextAlign implements ExsiedPlugin<Exsied> {
 
 			eleType: ELE_TYPE_BUTTON,
 			iconClassName: CN_ICON_CENTER,
-			clickCallBack: this.commands['formatTextCenter'],
+			clickCallBack: this.commands.formatTextCenter,
 		},
 		{
 			name: 'TextAlignRight',
@@ -120,20 +120,20 @@ export class PluginTextAlign implements ExsiedPlugin<Exsied> {
 
 			eleType: ELE_TYPE_BUTTON,
 			iconClassName: CN_ICON_RIGHT,
-			clickCallBack: this.commands['formatTextRight'],
+			clickCallBack: this.commands.formatTextRight,
 		},
 	]
 
 	addHandler = () => {}
 	removeHandler = () => {}
-	checkHighlight = (_event: any) => {
+	checkHighlight = (event: Event) => {
 		// const btnEle = this.exsied.elements.editor.querySelector(`#${this.toolbarBtnIds.normal}`)
 		// if (btnEle) {
-		// 	const allTagNamesArr = this.exsied.cursorAllParentsTagNamesArr || []
+		// 	const allTagNamesArr = this.exsied.cursorAllParentsTagNamesArr
 		// 	allTagNamesArr.includes(TN_Q) || allTagNamesArr.includes(TN_BLOCKQUOTE)
 		// 		? btnEle.classList.add(CN_ACTIVE)
 		// 		: btnEle.classList.remove(CN_ACTIVE)
 		// }
 	}
-	removeTempEle = (_event: any) => {}
+	removeTempEle = (event: Event) => {}
 }

@@ -323,7 +323,7 @@ export class Toolbar {
 
 	initDropdownElements = () => {
 		this.pluginsSelectId.map((id) => {
-			const dropdownMenu = this.exsied.dropdownMenu
+			const dropdownMenu = new DropdownMenu(this.exsied)
 			if (!DomUtils.existElementById(dropdownMenu.genDropdownId(id) || '')) dropdownMenu.initSelect(id)
 		})
 	}

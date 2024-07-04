@@ -61,14 +61,14 @@ const initExsied = (containerId: string, content: string, locale?: string) => {
 	const fontFamily = new PluginFontFamily()
 	fontFamily.conf.fontFamilyOptions = [
 		{
-			name: 'fontFamily_1',
-			value: 'fontFamily_1',
+			name: 'font family 1',
+			value: 'font family 1',
 			tooltipText: '',
 			iconClassName: '',
 		},
 		{
-			name: 'fontFamily_2',
-			value: 'fontFamily_2',
+			name: 'font family 2',
+			value: 'font family 2',
 			tooltipText: '',
 			iconClassName: '',
 		},
@@ -139,9 +139,9 @@ const initExsied = (containerId: string, content: string, locale?: string) => {
 		enableToolbarBubble: true,
 		locale: locale || 'en',
 		hotkeys: [
-			{ keyStr: 'b', func: bold.commands[bold.name], modifierKeys: [KEY_CTRL] },
-			{ keyStr: 'i', func: italic.commands[italic.name], modifierKeys: [KEY_CTRL] },
-			{ keyStr: 'u', func: underline.commands[underline.name], modifierKeys: [KEY_CTRL] },
+			{ keyStr: 'b', func: bold.commands.formatBold, modifierKeys: [KEY_CTRL] },
+			{ keyStr: 'i', func: italic.commands.formatItalic, modifierKeys: [KEY_CTRL] },
+			{ keyStr: 'u', func: underline.commands.formatUnderline, modifierKeys: [KEY_CTRL] },
 		],
 		hooks: {
 			onInput: (exsied, event) => {
@@ -157,9 +157,11 @@ const initExsied = (containerId: string, content: string, locale?: string) => {
 const eleIdShort = 'appShort'
 const eleIdLong = 'appLong'
 
-initExsied(eleIdShort, 'short demo')
-initExsied(eleIdLong, DEMO_CONTENT)
+const initShort = (locale?: string) => initExsied(eleIdShort, 'short demo', locale)
+const initLong = (locale?: string) => initExsied(eleIdLong, DEMO_CONTENT, locale)
 
+initShort()
+initLong()
 // custom locale
 //
 // Set a new  dict
@@ -210,12 +212,14 @@ for (const item of locales) {
 }
 localeSelect.addEventListener('change', (event) => {
 	const selectedValue = (event.target as HTMLSelectElement).value
-	initExsied(eleIdLong, DEMO_CONTENT, selectedValue)
+
+	initShort(selectedValue)
+	initLong(selectedValue)
 })
 
 const btnsEle = document.getElementById('optBtns')
 if (btnsEle) {
-	btnsEle.append(darkModeBtn)
 	btnsEle.append(localeLabel)
 	btnsEle.append(localeSelect)
+	btnsEle.append(darkModeBtn)
 }

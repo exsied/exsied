@@ -9,7 +9,7 @@
  */
 import { CN_ACTIVE, TN_BLOCKQUOTE, TN_Q } from '../../contants'
 import { Exsied } from '../../core'
-import { Commands, ExsiedPlugin } from '../../core/plugin'
+import { ExsiedPlugin } from '../../core/plugin'
 import { SelectionUtils } from '../../core/selection_utils'
 import { ELE_TYPE_BUTTON, ToolBarControlIds, emptyToolBarControlIds } from '../../ui/toolbar'
 
@@ -54,7 +54,7 @@ export class PluginQuote implements ExsiedPlugin<Exsied> {
 			this.exsied.selectionUtils.addElementBySelection(this.exsied.elements.workplace, ele)
 	}
 
-	commands: Commands = {
+	commands = {
 		insertQuote: this.insertQuote,
 	}
 
@@ -68,21 +68,21 @@ export class PluginQuote implements ExsiedPlugin<Exsied> {
 
 			eleType: ELE_TYPE_BUTTON,
 			iconClassName: CN_ICON,
-			clickCallBack: this.commands['insertQuote'],
+			clickCallBack: this.commands.insertQuote,
 		},
 	]
 
 	addHandler = () => {}
 	removeHandler = () => {}
-	checkHighlight = (_event: any) => {
+	checkHighlight = (event: Event) => {
 		const btnEle = this.exsied.elements.editor.querySelector(`#${this.toolbarBtnIds.normal}`)
 
 		if (btnEle) {
-			const allTagNamesArr = this.exsied.cursorAllParentsTagNamesArr || []
+			const allTagNamesArr = this.exsied.cursorAllParentsTagNamesArr
 			allTagNamesArr.includes(TN_Q) || allTagNamesArr.includes(TN_BLOCKQUOTE)
 				? btnEle.classList.add(CN_ACTIVE)
 				: btnEle.classList.remove(CN_ACTIVE)
 		}
 	}
-	removeTempEle = (_event: any) => {}
+	removeTempEle = (event: Event) => {}
 }

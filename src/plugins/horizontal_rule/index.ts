@@ -9,7 +9,7 @@
  */
 import { TN_HR } from '../../contants'
 import { Exsied } from '../../core'
-import { Commands, ExsiedPlugin } from '../../core/plugin'
+import { ExsiedPlugin } from '../../core/plugin'
 import { ELE_TYPE_BUTTON } from '../../ui/toolbar'
 
 export type PluginConf = {
@@ -41,13 +41,13 @@ export class PluginHorizonalRule implements ExsiedPlugin<Exsied> {
 		// this.toolbarBtnIds = this.exsied.toolbar.genButtonIdStd(this.name, 'index') || emptyToolBarControlIds
 	}
 
-	insertHorizontalRule() {
+	insertHorizontalRule=() =>{
 		const ele = document.createElement(TN_HR)
 		if (this.exsied.elements.workplace)
 			this.exsied.selectionUtils.addElementBySelection(this.exsied.elements.workplace, ele)
 	}
 
-	commands: Commands = {
+	commands = {
 		insertHorizontalRule: this.insertHorizontalRule,
 	}
 
@@ -61,12 +61,12 @@ export class PluginHorizonalRule implements ExsiedPlugin<Exsied> {
 
 			eleType: ELE_TYPE_BUTTON,
 			iconClassName: CN_ICON,
-			clickCallBack: this.commands['insertHorizontalRule'],
+			clickCallBack: this.commands.insertHorizontalRule,
 		},
 	]
 
 	addHandler = () => {}
 	removeHandler = () => {}
-	checkHighlight = (_event: any) => {}
-	removeTempEle = (_event: any) => {}
+	checkHighlight = (event: Event) => {}
+	removeTempEle = (event: Event) => {}
 }

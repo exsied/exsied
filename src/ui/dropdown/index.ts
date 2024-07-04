@@ -19,14 +19,14 @@ export const CN_DDROPDOWN_TRIGGER = 'exsied-dropdown-trigger'
 
 const DATA_ATTR_TEXT = 'data-text'
 const DATA_ATTR_VALUE = 'data-value'
+const CN_LIST = 'exsied-dropdown-list'
+const CN_LIST_ITEM = 'exsied-dropdown-list-item'
 
 export class DropdownMenu {
 	exsied: Exsied
 	private selectId: string = ''
 	private ele: HTMLElement | undefined
 
-	private cnList = 'exsied-dropdown-list'
-	private cnListItem = 'exsied-dropdown-list-item'
 	private triggerDefaultText = '---'
 
 	constructor(exsied: Exsied) {
@@ -79,9 +79,8 @@ export class DropdownMenu {
 			if (!dropDownEle) return
 
 			const siblings = Array.from(dropDownEle.children)
-			const self = this
 			siblings.forEach((sibling) => {
-				if (sibling.classList.contains(self.cnList)) {
+				if (sibling.classList.contains(CN_LIST)) {
 					sibling.classList.add(CN_DDROPDOWN_LIST_SHOW)
 				}
 			})
@@ -92,15 +91,15 @@ export class DropdownMenu {
 		})
 
 		const listEle = document.createElement(TN_DIV)
-		listEle.classList.add(this.cnList)
+		listEle.classList.add(CN_LIST)
 
 		for (let i = 0; i < nativeSelect.options.length; i++) {
 			const option = nativeSelect.options[i]
 
-			const listItem = document.createElement(TN_DIV)
-			listItem.classList.add(this.cnListItem)
-			listItem.setAttribute(DATA_ATTR_TEXT, option.text)
-			listItem.setAttribute(DATA_ATTR_VALUE, option.value)
+			const listItemEle = document.createElement(TN_DIV)
+			listItemEle.classList.add(CN_LIST_ITEM)
+			listItemEle.setAttribute(DATA_ATTR_TEXT, option.text)
+			listItemEle.setAttribute(DATA_ATTR_VALUE, option.value)
 
 			let content = option.text
 
@@ -108,26 +107,26 @@ export class DropdownMenu {
 			const iconClass = option.getAttribute(DATA_ATTR_CN_ICON)
 			if (iconClass) icon = `<i class="exsied-icon ${iconClass}"></i>`
 
-			listItem.innerHTML = `
+			listItemEle.innerHTML = `
 				<div class="icon">${icon}</div>
 				<div class="content">${t(content)}</div>
 				`
 
-			listItem.addEventListener('click', (event: Event) => {
+			listItemEle.addEventListener('click', (event: Event) => {
 				nativeSelect.value = option.value
 				const target = event.target
 				if (!target) return
 
 				const targetEle = target as HTMLOptionElement
 
-				const list = targetEle.closest(`.${this.cnList}`) as HTMLDivElement
+				const list = targetEle.closest(`.${CN_LIST}`) as HTMLDivElement
 				if (!list) return
 				list.classList.remove(CN_DDROPDOWN_LIST_SHOW)
 
 				const wrap = targetEle.closest(`.${CN_DDROPDOWN}`)
 				if (!wrap) return
 
-				const listItem = targetEle.closest(`.${this.cnListItem}`) as HTMLDivElement
+				const listItem = targetEle.closest(`.${CN_LIST_ITEM}`) as HTMLDivElement
 				if (!listItem) return
 
 				const DT = listItem.getAttribute(DATA_ATTR_TEXT)
@@ -139,10 +138,10 @@ export class DropdownMenu {
 				if (triggerEle) triggerEle.innerHTML = DT || this.triggerDefaultText
 
 				// Set orginal select's option
-				const select = document.querySelector(`#${this.selectId}`) as HTMLSelectElement
-				if (!select) return
+				const selectEle = document.querySelector(`#${this.selectId}`) as HTMLSelectElement
+				if (!selectEle) return
 
-				const secondOption = select.options
+				const secondOption = selectEle.options
 				for (const iterator of secondOption) {
 					if (iterator.value === value) {
 						iterator.selected = true
@@ -153,10 +152,10 @@ export class DropdownMenu {
 				// Manually triggering the change event to execute the modification.
 				this.exsied.selectionUtils.restoreSelection()
 				const changeEvent = new Event('change', { bubbles: true })
-				select.dispatchEvent(changeEvent)
+				selectEle.dispatchEvent(changeEvent)
 			})
 
-			listEle.appendChild(listItem)
+			listEle.appendChild(listItemEle)
 		}
 
 		// FIXME: not work

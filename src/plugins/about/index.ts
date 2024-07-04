@@ -139,8 +139,8 @@ export class PluginAbout implements ExsiedPlugin<Exsied> {
 
 	addHandler = () => {}
 	removeHandler = () => {}
-	checkHighlight = (_event: any) => {}
-	removeTempEle = (_event: any) => {
+	checkHighlight = (event: Event) => {}
+	removeTempEle = (event: Event) => {
 		DomUtils.removeElementById(this.popupId)
 	}
 }

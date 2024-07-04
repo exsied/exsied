@@ -9,7 +9,7 @@
  */
 import { CN_ACTIVE, TN_BLOCKQUOTE, TN_OL, TN_Q, TN_UL } from '../../contants'
 import { Exsied } from '../../core'
-import { Commands, ExsiedPlugin } from '../../core/plugin'
+import { ExsiedPlugin } from '../../core/plugin'
 import { SelectionUtils } from '../../core/selection_utils'
 import { ELE_TYPE_BUTTON, ToolBarControlIds, emptyToolBarControlIds } from '../../ui/toolbar'
 
@@ -83,7 +83,7 @@ export class PluginLists implements ExsiedPlugin<Exsied> {
 			this.exsied.selectionUtils.addElementBySelection(this.exsied.elements.workplace, ele)
 	}
 
-	commands: Commands = {
+	commands = {
 		insertOl: () => {
 			this.insert(TN_OL)
 		},
@@ -102,7 +102,7 @@ export class PluginLists implements ExsiedPlugin<Exsied> {
 
 			eleType: ELE_TYPE_BUTTON,
 			iconClassName: CN_ICON_OL,
-			clickCallBack: this.commands['insertOl'],
+			clickCallBack: this.commands.insertOl,
 		},
 		{
 			name: NAME_UL,
@@ -113,16 +113,16 @@ export class PluginLists implements ExsiedPlugin<Exsied> {
 
 			eleType: ELE_TYPE_BUTTON,
 			iconClassName: CN_ICON_UL,
-			clickCallBack: this.commands['insertUl'],
+			clickCallBack: this.commands.insertUl,
 		},
 	]
 
 	addHandler = () => {}
 	removeHandler = () => {}
-	checkHighlight = (_event: any) => {
+	checkHighlight = (event: Event) => {
 		const btnEleOl = this.exsied.elements.editor.querySelector(`#${this.toolbarBtnIdsOl.normal}`)
 		if (btnEleOl) {
-			const allTagNamesArr = this.exsied.cursorAllParentsTagNamesArr || []
+			const allTagNamesArr = this.exsied.cursorAllParentsTagNamesArr
 			allTagNamesArr.includes(TN_Q) || allTagNamesArr.includes(TN_BLOCKQUOTE)
 				? btnEleOl.classList.add(CN_ACTIVE)
 				: btnEleOl.classList.remove(CN_ACTIVE)
@@ -130,11 +130,11 @@ export class PluginLists implements ExsiedPlugin<Exsied> {
 
 		const btnEleUl = this.exsied.elements.editor.querySelector(`#${this.toolbarBtnIdsUl.normal}`)
 		if (btnEleUl) {
-			const allTagNamesArr = this.exsied.cursorAllParentsTagNamesArr || []
+			const allTagNamesArr = this.exsied.cursorAllParentsTagNamesArr
 			allTagNamesArr.includes(TN_Q) || allTagNamesArr.includes(TN_BLOCKQUOTE)
 				? btnEleUl.classList.add(CN_ACTIVE)
 				: btnEleUl.classList.remove(CN_ACTIVE)
 		}
 	}
-	removeTempEle = (_event: any) => {}
+	removeTempEle = (event: Event) => {}
 }

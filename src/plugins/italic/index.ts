@@ -10,7 +10,7 @@
 import { CN_ACTIVE, TN_EM, TN_I } from '../../contants'
 import { Exsied } from '../../core'
 import { FormatTaName } from '../../core/format/tag_name'
-import { Commands, ExsiedPlugin } from '../../core/plugin'
+import {  ExsiedPlugin } from '../../core/plugin'
 import { ELE_TYPE_BUTTON, ToolBarControlIds, emptyToolBarControlIds } from '../../ui/toolbar'
 
 export type PluginConf = {
@@ -42,20 +42,20 @@ export class PluginItalic implements ExsiedPlugin<Exsied> {
 	}
 
 	isHighlight = () => {
-		const allTagNamesArr = this.exsied.cursorAllParentsTagNamesArr || []
+		const allTagNamesArr = this.exsied.cursorAllParentsTagNamesArr
 		return allTagNamesArr.includes(TN_I) || allTagNamesArr.includes(TN_EM)
 	}
 
 	formatItalic = () => {
 		if (this.isHighlight()) {
-			FormatTaName.unformatSelected(TN_I)
-			FormatTaName.unformatSelected(TN_EM)
+			FormatTaName.unformatSelected(this.exsied, TN_I)
+			FormatTaName.unformatSelected(this.exsied, TN_EM)
 		} else {
-			FormatTaName.formatSelected(TN_I)
+			FormatTaName.formatSelected(this.exsied, TN_I)
 		}
 	}
 
-	commands: Commands = {
+	commands = {
 		formatItalic: this.formatItalic,
 	}
 
@@ -68,20 +68,20 @@ export class PluginItalic implements ExsiedPlugin<Exsied> {
 
 			eleType: ELE_TYPE_BUTTON,
 			iconClassName: CN_ICON,
-			clickCallBack: this.commands[PLUGIN_NAME],
+			clickCallBack: this.commands.formatItalic,
 		},
 	]
 
 	addHandler = () => {}
 	removeHandler = () => {}
-	checkHighlight = (_event: any) => {
+	checkHighlight = (event: Event) => {
 		const btnEle = this.exsied.elements.editor.querySelector(`#${this.toolbarBtnIds.normal}`)
 		if (btnEle) {
-			const allTagNamesArr = this.exsied.cursorAllParentsTagNamesArr || []
+			const allTagNamesArr = this.exsied.cursorAllParentsTagNamesArr
 			allTagNamesArr.includes(TN_EM) || allTagNamesArr.includes(TN_I)
 				? btnEle.classList.add(CN_ACTIVE)
 				: btnEle.classList.remove(CN_ACTIVE)
 		}
 	}
-	removeTempEle = (_event: any) => {}
+	removeTempEle = (event: Event) => {}
 }

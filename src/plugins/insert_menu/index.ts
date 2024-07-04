@@ -11,7 +11,7 @@ import { CN_TEMP_ELE, DATA_ATTR_TEMP_EDIT } from '../../contants'
 import { Exsied } from '../../core'
 import { DomUtils } from '../../core/dom_utils'
 import { t } from '../../core/i18n'
-import { ClickEventHandler, Commands, ExsiedPlugin } from '../../core/plugin'
+import { ClickEventHandler, ExsiedPlugin } from '../../core/plugin'
 import { ELE_TYPE_BUTTON, ToolBarControlIds, emptyToolBarControlIds } from '../../ui/toolbar'
 import './styles.scss'
 
@@ -55,8 +55,7 @@ export class PluginInsertMenu implements ExsiedPlugin<Exsied> {
 		let contentHtml = ``
 		const eventMap: { [key: string]: ClickEventHandler } = {}
 
-		const insertElementButtons = this.exsied.toolbar.insertElementButtons || []
-
+		const insertElementButtons = this.exsied.toolbar.insertElementButtons
 		for (const item of insertElementButtons) {
 			const name = `${item.pluginName}___${item.ctrlName}`
 			eventMap[name] = item.clickCallBack
@@ -97,7 +96,7 @@ export class PluginInsertMenu implements ExsiedPlugin<Exsied> {
 		document.body.appendChild(ele)
 	}
 
-	commands: Commands = {
+	commands = {
 		showInsertMenu: this.showInsertMenu,
 	}
 
@@ -111,21 +110,18 @@ export class PluginInsertMenu implements ExsiedPlugin<Exsied> {
 
 			eleType: ELE_TYPE_BUTTON,
 			iconClassName: CN_ICON,
-			clickCallBack: this.commands['showInsertMenu'],
+			clickCallBack: this.commands.showInsertMenu,
 		},
 	]
 
 	addHandler = () => {
-		const btnEle = document.getElementById(this.toolbarBtnIds.normal)
-		if (btnEle) {
-			btnEle.addEventListener('mouseover', () => {
-				this.exsied.selectionUtils.backupSelection()
-			})
-		}
+		this.exsied.elements.toolbarMain.addEventListener('mouseover', () => {
+			this.exsied.selectionUtils.backupSelection()
+		})
 	}
 	removeHandler = () => {}
-	checkHighlight = (_event: any) => {}
-	removeTempEle = (_event: any) => {
+	checkHighlight = (event: Event) => {}
+	removeTempEle = (event: Event) => {
 		DomUtils.removeElementById(POPUP_ID)
 	}
 }

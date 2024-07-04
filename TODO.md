@@ -1,5 +1,0 @@
-- fontFamily
-- fontSize
-- color picker
-- headings
-  - format func

@@ -10,7 +10,7 @@
 import { Exsied } from '../../core'
 import { DomUtils } from '../../core/dom_utils'
 import { FormatStyle } from '../../core/format/style'
-import { Commands, ExsiedPlugin } from '../../core/plugin'
+import { ExsiedPlugin } from '../../core/plugin'
 import { SelectionUtils } from '../../core/selection_utils'
 import { Style } from '../../types'
 import { ELE_TYPE_BUTTON } from '../../ui/toolbar'
@@ -78,15 +78,15 @@ export class PluginIndentAndOutdent implements ExsiedPlugin<Exsied> {
 		if (blockEle) FormatStyle.formatBlockEle(blockEle, style as CSSStyleDeclaration, true)
 	}
 
-	formatIndent = (_event: Event) => {
+	formatIndent = (event: Event) => {
 		this.indent(INDENT)
 	}
 
-	formatOutdent = (_event: Event) => {
+	formatOutdent = (event: Event) => {
 		this.indent(ONTDENT)
 	}
 
-	commands: Commands = {
+	commands = {
 		formatIndent: this.formatIndent,
 		formatOutdent: this.formatOutdent,
 	}
@@ -100,7 +100,7 @@ export class PluginIndentAndOutdent implements ExsiedPlugin<Exsied> {
 
 			eleType: ELE_TYPE_BUTTON,
 			iconClassName: CN_ICON_INDENT,
-			clickCallBack: this.commands['formatIndent'],
+			clickCallBack: this.commands.formatIndent,
 		},
 		{
 			name: NAME_OUTDENT,
@@ -110,12 +110,12 @@ export class PluginIndentAndOutdent implements ExsiedPlugin<Exsied> {
 
 			eleType: ELE_TYPE_BUTTON,
 			iconClassName: CN_ICON_OUTDENT,
-			clickCallBack: this.commands['formatOutdent'],
+			clickCallBack: this.commands.formatOutdent,
 		},
 	]
 
 	addHandler = () => {}
 	removeHandler = () => {}
-	checkHighlight = (_event: any) => {}
-	removeTempEle = (_event: any) => {}
+	checkHighlight = (event: Event) => {}
+	removeTempEle = (event: Event) => {}
 }
