@@ -9,6 +9,7 @@
  */
 import { CN_TEMP_ELE, DATA_ATTR_CN_ICON, TN_DIV } from '../../contants'
 import { Exsied } from '../../core'
+import { DomUtils } from '../../core/dom_utils'
 import { t } from '../../core/i18n'
 import { tagNameLc } from '../../utils'
 import './styles.scss'
@@ -75,6 +76,8 @@ export class DropdownMenu {
 			if (!target) return
 
 			const targetEle = target as HTMLElement
+			const rect = targetEle.getBoundingClientRect()
+
 			const dropDownEle = targetEle.closest(`.${CN_DDROPDOWN}`)
 			if (!dropDownEle) return
 
@@ -82,6 +85,12 @@ export class DropdownMenu {
 			siblings.forEach((sibling) => {
 				if (sibling.classList.contains(CN_LIST)) {
 					sibling.classList.add(CN_DDROPDOWN_LIST_SHOW)
+
+					const siblingEle = sibling as HTMLElement
+					siblingEle.style.top = `${rect.bottom}px`
+					siblingEle.style.bottom = `unset`
+
+					DomUtils.limitElementRect(siblingEle)
 				}
 			})
 		})
@@ -129,13 +138,13 @@ export class DropdownMenu {
 				const listItem = targetEle.closest(`.${CN_LIST_ITEM}`) as HTMLDivElement
 				if (!listItem) return
 
-				const DT = listItem.getAttribute(DATA_ATTR_TEXT)
-				const DV = listItem.getAttribute(DATA_ATTR_VALUE)
-				const value = DV ? DV : ''
+				const dat = listItem.getAttribute(DATA_ATTR_TEXT)
+				const dav = listItem.getAttribute(DATA_ATTR_VALUE)
+				const value = dav ? dav : ''
 
 				// Set trigger's text
 				const triggerEle = wrap.querySelector(`.${CN_DDROPDOWN_TRIGGER}`)
-				if (triggerEle) triggerEle.innerHTML = DT || this.triggerDefaultText
+				if (triggerEle) triggerEle.innerHTML = dat || this.triggerDefaultText
 
 				// Set orginal select's option
 				const selectEle = document.querySelector(`#${this.selectId}`) as HTMLSelectElement
