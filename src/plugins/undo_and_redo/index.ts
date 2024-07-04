@@ -131,6 +131,4 @@ export class PluginRedoAndUndo implements ExsiedPlugin<Exsied> {
 	addHandler = () => {
 		this.exsied.elements.workplace.addEventListener('input', this.update)
 	}
-
-	removeTempEle = (event: Event) => {}
 }

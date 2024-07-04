@@ -116,7 +116,7 @@ export class PluginLists implements ExsiedPlugin<Exsied> {
 		},
 	]
 
-	checkHighlight = (event: Event) => {
+	checkHighlight = (_event: Event) => {
 		const btnEleOl = this.exsied.elements.editor.querySelector(`#${this.toolbarBtnIdsOl.normal}`)
 		if (btnEleOl) {
 			const allTagNamesArr = this.exsied.cursorAllParentsTagNamesArr
@@ -133,5 +133,4 @@ export class PluginLists implements ExsiedPlugin<Exsied> {
 				: btnEleUl.classList.remove(CN_ACTIVE)
 		}
 	}
-	removeTempEle = (event: Event) => {}
 }

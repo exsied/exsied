@@ -92,7 +92,7 @@ export class PluginImage implements ExsiedPlugin<Exsied> {
 		EleClickCallback.addByClass(CN_BTN_SETTING, onClickImageSettingButton)
 	}
 
-	checkHighlight = (event: Event) => {
+	checkHighlight = (_event: Event) => {
 		const btnEle = this.exsied.elements.editor.querySelector(`#${this.toolbarBtnIds.normal}`)
 
 		if (btnEle) {
@@ -100,7 +100,7 @@ export class PluginImage implements ExsiedPlugin<Exsied> {
 			allTagNamesArr.includes(TN_IMG) ? btnEle.classList.add(CN_ACTIVE) : btnEle.classList.remove(CN_ACTIVE)
 		}
 	}
-	removeTempEle = (event: Event) => {
+	removeTempEle = (_event: Event) => {
 		const allTagNamesArr = this.exsied.cursorAllParentsTagNamesArr
 		if (!allTagNamesArr.includes(TN_IMG)) {
 			DomUtils.removeElementById(RESIZER_ID)

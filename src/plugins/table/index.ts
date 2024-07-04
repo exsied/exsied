@@ -89,7 +89,7 @@ export class PluginTable implements ExsiedPlugin<Exsied> {
 		document.body.addEventListener('click', this.showTableActionButtons)
 	}
 
-	checkHighlight = (event: Event) => {
+	checkHighlight = (_event: Event) => {
 		const btnEle = this.exsied.elements.editor.querySelector(`#${this.toolbarBtnIds.normal}`)
 
 		if (btnEle) {
@@ -97,7 +97,7 @@ export class PluginTable implements ExsiedPlugin<Exsied> {
 			allTagNamesArr.includes(TN_TABLE) ? btnEle.classList.add(CN_ACTIVE) : btnEle.classList.remove(CN_ACTIVE)
 		}
 	}
-	removeTempEle = (event: Event) => {
+	removeTempEle = (_event: Event) => {
 		const allTagNamesArr = this.exsied.cursorAllParentsTagNamesArr
 		if (!allTagNamesArr.includes(TN_TABLE)) {
 			DomUtils.removeElementById(POPUP_ID)
@@ -242,28 +242,28 @@ export class PluginTable implements ExsiedPlugin<Exsied> {
 		if (btnDeleteTable) btnDeleteTable.addEventListener('click', this.clickDeleteTable)
 	}
 
-	clickBtnAddToTop = (event: Event) => {
+	clickBtnAddToTop = (_event: Event) => {
 		const table = this.getCurrentTable()
 		const index = this.getRowColumnIndex()
 		DomUtils.tableAddRow(table, index.rowIndex)
 		this.removeActionBtn()
 	}
 
-	clickBtnAddToBottom = (event: Event) => {
+	clickBtnAddToBottom = (_event: Event) => {
 		const table = this.getCurrentTable()
 		const index = this.getRowColumnIndex()
 		DomUtils.tableAddRow(table, index.rowIndex + 1)
 		this.removeActionBtn()
 	}
 
-	clickBtnAddToLeft = (event: Event) => {
+	clickBtnAddToLeft = (_event: Event) => {
 		const table = this.getCurrentTable()
 		const index = this.getRowColumnIndex()
 		DomUtils.tableAddColumn(table, index.columnIndex)
 		this.removeActionBtn()
 	}
 
-	clickBtnAddToRight = (event: Event) => {
+	clickBtnAddToRight = (_event: Event) => {
 		const table = this.getCurrentTable()
 		const index = this.getRowColumnIndex()
 		DomUtils.tableAddColumn(table, index.columnIndex + 1)
@@ -288,7 +288,7 @@ export class PluginTable implements ExsiedPlugin<Exsied> {
 		this.removeActionBtn()
 	}
 
-	clickDeleteTable = (event: Event) => {
+	clickDeleteTable = (_event: Event) => {
 		const table = this.getCurrentTable()
 		table.remove()
 		this.removeActionBtn()

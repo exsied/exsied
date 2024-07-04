@@ -50,9 +50,7 @@ export class PluginIndentAndOutdent implements ExsiedPlugin<Exsied> {
 		stepPx: 10,
 	}
 
-	init = (exsied: Exsied): void => {
-		// this.exsied = exsied
-	}
+	init = (_event: Exsied): void => {}
 
 	indent = (direction: typeof INDENT | typeof ONTDENT) => {
 		const cursorEle = SelectionUtils.getCursorNode()
@@ -67,11 +65,11 @@ export class PluginIndentAndOutdent implements ExsiedPlugin<Exsied> {
 		if (blockEle) FormatStyle.formatBlockEle(blockEle, style as CSSStyleDeclaration, true)
 	}
 
-	formatIndent = (event: Event) => {
+	formatIndent = (_event: Event) => {
 		this.indent(INDENT)
 	}
 
-	formatOutdent = (event: Event) => {
+	formatOutdent = (_event: Event) => {
 		this.indent(ONTDENT)
 	}
 
@@ -102,6 +100,4 @@ export class PluginIndentAndOutdent implements ExsiedPlugin<Exsied> {
 			clickCallBack: this.commands.formatOutdent,
 		},
 	]
-
-	removeTempEle = (event: Event) => {}
 }

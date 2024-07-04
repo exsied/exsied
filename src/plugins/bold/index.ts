@@ -73,12 +73,11 @@ export class PluginBold implements ExsiedPlugin<Exsied> {
 		},
 	]
 
-	checkHighlight = (event: Event) => {
+	checkHighlight = (_event: Event) => {
 		const btnEle = this.exsied.elements.editor.querySelector(`#${this.toolbarBtnIds?.normal}`)
 
 		if (btnEle) {
 			this.isHighlight() ? btnEle.classList.add(CN_ACTIVE) : btnEle.classList.remove(CN_ACTIVE)
 		}
 	}
-	removeTempEle = (event: Event) => {}
 }

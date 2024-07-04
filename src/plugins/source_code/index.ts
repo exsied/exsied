@@ -155,7 +155,6 @@ export class PluginSourceCode implements ExsiedPlugin<Exsied> {
 		},
 	]
 
-	removeTempEle = (event: Event) => {}
 	hooks = {
 		afterSetHtml,
 		beforeGetHtml,

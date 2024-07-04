@@ -62,6 +62,4 @@ export class PluginNewBlock implements ExsiedPlugin<Exsied> {
 			clickCallBack: this.commands.insertNewBlock,
 		},
 	]
-
-	removeTempEle = (event: Event) => {}
 }

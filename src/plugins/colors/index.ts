@@ -150,7 +150,7 @@ export class PluginColors implements ExsiedPlugin<Exsied> {
 			} as unknown as CSSStyleDeclaration)
 		}
 	}
-	removeTempEle = (event: any) => {
+	removeTempEle = (_event: any) => {
 		DomUtils.removeElementById(this.popupIdBkg)
 		DomUtils.removeElementById(this.popupIdText)
 	}

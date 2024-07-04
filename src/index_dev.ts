@@ -133,7 +133,7 @@ const initExsied = (containerId: string, content: string, locale?: string) => {
 			{ keyStr: 'u', func: underline.commands.formatUnderline, modifierKeys: [KEY_CTRL] },
 		],
 		hooks: {
-			onInput: (exsied, event) => {
+			onInput: (_exsied, event) => {
 				const ele = event.target as HTMLElement
 				console.log('>>> hooks.onInput :', ele.innerHTML)
 			},

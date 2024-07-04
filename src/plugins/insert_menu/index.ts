@@ -12,7 +12,7 @@ import { Exsied } from '../../core'
 import { DomUtils } from '../../core/dom_utils'
 import { t } from '../../core/i18n'
 import { ClickEventHandler, ExsiedPlugin } from '../../core/plugin'
-import { ELE_TYPE_BUTTON, ToolBarControlIds, emptyToolBarControlIds } from '../../ui/toolbar'
+import { ELE_TYPE_BUTTON } from '../../ui/toolbar'
 import './styles.scss'
 
 export type PluginConf = {
@@ -113,7 +113,7 @@ export class PluginInsertMenu implements ExsiedPlugin<Exsied> {
 		})
 	}
 
-	removeTempEle = (event: Event) => {
+	removeTempEle = (_event: Event) => {
 		DomUtils.removeElementById(POPUP_ID)
 	}
 }

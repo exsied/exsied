@@ -108,7 +108,7 @@ export class PluginSubscriptAndSupscript implements ExsiedPlugin<Exsied> {
 		},
 	]
 
-	checkHighlight = (event: Event) => {
+	checkHighlight = (_event: Event) => {
 		const btnEleSub = this.exsied.elements.editor.querySelector(`#${this.toolbarBtnIdsSub.normal}`)
 		if (btnEleSub) {
 			this.isHighlightSub() ? btnEleSub.classList.add(CN_ACTIVE) : btnEleSub.classList.remove(CN_ACTIVE)
@@ -119,5 +119,4 @@ export class PluginSubscriptAndSupscript implements ExsiedPlugin<Exsied> {
 			this.isHighlightSup() ? btnEleSup.classList.add(CN_ACTIVE) : btnEleSup.classList.remove(CN_ACTIVE)
 		}
 	}
-	removeTempEle = (event: Event) => {}
 }

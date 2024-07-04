@@ -136,7 +136,7 @@ export class PluginAbout implements ExsiedPlugin<Exsied> {
 		},
 	]
 
-	removeTempEle = (event: Event) => {
+	removeTempEle = (_event: Event) => {
 		DomUtils.removeElementById(this.popupId)
 	}
 }

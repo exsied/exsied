@@ -84,7 +84,7 @@ export class PluginFindAndReplace implements ExsiedPlugin<Exsied> {
 		},
 	]
 
-	removeTempEle = (event: Event) => {
+	removeTempEle = (_event: Event) => {
 		DomUtils.removeElementById(this.popupId)
 		resetValue()
 		clearHighLight()

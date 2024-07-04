@@ -135,7 +135,7 @@ export class SelectionUtils {
 		lastTagName: HTMLTagNames | null,
 		ancestorNodeByTagName: boolean,
 		ancestorTagName: HTMLTagNames | null,
-		exsied: Exsied,
+		_exsied: Exsied,
 		rangeIpt?: Range,
 	) => {
 		let range = rangeIpt

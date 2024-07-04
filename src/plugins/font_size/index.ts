@@ -74,10 +74,7 @@ export class PluginFontSize implements ExsiedPlugin<Exsied> {
 		},
 	]
 
-	checkHighlight = (event: Event) => {
-		// TODO:
-	}
-	removeTempEle = (event: Event) => {
+	removeTempEle = (_event: Event) => {
 		const dropdownMenu = new DropdownMenu(this.exsied)
 		const dropDownId = dropdownMenu.genDropdownId(this.toolbarBtnIds.normal) || ''
 		this.exsied.toolbar.hideDropdowntList(dropDownId)

@@ -11,6 +11,7 @@ import './styles/style.scss'
  */
 export * from './contants'
 
+export { Exsied } from './core'
 export { DomUtils } from './core/dom_utils'
 export { EleClickCallback } from './core/events'
 export { FormatStyle } from './core/format/style'
@@ -26,6 +27,7 @@ export { Toolbar } from './ui/toolbar'
 
 export { FindAndReplace } from './plugins/find_and_replace/find'
 
+export { PluginAbout } from './plugins/about'
 export { PluginBold } from './plugins/bold'
 export { PluginColors } from './plugins/colors'
 export { PluginFindAndReplace } from './plugins/find_and_replace'

@@ -53,7 +53,7 @@ export class PluginTextAlign implements ExsiedPlugin<Exsied> {
 			`,
 	}
 
-	init = (exsied: Exsied): void => {}
+	init = (_exsied: Exsied): void => {}
 
 	format = (value: string) => {
 		const style: Style = {}
@@ -62,15 +62,15 @@ export class PluginTextAlign implements ExsiedPlugin<Exsied> {
 		if (cursorEle) FormatStyle.formatBlockEle(cursorEle as HTMLElement, style as CSSStyleDeclaration)
 	}
 
-	formatTextCenter = (event: Event) => {
+	formatTextCenter = (_event: Event) => {
 		this.format('center')
 	}
 
-	formatTextLeft = (event: Event) => {
+	formatTextLeft = (_event: Event) => {
 		this.format('left')
 	}
 
-	formatTextRight = (event: Event) => {
+	formatTextRight = (_event: Event) => {
 		this.format('right')
 	}
 
@@ -112,15 +112,4 @@ export class PluginTextAlign implements ExsiedPlugin<Exsied> {
 			clickCallBack: this.commands.formatTextRight,
 		},
 	]
-
-	checkHighlight = (event: Event) => {
-		// const btnEle = this.exsied.elements.editor.querySelector(`#${this.toolbarBtnIds.normal}`)
-		// if (btnEle) {
-		// 	const allTagNamesArr = this.exsied.cursorAllParentsTagNamesArr
-		// 	allTagNamesArr.includes(TN_Q) || allTagNamesArr.includes(TN_BLOCKQUOTE)
-		// 		? btnEle.classList.add(CN_ACTIVE)
-		// 		: btnEle.classList.remove(CN_ACTIVE)
-		// }
-	}
-	removeTempEle = (event: Event) => {}
 }

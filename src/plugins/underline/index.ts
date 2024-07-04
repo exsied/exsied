@@ -65,12 +65,11 @@ export class PluginUnderline implements ExsiedPlugin<Exsied> {
 		},
 	]
 
-	checkHighlight = (event: Event) => {
+	checkHighlight = (_event: Event) => {
 		const btnEle = this.exsied.elements.editor.querySelector(`#${this.toolbarBtnIds.normal}`)
 		if (btnEle) {
 			const allTagNamesArr = this.exsied.cursorAllParentsTagNamesArr
 			allTagNamesArr.includes(TN_U) ? btnEle.classList.add(CN_ACTIVE) : btnEle.classList.remove(CN_ACTIVE)
 		}
 	}
-	removeTempEle = (event: Event) => {}
 }

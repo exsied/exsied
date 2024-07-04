@@ -98,31 +98,31 @@ export class PluginHeadings implements ExsiedPlugin<Exsied> {
 		this.toolbarBtnIds = this.exsied.toolbar.genButtonIdStd(this.name, 'index') || emptyToolBarControlIds
 	}
 
-	formatParagraph = (event: Event) => {
+	formatParagraph = (_event: Event) => {
 		FormatTaName.formatSelected(this.exsied, TN_DIV)
 	}
 
-	formatH1 = (event: Event) => {
+	formatH1 = (_event: Event) => {
 		FormatTaName.formatSelected(this.exsied, TN_H1)
 	}
 
-	formatH2 = (event: Event) => {
+	formatH2 = (_event: Event) => {
 		FormatTaName.formatSelected(this.exsied, TN_H2)
 	}
 
-	formatH3 = (event: Event) => {
+	formatH3 = (_event: Event) => {
 		FormatTaName.formatSelected(this.exsied, TN_H3)
 	}
 
-	formatH4 = (event: Event) => {
+	formatH4 = (_event: Event) => {
 		FormatTaName.formatSelected(this.exsied, TN_H4)
 	}
 
-	formatH5 = (event: Event) => {
+	formatH5 = (_event: Event) => {
 		FormatTaName.formatSelected(this.exsied, TN_H5)
 	}
 
-	formatH6 = (event: Event) => {
+	formatH6 = (_event: Event) => {
 		FormatTaName.formatSelected(this.exsied, TN_H6)
 	}
 
@@ -165,7 +165,7 @@ export class PluginHeadings implements ExsiedPlugin<Exsied> {
 		},
 	]
 
-	checkHighlight = (event: Event) => {
+	checkHighlight = (_event: Event) => {
 		const dropdownMenu = new DropdownMenu(this.exsied)
 		const dropDownId = dropdownMenu.genDropdownId(this.toolbarBtnIds.normal) || ''
 		const triggerClassName = dropdownMenu.genTriggerClassName(this.toolbarBtnIds.normal) || ''
@@ -196,7 +196,7 @@ export class PluginHeadings implements ExsiedPlugin<Exsied> {
 			setDropDownTriggerText(this.name)
 		}
 	}
-	removeTempEle = (event: Event) => {
+	removeTempEle = (_event: Event) => {
 		const dropdownMenu = new DropdownMenu(this.exsied)
 		const dropDownId = dropdownMenu.genDropdownId(this.toolbarBtnIds.normal) || ''
 		this.exsied.toolbar.hideDropdowntList(dropDownId)
