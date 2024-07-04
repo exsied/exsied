@@ -23,7 +23,7 @@ export type PluginConf = {
 	renderDataCb: (ele: HTMLElement) => string
 	editDataCb: (ele: HTMLElement, sign: string) => void
 	toggleSourceViewCb?: () => void
-	toggleSourceViewAferInitCb?: (sourceCodeWorkplaceEle: HTMLElement) => void
+	toggleSourceViewAferInitCb?: (exsied: Exsied, sourceCodeWorkplaceEle: HTMLElement) => void
 	randomCharsCb(): string
 }
 
@@ -109,7 +109,7 @@ export class PluginSourceCode implements ExsiedPlugin<Exsied> {
 		])
 
 		if (this.conf.toggleSourceViewAferInitCb) {
-			this.conf.toggleSourceViewAferInitCb(sourceCodeWorkplaceEle)
+			this.conf.toggleSourceViewAferInitCb(this.exsied, sourceCodeWorkplaceEle)
 		} else {
 			sourceCodeWorkplaceEle.textContent = workplaceEle.innerHTML || ''
 		}
