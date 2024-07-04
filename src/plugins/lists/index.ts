@@ -7,66 +7,130 @@
  *     https://github.com/exsied/exsied/blob/main/LICENSE
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
-import { CN_ACTIVE, TN_BLOCKQUOTE, TN_Q } from '../../contants'
-import { exsied } from '../../core'
-import { Commands, ExsiedPlugin } from '../../core/plugin'
-import { Toolbar } from '../../ui/toolbar'
-import { CN_ICON_OL, CN_ICON_UL, PLUGIN_CONF, PLUGIN_NAME } from './base'
-import { insertOl, insertUl } from './event_handlers'
-import './styles.scss'
+import { CN_ACTIVE, TN_BLOCKQUOTE, TN_OL, TN_Q, TN_UL } from '../../contants'
+import { Exsied } from '../../core'
+import { ExsiedPlugin } from '../../core/plugin'
+import { SelectionUtils } from '../../core/selection_utils'
+import { ELE_TYPE_BUTTON, ToolBarControlIds, emptyToolBarControlIds } from '../../ui/toolbar'
+
+export type PluginConf = {
+	addToNormalToolbar: {
+		ol: boolean
+		ul: boolean
+	}
+	addToNormalToolbarInsertMenu: {
+		ol: boolean
+		ul: boolean
+	}
+	addToBubbleToolbar: {
+		ol: boolean
+		ul: boolean
+	}
+	defaultInnerHTML: string
+}
+
+export const PLUGIN_NAME = 'Lists'
+export const CN_ICON_OL = 'exsied-icon-ol'
+export const CN_ICON_UL = 'exsied-icon-ul'
 
 const NAME_OL = 'OrderedList'
 const NAME_UL = 'UnorderedList'
 
-const toolbarBtnIds = Toolbar.genButtonIdStd(PLUGIN_NAME, PLUGIN_NAME)
+export class PluginLists implements ExsiedPlugin<Exsied> {
+	private exsied: Exsied = new Exsied('')
 
-const commands: Commands = {}
-commands[NAME_OL] = insertOl
-commands[NAME_UL] = insertUl
+	private toolbarBtnIdsOl: ToolBarControlIds = emptyToolBarControlIds
+	private toolbarBtnIdsUl: ToolBarControlIds = emptyToolBarControlIds
 
-export const lists: ExsiedPlugin = {
-	name: PLUGIN_NAME,
-	conf: PLUGIN_CONF,
-	commands,
+	name = 'Lists'
+	conf: PluginConf = {
+		addToNormalToolbar: {
+			ol: false,
+			ul: false,
+		},
+		addToNormalToolbarInsertMenu: {
+			ol: true,
+			ul: true,
+		},
+		addToBubbleToolbar: {
+			ol: false,
+			ul: false,
+		},
+		defaultInnerHTML: `
+			<li></li>  
+			<li></li>  
+			<li></li>  
+			`,
+	}
 
-	toolBarControl: [
+	init = (exsied: Exsied): void => {
+		this.exsied = exsied
+	}
+
+	afterToolbarInit = () => {
+		this.toolbarBtnIdsOl = this.exsied.toolbar.genButtonIdStd(this.name, NAME_OL) || emptyToolBarControlIds
+		this.toolbarBtnIdsUl = this.exsied.toolbar.genButtonIdStd(this.name, NAME_UL) || emptyToolBarControlIds
+	}
+
+	insert = (tagName: typeof TN_OL | typeof TN_UL) => {
+		const selectedEles = SelectionUtils.getSelectedEles()
+
+		const ele = document.createElement(tagName)
+		ele.innerHTML = selectedEles && selectedEles.innerHTML ? selectedEles.innerHTML : this.conf.defaultInnerHTML
+
+		if (this.exsied.elements.workplace)
+			this.exsied.selectionUtils.addElementBySelection(this.exsied.elements.workplace, ele)
+	}
+
+	commands = {
+		insertOl: () => {
+			this.insert(TN_OL)
+		},
+		insertUl: () => {
+			this.insert(TN_UL)
+		},
+	}
+
+	getToolBarControl = () => [
 		{
 			name: NAME_OL,
 			tooltipText: 'Ordered list',
-			addToNormalToolbar: PLUGIN_CONF.addToNormalToolbar.ol,
-			addToNormalToolbarInsertMenu: PLUGIN_CONF.addToNormalToolbarInsertMenu.ol,
-			addToBubbleToolbar: PLUGIN_CONF.addToBubbleToolbar.ol,
+			addToNormalToolbar: this.conf.addToNormalToolbar.ol,
+			addToNormalToolbarInsertMenu: this.conf.addToNormalToolbarInsertMenu.ol,
+			addToBubbleToolbar: this.conf.addToBubbleToolbar.ol,
 
-			eleType: 'button',
+			eleType: ELE_TYPE_BUTTON,
 			iconClassName: CN_ICON_OL,
-			clickCallBack: commands[NAME_OL],
+			clickCallBack: this.commands.insertOl,
 		},
 		{
 			name: NAME_UL,
 			tooltipText: 'Unordered list',
-			addToNormalToolbar: PLUGIN_CONF.addToNormalToolbar.ul,
-			addToNormalToolbarInsertMenu: PLUGIN_CONF.addToNormalToolbarInsertMenu.ul,
-			addToBubbleToolbar: PLUGIN_CONF.addToBubbleToolbar.ul,
+			addToNormalToolbar: this.conf.addToNormalToolbar.ul,
+			addToNormalToolbarInsertMenu: this.conf.addToNormalToolbarInsertMenu.ul,
+			addToBubbleToolbar: this.conf.addToBubbleToolbar.ul,
 
-			eleType: 'button',
+			eleType: ELE_TYPE_BUTTON,
 			iconClassName: CN_ICON_UL,
-			clickCallBack: commands[NAME_UL],
+			clickCallBack: this.commands.insertUl,
 		},
-	],
+	]
 
-	addHandler: () => {},
-	removeHandler: () => {},
-	checkHighlight: (_event) => {
-		const btnEle = exsied.elements.editor?.querySelector(`#${toolbarBtnIds.normal}`)
-
-		if (btnEle) {
-			const allTagNamesArr = exsied.cursorAllParentsTagNamesArr
+	checkHighlight = (_event: Event) => {
+		const btnEleOl = this.exsied.elements.editor.querySelector(`#${this.toolbarBtnIdsOl.normal}`)
+		if (btnEleOl) {
+			const allTagNamesArr = this.exsied.cursorAllParentsTagNamesArr
 			allTagNamesArr.includes(TN_Q) || allTagNamesArr.includes(TN_BLOCKQUOTE)
-				? btnEle.classList.add(CN_ACTIVE)
-				: btnEle.classList.remove(CN_ACTIVE)
+				? btnEleOl.classList.add(CN_ACTIVE)
+				: btnEleOl.classList.remove(CN_ACTIVE)
 		}
-	},
-	removeTempEle: (_event) => {},
-}
 
-export default lists
+		const btnEleUl = this.exsied.elements.editor.querySelector(`#${this.toolbarBtnIdsUl.normal}`)
+		if (btnEleUl) {
+			const allTagNamesArr = this.exsied.cursorAllParentsTagNamesArr
+			allTagNamesArr.includes(TN_Q) || allTagNamesArr.includes(TN_BLOCKQUOTE)
+				? btnEleUl.classList.add(CN_ACTIVE)
+				: btnEleUl.classList.remove(CN_ACTIVE)
+		}
+	}
+}

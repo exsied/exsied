@@ -7,63 +7,97 @@
  *     https://github.com/exsied/exsied/blob/main/LICENSE
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
-import { CN_ACTIVE, TN_BLOCKQUOTE, TN_Q } from '../../contants'
-import { exsied } from '../../core'
-import { Commands, ExsiedPlugin } from '../../core/plugin'
-import { Toolbar } from '../../ui/toolbar'
-import { CN_ICON_INDENT, CN_ICON_OUTDENT, PLUGIN_CONF, PLUGIN_NAME } from './base'
-import { formatIndent, formatOutdent } from './event_handlers'
-import './styles.scss'
+import { Exsied } from '../../core'
+import { DomUtils } from '../../core/dom_utils'
+import { FormatStyle } from '../../core/format/style'
+import { ExsiedPlugin } from '../../core/plugin'
+import { SelectionUtils } from '../../core/selection_utils'
+import { Style } from '../../types'
+import { ELE_TYPE_BUTTON } from '../../ui/toolbar'
+
+export type PluginConf = {
+	addToNormalToolbar: {
+		indent: boolean
+		outent: boolean
+	}
+	addToBubbleToolbar: {
+		indent: boolean
+		outent: boolean
+	}
+	stepPx: number
+}
+
+export const CN_ICON_INDENT = 'exsied-icon-indent'
+export const CN_ICON_OUTDENT = 'exsied-icon-outdent'
+
+const INDENT = 1
+const ONTDENT = 2
 
 const NAME_INDENT = 'indent'
 const NAME_OUTDENT = 'outdent'
-const toolbarBtnIds = Toolbar.genButtonIdStd(PLUGIN_NAME, PLUGIN_NAME)
 
-const commands: Commands = {}
-commands[NAME_INDENT] = formatIndent
-commands[NAME_OUTDENT] = formatOutdent
+export class PluginIndentAndOutdent implements ExsiedPlugin<Exsied> {
+	name = 'IndentAndOutdent'
+	conf: PluginConf = {
+		addToNormalToolbar: {
+			indent: true,
+			outent: true,
+		},
+		addToBubbleToolbar: {
+			indent: false,
+			outent: false,
+		},
+		stepPx: 10,
+	}
 
-export const indentAndOutdent: ExsiedPlugin = {
-	name: PLUGIN_NAME,
-	conf: PLUGIN_CONF,
-	commands,
+	init = (_event: Exsied): void => {}
 
-	toolBarControl: [
+	indent = (direction: typeof INDENT | typeof ONTDENT) => {
+		const cursorEle = SelectionUtils.getCursorNode()
+		const blockEle = DomUtils.getBlockEle(cursorEle as HTMLElement)
+		if (!blockEle) return
+
+		const style: Style = {}
+		let paddingInlineStartPx = 0
+		if (blockEle.style.paddingInlineStart) paddingInlineStartPx = parseInt(blockEle.style.paddingInlineStart)
+		if (direction === INDENT) style.paddingInlineStart = `${paddingInlineStartPx + this.conf.stepPx}px`
+		if (direction === ONTDENT) style.paddingInlineStart = `${paddingInlineStartPx - this.conf.stepPx}px`
+		if (blockEle) FormatStyle.formatBlockEle(blockEle, style as CSSStyleDeclaration, true)
+	}
+
+	formatIndent = (_event: Event) => {
+		this.indent(INDENT)
+	}
+
+	formatOutdent = (_event: Event) => {
+		this.indent(ONTDENT)
+	}
+
+	commands = {
+		formatIndent: this.formatIndent,
+		formatOutdent: this.formatOutdent,
+	}
+
+	getToolBarControl = () => [
 		{
 			name: NAME_INDENT,
 			tooltipText: 'Indent',
-			addToNormalToolbar: PLUGIN_CONF.addToNormalToolbar.indent,
-			addToBubbleToolbar: PLUGIN_CONF.addToBubbleToolbar.indent,
+			addToNormalToolbar: this.conf.addToNormalToolbar.indent,
+			addToBubbleToolbar: this.conf.addToBubbleToolbar.indent,
 
-			eleType: 'button',
+			eleType: ELE_TYPE_BUTTON,
 			iconClassName: CN_ICON_INDENT,
-			clickCallBack: commands[NAME_INDENT],
+			clickCallBack: this.commands.formatIndent,
 		},
 		{
 			name: NAME_OUTDENT,
 			tooltipText: 'Outdent',
-			addToNormalToolbar: PLUGIN_CONF.addToNormalToolbar.outent,
-			addToBubbleToolbar: PLUGIN_CONF.addToBubbleToolbar.outent,
+			addToNormalToolbar: this.conf.addToNormalToolbar.outent,
+			addToBubbleToolbar: this.conf.addToBubbleToolbar.outent,
 
-			eleType: 'button',
+			eleType: ELE_TYPE_BUTTON,
 			iconClassName: CN_ICON_OUTDENT,
-			clickCallBack: commands[NAME_OUTDENT],
+			clickCallBack: this.commands.formatOutdent,
 		},
-	],
-
-	addHandler: () => {},
-	removeHandler: () => {},
-	checkHighlight: (_event) => {
-		const btnEle = exsied.elements.editor?.querySelector(`#${toolbarBtnIds.normal}`)
-
-		if (btnEle) {
-			const allTagNamesArr = exsied.cursorAllParentsTagNamesArr
-			allTagNamesArr.includes(TN_Q) || allTagNamesArr.includes(TN_BLOCKQUOTE)
-				? btnEle.classList.add(CN_ACTIVE)
-				: btnEle.classList.remove(CN_ACTIVE)
-		}
-	},
-	removeTempEle: (_event) => {},
+	]
 }
-
-export default indentAndOutdent

@@ -7,10 +7,11 @@
  *     https://github.com/exsied/exsied/blob/main/LICENSE
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
-import { TN_DIV, TN_HR } from '../../contants'
+import { TN_DIV } from '../../contants'
 import { Exsied } from '../../core'
 import { DomUtilsInExsied } from '../../core/dom_utils'
 import { ExsiedPlugin } from '../../core/plugin'
+import { SelectionUtils } from '../../core/selection_utils'
 import { ELE_TYPE_BUTTON } from '../../ui/toolbar'
 
 export type PluginConf = {
@@ -19,12 +20,12 @@ export type PluginConf = {
 	addToBubbleToolbar: boolean
 }
 
-export const CN_ICON = 'exsied-icon-hr'
+export const CN_ICON = 'exsied-icon-square'
 
-export class PluginHorizonalRule implements ExsiedPlugin<Exsied> {
+export class PluginNewBlock implements ExsiedPlugin<Exsied> {
 	private exsied: Exsied = new Exsied('')
 
-	name = 'HorizonalRule'
+	name = 'NewBlock'
 	conf: PluginConf = {
 		addToNormalToolbar: false,
 		addToNormalToolbarInsertMenu: true,
@@ -35,29 +36,30 @@ export class PluginHorizonalRule implements ExsiedPlugin<Exsied> {
 		this.exsied = exsied
 	}
 
-	insertHorizontalRule = () => {
+	insertNewBlock = () => {
 		const duie = new DomUtilsInExsied(this.exsied)
 		const ele = duie.workplaceInsertNewChild(TN_DIV)
 		if (ele) {
-			ele.innerHTML = `<${TN_HR}/>`
+			ele.innerHTML = '<br/>'
+			SelectionUtils.moveCursorToEle(ele)
 		}
 	}
 
 	commands = {
-		insertHorizontalRule: this.insertHorizontalRule,
+		insertNewBlock: this.insertNewBlock,
 	}
 
 	getToolBarControl = () => [
 		{
 			name: 'index',
-			tooltipText: 'Horizonal rule',
+			tooltipText: 'Insert new block',
 			addToNormalToolbar: this.conf.addToNormalToolbar,
 			addToNormalToolbarInsertMenu: this.conf.addToNormalToolbarInsertMenu,
 			addToBubbleToolbar: this.conf.addToBubbleToolbar,
 
 			eleType: ELE_TYPE_BUTTON,
 			iconClassName: CN_ICON,
-			clickCallBack: this.commands.insertHorizontalRule,
+			clickCallBack: this.commands.insertNewBlock,
 		},
 	]
 }

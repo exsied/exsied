@@ -7,7 +7,7 @@
  *     https://github.com/exsied/exsied/blob/main/LICENSE
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
-import { exsied } from '.'
+import { Exsied } from '.'
 import { TN_SPAN, TN_TEMP } from '../contants'
 import { HTMLTagNames } from '../types'
 import { tagNameLc } from '../utils'
@@ -18,50 +18,77 @@ export type SplitElementRes = {
 	firstPart: HTMLElement
 	middlePart: HTMLElement
 	lastPart: HTMLElement
+	range: Range
 }
 
-export class SelectionUtils {
-	static getRange = () => {
-		return exsied.range
+export class SelectionUtilsInExsied {
+	private exsied: Exsied | null = null
+
+	constructor(exsied: Exsied) {
+		this.exsied = exsied
 	}
 
-	static setRange = (r: Range) => {
-		exsied.range = r
-	}
-
-	static backupSelection = () => {
+	backupSelection = () => {
 		const selection = window.getSelection()
 		if (!selection) return
 		if (selection.rangeCount > 0) {
-			exsied.range = selection.getRangeAt(0)
+			if (this.exsied) this.exsied.range = selection.getRangeAt(0)
 		}
 	}
 
-	static restoreSelection = () => {
+	restoreSelection = () => {
 		const selection = window.getSelection()
 		if (!selection) return
 
 		selection.removeAllRanges()
-		if (exsied.range) {
-			selection.addRange(exsied.range)
+		if (this.exsied && this.exsied.range) {
+			selection.addRange(this.exsied.range)
 		}
 	}
 
+	addElementBySelection = (rootNode: HTMLElement, node: Node) => {
+		if (!rootNode || !rootNode.contentEditable || rootNode.contentEditable !== 'true') {
+			throw new Error('The provided element is not editable or does not exist.')
+		}
+
+		let range: Range | null = null
+		const sel = window.getSelection()
+		if (sel && sel.rangeCount > 0) {
+			range = sel.getRangeAt(0)
+			range.deleteContents()
+		}
+
+		if (!range) {
+			range = document.createRange()
+			range.selectNodeContents(rootNode)
+			range.collapse(true)
+		}
+
+		if (this.exsied) {
+			const workplaceEle = this.exsied.elements.workplace
+			if (workplaceEle.contains(range.startContainer) && workplaceEle.contains(range.endContainer)) {
+				range.insertNode(node)
+			}
+		}
+	}
+}
+
+export class SelectionUtils {
 	static getSelectedEles = () => {
 		const selection = window.getSelection()
 		if (!selection || selection.rangeCount === 0) return
 
-		const middlePart = document.createElement(TN_SPAN)
+		const ele = document.createElement(TN_SPAN)
 		const range = selection.getRangeAt(0)
 		const middleFragment = range.cloneContents()
 		if (middleFragment.childNodes.length > 0) {
 			while (middleFragment.firstChild) {
-				middlePart.appendChild(middleFragment.firstChild.cloneNode(true))
+				ele.appendChild(middleFragment.firstChild.cloneNode(true))
 				middleFragment.firstChild.remove()
 			}
 		}
 
-		return middlePart
+		return ele
 	}
 
 	static getSelectedText = () => {
@@ -71,7 +98,7 @@ export class SelectionUtils {
 		return ''
 	}
 
-	static getCursorNode = () => {
+	static getCursorNode = (rootEle?: HTMLElement) => {
 		const selection = window.getSelection()
 		if (!selection) return
 		if (selection.rangeCount > 0) {
@@ -79,7 +106,11 @@ export class SelectionUtils {
 			const startNode = range.startContainer
 
 			if (startNode.nodeType === Node.TEXT_NODE) {
-				return startNode.parentNode
+				if (rootEle && startNode.parentNode && startNode.parentNode.isSameNode(rootEle)) {
+					return startNode
+				} else {
+					return startNode.parentNode
+				}
 			} else if (range.collapsed) {
 				return startNode
 			}
@@ -104,11 +135,13 @@ export class SelectionUtils {
 		lastTagName: HTMLTagNames | null,
 		ancestorNodeByTagName: boolean,
 		ancestorTagName: HTMLTagNames | null,
+		_exsied: Exsied,
 		rangeIpt?: Range,
 	) => {
 		let range = rangeIpt
 		if (!range) {
 			const selection = window.getSelection()
+
 			if (!selection) return
 			range = selection.getRangeAt(0)
 		}
@@ -141,6 +174,7 @@ export class SelectionUtils {
 					firstPart,
 					middlePart: secondNode as HTMLElement,
 					lastPart,
+					range,
 				} as SplitElementRes
 			} else {
 				if (ancestorTagName)
@@ -180,6 +214,7 @@ export class SelectionUtils {
 			firstPart,
 			middlePart,
 			lastPart,
+			range,
 		} as SplitElementRes
 	}
 
@@ -205,5 +240,22 @@ export class SelectionUtils {
 		}
 
 		return false
+	}
+
+	static moveCursorToEle = (targetDiv: HTMLElement) => {
+		if (!targetDiv) return
+
+		targetDiv.focus()
+
+		const selection = window.getSelection()
+		const range = document.createRange()
+
+		range.setStart(targetDiv, 0)
+		range.setEnd(targetDiv, 0)
+
+		if (selection) {
+			selection.removeAllRanges()
+			selection.addRange(range)
+		}
 	}
 }

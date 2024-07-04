@@ -7,10 +7,65 @@
  *     https://github.com/exsied/exsied/blob/main/LICENSE
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
-import { exsied } from '.'
+import { Exsied } from '.'
 import { TN_DIV, TN_P } from '../contants'
 import { HTMLTagNames } from '../types'
 import { tagNameLc } from '../utils'
+import { SelectionUtils } from './selection_utils'
+
+export class DomUtilsInExsied {
+	private exsied: Exsied | null = null
+
+	constructor(exsied: Exsied) {
+		this.exsied = exsied
+	}
+
+	workplaceInsertNewChild = (tagName: HTMLTagNames) => {
+		if (!this.exsied) {
+			return
+		}
+
+		const cursorNode = SelectionUtils.getCursorNode(this.exsied.elements.workplace)
+		if (!cursorNode) return
+
+		let currentNode: Node | null | undefined = null
+		let workplaceChild
+
+		if (cursorNode && cursorNode.parentNode && cursorNode.parentNode.isSameNode(this.exsied.elements.workplace)) {
+			workplaceChild = cursorNode
+			currentNode = cursorNode
+		} else {
+			currentNode = cursorNode?.parentNode
+			while (currentNode) {
+				if (currentNode.nodeType === Node.ELEMENT_NODE) {
+					if (currentNode.parentElement === this.exsied.elements.workplace) {
+						workplaceChild = currentNode
+						break
+					}
+				} else if (currentNode.nodeType === Node.TEXT_NODE) {
+					if (currentNode.parentNode && currentNode.parentNode.isSameNode(this.exsied.elements.workplace)) {
+						workplaceChild = currentNode
+						break
+					}
+				}
+
+				currentNode = currentNode.parentNode
+			}
+		}
+
+		if (workplaceChild && currentNode !== null) {
+			const ele = document.createElement(tagName)
+
+			if (currentNode.nextSibling) {
+				this.exsied.elements.workplace.insertBefore(ele, currentNode.nextSibling)
+			} else {
+				this.exsied.elements.workplace.appendChild(ele)
+			}
+
+			return ele
+		}
+	}
+}
 
 export class DomUtils {
 	static getBlockEle = (ele: HTMLElement) => {
@@ -78,30 +133,6 @@ export class DomUtils {
 		const clonedRange = range.cloneRange()
 		clonedRange.setEnd(clonedRange.endContainer, clonedRange.endOffset)
 		clonedRange.insertNode(node)
-	}
-
-	static addElementBySelection = (rootNode: HTMLElement, node: Node) => {
-		if (!rootNode || !rootNode.contentEditable || rootNode.contentEditable !== 'true') {
-			throw new Error('The provided element is not editable or does not exist.')
-		}
-
-		let range: Range | null = null
-		const sel = window.getSelection()
-		if (sel && sel.rangeCount > 0) {
-			range = sel.getRangeAt(0)
-			range.deleteContents()
-		}
-
-		if (!range) {
-			range = document.createRange()
-			range.selectNodeContents(rootNode)
-			range.collapse(true)
-		}
-
-		const workplaceEle = exsied.elements.workplace
-		if (workplaceEle.contains(range.startContainer) && workplaceEle.contains(range.endContainer)) {
-			range.insertNode(node)
-		}
 	}
 
 	static tableAddRow(table: HTMLTableElement, index: number) {

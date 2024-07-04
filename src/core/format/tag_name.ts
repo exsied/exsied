@@ -7,6 +7,7 @@
  *     https://github.com/exsied/exsied/blob/main/LICENSE
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
+import { Exsied } from '..'
 import { TN_SPAN } from '../../contants'
 import { HTMLTagNames } from '../../types'
 import { SelectionUtils, SplitElementRes } from '../selection_utils'
@@ -85,8 +86,8 @@ const replaceElement = (
 }
 
 export class FormatTaName {
-	static formatSelected = (tagName: HTMLTagNames, range?: Range, className?: string) => {
-		const seRes = SelectionUtils.splitElement(null, tagName, null, false, null, range)
+	static formatSelected = (exsied: Exsied, tagName: HTMLTagNames, range?: Range, className?: string) => {
+		const seRes = SelectionUtils.splitElement(null, tagName, null, false, null, exsied, range)
 		if (!seRes) return
 
 		if (className) seRes.middlePart.className = className
@@ -94,8 +95,8 @@ export class FormatTaName {
 		replaceElement(seRes, false, true, false, true)
 	}
 
-	static unformatSelected = (tagName: HTMLTagNames) => {
-		const seRes = SelectionUtils.splitElement(tagName, tagName, tagName, true, tagName)
+	static unformatSelected = (exsied: Exsied, tagName: HTMLTagNames) => {
+		const seRes = SelectionUtils.splitElement(tagName, tagName, tagName, true, tagName, exsied)
 		if (!seRes) return
 
 		if (seRes.ancestorNode === seRes.middlePart) {

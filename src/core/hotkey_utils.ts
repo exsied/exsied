@@ -7,7 +7,6 @@
  *     https://github.com/exsied/exsied/blob/main/LICENSE
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
-import { CommandFunc } from './plugin'
 
 // Key value
 // https://developer.mozilla.org/en-US/docs/Web/API/UI_Events/Keyboard_event_key_values
@@ -17,9 +16,10 @@ export const KEY_SHIFT = 'Shift'
 export const KEY_META = 'Meta'
 
 export type ModifierKeys = typeof KEY_ALT | typeof KEY_CTRL | typeof KEY_META | typeof KEY_SHIFT
+export type HotkeyFunc = (event: Event) => void
 
 export type HotkeyEventsObj = {
-	[key: string]: CommandFunc[]
+	[key: string]: HotkeyFunc[]
 }
 
 // 4
@@ -49,7 +49,7 @@ export class HotkeyUtils {
 		return hasHotkeys
 	}
 
-	static set = (keyStr: string, func: CommandFunc, modifierKeysArr: ModifierKeys[]) => {
+	static set = (keyStr: string, func: HotkeyFunc, modifierKeysArr: ModifierKeys[]) => {
 		if (keyStr.length > 1) throw new Error('The key of hotkey must be 1 char')
 
 		hasHotkeys = true
@@ -67,7 +67,7 @@ export class HotkeyUtils {
 			if (item === KEY_META) hasMeta = true
 		}
 
-		const pushKey = (obj: HotkeyEventsObj, func: CommandFunc) => {
+		const pushKey = (obj: HotkeyEventsObj, func: HotkeyFunc) => {
 			if (obj[key]) {
 				obj[key].push(func)
 			} else {

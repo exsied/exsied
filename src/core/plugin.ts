@@ -7,6 +7,7 @@
  *     https://github.com/exsied/exsied/blob/main/LICENSE
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
+import { Exsied } from '.'
 import { ToolBarControl } from '../ui/toolbar'
 
 export type ClickEventHandler = (event: MouseEvent) => any
@@ -22,39 +23,25 @@ export function getEventWithElementEle(event: Event | EventWithElement) {
 	return null
 }
 
-export type CommandFunc = (event: Event | EventWithElement) => any
-export type Commands = { [key: string]: CommandFunc }
+export interface ExsiedPlugin<T> {
+	init(host: T): void
 
-export interface ExsiedPlugin {
 	name: string
 	conf: any
-	commands: Commands
-	toolBarControl?: ToolBarControl[]
-	addHandler: () => any
-	removeHandler: () => any
-	checkHighlight: (event: Event) => any
-	removeTempEle: (event: Event) => any
+	commands?: object
+	getToolBarControl?: () => ToolBarControl[]
+	addHandler?: () => any
+	removeHandler?: () => any
+	checkHighlight?: (event: Event) => any
+	removeTempEle?: (event: Event) => any
 	hooks?: {
-		afterInit?: () => void
-		afterSetHtml?: () => void
-		beforeGetHtml?: () => string
+		afterInit?: (exsied: Exsied) => void
+		afterSetHtml?: (exsied: Exsied) => void
+		beforeGetHtml?: (exsied: Exsied) => string
 	}
+	afterToolbarInit?: () => void
 }
 
 export const HOOK_AFTER_INIT = 1
 export const HOOK_AFTER_SET_HTML = 2
 export const HOOK_BEFORE_GET_HTML = 3
-
-export type HookType = typeof HOOK_AFTER_INIT | typeof HOOK_AFTER_SET_HTML | typeof HOOK_BEFORE_GET_HTML
-
-export const PLUGINS: ExsiedPlugin[] = []
-
-export function execPluginHook(hook: HookType) {
-	for (const item of PLUGINS) {
-		if (!item.hooks) continue
-
-		if (hook === HOOK_AFTER_INIT && item.hooks.afterInit) return item.hooks.afterInit()
-		if (hook === HOOK_AFTER_SET_HTML && item.hooks.afterSetHtml) return item.hooks.afterSetHtml()
-		if (hook === HOOK_BEFORE_GET_HTML && item.hooks.beforeGetHtml) return item.hooks.beforeGetHtml()
-	}
-}

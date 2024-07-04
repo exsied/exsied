@@ -8,11 +8,9 @@
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
 import { CN_ACTIVE, CN_TEMP_ELE, CN_TEMP_ELE_HIGHLIGHT, TN_SPAN } from '../../contants'
-import { exsied } from '../../core'
+import { Exsied } from '../../core'
 import { DomUtils } from '../../core/dom_utils'
 import { FormatTaName } from '../../core/format/tag_name'
-import { PopupView } from '../../ui/popup_view'
-import { CN_FIND, CN_REGEX, PLUGIN_NAME, POPUP_ID } from './base'
 import { FindAndReplace } from './find'
 
 const CN_FIND_BOX = 'exsied-find-box'
@@ -27,6 +25,9 @@ const CN_NEXT = 'exsied-next'
 const CN_HIGHLIGHT_ALL = 'exsied-hightlight-all'
 const CN_REPLACE_THIS = 'exsied-replace-this'
 const CN_REPLACE_ALL = 'exsied-replace-all'
+const CN_REGEX = 'exsied-btn-regex'
+const CN_FIND = 'find-view'
+// const CN_REPLACE = 'replace-view'
 
 let findText = ''
 let replaceText = ''
@@ -41,7 +42,14 @@ export function resetValue() {
 	totalCount = 0
 }
 
-export function showFindBox(top: number, left: number, isReplace: boolean) {
+export function showFindBox(
+	top: number,
+	left: number,
+	isReplace: boolean,
+	exsied: Exsied,
+	popupId: string,
+	pluginName: string,
+) {
 	let contentHtml = `
 		<div class="${CN_FIND_BOX}">
 			<input class="${CN_FIND_INPUT}"/>
@@ -82,18 +90,15 @@ export function showFindBox(top: number, left: number, isReplace: boolean) {
 			`
 	}
 
-	const ele = PopupView.create({
-		id: POPUP_ID,
+	const ele = exsied.showPopup({
+		id: popupId,
 		classNames: [CN_TEMP_ELE, CN_FIND_BOX],
-		attrs: { TEMP_EDIT_ID: PLUGIN_NAME },
+		attrs: { TEMP_EDIT_ID: pluginName },
 		contentClassNames: [CN_FIND],
-		contentAttrs: {},
 		contentHtml,
+		top: top + 'px',
+		left: left + 'px',
 	})
-
-	ele.style.position = 'absolute'
-	ele.style.top = top + 'px'
-	ele.style.left = left + 'px'
 
 	document.body.appendChild(ele)
 	DomUtils.limitElementRect(ele)
@@ -133,7 +138,7 @@ export function showFindBox(top: number, left: number, isReplace: boolean) {
 				if (eleTotal) eleTotal.innerHTML = `${totalCount}`
 
 				const range = ranges[currentPosition]
-				FormatTaName.formatSelected(TN_SPAN, range, `${CN_TEMP_ELE_HIGHLIGHT}`)
+				FormatTaName.formatSelected(exsied, TN_SPAN, range, `${CN_TEMP_ELE_HIGHLIGHT}`)
 			} else {
 				resetValue()
 
@@ -158,7 +163,7 @@ export function showFindBox(top: number, left: number, isReplace: boolean) {
 			const range = ranges[currentPosition]
 
 			if (eleCurrentPosition) eleCurrentPosition.innerHTML = `${currentPosition + 1}`
-			FormatTaName.formatSelected(TN_SPAN, range, CN_TEMP_ELE_HIGHLIGHT)
+			FormatTaName.formatSelected(exsied, TN_SPAN, range, CN_TEMP_ELE_HIGHLIGHT)
 		})
 	}
 
@@ -178,7 +183,7 @@ export function showFindBox(top: number, left: number, isReplace: boolean) {
 
 			if (eleCurrentPosition && ranges.length > 0) eleCurrentPosition.innerHTML = `${currentPosition + 1}`
 
-			FormatTaName.formatSelected(TN_SPAN, range, `${CN_TEMP_ELE_HIGHLIGHT}`)
+			FormatTaName.formatSelected(exsied, TN_SPAN, range, `${CN_TEMP_ELE_HIGHLIGHT}`)
 		})
 	}
 
@@ -191,13 +196,13 @@ export function showFindBox(top: number, left: number, isReplace: boolean) {
 			const ranges = FindAndReplace.findRanges(exsied.elements.workplace as HTMLElement, findText, isReMode)
 			if (!ranges) return
 
-			FormatTaName.formatSelected(TN_SPAN, ranges[0], `${CN_TEMP_ELE_HIGHLIGHT}`)
+			FormatTaName.formatSelected(exsied, TN_SPAN, ranges[0], `${CN_TEMP_ELE_HIGHLIGHT}`)
 
 			const highlightByIndex = (index: number) => {
 				const ranges = FindAndReplace.findRanges(exsied.elements.workplace as HTMLElement, findText, isReMode)
 				if (!ranges) return
 
-				FormatTaName.formatSelected(TN_SPAN, ranges[index], `${CN_TEMP_ELE_HIGHLIGHT}`)
+				FormatTaName.formatSelected(exsied, TN_SPAN, ranges[index], `${CN_TEMP_ELE_HIGHLIGHT}`)
 			}
 
 			let index = 0
@@ -244,19 +249,11 @@ export function showFindBox(top: number, left: number, isReplace: boolean) {
 	return ele
 }
 
-export function onClick(event: Event, isReplace: boolean) {
+export function onClick(event: Event, isReplace: boolean, exsied: Exsied, popupId: string, pluginName: string) {
 	const targetEle = event.target as HTMLAnchorElement
 	const rect = targetEle.getBoundingClientRect()
 
-	showFindBox(rect.bottom, rect.left, isReplace)
-}
-
-export function onClickFind(event: Event) {
-	onClick(event, false)
-}
-
-export function onClickReplace(event: Event) {
-	onClick(event, true)
+	showFindBox(rect.bottom, rect.left, isReplace, exsied, popupId, pluginName)
 }
 
 export const clearHighLight = () => {

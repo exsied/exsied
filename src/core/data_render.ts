@@ -7,30 +7,34 @@
  *     https://github.com/exsied/exsied/blob/main/LICENSE
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
-import { exsied } from '.'
+import { Exsied } from '.'
 import { TN_DIV } from '../contants'
 import { tagNameLc } from '../utils'
 
 export const CN_PREVIEW_BLOCK = 'exsied-data-preview-block'
 export const CN_PREVIEW_RESULT = 'exsied-data-preview-result'
 export const CN_PREVIEW_CTRLS = 'exsied-data-preview-ctrls'
-export function dataAttr() {
-	return {
-		sign: exsied.dataAttrs?.sign || 'data-exsied-sign',
-		signOriginal: exsied.dataAttrs?.signOriginal || 'data-exsied-original-sign',
-	}
-}
 
 export class DataRender {
+	private exsied: Exsied | null = null
 	ele: HTMLElement | null = null
 	private previewEle: HTMLElement | null = null
 
-	constructor() {}
+	constructor(exsied: Exsied) {
+		this.exsied = exsied
+	}
+
+	dataAttr = () => {
+		return {
+			sign: this.exsied?.dataAttrs?.sign || 'data-exsied-sign' || '',
+			signOriginal: this.exsied?.dataAttrs?.signOriginal || 'data-exsied-original-sign' || '',
+		}
+	}
 
 	setEle(ele: HTMLElement, eleSign: string) {
 		this.ele = ele
 
-		ele.setAttribute(dataAttr().sign, eleSign)
+		ele.setAttribute(this.dataAttr().sign, eleSign)
 	}
 
 	render(renderHtml: string) {

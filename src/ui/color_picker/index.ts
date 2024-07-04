@@ -8,9 +8,9 @@
  *     https://gitee.com/exsied/exsied/blob/main/LICENSE
  */
 import { CN_TEMP_ELE, DATA_ATTR_TEMP_EDIT } from '../../contants'
+import { Exsied } from '../../core'
 import { DomUtils } from '../../core/dom_utils'
 import { t } from '../../core/i18n'
-import { PopupView } from '../popup_view'
 import './styles.scss'
 
 type ClickColotItemCallback = (color: string) => void
@@ -23,6 +23,7 @@ type CurrentValue = {
 export const COLOR_TRANSPARENT = 'initial'
 
 export class ColorPicker {
+	private exsied: Exsied | null = null
 	private cnColorPicker = 'exsied-color-picker'
 	private cnGrid = 'exsied-color-grid'
 	private cnColorBlock = 'exsied-color-block'
@@ -40,20 +41,22 @@ export class ColorPicker {
 		a: 1,
 	}
 
-	private popup_id: string = ''
-	private plugin_name: string = ''
+	private popupIid: string = ''
+	private pluginName: string = ''
 	private clickColotItemCallback: ClickColotItemCallback
 
 	constructor(
+		exsied: Exsied,
 		popupId: string,
 		pluginName: string,
 		presetColors: string[],
 		clickColotItemCallback: ClickColotItemCallback,
 	) {
-		this.popup_id = popupId
-		this.plugin_name = pluginName
+		this.popupIid = popupId
+		this.pluginName = pluginName
 		this.presetColors = presetColors
 		this.clickColotItemCallback = clickColotItemCallback
+		this.exsied = exsied
 	}
 
 	getRenderData() {
@@ -202,25 +205,25 @@ export class ColorPicker {
 	}
 
 	showPopup(event: Event) {
+		if (!this.exsied) return
+
 		const targetEle = event.target as HTMLAnchorElement
-		targetEle.setAttribute(DATA_ATTR_TEMP_EDIT, this.plugin_name)
+		targetEle.setAttribute(DATA_ATTR_TEMP_EDIT, this.pluginName)
 
 		const renderData = this.getRenderData()
-		const ele = PopupView.create({
-			id: this.popup_id,
-			classNames: [CN_TEMP_ELE],
-			attrs: { TEMP_EDIT_ID: this.plugin_name },
-			contentClassNames: [this.cnColorPicker],
-			contentAttrs: {},
-			contentHtml: renderData.html,
-		})
 
 		const scrollTop = window.pageYOffset || window.scrollY
 		const scrollLeft = window.pageXOffset || window.scrollX
 		const rect = targetEle.getBoundingClientRect()
-		ele.style.position = 'absolute'
-		ele.style.top = rect.bottom + scrollTop + 'px'
-		ele.style.left = rect.left + scrollLeft + 'px'
+		const ele = this.exsied.showPopup({
+			id: this.popupIid,
+			classNames: [CN_TEMP_ELE],
+			attrs: { TEMP_EDIT_ID: this.pluginName },
+			contentClassNames: [this.cnColorPicker],
+			contentHtml: renderData.html,
+			top: rect.bottom + scrollTop + 'px',
+			left: rect.left + scrollLeft + 'px',
+		})
 
 		document.body.appendChild(ele)
 		DomUtils.limitElementRect(ele)

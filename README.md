@@ -9,19 +9,29 @@
 
 [Documents](https://fivim.top/en/exsied/about/) / [文档](https://fivim.top/zh-cn/exsied/about/)
 
-[Github repo](https://github.com/exsied/exsied) / [Gitee repo](https://gitee.com/exsied/exsied)
+Our official repositories are [Github repo](https://github.com/exsied/exsied) and [Gitee repo](https://gitee.com/exsied/exsied).
 
 [Live demo](https://exsied.pages.dev/demo)
 
 ## Features:
 
 - No complex concepts, **exsied** is written entirely in native JavaScript events binding.
-
 - No dependencies.
-
 - Easy to configure / custom / develop.
-
 - All functions are based on plugins.
+- Support for multiple instances
+
+## Zen of Fivim
+
+Based on **Zen of Python**
+
+```
+Standardization is better than customization.
+Beautiful is better than ugly.
+Explicit is better than implicit.
+Simple is better than complex.
+Complex is better than complicated.
+```
 
 ## License
 
@@ -218,7 +228,6 @@ exsied.init({
 	id: 'app',
 	plugins: [],
 	enableToolbarBubble: true,
-	iAbideByExsiedLicenseAndDisableTheAboutPlugin: true, // Add this param
 })
 ```
 
