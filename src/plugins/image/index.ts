@@ -38,6 +38,9 @@ export type PluginConf = {
 	addToBubbleToolbar: boolean
 	defaultAlt: string
 	defaultSrc: string
+	defaultTitle: string
+	defaultHeight: string
+	defaultWidth: string
 }
 
 export class PluginImage implements ExsiedPlugin<Exsied> {
@@ -51,6 +54,9 @@ export class PluginImage implements ExsiedPlugin<Exsied> {
 		addToBubbleToolbar: false,
 		defaultAlt: 'this is an image',
 		defaultSrc: '',
+		defaultTitle: '',
+		defaultHeight: '200px',
+		defaultWidth: '200px'
 	}
 
 	init = (exsied: Exsied): void => {
@@ -63,8 +69,11 @@ export class PluginImage implements ExsiedPlugin<Exsied> {
 
 	insertImage = () => {
 		const ele = document.createElement(TN_IMG)
-		ele.src = this.conf.defaultSrc
 		ele.alt = this.conf.defaultAlt
+		ele.src = this.conf.defaultSrc
+		ele.title = this.conf.defaultTitle
+		ele.style.height = this.conf.defaultHeight
+		ele.style.width = this.conf.defaultWidth
 		if (this.exsied.elements.workplace)
 			this.exsied.selectionUtils.addElementBySelection(this.exsied.elements.workplace, ele)
 	}
