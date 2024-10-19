@@ -56,7 +56,7 @@ export class PluginImage implements ExsiedPlugin<Exsied> {
 		defaultSrc: '',
 		defaultTitle: '',
 		defaultHeight: '200px',
-		defaultWidth: '200px'
+		defaultWidth: '200px',
 	}
 
 	init = (exsied: Exsied): void => {
