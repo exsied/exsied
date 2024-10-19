@@ -37,8 +37,8 @@ import './styles/style.scss'
 const initExsied = (containerId: string, content: string, locale?: string) => {
 	const exsied = new Exsied(containerId)
 
-	const about = new PluginAbout()
-	about.conf.deveploers.push(
+	const plgAbout = new PluginAbout()
+	plgAbout.conf.deveploers.push(
 		{
 			name: 'fivim',
 			repoLink: 'https://github.com/fivim/fivim',
@@ -55,10 +55,10 @@ const initExsied = (containerId: string, content: string, locale?: string) => {
 		},
 	)
 
-	const bold = new PluginBold()
+	const plgBold = new PluginBold()
 
-	const fontFamily = new PluginFontFamily()
-	fontFamily.conf.fontFamilyOptions = [
+	const plgFontFamily = new PluginFontFamily()
+	plgFontFamily.conf.fontFamilyOptions = [
 		{
 			name: 'font family 1',
 			value: 'font family 1',
@@ -73,8 +73,8 @@ const initExsied = (containerId: string, content: string, locale?: string) => {
 		},
 	]
 
-	const fontSize = new PluginFontSize()
-	fontSize.conf.fontSizeOptions = [
+	const plgFontSize = new PluginFontSize()
+	plgFontSize.conf.fontSizeOptions = [
 		{
 			name: '18px',
 			value: '18px',
@@ -89,32 +89,38 @@ const initExsied = (containerId: string, content: string, locale?: string) => {
 		},
 	]
 
-	const italic = new PluginItalic()
+	const plgItalic = new PluginItalic()
 
-	const link = new PluginLink()
-	link.conf.clickLinkCb = (event) => {
+	const plgLink = new PluginLink()
+	plgLink.conf.clickLinkCb = (event) => {
 		event.preventDefault()
 		alert('clicked link, the event detail in console')
 		console.info('plugin link clickLinkCb event: ', event)
 	}
 
-	const underline = new PluginUnderline()
+	const plgImage = new PluginImage()
+	plgImage.conf.defaultSrc =
+		'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48IS0tIFVwbG9hZGVkIHRvOiBTVkcgUmVwbywgd3d3LnN2Z3JlcG8uY29tLCBHZW5lcmF0b3I6IFNWRyBSZXBvIE1peGVyIFRvb2xzIC0tPgo8c3ZnIHdpZHRoPSI4MDBweCIgaGVpZ2h0PSI4MDBweCIgdmlld0JveD0iMCAwIDMyIDMyIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPg0KPHBhdGggZD0iTTI1LjYgMEg2LjRDMi44NjUzOCAwIDAgMi44NjUzOCAwIDYuNFYyNS42QzAgMjkuMTM0NiAyLjg2NTM4IDMyIDYuNCAzMkgyNS42QzI5LjEzNDYgMzIgMzIgMjkuMTM0NiAzMiAyNS42VjYuNEMzMiAyLjg2NTM4IDI5LjEzNDYgMCAyNS42IDBaIiBmaWxsPSJ1cmwoI3BhaW50MF9saW5lYXJfMTAzXzE3ODkpIi8+DQo8cGF0aCBkPSJNNS45NTc3IDI0Ljg4NDVDNS40MjU3OCAyNS45NDgzIDYuMTk5MzcgMjcuMiA3LjM4ODc4IDI3LjJIMTguMjExMUMxOS40MDA1IDI3LjIgMjAuMTc0MSAyNS45NDgzIDE5LjY0MjIgMjQuODg0NUwxNC4yMzEgMTQuMDYyMkMxMy42NDE0IDEyLjg4MjkgMTEuOTU4NSAxMi44ODI5IDExLjM2ODggMTQuMDYyMkw1Ljk1NzcgMjQuODg0NVoiIGZpbGw9IndoaXRlIi8+DQo8cGF0aCBkPSJNMTUuNTU3NyAyNC44ODQ1QzE1LjAyNTggMjUuOTQ4MyAxNS43OTk0IDI3LjIgMTYuOTg4OCAyNy4ySDI0LjYxMTFDMjUuODAwNSAyNy4yIDI2LjU3NDEgMjUuOTQ4MyAyNi4wNDIyIDI0Ljg4NDVMMjIuMjMxIDE3LjI2MjJDMjEuNjQxNCAxNi4wODI5IDE5Ljk1ODUgMTYuMDgyOSAxOS4zNjg4IDE3LjI2MjJMMTUuNTU3NyAyNC44ODQ1WiIgZmlsbD0id2hpdGUiIGZpbGwtb3BhY2l0eT0iMC42Ii8+DQo8cGF0aCBkPSJNMjQuMDAwMiAxMS4yQzI1Ljc2NzUgMTEuMiAyNy4yMDAyIDkuNzY3MjYgMjcuMjAwMiA3Ljk5OTk1QzI3LjIwMDIgNi4yMzI2NCAyNS43Njc1IDQuNzk5OTUgMjQuMDAwMiA0Ljc5OTk1QzIyLjIzMjkgNC43OTk5NSAyMC44MDAyIDYuMjMyNjQgMjAuODAwMiA3Ljk5OTk1QzIwLjgwMDIgOS43NjcyNiAyMi4yMzI5IDExLjIgMjQuMDAwMiAxMS4yWiIgZmlsbD0id2hpdGUiLz4NCjxkZWZzPg0KPGxpbmVhckdyYWRpZW50IGlkPSJwYWludDBfbGluZWFyXzEwM18xNzg5IiB4MT0iMTYiIHkxPSIwIiB4Mj0iMTYiIHkyPSIzMiIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPg0KPHN0b3Agc3RvcC1jb2xvcj0iIzAwRTY3NiIvPg0KPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMDBDODUzIi8+DQo8L2xpbmVhckdyYWRpZW50Pg0KPC9kZWZzPg0KPC9zdmc+'
+	plgImage.conf.defaultHeight = '150px'
+	plgImage.conf.defaultWidth = '150px'
+
+	const plgUnderline = new PluginUnderline()
 
 	exsied.init({
 		plugins: [
-			about,
-			bold,
+			plgAbout,
+			plgBold,
 			new PluginFindAndReplace(),
 			new PluginColors(),
-			fontFamily,
-			fontSize,
+			plgFontFamily,
+			plgFontSize,
 			new PluginHeadings(),
 			new PluginHorizonalRule(),
-			new PluginImage(),
+			plgImage,
 			new PluginIndentAndOutdent(),
 			new PluginInsertMenu(),
-			italic,
-			link,
+			plgItalic,
+			plgLink,
 			new PluginLists(),
 			new PluginQuote(),
 			new PluginStrikethrough(),
@@ -122,16 +128,16 @@ const initExsied = (containerId: string, content: string, locale?: string) => {
 			new PluginSubscriptAndSupscript(),
 			new PluginTable(),
 			new PluginTextAlign(),
-			underline,
+			plgUnderline,
 			new PluginRedoAndUndo(),
 			new PluginNewBlock(),
 		],
 		enableToolbarBubble: true,
 		locale: locale || 'en',
 		hotkeys: [
-			{ keyStr: 'b', func: bold.commands.formatBold, modifierKeys: [KEY_CTRL] },
-			{ keyStr: 'i', func: italic.commands.formatItalic, modifierKeys: [KEY_CTRL] },
-			{ keyStr: 'u', func: underline.commands.formatUnderline, modifierKeys: [KEY_CTRL] },
+			{ keyStr: 'b', func: plgBold.commands.formatBold, modifierKeys: [KEY_CTRL] },
+			{ keyStr: 'i', func: plgItalic.commands.formatItalic, modifierKeys: [KEY_CTRL] },
+			{ keyStr: 'u', func: plgUnderline.commands.formatUnderline, modifierKeys: [KEY_CTRL] },
 		],
 		hooks: {
 			onInput: (_exsied, event) => {

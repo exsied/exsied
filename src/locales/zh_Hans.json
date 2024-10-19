@@ -23,6 +23,8 @@
 	"Image settings": "图片设置",
 	"Image": "图片",
 	"Insert": "插入",
+	"Insert new block": "插入新块",
+	"Insert source code bock": "插入源代码块",
 	"Link": "链接",
 	"OK": "好",
 	"Ordered list": "有序列表",
@@ -36,6 +38,7 @@
 	"Table": "表格",
 	"This is an extended version developed by:": "这是由以下开发者扩展的版本：${value}",
 	"Title": "标题",
+	"Toggle source code view": "切换源代码视图",
 	"Unordered list": "无序列表",
 	"Width": "宽度"
 }

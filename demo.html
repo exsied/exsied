@@ -1,237 +1,247 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Exsied</title>
-	</head>
-	<body>
-		<p>
-			Exsied demo:
-			<a href="https://exsied.pages.dev/demo">Live demo </a> /
-			<a href="https://fivim.top/en/exsied/about/">Document</a> /
-			<a href="https://github.com/exsied/exsied">Github repo</a> /
-			<a href="https://gitee.com/exsied/exsied">Gite repo</a>
-		</p>
-		<p>
-			<span id="optBtns"></span>
-		</p>
 
-		<p>Instance short:</p>
-		<div id="appShort"></div>
-		<p>Instance long:</p>
-		<div id="appLong"></div>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Exsied</title>
+</head>
 
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exsied/exsied@0.100.0/dist/style.css" />
+<body>
+	<p>
+		Exsied demo:
+		<a href="https://exsied.pages.dev/demo">Live demo </a> /
+		<a href="https://fivim.top/en/exsied/about/">Document</a> /
+		<a href="https://github.com/exsied/exsied">Github repo</a> /
+		<a href="https://gitee.com/exsied/exsied">Gite repo</a>
+	</p>
+	<p>
+		<span id="optBtns"></span>
+	</p>
 
-		<script type="module">
-			import {
-				Exsied,
-				KEY_CTRL,
-				PluginAbout,
-				PluginBold,
-				PluginColors,
-				PluginFindAndReplace,
-				PluginFontFamily,
-				PluginFontSize,
-				PluginHeadings,
-				PluginHorizonalRule,
-				PluginImage,
-				PluginIndentAndOutdent,
-				PluginInsertMenu,
-				PluginItalic,
-				PluginLink,
-				PluginLists,
-				PluginNewBlock,
-				PluginQuote,
-				PluginRedoAndUndo,
-				PluginStrikethrough,
-				PluginSubscriptAndSupscript,
-				PluginTable,
-				PluginTextAlign,
-				PluginUnderline,
-			} from 'https://cdn.jsdelivr.net/npm/@exsied/exsied@0.100.0/dist/index.js'
+	<p>Instance short:</p>
+	<div id="appShort"></div>
+	<p>Instance long:</p>
+	<div id="appLong"></div>
 
-			import { DEMO_CONTENT } from '../demo_content.js'
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exsied/exsied@0.100.0/dist/style.css" />
 
-			const initExsied = (containerId, content, locale) => {
-				const exsied = new Exsied(containerId)
+	<script type="module">
+		import {
+			Exsied,
+			KEY_CTRL,
+			PluginAbout,
+			PluginBold,
+			PluginColors,
+			PluginFindAndReplace,
+			PluginFontFamily,
+			PluginFontSize,
+			PluginHeadings,
+			PluginHorizonalRule,
+			PluginImage,
+			PluginIndentAndOutdent,
+			PluginInsertMenu,
+			PluginItalic,
+			PluginLink,
+			PluginLists,
+			PluginNewBlock,
+			PluginQuote,
+			PluginRedoAndUndo,
+			PluginStrikethrough,
+			PluginSubscriptAndSupscript,
+			PluginTable,
+			PluginTextAlign,
+			PluginUnderline,
+		} from 'https://cdn.jsdelivr.net/npm/@exsied/exsied@0.100.0/dist/index.js'
 
-				const about = new PluginAbout()
-				about.conf.deveploers.push(
-					{
-						name: 'fivim',
-						repoLink: 'https://github.com/fivim/fivim',
-						webSiteLink: 'https://xxx.com/xxx',
-						email: 'xxx@xxx.xxx',
-						extContent: `Fivim's github repo`,
-					},
-					{
-						name: 'exsied',
-						repoLink: 'https://gitee.com/exsied/exsied',
-						webSiteLink: 'https://xxx.com/xxx',
-						email: 'xxx@xxx.xxx',
-						extContent: `Exsied's gitee repo`,
-					},
-				)
+		import { DEMO_CONTENT } from '../demo_content.js'
 
-				const bold = new PluginBold()
+		const initExsied = (containerId, content, locale) => {
+			const exsied = new Exsied(containerId)
 
-				const fontFamily = new PluginFontFamily()
-				fontFamily.conf.fontFamilyOptions = [
-					{
-						name: 'font family 1',
-						value: 'font family 1',
-						tooltipText: '',
-						iconClassName: '',
-					},
-					{
-						name: 'font family 2',
-						value: 'font family 2',
-						tooltipText: '',
-						iconClassName: '',
-					},
-				]
+			const plgAbout = new PluginAbout()
+			plgAbout.conf.deveploers.push(
+				{
+					name: 'fivim',
+					repoLink: 'https://github.com/fivim/fivim',
+					webSiteLink: 'https://xxx.com/xxx',
+					email: 'xxx@xxx.xxx',
+					extContent: `Fivim's github repo`,
+				},
+				{
+					name: 'exsied',
+					repoLink: 'https://gitee.com/exsied/exsied',
+					webSiteLink: 'https://xxx.com/xxx',
+					email: 'xxx@xxx.xxx',
+					extContent: `Exsied's gitee repo`,
+				},
+			)
 
-				const fontSize = new PluginFontSize()
-				fontSize.conf.fontSizeOptions = [
-					{
-						name: '18px',
-						value: '18px',
-						tooltipText: '18px',
-						iconClassName: '',
-					},
-					{
-						name: '28px',
-						value: '28px',
-						tooltipText: '28px',
-						iconClassName: '',
-					},
-				]
+			const plgBold = new PluginBold()
 
-				const italic = new PluginItalic()
-
-				const link = new PluginLink()
-				link.conf.clickLinkCb = (event) => {
-					event.preventDefault()
-					alert('clicked link, the event detail in console')
-					console.info('plugin link clickLinkCb event: ', event)
-				}
-
-				const underline = new PluginUnderline()
-
-				exsied.init({
-					plugins: [
-						about,
-						bold,
-						new PluginFindAndReplace(),
-						new PluginColors(),
-						fontFamily,
-						fontSize,
-						new PluginHeadings(),
-						new PluginHorizonalRule(),
-						new PluginImage(),
-						new PluginIndentAndOutdent(),
-						new PluginInsertMenu(),
-						italic,
-						link,
-						new PluginLists(),
-						new PluginQuote(),
-						new PluginStrikethrough(),
-						new PluginSubscriptAndSupscript(),
-						new PluginTable(),
-						new PluginTextAlign(),
-						underline,
-						new PluginRedoAndUndo(),
-						new PluginNewBlock(),
-					],
-					enableToolbarBubble: true,
-					locale: locale || 'en',
-					hotkeys: [
-						{ keyStr: 'b', func: bold.commands.formatBold, modifierKeys: [KEY_CTRL] },
-						{ keyStr: 'i', func: italic.commands.formatItalic, modifierKeys: [KEY_CTRL] },
-						{ keyStr: 'u', func: underline.commands.formatUnderline, modifierKeys: [KEY_CTRL] },
-					],
-					hooks: {
-						onInput: (exsied, event) => {
-							const ele = event.target
-							console.log('>>> hooks.onInput :', ele.innerHTML)
-						},
-					},
-				})
-
-				exsied.setHtml(content)
-			}
-
-			const eleIdShort = 'appShort'
-			const eleIdLong = 'appLong'
-
-			const initShort = (locale) => initExsied(eleIdShort, 'short demo', locale)
-			const initLong = (locale) => initExsied(eleIdLong, '<p>Hello world :)<p>', locale)
-
-			initShort()
-			initLong()
-
-			// custom locale
-			//
-			// Set a new  dict
-			// exsied.i18n.setDict('zh-CN', {
-			// 	Title: '标题',
-			// 	Alternative: '别名',
-			// 	Styles: '样式',
-			// 	Width: '宽度',
-			// 	Height: '高度',
-			// })
-			// exsied.i18n.setLocale('zh-CN')
-			//
-
-			// darkModeBtn
-			const darkModeBtn = document.createElement('button')
-			darkModeBtn.innerHTML = 'Toggle dark mode'
-			darkModeBtn.addEventListener('click', () => {
-				const bodyEle = document.querySelector('body')
-				if (!bodyEle) return
-
-				if (bodyEle.classList.contains('dark')) {
-					bodyEle.classList.remove('dark')
-				} else {
-					bodyEle.classList.add('dark')
-				}
-			})
-
-			// change locale
-			const locales = [
-				{ text: 'German(Deutsch)', symbol: 'de' },
-				{ text: 'Spanish(Español)', symbol: 'es' },
-				{ text: 'French(Français)', symbol: 'fr' },
-				{ text: 'English', symbol: 'en' },
-				{ text: 'Russian(Русский язык)', symbol: 'ru' },
-				{ text: 'Simplified Chinese(简体中文)', symbol: 'zh-Hans' },
-				{ text: 'Traditional Chinese(繁體中文)', symbol: 'zh-Hant' },
+			const plgFontFamily = new PluginFontFamily()
+			plgFontFamily.conf.fontFamilyOptions = [
+				{
+					name: 'font family 1',
+					value: 'font family 1',
+					tooltipText: '',
+					iconClassName: '',
+				},
+				{
+					name: 'font family 2',
+					value: 'font family 2',
+					tooltipText: '',
+					iconClassName: '',
+				},
 			]
-			const localeLabel = document.createElement('span')
-			localeLabel.innerHTML = 'Change locale:'
-			//
-			const localeSelect = document.createElement('select')
-			localeSelect.id = 'mySelect'
-			for (const item of locales) {
-				const optionElement = document.createElement('option')
-				optionElement.value = item.symbol
-				optionElement.text = item.text
-				localeSelect.appendChild(optionElement)
+
+			const plgFontSize = new PluginFontSize()
+			plgFontSize.conf.fontSizeOptions = [
+				{
+					name: '18px',
+					value: '18px',
+					tooltipText: '18px',
+					iconClassName: '',
+				},
+				{
+					name: '28px',
+					value: '28px',
+					tooltipText: '28px',
+					iconClassName: '',
+				},
+			]
+
+			const plgItalic = new PluginItalic()
+
+			const plgLink = new PluginLink()
+			plgLink.conf.clickLinkCb = (event) => {
+				event.preventDefault()
+				alert('clicked link, the event detail in console')
+				console.info('plugin link clickLinkCb event: ', event)
 			}
-			localeSelect.addEventListener('change', (event) => {
-				const selectedValue = event.target.value
-				initShort(selectedValue)
-				initLong(selectedValue)
+
+			const plgImage = new PluginImage()
+			plgImage.conf.defaultSrc =
+				'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48IS0tIFVwbG9hZGVkIHRvOiBTVkcgUmVwbywgd3d3LnN2Z3JlcG8uY29tLCBHZW5lcmF0b3I6IFNWRyBSZXBvIE1peGVyIFRvb2xzIC0tPgo8c3ZnIHdpZHRoPSI4MDBweCIgaGVpZ2h0PSI4MDBweCIgdmlld0JveD0iMCAwIDMyIDMyIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPg0KPHBhdGggZD0iTTI1LjYgMEg2LjRDMi44NjUzOCAwIDAgMi44NjUzOCAwIDYuNFYyNS42QzAgMjkuMTM0NiAyLjg2NTM4IDMyIDYuNCAzMkgyNS42QzI5LjEzNDYgMzIgMzIgMjkuMTM0NiAzMiAyNS42VjYuNEMzMiAyLjg2NTM4IDI5LjEzNDYgMCAyNS42IDBaIiBmaWxsPSJ1cmwoI3BhaW50MF9saW5lYXJfMTAzXzE3ODkpIi8+DQo8cGF0aCBkPSJNNS45NTc3IDI0Ljg4NDVDNS40MjU3OCAyNS45NDgzIDYuMTk5MzcgMjcuMiA3LjM4ODc4IDI3LjJIMTguMjExMUMxOS40MDA1IDI3LjIgMjAuMTc0MSAyNS45NDgzIDE5LjY0MjIgMjQuODg0NUwxNC4yMzEgMTQuMDYyMkMxMy42NDE0IDEyLjg4MjkgMTEuOTU4NSAxMi44ODI5IDExLjM2ODggMTQuMDYyMkw1Ljk1NzcgMjQuODg0NVoiIGZpbGw9IndoaXRlIi8+DQo8cGF0aCBkPSJNMTUuNTU3NyAyNC44ODQ1QzE1LjAyNTggMjUuOTQ4MyAxNS43OTk0IDI3LjIgMTYuOTg4OCAyNy4ySDI0LjYxMTFDMjUuODAwNSAyNy4yIDI2LjU3NDEgMjUuOTQ4MyAyNi4wNDIyIDI0Ljg4NDVMMjIuMjMxIDE3LjI2MjJDMjEuNjQxNCAxNi4wODI5IDE5Ljk1ODUgMTYuMDgyOSAxOS4zNjg4IDE3LjI2MjJMMTUuNTU3NyAyNC44ODQ1WiIgZmlsbD0id2hpdGUiIGZpbGwtb3BhY2l0eT0iMC42Ii8+DQo8cGF0aCBkPSJNMjQuMDAwMiAxMS4yQzI1Ljc2NzUgMTEuMiAyNy4yMDAyIDkuNzY3MjYgMjcuMjAwMiA3Ljk5OTk1QzI3LjIwMDIgNi4yMzI2NCAyNS43Njc1IDQuNzk5OTUgMjQuMDAwMiA0Ljc5OTk1QzIyLjIzMjkgNC43OTk5NSAyMC44MDAyIDYuMjMyNjQgMjAuODAwMiA3Ljk5OTk1QzIwLjgwMDIgOS43NjcyNiAyMi4yMzI5IDExLjIgMjQuMDAwMiAxMS4yWiIgZmlsbD0id2hpdGUiLz4NCjxkZWZzPg0KPGxpbmVhckdyYWRpZW50IGlkPSJwYWludDBfbGluZWFyXzEwM18xNzg5IiB4MT0iMTYiIHkxPSIwIiB4Mj0iMTYiIHkyPSIzMiIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPg0KPHN0b3Agc3RvcC1jb2xvcj0iIzAwRTY3NiIvPg0KPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMDBDODUzIi8+DQo8L2xpbmVhckdyYWRpZW50Pg0KPC9kZWZzPg0KPC9zdmc+'
+			plgImage.conf.defaultHeight = '150px'
+			plgImage.conf.defaultWidth = '150px'
+
+			const plgUnderline = new PluginUnderline()
+
+			exsied.init({
+				plugins: [
+					plgAbout,
+					plgBold,
+					new PluginFindAndReplace(),
+					new PluginColors(),
+					plgFontFamily,
+					plgFontSize,
+					new PluginHeadings(),
+					new PluginHorizonalRule(),
+					plgImage,
+					new PluginIndentAndOutdent(),
+					new PluginInsertMenu(),
+					plgItalic,
+					plgLink,
+					new PluginLists(),
+					new PluginQuote(),
+					new PluginStrikethrough(),
+					new PluginSourceCode(),
+					new PluginSubscriptAndSupscript(),
+					new PluginTable(),
+					new PluginTextAlign(),
+					plgUnderline,
+					new PluginRedoAndUndo(),
+					new PluginNewBlock(),
+				],
+				enableToolbarBubble: true,
+				locale: locale || 'en',
+				hotkeys: [
+					{ keyStr: 'b', func: plgBold.commands.formatBold, modifierKeys: [KEY_CTRL] },
+					{ keyStr: 'i', func: plgItalic.commands.formatItalic, modifierKeys: [KEY_CTRL] },
+					{ keyStr: 'u', func: plgUnderline.commands.formatUnderline, modifierKeys: [KEY_CTRL] },
+				],
+				hooks: {
+					onInput: (exsied, event) => {
+						const ele = event.target
+						console.log('>>> hooks.onInput :', ele.innerHTML)
+					},
+				},
 			})
 
-			const btnsEle = document.getElementById('optBtns')
-			if (btnsEle) {
-				btnsEle.append(localeLabel)
-				btnsEle.append(localeSelect)
-				btnsEle.append(darkModeBtn)
+			exsied.setHtml(content)
+		}
+
+		const eleIdShort = 'appShort'
+		const eleIdLong = 'appLong'
+
+		const initShort = (locale) => initExsied(eleIdShort, 'short demo', locale)
+		const initLong = (locale) => initExsied(eleIdLong, '<p>Hello world :)<p>', locale)
+
+		initShort()
+		initLong()
+
+		// custom locale
+		//
+		// Set a new  dict
+		// exsied.i18n.setDict('zh-CN', {
+		// 	Title: '标题',
+		// 	Alternative: '别名',
+		// 	Styles: '样式',
+		// 	Width: '宽度',
+		// 	Height: '高度',
+		// })
+		// exsied.i18n.setLocale('zh-CN')
+		//
+
+		// darkModeBtn
+		const darkModeBtn = document.createElement('button')
+		darkModeBtn.innerHTML = 'Toggle dark mode'
+		darkModeBtn.addEventListener('click', () => {
+			const bodyEle = document.querySelector('body')
+			if (!bodyEle) return
+
+			if (bodyEle.classList.contains('dark')) {
+				bodyEle.classList.remove('dark')
+			} else {
+				bodyEle.classList.add('dark')
 			}
-		</script>
-	</body>
+		})
+
+		// change locale
+		const locales = [
+			{ text: 'German(Deutsch)', symbol: 'de' },
+			{ text: 'Spanish(Español)', symbol: 'es' },
+			{ text: 'French(Français)', symbol: 'fr' },
+			{ text: 'English', symbol: 'en' },
+			{ text: 'Russian(Русский язык)', symbol: 'ru' },
+			{ text: 'Simplified Chinese(简体中文)', symbol: 'zh-Hans' },
+			{ text: 'Traditional Chinese(繁體中文)', symbol: 'zh-Hant' },
+		]
+		const localeLabel = document.createElement('span')
+		localeLabel.innerHTML = 'Change locale:'
+		//
+		const localeSelect = document.createElement('select')
+		localeSelect.id = 'mySelect'
+		for (const item of locales) {
+			const optionElement = document.createElement('option')
+			optionElement.value = item.symbol
+			optionElement.text = item.text
+			localeSelect.appendChild(optionElement)
+		}
+		localeSelect.addEventListener('change', (event) => {
+			const selectedValue = event.target.value
+			initShort(selectedValue)
+			initLong(selectedValue)
+		})
+
+		const btnsEle = document.getElementById('optBtns')
+		if (btnsEle) {
+			btnsEle.append(localeLabel)
+			btnsEle.append(localeSelect)
+			btnsEle.append(darkModeBtn)
+		}
+	</script>
+</body>
+
 </html>

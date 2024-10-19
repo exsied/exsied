@@ -23,6 +23,8 @@
 	"Image settings": "Paramètres d'image",
 	"Image": "Image",
 	"Insert": "Insérer",
+	"Insert new block": "Insérer un nouveau bloc",
+	"Insert source code bock": "Insérer un bloc de code source",
 	"Link": "Lien",
 	"OK": "OK",
 	"Ordered list": "Liste ordonnée",
@@ -36,6 +38,7 @@
 	"Table": "Tabulaire",
 	"This is an extended version developed by:": "C'est une version étendue développée par : ${value}",
 	"Title": "légende",
+	"Toggle source code view": "Changer la vue du code source",
 	"Unordered list": "Liste non ordonnée",
 	"Width": "Largeur"
 }
