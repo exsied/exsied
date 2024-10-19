@@ -104,7 +104,7 @@ const initExsied = (containerId: string, content: string, locale?: string) => {
 	plgImage.conf.defaultHeight = '150px'
 	plgImage.conf.defaultWidth = '150px'
 
-	const underline = new PluginUnderline()
+	const plgUnderline = new PluginUnderline()
 
 	exsied.init({
 		plugins: [
@@ -128,7 +128,7 @@ const initExsied = (containerId: string, content: string, locale?: string) => {
 			new PluginSubscriptAndSupscript(),
 			new PluginTable(),
 			new PluginTextAlign(),
-			underline,
+			plgUnderline,
 			new PluginRedoAndUndo(),
 			new PluginNewBlock(),
 		],
@@ -137,7 +137,7 @@ const initExsied = (containerId: string, content: string, locale?: string) => {
 		hotkeys: [
 			{ keyStr: 'b', func: plgBold.commands.formatBold, modifierKeys: [KEY_CTRL] },
 			{ keyStr: 'i', func: plgItalic.commands.formatItalic, modifierKeys: [KEY_CTRL] },
-			{ keyStr: 'u', func: underline.commands.formatUnderline, modifierKeys: [KEY_CTRL] },
+			{ keyStr: 'u', func: plgUnderline.commands.formatUnderline, modifierKeys: [KEY_CTRL] },
 		],
 		hooks: {
 			onInput: (_exsied, event) => {
