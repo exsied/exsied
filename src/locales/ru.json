@@ -23,6 +23,8 @@
 	"Image settings": "Настройки изображения",
 	"Image": "Изображение",
 	"Insert": "Вставить",
+	"Insert new block": "Вставить новый блок",
+	"Insert source code bock": "Вставить блок исходного кода",
 	"Link": "Ссылка",
 	"OK": "ОК",
 	"Ordered list": "Упорядоченный список",
@@ -36,6 +38,7 @@
 	"Table": "Таблица",
 	"This is an extended version developed by:": "Это версия следующих расширений разработчика: ${value}",
 	"Title": "Заголовок",
+	"Toggle source code view": "Переключить исходный код",
 	"Unordered list": "Неупорядоченный список",
 	"Width": "Ширина"
 }

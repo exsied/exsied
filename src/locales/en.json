@@ -23,6 +23,8 @@
 	"Image settings": "Image settings",
 	"Image": "Image",
 	"Insert": "Insert",
+	"Insert new block": "Insert new block",
+	"Insert source code bock": "Insert source code bock",
 	"Link": "Link",
 	"OK": "OK",
 	"Ordered list": "Ordered list",
@@ -36,6 +38,7 @@
 	"Table": "Table",
 	"This is an extended version developed by:": "This is an extended version developed by:${value}",
 	"Title": "Title",
+	"Toggle source code view": "Toggle source code view",
 	"Unordered list": "Unordered list",
 	"Width": "Width"
 }

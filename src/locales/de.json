@@ -23,6 +23,8 @@
 	"Image settings": "Bild-Einstellungen",
 	"Image": "Bild",
 	"Insert": "Einfügen",
+	"Insert new block": "Neuer Block einfügen",
+	"Insert source code bock": "Quellcode einfügen",
 	"Link": "Link",
 	"OK": "OK",
 	"Ordered list": "Nummerierte Liste",
@@ -36,6 +38,7 @@
 	"Table": "Tabelle",
 	"This is an extended version developed by:": "Dies ist eine erweiterte Version von den Entwicklern von: ${value}",
 	"Title": "Titel",
+	"Toggle source code view": "Quellcodeansicht umschalten",
 	"Unordered list": "Unnummerierte Liste",
 	"Width": "Breite"
 }
